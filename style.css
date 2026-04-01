@@ -237,6 +237,10 @@ span {
     overflow-x: hidden;
 }
 
+.popup-content .paragraph-med {
+    padding-bottom: 16px;
+}
+
 /* -----------------ANIMATIONS-------------------------*/
 
 @-webkit-keyframes popUp {
@@ -378,7 +382,7 @@ span {
 /*--------------------------HEADER-----------------------------*/
 
 header {
-    padding: 32px 16px 16px 16px;
+    padding: 24px 16px 16px 16px;
     justify-content: space-between;
     align-items: flex-end;
     background-color: var(--background-header);
@@ -479,7 +483,7 @@ header {
 /*--------------------------FOOTER-----------------------------*/
 
 footer {
-    padding-bottom: 32px;
+    padding-bottom: 24px;
     row-gap: 16px;
     transform: translateY(100%);
     opacity: 0;
@@ -519,10 +523,6 @@ footer h3 {
     display: none;
 }
 
-body .disclaimer-content .paragraph-med,
-body .privacy-content .paragraph-med {
-    padding-bottom: 16px;
-}
 
 /* ---------------- JS Classes ---------------------*/
 
