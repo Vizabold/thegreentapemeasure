@@ -1,0 +1,11 @@
+@media only screen and (max-width: 475px) {
+
+    .company-name {
+        display: none;
+    }
+
+    footer h3 {
+        column-gap: 8px;
+    }
+
+}
