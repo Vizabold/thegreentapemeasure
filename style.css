@@ -132,8 +132,8 @@ main {
 }
 
 section {
-    justify-content: space-between;
-    row-gap: 100px;
+    justify-content: space-evenly;
+    height: 100%;
 }
 
 span {
@@ -446,7 +446,6 @@ header {
 
 .hero-container {
     row-gap: 8px;
-    padding-top: 16px;
     opacity: 0;
     -webkit-animation: appear 1s ease-in-out .5s forwards;
     animation: appear 1s ease-in-out .5s forwards;
@@ -520,8 +519,8 @@ footer h3 {
     display: none;
 }
 
-.disclaimer-content>.paragraph-med,
-.privacy-content>.paragraph-med {
+body .disclaimer-content .paragraph-med,
+body .privacy-content .paragraph-med {
     padding-bottom: 16px;
 }
 
