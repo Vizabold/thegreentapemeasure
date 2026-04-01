@@ -238,7 +238,7 @@ span {
 }
 
 .popup-content .paragraph-med {
-    padding-bottom: 16px;
+    padding-bottom: 24px;
 }
 
 /* -----------------ANIMATIONS-------------------------*/
@@ -483,7 +483,7 @@ header {
 /*--------------------------FOOTER-----------------------------*/
 
 footer {
-    padding-bottom: 24px;
+    padding-bottom: 16px;
     row-gap: 16px;
     transform: translateY(100%);
     opacity: 0;
