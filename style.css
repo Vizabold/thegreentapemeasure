@@ -66,7 +66,7 @@ body {
     letter-spacing: 5%;
     text-rendering: optimizeLegibility;
     overflow-x: hidden;
-    overflow-y: auto;
+    overflow-y: hidden;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     font-size: 16px;
@@ -127,7 +127,7 @@ h1 {
 }
 
 main {
-    padding: 48px 16px;
+    padding: 0 16px;
     flex-grow: 1;
 }
 
@@ -446,7 +446,7 @@ header {
 
 .hero-container {
     row-gap: 8px;
-    padding-top: 32px;
+    padding-top: 16px;
     opacity: 0;
     -webkit-animation: appear 1s ease-in-out .5s forwards;
     animation: appear 1s ease-in-out .5s forwards;
@@ -480,7 +480,7 @@ header {
 /*--------------------------FOOTER-----------------------------*/
 
 footer {
-    padding-bottom: 48px;
+    padding-bottom: 32px;
     row-gap: 16px;
     transform: translateY(100%);
     opacity: 0;
@@ -520,9 +520,9 @@ footer h3 {
     display: none;
 }
 
-.disclaimer-content .paragraph-med,
-.privacy-content .paragraph-med {
-    padding-bottom: 32px;
+.disclaimer-content>.paragraph-med,
+.privacy-content>.paragraph-med {
+    padding-bottom: 16px;
 }
 
 /* ---------------- JS Classes ---------------------*/
