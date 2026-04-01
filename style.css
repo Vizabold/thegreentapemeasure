@@ -491,7 +491,7 @@ footer {
     animation: slideUp 1s ease-out forwards;
 }
 
-footer h3 {
+footer h2 {
     justify-content: center;
     -moz-column-gap: 32px;
     column-gap: 32px;
