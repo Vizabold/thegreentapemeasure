@@ -1,0 +1,119 @@
+# 🟢 The Green Tape Measure
+
+> **Measuring Advancement with Facts.**
+
+A data-driven advocacy platform championing the next generation of **interior designers** — expanding career paths and protecting public safety by ensuring the profession is recognized, regulated, and respected.
+
+---
+
+## 🔍 About
+
+**The Green Tape Measure** uncovers the real-world consequences of deregulation on design safety through data-driven investigations. This platform makes the case for why interior designers deserve professional recognition, regulatory protection, and industry respect.
+
+Meet **Scrib** 🐾🔍 — our mascot and resident investigator. Part monkey, part otter, entirely devoted to the facts.
+
+---
+
+## 🎯 Mission
+
+The Green Tape Measure exists to:
+
+- 🔬 **Research** — Conduct data-driven investigations into design industry standards, deregulation, and safety outcomes
+- 📚 **Educate** — Surface findings through accessible, engaging content and interactive tools
+- 📈 **Advance** — Advocate for career protections and professional recognition for interior designers
+
+---
+
+## 🌐 Site Features
+
+| Page | Description |
+|------|-------------|
+| **Hero** | Bold mission statement with primary CTAs |
+| **About** | The Mission section with Research, Educate, and Advance pillars |
+| **Quiz** | Interactive quiz engaging visitors with design advocacy topics |
+| **Timeline** | Historical view of design deregulation and its consequences |
+| **Research** | Data-driven findings and investigations |
+| **Take Action** | Calls-to-action for supporters |
+
+---
+
+## 🎨 Design System
+
+The site uses a **light/dark theme system** that respects the user's OS-level preference (`prefers-color-scheme`) by default, with a **manual toggle in the header** to override at any time.
+
+### Main Color Tokens
+
+| Token | Light Mode | Dark Mode |
+|-------|-----------|-----------|
+| `--background-body` | `#E8E3E3` | `#131313` |
+| `--text` | `#BECAB9` | `#3F4A3C` |
+| `--primary-one` | `#5BBE5D` | `#006E1C` |
+| `--secondary-one` | `#EB8825` | `#8B5000` |
+
+### Tone
+Bold, investigative, and editorial — serious mission, approachable character.
+
+---
+
+## 🛠️ Tech Stack
+
+```
+Frontend:     HTML5, JavaScript (ES6+)
+Styling:      CSS3
+Hosting:      Netlify
+```
+
+---
+
+## 🚀 Getting Started
+
+```bash
+# Clone the repo
+git clone https://github.com/Vizabold/thegreentapemeasure.git
+
+# Navigate into the project
+cd thegreentapemeasure
+
+# Install dependencies
+npm install
+
+# Start the dev server
+npm run dev
+```
+
+---
+
+## 📁 Project Structure
+
+```
+/
+├── index.html          # Main entry point (Root)
+├── css/                # Stylesheets
+│   └── main.css        # Core application styles
+├── js/                 # JavaScript files
+│   ├── app.js          # Entry JS (Logic for routing)
+│   └── components/     # Reusable UI logic   
+├── assets/             # Media and static resources
+│   ├── images/         # Icons, logos, and photos
+│   └── fonts/          # Custom web fonts          
+├── .gitignore          # Files excluded from Git
+└── README.md
+```
+
+---
+
+## 👀 Portfolio Note
+
+This repository is **public for portfolio and recruiter review purposes**. It is not open for outside contributions — please do not open pull requests or issues.
+
+If you're a recruiter or fellow designer/developer and want to connect, feel free to reach out via [LinkedIn](#) or [my portfolio](#).
+
+---
+
+## 📄 License
+
+This project is **not licensed for reuse or redistribution**. All code and content are the original work of the author and are shared publicly for portfolio visibility only.
+
+---
+
+*The Green Tape Measure — Research. Educate. Advance.*

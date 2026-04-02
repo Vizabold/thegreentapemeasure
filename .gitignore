@@ -1,0 +1,25 @@
+# Operating System files
+.DS_Store          # macOS specific
+Thumbs.db          # Windows specific
+
+# IDE / Editor folders
+.vscode/           # Visual Studio Code settings
+.idea/             # WebStorm / IntelliJ settings
+*.sublime-project  # Sublime Text
+*.sublime-workspace
+
+# Sensitive data
+.env               # Environment variables (API keys, etc.)
+secrets.txt        # Personal notes or passwords
+
+# Dependencies (if you eventually use npm/yarn)
+node_modules/      # Installed packages
+package-lock.json  # Dependency lockfile
+
+# Logs and temporary files
+*.log              # Error and debug logs
+dist/              # Build output (if using a bundler later)
+tmp/               # Temporary folders
+
+# Ignore the local CLI metadata and cache
+.netlify/
