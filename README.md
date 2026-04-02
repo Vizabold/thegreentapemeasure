@@ -106,7 +106,7 @@ npm run dev
 
 This repository is **public for portfolio and recruiter review purposes**. It is not open for outside contributions — please do not open pull requests or issues.
 
-If you're a recruiter or fellow designer/developer and want to connect, feel free to reach out via [LinkedIn](#) or [my portfolio](#).
+If you're a recruiter or fellow designer/developer and want to connect, feel free to reach out via [LinkedIn](https://www.linkedin.com/in/amywright-ux/) or [my website](https://vizabold.com).
 
 ---
 
