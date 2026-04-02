@@ -9,16 +9,16 @@ Thumbs.db          # Windows specific
 *.sublime-workspace
 
 # Sensitive data
-.env               # Environment variables (API keys, etc.)
+.env               # Environment variables
 secrets.txt        # Personal notes or passwords
 
-# Dependencies (if you eventually use npm/yarn)
+# Dependencies
 node_modules/      # Installed packages
 package-lock.json  # Dependency lockfile
 
 # Logs and temporary files
 *.log              # Error and debug logs
-dist/              # Build output (if using a bundler later)
+dist/              # Build output
 tmp/               # Temporary folders
 
 # Ignore the local CLI metadata and cache
