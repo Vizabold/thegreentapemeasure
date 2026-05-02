@@ -257,8 +257,4 @@
     @apply w-12 h-12 flex justify-center items-center rounded-lg bg-neutral-six;
   }
 
-  .icon-container svg {
-    @apply w-5 h-5 fill-primary-one;
-  }
-
 }
