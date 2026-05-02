@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description"
+    content="Protecting public safety and elevating interior design. The Green Tape Measure advocates for recognized, regulated, and respected design careers. Learn more.">
+  <title>The Green Tape Measure</title>
+  <link rel="stylesheet" href="dist/output.css" />
+</head>
+
+<body>
+  <!-- Add mobile nav menu dialog here -->
+  <header class="w-full flex p-4 justify-between bg-neutral-two">
+    <div class="flex gap-4 items-end">
+      <picture class="mb-1">
+        <source srcset="assets/images/logo-dk.webp" type="image/webp" media="all" data-theme="dark">
+        <source srcset="assets/images/logo-lt.webp" type="image/webp" media="all" data-theme="light">
+        <img src="assets/images/logo-lt.png" alt="GTM logo that resembles a green tape measure">
+      </picture>
+      <p class="font-name text-primary-one text-xl tracking-wide uppercase">The Green Tape Measure</p>
+    </div>
+    <nav class="flex gap-8 items-end">
+      <a class="link link--nav" href="#about">About</a>
+      <a class="link link--nav" href="#quiz">Quiz</a>
+      <a class="link link--nav" href="#timeline">Timeline</a>
+      <a class="link link--nav" href="#research">Research</a>
+      <a class="link link--nav" href="#advocacy">Advocacy</a>
+    </nav>
+    <div class="flex gap-6 pb-1 items-end">
+      <a class="btn btn-md btn-cta" id="take-action-btn" href="#takeaction">Take Action</a>
+      <button type="button" class="toggle" id="toggle-switch" aria-label="dark mode on" data-theme-toggle><span
+          class="slider"><svg class="fill-neutral-two-light w-3.75 h-auto" aria-hidden="true">
+            <use href="/assets/sprites/solid.svg#moon"></use>
+          </svg></span>
+      </button>
+      <button type="button" class="btn" id="mobile-nav-btn" aria-label="open menu">
+        <svg class="btn-icon btn-icon-lg">
+          <use href="/assets/sprites/solid.svg#bars"></use>
+        </svg>
+      </button>
+    </div>
+  </header>
+
+  <main id="main-content">
+    <section class="max-w-750" id="hero">
+      <div class="flex flex-col gap-8 w-full items-center" id="hero-stack-left">
+        <picture>
+          <source srcset="assets/images/hero-img-dk-lg.webp" type="image/webp" media="(min-width: 1280px)"
+            data-theme="dark">
+          <source srcset="assets/images/hero-img-lt-lg.webp" type="image/webp" media="(min-width: 1280px)"
+            data-theme="light">
+          <source srcset="assets/images/hero-img-dk-med.webp" type="image/webp" media="(min-width: 850px)"
+            data-theme="dark">
+          <source srcset="assets/images/hero-img-lt-med.webp" type="image/webp" media="(min-width: 850px)"
+            data-theme="light">
+          <source srcset="assets/images/hero-img-dk-sm.webp" type="image/webp" media="(min-width: 450px)"
+            data-theme="dark">
+          <source srcset="assets/images/hero-img-dk-sm.webp" type="image/webp" media="(min-width: 450px)"
+            data-theme="light">
+          <source srcset="assets/images/hero-img-dk-xsm.webp" type="image/webp" media="(min-width: 300px)"
+            data-theme="dark">
+          <source srcset="assets/images/hero-img-dk-xsm.webp" type="image/webp" media="(min-width: 300px)"
+            data-theme="light">
+          <img src="assets/images/hero-img-lt-sm.png"
+            alt="a magnifying glass over the words Interior Design with the words has been stolen to the right">
+        </picture>
+        <p class="text-base/[24px]">Uncovering the real-world consequences of unequal regulation on
+          design safety and
+          careers through
+          data-driven investigations.</p>
+        <div class="flex flex-col w-full max-w-150 gap-6" id="hero-btn-stack">
+          <a href="#takeaction" class="btn btn-md btn-primary w-full max-w-100">Support Our Mission <svg
+              class="w-4 h-4 fill-neutral-two-dark">
+              <use href="/assets/sprites/solid.svg#arrow-right"></use>
+            </svg></a>
+          <a href="#research" class="btn btn-md btn-secondary w-full max-w-100">Explore Findings</a>
+        </div>
+      </div>
+      <picture id="scrib-hero">
+        <source srcset="assets/images/hero-scrib-lg.webp" type="image/webp" media="(min-width: 1280px)"
+          data-theme="dark, light">
+        <source srcset="assets/images/hero-scrib-med.webp" type="image/webp" media="(min-width: 1000px)"
+          data-theme="dark, light">
+        <source srcset="assets/images/hero-scrib-sm.webp" type="image/webp" media="(min-width: 700px)"
+          data-theme="dark, light">
+        <source srcset="assets/images/hero-scrib-xsm.webp" type="image/webp" media="(min-width: 300px)"
+          data-theme="dark, light">
+        <img src="assets/images/hero-scrib-sm.png"
+          alt="the GTM mascot scrib, a mix between a monkey and an otter with green eyes, looking towards the upper-left of the screen">
+      </picture>
+    </section>
+    <section class="bg-neutral-four" id="about">
+      <div class="flex flex-col gap-8 max-w-750" id="about-stack">
+        <picture id=" scrib-about">
+          <source srcset="assets/images/Scrib-shadow-lg.webp" type="image/webp" media="(min-width:1280px)"
+            data-theme="dark, light">
+          <source srcset="assets/images/Scrib-shadow-med.webp" type="image/webp" media="(min-width:850px)"
+            data-theme="dark, light">
+          <source srcset="assets/images/Scrib-shadow-sm.webp" type="image/webp" media="(min-width:300px)"
+            data-theme="dark, light">
+          <img class="opacity-10" src="assets/images/Scrib-shadow-sm.png"
+            alt="sillouette of the GTM mascot Scrib, a cross between a monkey and otter, with a magnifying glass">
+        </picture>
+        <div class="flex flex-col gap-8" id="about-stack-right">
+          <div class="flex flex-col">
+            <p class="paragraph-accent">The Mission</p>
+            <h2>Measuring Advancement with <span class="text-primary-one">Facts</span>.</h2>
+          </div>
+          <p class="paragraph-med">The Green Tape Measure is on a mission to champion the next generation of interior
+            designers. Through
+            data-driven advocacy, we’re expanding career paths and protecting public safety by ensuring the profession
+            is recognized, regulated, and respected.</p>
+          <div class="flex flex-col gap-4">
+            <div class="flex gap-4 items-center">
+              <div class="icon-container">
+                <svg>
+                  <use href="assets/sprites/solid.svg#magnifying-glass"></use>
+                </svg>
+              </div>
+              <p class="paragraph-lg">Research.</p>
+            </div>
+            <div class="flex gap-4 items-center">
+              <div class="icon-container">
+                <svg>
+                  <use href="assets/sprites/solid.svg#apple-whole"></use>
+                </svg>
+              </div>
+              <p class="paragraph-lg">Educate.</p>
+            </div>
+            <div class="flex gap-4 items-center">
+              <div class="icon-container">
+                <svg>
+                  <use href="assets/sprites/solid.svg#arrow-trend-up"></use>
+                </svg>
+              </div>
+              <p class="paragraph-lg">Advance.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script type="module" src="js/app.js"></script>
+</body>
+
+</html>

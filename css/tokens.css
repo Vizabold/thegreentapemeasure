@@ -1,0 +1,242 @@
+@theme {
+    --color-*: initial;
+    --color-primary-one: #5BBE5D;
+    --color-primary-two: #7FCC81;
+    --color-primary-three: #899484;
+    --color-primary-four: #ACBAA5;
+    --color-primary-five: #3F4A3C;
+    --color-secondary-one: #EB8825;
+    --color-secondary-two: #EFA152;
+    --color-secondary-three: #FFC081;
+    --color-secondary-four: #9E8265;
+    --color-secondary-five: #FF9A81;
+    --color-neutral-one: #0E0E0E;
+    --color-neutral-two: #121212;
+    --color-neutral-two-dark: #121212;
+    --color-neutral-two-light: #F0EDED;
+    --color-neutral-three: #131313;
+    --color-neutral-four: #1C1B1B;
+    --color-neutral-five: #2B2A2A;
+    --color-neutral-six: #353535;
+    --color-neutral-seven: #BECAB9;
+    --color-neutral-seven-light: #BECAB9;
+    --color-neutral-eight-light: #DDE5D9;
+    --color-neutral-nine: #D8D5D4;
+
+    /* font variables */
+    --font-base: "Inter", sans-serif;
+    --font-button: "Manrope", sans-serif;
+    --font-p-accent: "Manrope", sans-serif;
+    --font-heading: "Space Grotesk", sans-serif;
+    --font-nav: "Space Grotesk", sans-serif;
+    --font-name: "Space Grotesk", sans-serif;
+    --font-leading-medium: 28px;
+    --font-leading-large: 34px;
+    --font-letter-spacing-small: 2%;
+
+    /* spacing variables */
+    --spacing-base: 0.25rem;
+    --spacing-safe: 2rem;
+
+    /* stroke variables */
+    --weight-thin: 0.5px;
+    --weight-light: 1px;
+    --weight-medium: 2px;
+    --weight-heavy: 4px;
+}
+
+/* inter-regular - latin */
+@font-face {
+    font-display: swap;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    src: url('../assets/fonts/inter-v20-latin-regular.woff2') format('woff2'),
+        url('../assets/fonts/inter-v20-latin-regular.ttf') format('truetype');
+}
+
+/* inter-italic - latin */
+@font-face {
+    font-display: swap;
+    font-family: 'Inter';
+    font-style: italic;
+    font-weight: 400;
+    src: url('../assets/fonts/inter-v20-latin-italic.woff2') format('woff2'),
+        url('../assets/fonts/inter-v20-latin-italic.ttf') format('truetype');
+}
+
+/* inter-700 - latin */
+@font-face {
+    font-display: swap;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 700;
+    src: url('../assets/fonts/inter-v20-latin-700.woff2') format('woff2'),
+        url('../assets/fonts/inter-v20-latin-700.ttf') format('truetype');
+}
+
+/* inter-700italic - latin */
+@font-face {
+    font-display: swap;
+    font-family: 'Inter';
+    font-style: italic;
+    font-weight: 700;
+    src: url('../assets/fonts/inter-v20-latin-700italic.woff2') format('woff2'),
+        url('../assets/fonts/inter-v20-latin-700italic.ttf') format('truetype');
+}
+
+
+/* manrope-regular - latin */
+@font-face {
+    font-display: swap;
+    font-family: 'Manrope';
+    font-style: normal;
+    font-weight: 400;
+    src: url('../assets/fonts/manrope-v20-latin-regular.woff2') format('woff2'),
+        url('../assets/fonts/manrope-v20-latin-regular.ttf') format('truetype');
+}
+
+/* manrope-700 - latin */
+@font-face {
+    font-display: swap;
+    font-family: 'Manrope';
+    font-style: normal;
+    font-weight: 700;
+    src: url('../assets/fonts/manrope-v20-latin-700.woff2') format('woff2'),
+        url('../assets/fonts/manrope-v20-latin-700.ttf') format('truetype');
+}
+
+/* space-grotesk-regular - latin */
+@font-face {
+    font-display: swap;
+    font-family: 'Space Grotesk';
+    font-style: normal;
+    font-weight: 400;
+    src: url('../assets/fonts/space-grotesk-v22-latin-regular.woff2') format('woff2'),
+        url('../assets/fonts/space-grotesk-v22-latin-regular.ttf') format('truetype');
+}
+
+/* space-grotesk-700 - latin */
+@font-face {
+    font-display: swap;
+    font-family: 'Space Grotesk';
+    font-style: normal;
+    font-weight: 700;
+    src: url('../assets/fonts/space-grotesk-v22-latin-700.woff2') format('woff2'),
+        url('../assets/fonts/space-grotesk-v22-latin-700.ttf') format('truetype');
+}
+
+@media screen and (min-width: 300px) {
+    header p {
+        @apply hidden;
+    }
+
+    header nav {
+        @apply hidden;
+    }
+
+    #mobile-nav-btn {
+        @apply block;
+    }
+
+    header .toggle {
+        @apply hidden;
+    }
+
+    header #take-action-btn {
+        @apply hidden;
+    }
+
+    #scrib-hero {
+        @apply hidden;
+    }
+}
+
+@media screen and (min-width: 400px) {
+    header #take-action-btn {
+        @apply block;
+    }
+
+    h2 {
+        @apply text-5xl;
+    }
+}
+
+@media screen and (min-width: 600px) {
+
+    #scrib-hero {
+        @apply block;
+    }
+
+    #hero-stack-left {
+        @apply max-w-87.5;
+    }
+
+}
+
+@media screen and (min-width: 700px) {
+
+    #hero-stack-left {
+        @apply max-w-100;
+    }
+}
+
+@media screen and (min-width: 850px) {
+    header p {
+        @apply block;
+    }
+
+    section {
+        @apply px-8;
+    }
+
+
+    #hero-btn-stack {
+        @apply flex-row;
+    }
+
+    #hero p {
+        @apply text-lg/[32px];
+    }
+
+}
+
+@media screen and (min-width: 1000px) {
+    header p {
+        @apply hidden;
+    }
+
+    header nav {
+        @apply flex;
+    }
+
+    #mobile-nav-btn {
+        @apply hidden;
+    }
+
+    header .toggle {
+        @apply block;
+    }
+
+    #hero-stack-left {
+        @apply max-w-[500px];
+    }
+
+    #about-stack {
+        @apply flex-row items-center;
+    }
+
+    #about-stack-right {
+        @apply max-w-[50%];
+    }
+}
+
+@media screen and (min-width: 1280px) {
+    header p {
+        @apply block;
+    }
+
+    #hero-stack-left {
+        @apply max-w-175 items-start;
+    }
+}

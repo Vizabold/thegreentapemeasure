@@ -1,0 +1,264 @@
+@import "tailwindcss";
+@import "./tokens.css";
+
+@layer base, components, utilities;
+
+@layer base {
+  html {
+    @apply box-border scroll-smooth text-base;
+  }
+
+  body {
+    @apply font-base bg-neutral-three text-neutral-seven;
+  }
+
+  .light {
+    --color-primary-one: #006E1C;
+    --color-primary-two: #009927;
+    --color-primary-three: #6F7A6B;
+    --color-primary-five: #BECAB9;
+    --color-secondary-one: #8B5000;
+    --color-secondary-two: #BD6D00;
+    --color-secondary-three: #D47A00;
+    --color-secondary-four: #523D21;
+    --color-secondary-five: #D45800;
+    --color-neutral-one: #F1F1F1;
+    --color-neutral-two: #F0EDED;
+    --color-neutral-three: #E8E3E3;
+    --color-neutral-four: #DCD5D5;
+    --color-neutral-five: #D1C7C7;
+    --color-neutral-six: #C5B9B9;
+    --color-neutral-seven: #3F4A3C;
+    --color-neutral-nine: #1C1B1B;
+
+    :focus-visible {
+      @apply outline-offset-3 outline-primary-one outline-2;
+    }
+
+    :focus:not(:focus-visible) {
+      @apply outline-0;
+    }
+  }
+
+  button,
+  [role="button"] {
+    cursor: pointer;
+  }
+
+  section {
+    @apply flex gap-8 w-full px-4 py-12;
+  }
+
+  h2 {
+    @apply font-heading text-4xl font-bold text-neutral-nine;
+  }
+
+  .paragraph-accent {
+    @apply font-p-accent font-bold tracking-wide text-primary-two uppercase;
+  }
+
+  .paragraph-med {
+    @apply text-lg/[28px];
+  }
+
+  .paragraph-lg {
+    @apply text-xl;
+  }
+
+}
+
+@layer components {
+
+  /* ─────────────────────────────────────────
+     Button Components
+  ───────────────────────────────────────── */
+
+  /* ── Base ── */
+  .btn {
+    @apply flex justify-center gap-2 font-button font-bold items-center transition-colors duration-300 ease-out;
+  }
+
+  /* ── Sizes ── */
+  .btn-lg {
+    @apply px-8 py-4 rounded-full text-lg;
+  }
+
+  .btn-md {
+    @apply px-6 py-2 rounded-full;
+  }
+
+  /* ── Primary ── */
+  .btn-primary {
+    @apply bg-primary-one text-neutral-two;
+  }
+
+  .btn-primary:hover {
+    @apply bg-primary-two;
+  }
+
+  .btn-primary:active {
+    @apply bg-primary-two inset-shadow-sm;
+  }
+
+  /* ── Secondary ── */
+  .btn-secondary {
+    @apply bg-neutral-six text-secondary-three;
+  }
+
+  .btn-secondary:hover {
+    @apply bg-neutral-five;
+  }
+
+  .btn-secondary:active {
+    @apply bg-neutral-five inset-shadow-sm;
+  }
+
+  /* ── CTA ── */
+  .btn-cta {
+    @apply bg-secondary-three text-neutral-two;
+  }
+
+  .btn-cta:hover {
+    @apply bg-secondary-one;
+  }
+
+  .btn-cta:active {
+    @apply bg-secondary-one inset-shadow-sm;
+  }
+
+  /* ── SVGs ── */
+  .btn-icon {
+    @apply fill-primary-one justify-self-center;
+  }
+
+  .btn-icon-lg {
+    @apply w-[48px] h-[48px];
+  }
+
+  .btn-icon-sm {
+    @apply w-[35px] h-[35px];
+  }
+
+  .btn-icon:hover,
+  .btn-icon:active {
+    @apply fill-primary-two;
+  }
+
+  /* ── Draggable ── */
+  .btn-draggable {
+    @apply bg-primary-five text-neutral-nine rounded-xl p-4 gap-2 justify-center min-w-[157px] text-lg shadow-xs;
+  }
+
+  .btn-draggable:hover {
+    @apply bg-primary-three cursor-grab;
+  }
+
+  .btn-draggable:active {
+    @apply bg-primary-three cursor-grabbing;
+  }
+
+  /* ── Dropzone ── */
+  .btn-dropzone {
+    @apply text-neutral-seven rounded-xl p-8 min-w-[131px] justify-center border border-dashed border-neutral-seven;
+  }
+
+  .btn-dropzone:hover {
+    @apply bg-neutral-six;
+  }
+
+  /* ─────────────────────────────────────────
+     Link Components
+  ───────────────────────────────────────── */
+
+  /* ── Base ── */
+  .link {
+    @apply transition-colors duration-300 ease-out;
+  }
+
+  /* ── Nav ── */
+  .link--nav {
+    @apply inline-flex justify-center font-nav font-bold text-neutral-nine;
+  }
+
+  .link--nav:hover {
+    @apply text-primary-two;
+  }
+
+  .link--nav:active,
+  .link--nav.link--active {
+    @apply text-primary-one;
+  }
+
+  .link--nav:active::after,
+  .link--nav.link--active::after {
+    @apply content-[''] block w-full h-[1px] bg-primary-one;
+  }
+
+  /* ── Inline ── */
+  .link--inline {
+    @apply text-primary-one underline;
+  }
+
+  .link--inline:hover,
+  .link--inline:active {
+    @apply text-primary-two;
+  }
+
+  .link--inline:visited {
+    @apply text-neutral-seven;
+  }
+
+  /* ── Footer ── */
+  .link--footer {
+    @apply text-neutral-seven underline;
+  }
+
+  .link--footer:hover,
+  .link--footer:active {
+    @apply text-primary-two;
+  }
+
+  /* ── Nav Mobile ── */
+  .link--nav-mobile {
+    @apply flex justify-center items-center w-full px-8 py-4 font-nav font-bold text-xl bg-neutral-two border-b-[0.5px] border-neutral-four border-solid;
+    /* need to remove border for last link */
+  }
+
+  .link--nav-mobile:active {
+    @apply bg-primary-one text-neutral-two-dark;
+  }
+
+  /* ── Nav Mobile TakeAction ── */
+  .link--nav-mobile-takeaction {
+    @apply bg-neutral-two text-secondary-one;
+  }
+
+  .link--nav-mobile-takeaction:active {
+    @apply bg-secondary-three text-neutral-two-dark;
+  }
+
+  /* ─────────────────────────────────────────
+     Toggle Components
+  ───────────────────────────────────────── */
+
+  .toggle {
+    @apply relative w-[65px] h-[35px] border border-solid border-primary-three rounded-full;
+  }
+
+  .slider {
+    @apply absolute w-[25px] h-[25px] flex justify-center items-center rounded-full p-1 bg-primary-three translate-y-[-50%] top-[50%] left-[5px] transition-transform duration-750 ease-out;
+  }
+
+  /* ─────────────────────────────────────────
+     Non-interactive Icon Components
+  ───────────────────────────────────────── */
+
+  .icon-container {
+    @apply w-12 h-12 flex justify-center items-center rounded-lg bg-neutral-six;
+  }
+
+  .icon-container svg {
+    @apply w-5 h-5 fill-primary-one;
+  }
+
+}
