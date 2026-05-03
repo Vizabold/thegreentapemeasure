@@ -927,6 +927,7 @@
     --tw-border-style: solid;
     border-style: solid;
     border-color: var(--color-primary-one);
+    fill: var(--color-neutral-two-dark);
   }
   .btn-icon--rounded svg {
     width: calc(var(--spacing) * 4);
