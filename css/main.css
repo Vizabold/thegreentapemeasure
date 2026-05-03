@@ -350,6 +350,14 @@
     @apply text-primary-one;
   }
 
+  #hero-btn-one svg {
+    @apply transition-transform duration-75 ease-in-out;
+  }
+
+  #hero-btn-one:hover svg {
+    @apply translate-x-1;
+  }
+
   .quiz-instruction {
     @apply w-16 min-w-16 h-16 rounded-full flex justify-center items-center bg-primary-one;
   }

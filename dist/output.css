@@ -1178,6 +1178,19 @@
   .icon-container svg use:not([href*="fire"]) {
     color: var(--color-primary-one);
   }
+  #hero-btn-one svg {
+    transition-property: transform, translate, scale, rotate;
+    transition-timing-function: var(--tw-ease, var(--default-transition-timing-function));
+    transition-duration: var(--tw-duration, var(--default-transition-duration));
+    --tw-duration: 75ms;
+    transition-duration: 75ms;
+    --tw-ease: var(--ease-in-out);
+    transition-timing-function: var(--ease-in-out);
+  }
+  #hero-btn-one:hover svg {
+    --tw-translate-x: calc(var(--spacing) * 1);
+    translate: var(--tw-translate-x) var(--tw-translate-y);
+  }
   .quiz-instruction {
     display: flex;
     height: calc(var(--spacing) * 16);
