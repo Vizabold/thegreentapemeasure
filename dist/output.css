@@ -487,11 +487,8 @@
     flex-direction: row;
     align-items: center;
   }
-  #about iframe {
+  .about-stack-right, .about-stack-left, #about iframe {
     width: 50%;
-  }
-  .about-stack-right, .about-stack-left {
-    max-width: 50%;
   }
 }
 @media screen and (min-width: 1280px) {
@@ -837,6 +834,7 @@
   }
   .about-stack-right, .about-stack-left {
     display: flex;
+    width: 100%;
     flex-direction: column;
     gap: calc(var(--spacing) * 8);
   }

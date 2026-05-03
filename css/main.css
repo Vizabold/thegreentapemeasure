@@ -276,7 +276,7 @@
 
   .about-stack-right,
   .about-stack-left {
-    @apply flex flex-col gap-8;
+    @apply flex flex-col gap-8 w-full;
   }
 
   .icon-container {

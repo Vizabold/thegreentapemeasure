@@ -226,13 +226,10 @@
         @apply flex-row items-center;
     }
 
+    .about-stack-right,
+    .about-stack-left,
     #about iframe {
         @apply w-[50%];
-    }
-
-    .about-stack-right,
-    .about-stack-left {
-        @apply max-w-[50%];
     }
 }
 
