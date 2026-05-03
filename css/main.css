@@ -169,7 +169,7 @@
   }
 
   .btn-icon--rounded:hover {
-    @apply bg-neutral-four;
+    @apply bg-neutral-six;
   }
 
   .icon-xs {
