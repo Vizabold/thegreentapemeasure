@@ -9,7 +9,7 @@
   }
 
   body {
-    @apply font-base bg-neutral-three text-neutral-seven;
+    @apply font-base bg-neutral-three text-neutral-seven overflow-x-hidden;
   }
 
   .light {
