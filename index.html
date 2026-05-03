@@ -95,16 +95,18 @@
     <section class="bg-neutral-four flex-col" id="about">
       <div class="about-stacks">
         <div class="about-stack">
-          <picture id="scrib-about">
-            <source srcset="assets/images/Scrib-shadow-lg.webp" type="image/webp" media="(min-width:1280px)"
-              data-theme="dark, light">
-            <source srcset="assets/images/Scrib-shadow-med.webp" type="image/webp" media="(min-width:850px)"
-              data-theme="dark, light">
-            <source srcset="assets/images/Scrib-shadow-sm.webp" type="image/webp" media="(min-width:300px)"
-              data-theme="dark, light">
-            <img class="opacity-10" src="assets/images/Scrib-shadow-sm.png"
-              alt="sillouette of the GTM mascot Scrib, a cross between a monkey and otter, with a magnifying glass">
-          </picture>
+          <div class="about-stack-left items-center">
+            <picture id="scrib-about">
+              <source srcset="assets/images/Scrib-shadow-lg.webp" type="image/webp" media="(min-width:1280px)"
+                data-theme="dark, light">
+              <source srcset="assets/images/Scrib-shadow-med.webp" type="image/webp" media="(min-width:850px)"
+                data-theme="dark, light">
+              <source srcset="assets/images/Scrib-shadow-sm.webp" type="image/webp" media="(min-width:300px)"
+                data-theme="dark, light">
+              <img class="opacity-10" src="assets/images/Scrib-shadow-sm.png"
+                alt="sillouette of the GTM mascot Scrib, a cross between a monkey and otter, with a magnifying glass">
+            </picture>
+          </div>
           <div class="about-stack-right">
             <div class="flex flex-col">
               <p class="paragraph-accent">The Mission</p>
@@ -156,8 +158,10 @@
               for evidence-based advocacy.</p>
             <p class="paragraph-med">Watch the video to learn more.</p>
           </div>
-          <!-- replace iframe content with the embedded no-cookie version of the YouTube video -->
-          <iframe class="flex aspect-video bg-neutral-one"></iframe>
+          <div class="about-stack-right">
+            <!-- replace iframe content with the embedded no-cookie version of the YouTube video -->
+            <iframe class="flex aspect-video bg-neutral-one w-full"></iframe>
+          </div>
         </div>
         <div class="flex flex-col gap-4">
           <div class="flex flex-col">
@@ -174,7 +178,7 @@
                       <use href="assets/sprites/solid.svg#circle-user"></use>
                     </svg>
                   </div>
-                  <div class="flex flex-col gap-1">
+                  <div class="flex flex-col">
                     <p class="paragraph-med">50% Membership Tiers</p>
                     <p>Optional perks and exclusive content.</p>
                   </div>
@@ -185,7 +189,7 @@
                       <use href="assets/sprites/solid.svg#hand-holding-heart"></use>
                     </svg>
                   </div>
-                  <div class="flex flex-col gap-1">
+                  <div class="flex flex-col">
                     <p class="paragraph-med">30% Donations</p>
                     <p>One-time and reoccurring contributions.</p>
                   </div>
@@ -196,7 +200,7 @@
                       <use href="assets/sprites/solid.svg#magnifying-glass-chart"></use>
                     </svg>
                   </div>
-                  <div class="flex flex-col gap-1">
+                  <div class="flex flex-col">
                     <p class="paragraph-med">10% Research Grants</p>
                     <p>Long-term industry studies to guide the profession and legislation.</p>
                   </div>
@@ -207,7 +211,7 @@
                       <use href="assets/sprites/solid.svg#bag-shopping"></use>
                     </svg>
                   </div>
-                  <div class="flex flex-col gap-1">
+                  <div class="flex flex-col">
                     <p class="paragraph-med">10% Merchandise</p>
                     <p>Clothing, pens, keychains, pins, and Scrib plushies.</p>
                   </div>
@@ -224,7 +228,8 @@
                   501(c)(3) non-profit conversion with a donation today.</p>
                 <a href="#takeaction" class="link link--inline">Donor Benefits</a>
               </div>
-              <a class="btn btn-lg btn-cta max-w-150" href="#">Donate Now <svg class="w-4 h-4 fill-neutral-two-dark">
+              <a class="btn btn-lg btn-cta max-w-150" href="#" target="_blank">Donate Now <svg
+                  class="w-4 h-4 fill-neutral-two-dark">
                   <use href="/assets/sprites/solid.svg#arrow-up-right-from-square"></use>
                 </svg></a>
             </div>
@@ -233,6 +238,162 @@
       </div>
     </section>
   </main>
+
+  <footer class="flex flex-col p-4 gap-6 justify-between" id="footer">
+    <!-- update  this first line so year is dyanmically updated -->
+    <p>© 2026 The Green Tape Measure</p>
+    <div class="flex gap-6 justify-center">
+      <div class="dialog-wrapper">
+        <input type="checkbox" id="disclaimer-fallback-toggle">
+        <label for="disclaimer-fallback-toggle" class="fallback-label">
+          <button type="button" commandfor="disclaimer" command="show-modal" aria-haspopup="dialog"
+            aria-controls="privacy" aria-expanded="false" class="link link--footer">Disclaimer</button>
+        </label>
+        <dialog class="no-js-dialog" id="disclaimer" aria-labelledby="disclaimer-title" aria-modal="true">
+          <article>
+            <div class="flex justify-between">
+              <h2 id="disclaimer-title">Terms of Use / Disclaimer</h2>
+              <button type="button" commandfor="disclaimer" command="close" class="btn" aria-label="close dialog">
+                <svg class="btn-icon btn-icon-sm">
+                  <use href="/assets/sprites/solid.svg#x-mark"></use>
+                </svg>
+              </button>
+              <form method="dialog">
+                <label for="fallback-toggle">Close</label>
+              </form>
+            </div>
+            <div class="flex flex-col gap-2">
+              <p>The information provided on this website and through our social media accounts is
+                for educational and informational purposes only and is not intended as professional advice. While The
+                Green Tape Measure strives to provide accurate, current, and useful information, we make no
+                representations or warranties of any kind about the completeness, reliability, accuracy, or suitability
+                of this information. Your use of this information is at <b>your own risk</b>.
+              </p>
+              <p>The Green Tape Measure is not liable for any losses, damages, or legal claims
+                that may arise from the use of content provided on its website or social media channels, or from
+                participation in activities including, but not limited to, surveys, donations, newsletter sign-ups, and
+                volunteer interest submissions.
+              </p>
+              <p>Any references to laws, regulations, or industry practices are provided for
+                general awareness and should not be considered legal or regulatory advice. For advice specific to your
+                situation, please consult a qualified professional.</p>
+              <div class="flex flex-col">
+                <p class="paragraph-med">Third-Party Links</p>
+                <p>We are not responsible for content on third-party websites linked from this
+                  site, including social media platforms.</p>
+              </div>
+              <div class="flex flex-col">
+                <p class="paragraph-med">Copyright and Trademarks</p>
+                <p>All content created and shared by The Green Tape Measure, including but not
+                  limited to text, graphics, logos, designs, images, videos, and animations, is the property of The
+                  Green Tape Measure and is protected by copyright law. The company name "The Green Tape Measure", its
+                  logo, and its mascot "Scrib" are trademarks of The Green Tape Measure.</p>
+                <p>This protection applies both to content on our website and to content we
+                  publish through external sites, including our official social media accounts. Unauthorized
+                  reproduction, redistribution, or use of our copyrighted or trademarked materials, whether
+                  from this website or our social media channels, is strictly prohibited without prior written
+                  permission.
+                </p>
+              </div>
+              <p>By engaging with our content, whether on this website or content we have on
+                external sites, you acknowledge and agree to these terms.</p>
+              <p><i>Last updated: 4 May 2026</i></p>
+            </div>
+          </article>
+        </dialog>
+      </div>
+      <div class="dialog-wrapper">
+        <input type="checkbox" id="privacy-fallback-toggle">
+        <label for="privacy-fallback-toggle" class="fallback-label">
+          <button type="button" commandfor="privacy" command="show-modal" aria-haspopup="dialog" aria-controls="privacy"
+            aria-expanded="false" class="link link--footer">Privacy Policy</button>
+        </label>
+        <dialog class="no-js-dialog" id="privacy" aria-labelledby="privacy-title" aria-modal="true">
+          <article>
+            <div class="flex justify-between">
+              <h2 id="privacy-title">Privacy Statement</h2>
+              <button type="button" commandfor="disclaimer" command="close" class="btn" aria-label="close dialog">
+                <svg class="btn-icon btn-icon-sm">
+                  <use href="/assets/sprites/solid.svg#x-mark"></use>
+                </svg>
+              </button>
+              <form method="dialog">
+                <label for="fallback-toggle">Close</label>
+              </form>
+            </div>
+            <div class="flex flex-col gap-2">
+              <!-- add cookies notice -->
+              <p>We respect your privacy and are committed to protecting your personal
+                information.</p>
+              <div class="flex flex-col">
+                <p class="paragraph-med">Use of Cookies</p>
+                <p>Our website does not utilize non-essential cookies, tracking technologies, or
+                  third-party marketing trackers.</p>
+              </div>
+              <div class="flex flex-col">
+                <p class="paragraph-med">Strictly Necessary Cookies</p>
+                <p>To function correctly and securely, our server may automatically set "strictly
+                  necessary" cookies. These are essential for the website to function properly and for security
+                  purposes, such as preventing fraudulent activity. These cookies do not collect personal information
+                  and are exempt from consent requirements under GDPR and other privacy laws.</p>
+              </div>
+              <div class="flex flex-col">
+                <p class="paragraph-med">Data Handling</p>
+                <p>No personal information is collected through these essential cookies, and they
+                  are not used to analyze visitor behavior or for advertising purposes.</p>
+              </div>
+              <div class="flex flex-col">
+                <p class="paragraph-med">Control Options</p>
+                <p>You can set your browser to refuse all cookies or to indicate when a cookie is
+                  being sent. However, if you do not accept these essential cookies, some parts of our site may not
+                  function properly.</p>
+              </div>
+              <div class="flex flex-col">
+                <p class="paragraph-med">Contact Emails & Volunteer Form</p>
+                <p>If you choose to contact us, we will collect your inputted information solely
+                  to respond to your inquiry. We will not share, sell, or rent your information to third parties.</p>
+              </div>
+              <div class="flex flex-col">
+                <p class="paragraph-med">External Links</p>
+                <p>Our website contains links to social media platforms and to other external
+                  sites.
+                  Please note that these platforms may collect information about your interaction with their content. We
+                  are not responsible for the privacy practices of these third-party platforms.</p>
+              </div>
+              <div class="flex flex-col">
+                <p class="paragraph-med">Analytics</p>
+                <p>We use privacy-friendly analytics (Umami) to understand general website
+                  traffic. No personal information is collected through this service.</p>
+              </div>
+              <div class="flex flex-col">
+                <p class="paragraph-med">Updates</p>
+                <p>This Privacy Policy may be updated from time to time. The most current version
+                  will always be available on this website.</p>
+              </div>
+              <p><i>Last updated: 4 May 2026</i></p>
+            </div>
+          </article>
+        </dialog>
+      </div>
+    </div>
+    <div class="flex gap-6 justify-center">
+      <a class="btn" href="https://www.linkedin.com/company/gtmeasure" aria-label="LinkedIn" target="_blank">
+        <svg class="btn-icon btn-icon-sm fill-neutral-seven">
+          <use href="/assets/sprites/brands.svg#linkedin"></use>
+        </svg>
+      </a>
+      <a class="btn" href="https://x.com/GTMeasure" aria-label="X Twitter" target="_blank">
+        <svg class="btn-icon btn-icon-sm fill-neutral-seven">
+          <use href="/assets/sprites/brands.svg#x-twitter"></use>
+        </svg>
+      </a>
+      <a class="btn" href="https://www.instagram.com/gtmeasure" aria-label="Instagram" target="_blank">
+        <svg class="btn-icon btn-icon-sm fill-neutral-seven">
+          <use href="/assets/sprites/brands.svg#instagram"></use>
+        </svg>
+      </a>
+    </div>
+  </footer>
 
   <script type="module" src="js/app.js"></script>
 </body>

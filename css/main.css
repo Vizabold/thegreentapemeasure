@@ -263,11 +263,41 @@
     @apply absolute w-[25px] h-[25px] flex justify-center items-center rounded-full p-1 bg-primary-three translate-y-[-50%] top-[50%] left-[5px] transition-transform duration-750 ease-out;
   }
 
+  /* ─────────────────────────────────────────
+     Dialog Components
+  ───────────────────────────────────────── */
+
+  dialog::backdrop {
+    @apply bg-black/70 backdrop-blur-xs;
+  }
+
+  .dialog-wrapper {
+    @apply relative;
+  }
+
+  .dialog-wrapper input[type="checkbox"] {
+    @apply absolute opacity-0 pointer-events-none;
+  }
+
+  .no-js-dialog {
+    @apply hidden;
+  }
+
+  #privacy-fallback-toggle:checked~.no-js-dialog,
+  #disclaimer-fallback-toggle:checked~.no-js-dialog {
+    @apply block fixed top-[50%] left-[50%] translate-[-50%] border-0 bg-neutral-four z-9999;
+  }
+
+  #privacy-fallback-toggle:checked~.no-js-dialog::before,
+  #disclaimer-fallback-toggle:checked~.no-js-dialog::before {
+    @apply content-none fixed top-0 left-0 w-screen h-screen bg-black/70 z-[-1] cursor-default;
+  }
+
 }
 
 @layer utilities {
   .about-stacks {
-    @apply flex flex-col gap-8 max-w-750;
+    @apply flex flex-col gap-20 max-w-750;
   }
 
   .about-stack {
@@ -280,10 +310,11 @@
   }
 
   .icon-container {
-    @apply w-12 h-12 flex justify-center items-center rounded-lg bg-neutral-six;
+    @apply w-12 h-12 min-w-12 flex justify-center items-center rounded-lg bg-neutral-six;
   }
 
   .icon-container svg {
     @apply w-5 h-5 fill-current text-primary-one;
   }
+
 }

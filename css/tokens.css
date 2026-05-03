@@ -126,6 +126,18 @@
         url('../assets/fonts/space-grotesk-v22-latin-700.ttf') format('truetype');
 }
 
+@supports (commandfor: "privacy") {
+    .fallback-label {
+        @apply hidden;
+    }
+}
+
+@supports (commandfor: "disclaimer") {
+    .fallback-label {
+        @apply hidden;
+    }
+}
+
 @media screen and (min-width: 300px) {
     header p {
         @apply hidden;
@@ -199,6 +211,10 @@
         @apply text-lg/[32px];
     }
 
+    footer {
+        @apply flex-row;
+    }
+
 }
 
 @media screen and (min-width: 1000px) {
@@ -227,8 +243,7 @@
     }
 
     .about-stack-right,
-    .about-stack-left,
-    #about iframe {
+    .about-stack-left {
         @apply w-[50%];
     }
 }
