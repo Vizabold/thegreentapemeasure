@@ -934,6 +934,9 @@
     fill: currentcolor;
     color: var(--color-primary-one);
   }
+  .btn-icon--rounded:hover {
+    background-color: var(--color-neutral-four);
+  }
   .icon-xs {
     height: calc(var(--spacing) * 4);
     min-height: calc(var(--spacing) * 4);

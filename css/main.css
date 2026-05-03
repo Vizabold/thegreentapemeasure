@@ -168,6 +168,10 @@
     @apply w-4 min-w-4 fill-current text-primary-one;
   }
 
+  .btn-icon--rounded:hover {
+    @apply bg-neutral-four;
+  }
+
   .icon-xs {
     @apply w-4 min-w-4 h-4 min-h-4;
   }
