@@ -32,11 +32,7 @@
     --color-primary-three: #899484;
     --color-primary-five: #3F4A3C;
     --color-secondary-one: #EB8825;
-    --color-secondary-two: #EFA152;
     --color-secondary-three: #FFC081;
-    --color-secondary-four: #9E8265;
-    --color-secondary-five: #FF9A81;
-    --color-neutral-one: #0E0E0E;
     --color-neutral-two: #121212;
     --color-neutral-two-dark: #121212;
     --color-neutral-two-light: #F0EDED;
@@ -239,23 +235,14 @@
   .h-4 {
     height: calc(var(--spacing) * 4);
   }
-  .h-5 {
-    height: calc(var(--spacing) * 5);
-  }
   .h-auto {
     height: auto;
-  }
-  .w-3 {
-    width: calc(var(--spacing) * 3);
   }
   .w-3\.75 {
     width: calc(var(--spacing) * 3.75);
   }
   .w-4 {
     width: calc(var(--spacing) * 4);
-  }
-  .w-5 {
-    width: calc(var(--spacing) * 5);
   }
   .w-full {
     width: 100%;
@@ -268,12 +255,6 @@
   }
   .max-w-750 {
     max-width: calc(var(--spacing) * 750);
-  }
-  .border-collapse {
-    border-collapse: collapse;
-  }
-  .resize {
-    resize: both;
   }
   .flex-col {
     flex-direction: column;
@@ -296,10 +277,6 @@
   .gap-8 {
     gap: calc(var(--spacing) * 8);
   }
-  .border {
-    border-style: var(--tw-border-style);
-    border-width: 1px;
-  }
   .border-none {
     --tw-border-style: none;
     border-style: none;
@@ -316,9 +293,6 @@
   .fill-neutral-two-light {
     fill: var(--color-neutral-two-light);
   }
-  .fill-primary-one {
-    fill: var(--color-primary-one);
-  }
   .p-4 {
     padding: calc(var(--spacing) * 4);
   }
@@ -327,10 +301,6 @@
   }
   .font-name {
     font-family: var(--font-name);
-  }
-  .text-base {
-    font-size: var(--text-base);
-    line-height: var(--tw-leading, var(--text-base--line-height));
   }
   .text-base\/\[24px\] {
     font-size: var(--text-base);
@@ -362,10 +332,6 @@
   .ring {
     --tw-ring-shadow: var(--tw-ring-inset,) 0 0 0 calc(1px + var(--tw-ring-offset-width)) var(--tw-ring-color, currentcolor);
     box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow);
-  }
-  .outline {
-    outline-style: var(--tw-outline-style);
-    outline-width: 1px;
   }
   .filter {
     filter: var(--tw-blur,) var(--tw-brightness,) var(--tw-contrast,) var(--tw-grayscale,) var(--tw-hue-rotate,) var(--tw-invert,) var(--tw-saturate,) var(--tw-sepia,) var(--tw-drop-shadow,);
@@ -832,11 +798,12 @@
     border-radius: var(--radius-lg);
     background-color: var(--color-neutral-six);
   }
-}
-@property --tw-border-style {
-  syntax: "*";
-  inherits: false;
-  initial-value: solid;
+  .icon-container svg {
+    height: calc(var(--spacing) * 5);
+    width: calc(var(--spacing) * 5);
+    fill: currentcolor;
+    color: var(--color-primary-one);
+  }
 }
 @property --tw-tracking {
   syntax: "*";
@@ -907,11 +874,6 @@
   inherits: false;
   initial-value: 0 0 #0000;
 }
-@property --tw-outline-style {
-  syntax: "*";
-  inherits: false;
-  initial-value: solid;
-}
 @property --tw-blur {
   syntax: "*";
   inherits: false;
@@ -965,6 +927,11 @@
   syntax: "*";
   inherits: false;
 }
+@property --tw-outline-style {
+  syntax: "*";
+  inherits: false;
+  initial-value: solid;
+}
 @property --tw-font-weight {
   syntax: "*";
   inherits: false;
@@ -976,6 +943,11 @@
 @property --tw-ease {
   syntax: "*";
   inherits: false;
+}
+@property --tw-border-style {
+  syntax: "*";
+  inherits: false;
+  initial-value: solid;
 }
 @property --tw-content {
   syntax: "*";
@@ -1000,7 +972,6 @@
 @layer properties {
   @supports ((-webkit-hyphens: none) and (not (margin-trim: inline))) or ((-moz-orient: inline) and (not (color:rgb(from red r g b)))) {
     *, ::before, ::after, ::backdrop {
-      --tw-border-style: solid;
       --tw-tracking: initial;
       --tw-shadow: 0 0 #0000;
       --tw-shadow-color: initial;
@@ -1016,7 +987,6 @@
       --tw-ring-offset-width: 0px;
       --tw-ring-offset-color: #fff;
       --tw-ring-offset-shadow: 0 0 #0000;
-      --tw-outline-style: solid;
       --tw-blur: initial;
       --tw-brightness: initial;
       --tw-contrast: initial;
@@ -1030,9 +1000,11 @@
       --tw-drop-shadow-color: initial;
       --tw-drop-shadow-alpha: 100%;
       --tw-drop-shadow-size: initial;
+      --tw-outline-style: solid;
       --tw-font-weight: initial;
       --tw-duration: initial;
       --tw-ease: initial;
+      --tw-border-style: solid;
       --tw-content: "";
       --tw-translate-x: 0;
       --tw-translate-y: 0;
