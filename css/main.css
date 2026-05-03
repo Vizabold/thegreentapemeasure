@@ -149,23 +149,27 @@
   /* ── SVGs ── */
 
   svg {
-    @apply h-full;
+    @apply h-auto max-h-full;
   }
 
   .btn-icon-lg {
-    @apply w-[48px] h-[48px];
+    @apply w-12 min-w-12 h-12 min-h-12;
   }
 
   .btn-icon-sm {
-    @apply w-[35px] h-[35px];
+    @apply w-8.75 min-w-8.75 h-8.75 min-h-8.75;
   }
 
-  .btn-icon--round {
+  .btn-icon--rounded {
     @apply rounded-full border-[0.5px] border-solid border-primary-one;
   }
 
+  .btn-icon--rounded svg {
+    @apply w-4 min-w-4 fill-primary-one;
+  }
+
   .icon-xs {
-    @apply w-4 h-4;
+    @apply w-4 min-w-4 h-4 min-h-4;
   }
 
   .btn-icon:hover,
@@ -344,6 +348,10 @@
 
   .quiz-instruction {
     @apply w-16 min-w-16 h-16 rounded-full flex justify-center items-center bg-primary-one;
+  }
+
+  .timeline-marker {
+    @apply w-6 h-6 bg-primary-one border-4 border-solid border-neutral-one rounded-full;
   }
 
 }
