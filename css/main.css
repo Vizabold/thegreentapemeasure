@@ -165,7 +165,7 @@
   }
 
   .btn-icon--rounded svg {
-    @apply w-4 min-w-4 fill-primary-one;
+    @apply w-4 min-w-4 fill-current text-primary-one;
   }
 
   .icon-xs {
@@ -350,8 +350,20 @@
     @apply w-16 min-w-16 h-16 rounded-full flex justify-center items-center bg-primary-one;
   }
 
+  .timeline-event {
+    @apply gap-8 justify-center items-center relative z-1;
+  }
+
+  .timeline-event-descript {
+    @apply flex flex-col gap-1 items-end w-[46%] lg:gap-4;
+  }
+
   .timeline-marker {
-    @apply w-6 h-6 bg-primary-one border-4 border-solid border-neutral-one rounded-full;
+    @apply w-6 min-w-6 h-6 min-h-6 bg-primary-one border-4 border-solid border-neutral-one rounded-full;
+  }
+
+  .timeline-date {
+    @apply font-graph text-2xl font-bold text-neutral-seven opacity-50 w-[46%] lg:text-5xl;
   }
 
 }
