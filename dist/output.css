@@ -1170,10 +1170,12 @@
     border-radius: var(--radius-lg);
     background-color: var(--color-neutral-six);
   }
-  .icon-container svg use:not([href*="fire"]) {
+  .icon-container svg {
     height: calc(var(--spacing) * 5);
     width: calc(var(--spacing) * 5);
     fill: currentcolor;
+  }
+  .icon-container svg use:not([href*="fire"]) {
     color: var(--color-primary-one);
   }
   .quiz-instruction {

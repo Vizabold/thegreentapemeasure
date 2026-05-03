@@ -342,8 +342,12 @@
     @apply w-12 h-12 min-w-12 flex justify-center items-center rounded-lg bg-neutral-six;
   }
 
+  .icon-container svg {
+    @apply w-5 h-5 fill-current;
+  }
+
   .icon-container svg use:not([href*="fire"]) {
-    @apply w-5 h-5 fill-current text-primary-one;
+    @apply text-primary-one;
   }
 
   .quiz-instruction {
