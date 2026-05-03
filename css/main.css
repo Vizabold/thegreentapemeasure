@@ -71,7 +71,7 @@
     @apply font-p-accent font-bold tracking-wide text-primary-two uppercase;
   }
 
-  .paragraph-med {
+  .paragraph-md {
     @apply text-lg/[28px];
   }
 
@@ -141,9 +141,6 @@
   }
 
   /* ── SVGs ── */
-  .btn-icon {
-    @apply fill-primary-one justify-self-center;
-  }
 
   .btn-icon-lg {
     @apply w-[48px] h-[48px];
@@ -153,6 +150,14 @@
     @apply w-[35px] h-[35px];
   }
 
+  .btn-icon--round {
+    @apply rounded-full border-[0.5px] border-solid border-primary-one;
+  }
+
+  .icon-xs {
+    @apply w-4 h-4;
+  }
+
   .btn-icon:hover,
   .btn-icon:active {
     @apply fill-primary-two;
@@ -160,7 +165,7 @@
 
   /* ── Draggable ── */
   .btn-draggable {
-    @apply bg-primary-five text-neutral-nine rounded-xl p-4 gap-2 justify-center min-w-[157px] text-lg shadow-xs;
+    @apply bg-primary-five justify-between text-neutral-nine rounded-xl p-4 shadow-xs;
   }
 
   .btn-draggable:hover {
@@ -173,11 +178,22 @@
 
   /* ── Dropzone ── */
   .btn-dropzone {
-    @apply text-neutral-seven rounded-xl p-8 min-w-[131px] justify-center border border-dashed border-neutral-seven;
+    @apply text-neutral-seven rounded-xl p-8 border border-dashed border-neutral-seven;
   }
 
   .btn-dropzone:hover {
     @apply bg-neutral-six;
+  }
+
+  /* ── Accordions ── */
+
+  .btn-accordion {
+    @apply gap-2 text-primary-one justify-start;
+  }
+
+  .btn-accordion:hover,
+  .btn-accordiion:active {
+    @apply text-primary-two;
   }
 
   /* ─────────────────────────────────────────
@@ -213,6 +229,10 @@
     @apply text-primary-one underline;
   }
 
+  .link--inline-neutral {
+    @apply text-neutral-seven;
+  }
+
   .link--inline:hover,
   .link--inline:active {
     @apply text-primary-two;
@@ -234,8 +254,7 @@
 
   /* ── Nav Mobile ── */
   .link--nav-mobile {
-    @apply flex justify-center items-center w-full px-8 py-4 font-nav font-bold text-xl bg-neutral-two border-b-[0.5px] border-neutral-four border-solid;
-    /* need to remove border for last link */
+    @apply flex justify-center items-center w-full px-4 py-8 font-nav font-bold text-xl border-t-[0.5px] border-neutral-four border-solid;
   }
 
   .link--nav-mobile:active {
@@ -267,8 +286,12 @@
      Dialog Components
   ───────────────────────────────────────── */
 
+  dialog {
+    @apply flex-col w-screen h-screen transition-transform transition-opacity duration-1500 ease-in-out hidden opacity-0
+  }
+
   dialog::backdrop {
-    @apply bg-black/70 backdrop-blur-xs;
+    @apply bg-neutral-one opacity-70 backdrop-blur-xs;
   }
 
   .dialog-wrapper {
@@ -279,10 +302,6 @@
     @apply absolute opacity-0 pointer-events-none;
   }
 
-  .no-js-dialog {
-    @apply hidden;
-  }
-
   #privacy-fallback-toggle:checked~.no-js-dialog,
   #disclaimer-fallback-toggle:checked~.no-js-dialog {
     @apply block fixed top-[50%] left-[50%] translate-[-50%] border-0 bg-neutral-four z-9999;
@@ -290,24 +309,20 @@
 
   #privacy-fallback-toggle:checked~.no-js-dialog::before,
   #disclaimer-fallback-toggle:checked~.no-js-dialog::before {
-    @apply content-none fixed top-0 left-0 w-screen h-screen bg-black/70 z-[-1] cursor-default;
+    @apply content-none fixed top-0 left-0 w-screen h-screen bg-neutral-one opacity-70 z-[-1] cursor-default;
+  }
+
+  /* ─────────────────────────────────────────
+     Card Components
+  ───────────────────────────────────────── */
+
+  .card {
+    @apply flex flex-col gap-4 p-8 rounded-xl;
   }
 
 }
 
 @layer utilities {
-  .about-stacks {
-    @apply flex flex-col gap-20 max-w-750;
-  }
-
-  .about-stack {
-    @apply flex flex-col gap-8;
-  }
-
-  .about-stack-right,
-  .about-stack-left {
-    @apply flex flex-col gap-8 w-full;
-  }
 
   .icon-container {
     @apply w-12 h-12 min-w-12 flex justify-center items-center rounded-lg bg-neutral-six;
@@ -315,6 +330,10 @@
 
   .icon-container svg {
     @apply w-5 h-5 fill-current text-primary-one;
+  }
+
+  .quiz-instruction {
+    @apply w-16 h-16 rounded-full flex justify-center items-center bg-primary-one;
   }
 
 }

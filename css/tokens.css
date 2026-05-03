@@ -43,6 +43,15 @@
     --weight-light: 1px;
     --weight-medium: 2px;
     --weight-heavy: 4px;
+
+    /* breakpoints */
+    --breakpoint-xxs: 300px;
+    --breakpoint-xs: 400px;
+    --breakpoint-sm: 600px;
+    --breakpoint-md: 700px;
+    --breakpoint-lg: 850px;
+    --breakpoint-xl: 1000px;
+    --breakpoint-xxl: 1280px;
 }
 
 /* inter-regular - latin */
@@ -138,122 +147,14 @@
     }
 }
 
-@media screen and (min-width: 300px) {
-    header p {
-        @apply hidden;
-    }
-
-    header nav {
-        @apply hidden;
-    }
-
-    #mobile-nav-btn {
-        @apply block;
-    }
-
-    header .toggle {
-        @apply hidden;
-    }
-
-    header #take-action-btn {
-        @apply hidden;
-    }
-
-    #scrib-hero {
-        @apply hidden;
-    }
-}
-
 @media screen and (min-width: 400px) {
-    header #take-action-btn {
-        @apply block;
-    }
-
     h2 {
         @apply text-5xl;
     }
 }
 
-@media screen and (min-width: 600px) {
-
-    #scrib-hero {
-        @apply block;
-    }
-
-    #hero-stack-left {
-        @apply max-w-87.5;
-    }
-
-}
-
-@media screen and (min-width: 700px) {
-
-    #hero-stack-left {
-        @apply max-w-100;
-    }
-}
-
 @media screen and (min-width: 850px) {
-    header p {
-        @apply block;
-    }
-
     section {
         @apply px-8;
-    }
-
-
-    #hero-btn-stack {
-        @apply flex-row;
-    }
-
-    #hero p {
-        @apply text-lg/[32px];
-    }
-
-    footer {
-        @apply flex-row;
-    }
-
-}
-
-@media screen and (min-width: 1000px) {
-    header p {
-        @apply hidden;
-    }
-
-    header nav {
-        @apply flex;
-    }
-
-    #mobile-nav-btn {
-        @apply hidden;
-    }
-
-    header .toggle {
-        @apply block;
-    }
-
-    #hero-stack-left {
-        @apply max-w-[500px];
-    }
-
-    .about-stack {
-        @apply flex-row items-center;
-    }
-
-    .about-stack-right,
-    .about-stack-left {
-        @apply w-[50%];
-    }
-}
-
-@media screen and (min-width: 1280px) {
-    header p {
-        @apply block;
-    }
-
-    #hero-stack-left {
-        @apply max-w-175 items-start;
     }
 }

@@ -11,17 +11,51 @@
 </head>
 
 <body>
-  <!-- Add mobile nav menu dialog here -->
-  <header class="w-full flex p-4 justify-between bg-neutral-two">
-    <div class="flex gap-4 items-end">
+  <dialog class="-translate-x-full" id="mobile-nav-menu">
+    <div class="flex px-4 pt-8 pb-2 justify-between items-end bg-neutral-one">
       <picture class="mb-1">
         <source srcset="assets/images/logo-dk.webp" type="image/webp" media="all" data-theme="dark">
         <source srcset="assets/images/logo-lt.webp" type="image/webp" media="all" data-theme="light">
         <img src="assets/images/logo-lt.png" alt="GTM logo that resembles a green tape measure">
       </picture>
-      <p class="font-name text-primary-one text-xl tracking-wide uppercase">The Green Tape Measure</p>
+      <div class="flex gap-6">
+        <button type="button" class="toggle" aria-label="dark mode on" data-theme-toggle><span class="slider"><svg
+              aria-hidden="true" class="fill-neutral-two-light w-3.75 h-auto">
+              <use href="/assets/sprites/solid.svg#moon"></use>
+            </svg></span>
+        </button>
+        <button type="button" class="btn btn-icon-lg btn-icon--rounded" aria-label="close menu">
+          <svg aria-hidden="true" class="fill-primary-one icon-xs">
+            <use href=" /assets/sprites/solid.svg#x-mark"></use>
+          </svg>
+        </button>
+      </div>
     </div>
-    <nav class="flex gap-8 items-end">
+    <nav class="flex flex-col grow-1 px-4 pb-8 bg-neutral-two justify-evenly" aria-label="Mobile Navigation">
+      <a class="link link--nav-mobile" href="#about">About</a>
+      <a class="link link--nav-mobile" href="#quiz">Quiz</a>
+      <a class="link link--nav-mobile" href="#timeline">Timeline</a>
+      <a class="link link--nav-mobile" href="#research">Research</a>
+      <a class="link link--nav-mobile" href="#advocacy">Advocacy</a>
+      <a class="link link--nav-mobile link--nav-mobile-takeaction" href="#takeaction">Take Action</a>
+    </nav>
+  </dialog>
+
+  <header class="w-full flex p-4 justify-between bg-neutral-two">
+    <div class="flex gap-4 items-end">
+      <a class="link link--nav" href="#">
+        <picture class="mb-1">
+          <source srcset="assets/images/logo-dk.webp" type="image/webp" media="all" data-theme="dark">
+          <source srcset="assets/images/logo-lt.webp" type="image/webp" media="all" data-theme="light">
+          <img src="assets/images/logo-lt.png" alt="GTM logo that resembles a green tape measure">
+        </picture>
+      </a>
+      <p class="font-name text-primary-one text-xl tracking-wide uppercase xxs:hidden lg:block xl:hidden xxl:block">The
+        Green Tape
+        Measure
+      </p>
+    </div>
+    <nav class="gap-8 items-end xxs:hidden xl:flex">
       <a class="link link--nav" href="#about">About</a>
       <a class="link link--nav" href="#quiz">Quiz</a>
       <a class="link link--nav" href="#timeline">Timeline</a>
@@ -29,14 +63,14 @@
       <a class="link link--nav" href="#advocacy">Advocacy</a>
     </nav>
     <div class="flex gap-6 pb-1 items-end">
-      <a class="btn btn-md btn-cta" id="take-action-btn" href="#takeaction">Take Action</a>
-      <button type="button" class="toggle" id="toggle-switch" aria-label="dark mode on" data-theme-toggle><span
-          class="slider"><svg class="fill-neutral-two-light w-3.75 h-auto" aria-hidden="true">
+      <a class="btn btn-md btn-cta xxs:hidden" href="#takeaction">Take Action</a>
+      <button type="button" class="toggle xxs:hidden xl:block" aria-label="dark mode on" data-theme-toggle><span
+          class="slider"><svg aria-hidden="true" class="fill-neutral-two-light w-3.75 h-auto">
             <use href="/assets/sprites/solid.svg#moon"></use>
           </svg></span>
       </button>
-      <button type="button" class="btn" id="mobile-nav-btn" aria-label="open menu">
-        <svg class="btn-icon btn-icon-lg">
+      <button type="button" class="btn btn-icon-lg xxs:block xl:hidden" id="mobile-nav-btn" aria-label="open menu">
+        <svg aria-hidden="true" class="fill-primary-one">
           <use href="/assets/sprites/solid.svg#bars"></use>
         </svg>
       </button>
@@ -45,40 +79,42 @@
 
   <main id="main-content">
     <section class="max-w-750" id="hero">
-      <div class="flex flex-col gap-8 w-full items-center" id="hero-stack-left">
-        <picture>
-          <source srcset="assets/images/hero-img-dk-lg.webp" type="image/webp" media="(min-width: 1280px)"
-            data-theme="dark">
-          <source srcset="assets/images/hero-img-lt-lg.webp" type="image/webp" media="(min-width: 1280px)"
-            data-theme="light">
-          <source srcset="assets/images/hero-img-dk-med.webp" type="image/webp" media="(min-width: 850px)"
-            data-theme="dark">
-          <source srcset="assets/images/hero-img-lt-med.webp" type="image/webp" media="(min-width: 850px)"
-            data-theme="light">
-          <source srcset="assets/images/hero-img-dk-sm.webp" type="image/webp" media="(min-width: 450px)"
-            data-theme="dark">
-          <source srcset="assets/images/hero-img-dk-sm.webp" type="image/webp" media="(min-width: 450px)"
-            data-theme="light">
-          <source srcset="assets/images/hero-img-dk-xsm.webp" type="image/webp" media="(min-width: 300px)"
-            data-theme="dark">
-          <source srcset="assets/images/hero-img-dk-xsm.webp" type="image/webp" media="(min-width: 300px)"
-            data-theme="light">
-          <img src="assets/images/hero-img-lt-sm.png"
-            alt="a magnifying glass over the words Interior Design with the words has been stolen to the right">
-        </picture>
-        <p class="text-base/[24px]">Uncovering the real-world consequences of unequal regulation on
+      <div
+        class="flex flex-col gap-8 w-full items-center sm:max-w-87.5 md:max-w-100 xl:max-w-[500px] xxl:max-w-175 xxl:items-start">
+        <h1>
+          <picture>
+            <source srcset="assets/images/hero-img-dk-lg.webp" type="image/webp" media="(min-width: 1280px)"
+              data-theme="dark">
+            <source srcset="assets/images/hero-img-lt-lg.webp" type="image/webp" media="(min-width: 1280px)"
+              data-theme="light">
+            <source srcset="assets/images/hero-img-dk-med.webp" type="image/webp" media="(min-width: 850px)"
+              data-theme="dark">
+            <source srcset="assets/images/hero-img-lt-med.webp" type="image/webp" media="(min-width: 850px)"
+              data-theme="light">
+            <source srcset="assets/images/hero-img-dk-sm.webp" type="image/webp" media="(min-width: 450px)"
+              data-theme="dark">
+            <source srcset="assets/images/hero-img-dk-sm.webp" type="image/webp" media="(min-width: 450px)"
+              data-theme="light">
+            <source srcset="assets/images/hero-img-dk-xsm.webp" type="image/webp" media="(min-width: 300px)"
+              data-theme="dark">
+            <source srcset="assets/images/hero-img-dk-xsm.webp" type="image/webp" media="(min-width: 300px)"
+              data-theme="light">
+            <img src="assets/images/hero-img-lt-sm.png" alt="Interior Design Has Been Stolen">
+          </picture>
+        </h1>
+        <p class="text-base/[24px] lg:text-lg/[32px]">Uncovering the real-world consequences of unequal regulation on
           design safety and
           careers through
           data-driven investigations.</p>
-        <div class="flex flex-col w-full max-w-150 gap-6" id="hero-btn-stack">
+        <div class="flex flex-col w-full max-w-150 gap-6 lg:flex-row">
           <a href="#takeaction" class="btn btn-lg btn-primary w-full max-w-100">Support Our Mission <svg
-              class="w-4 h-4 fill-neutral-two-dark">
+              aria-hidden="true" class="icon-xs fill-neutral-two-dark">
               <use href="/assets/sprites/solid.svg#arrow-right"></use>
             </svg></a>
           <a href="#research" class="btn btn-lg btn-secondary w-full max-w-100">Explore Findings</a>
         </div>
       </div>
-      <picture id="scrib-hero">
+      <picture class="xxs:hidden sm:block xxl:pl-50">
         <source srcset="assets/images/hero-scrib-lg.webp" type="image/webp" media="(min-width: 1280px)"
           data-theme="dark, light">
         <source srcset="assets/images/hero-scrib-med.webp" type="image/webp" media="(min-width: 1000px)"
@@ -93,10 +129,10 @@
     </section>
 
     <section class="bg-neutral-four flex-col" id="about">
-      <div class="about-stacks">
-        <div class="about-stack">
-          <div class="about-stack-left items-center">
-            <picture id="scrib-about">
+      <div class="flex flex-col gap-20 max-w-750">
+        <div class="flex flex-col gap-8 xl:flex-row xl:items-center">
+          <div class="flex flex-col gap-8 w-full items-center xl:w-[50%]">
+            <picture>
               <source srcset="assets/images/Scrib-shadow-lg.webp" type="image/webp" media="(min-width:1280px)"
                 data-theme="dark, light">
               <source srcset="assets/images/Scrib-shadow-med.webp" type="image/webp" media="(min-width:850px)"
@@ -107,19 +143,19 @@
                 alt="sillouette of the GTM mascot Scrib, a cross between a monkey and otter, with a magnifying glass">
             </picture>
           </div>
-          <div class="about-stack-right">
+          <div class="flex flex-col gap-8 w-full xl:w-[50%]">
             <div class="flex flex-col">
               <p class="paragraph-accent">The Mission</p>
               <h2>Measuring Advancement with <span class="text-primary-one">Facts</span>.</h2>
             </div>
-            <p class="paragraph-med">The Green Tape Measure is on a mission to champion the next generation of interior
+            <p class="paragraph-md">The Green Tape Measure is on a mission to champion the next generation of interior
               designers. Through
               data-driven advocacy, we’re expanding career paths and protecting public safety by ensuring the profession
               is recognized, regulated, and respected.</p>
             <div class="flex flex-col gap-4">
               <div class="flex gap-4 items-center">
                 <div class="icon-container">
-                  <svg>
+                  <svg aria-hidden="true">
                     <use href="assets/sprites/solid.svg#magnifying-glass"></use>
                   </svg>
                 </div>
@@ -127,7 +163,7 @@
               </div>
               <div class="flex gap-4 items-center">
                 <div class="icon-container">
-                  <svg>
+                  <svg aria-hidden="true">
                     <use href="assets/sprites/solid.svg#apple-whole"></use>
                   </svg>
                 </div>
@@ -135,7 +171,7 @@
               </div>
               <div class="flex gap-4 items-center">
                 <div class="icon-container">
-                  <svg>
+                  <svg aria-hidden="true">
                     <use href="assets/sprites/solid.svg#arrow-trend-up"></use>
                   </svg>
                 </div>
@@ -144,21 +180,21 @@
             </div>
           </div>
         </div>
-        <div class="about-stack">
-          <div class="about-stack-left">
+        <div class="flex flex-col gap-8 xl:flex-row xl:items-center">
+          <div class="flex flex-col gap-8 w-full xl:w-[50%]">
             <div class="flex flex-col">
               <p class="paragraph-accent">Founding</p>
               <h2>Grounded in <span class="text-primary-one">Teaching</span>.</h2>
             </div>
-            <p class="paragraph-med">GTM was initially created in 2025 as a platform to expand the founder’s
+            <p class="paragraph-md">GTM was initially created in 2025 as a platform to expand the founder’s
               professional
               tutoring services. After encountering job security, equal pay, and leadership barriers and hearing from
               other designers struggling with similar obstacles, she decided GTM could transform into an industry
               resource
               for evidence-based advocacy.</p>
-            <p class="paragraph-med">Watch the video to learn more.</p>
+            <p class="paragraph-md">Watch the video to learn more.</p>
           </div>
-          <div class="about-stack-right">
+          <div class="flex flex-col gap-8 w-full xl:w-[50%]">
             <!-- replace iframe content with the embedded no-cookie version of the YouTube video -->
             <iframe class="flex aspect-video bg-neutral-one w-full"></iframe>
           </div>
@@ -168,68 +204,68 @@
             <p class="paragraph-accent">Funding</p>
             <h2><span class="text-primary-one">Transparent</span> Operations.</h2>
           </div>
-          <div class="about-stack">
-            <div class="about-stack-left">
+          <div class="flex flex-col gap-8 xl:flex-row xl:items-center">
+            <div class="flex flex-col gap-8 w-full xl:w-[50%]">
               <div class="flex flex-col gap-4">
                 <h3>Future Funding Structure</h3>
                 <div class="flex gap-2 items-center">
                   <div class="icon-container">
-                    <svg>
+                    <svg aria-hidden="true">
                       <use href="assets/sprites/solid.svg#circle-user"></use>
                     </svg>
                   </div>
                   <div class="flex flex-col">
-                    <p class="paragraph-med">50% Membership Tiers</p>
+                    <p class="paragraph-md">50% Membership Tiers</p>
                     <p>Optional perks and exclusive content.</p>
                   </div>
                 </div>
                 <div class="flex gap-2 items-center">
                   <div class="icon-container">
-                    <svg>
+                    <svg aria-hidden="true">
                       <use href="assets/sprites/solid.svg#hand-holding-heart"></use>
                     </svg>
                   </div>
                   <div class="flex flex-col">
-                    <p class="paragraph-med">30% Donations</p>
+                    <p class="paragraph-md">30% Donations</p>
                     <p>One-time and reoccurring contributions.</p>
                   </div>
                 </div>
                 <div class="flex gap-2 items-center">
                   <div class="icon-container">
-                    <svg>
+                    <svg aria-hidden="true">
                       <use href="assets/sprites/solid.svg#magnifying-glass-chart"></use>
                     </svg>
                   </div>
                   <div class="flex flex-col">
-                    <p class="paragraph-med">10% Research Grants</p>
+                    <p class="paragraph-md">10% Research Grants</p>
                     <p>Long-term industry studies to guide the profession and legislation.</p>
                   </div>
                 </div>
                 <div class="flex gap-2 items-center">
                   <div class="icon-container">
-                    <svg>
+                    <svg aria-hidden="true">
                       <use href="assets/sprites/solid.svg#bag-shopping"></use>
                     </svg>
                   </div>
                   <div class="flex flex-col">
-                    <p class="paragraph-med">10% Merchandise</p>
+                    <p class="paragraph-md">10% Merchandise</p>
                     <p>Clothing, pens, keychains, pins, and Scrib plushies.</p>
                   </div>
                 </div>
               </div>
             </div>
-            <div class="about-stack-right justify-between">
+            <div class="flex flex-col gap-8 w-full justify-between xl:w-[50%]">
               <div class="flex flex-col gap-4">
                 <div class="flex flex-col gap-1">
                   <h3>Current Campaign</h3>
                   <h4>Help Launch The Green Tape Measure</h4>
                 </div>
-                <p class="paragraph-med">As we are currently only funded by donations, we need YOUR help. Support GTM's
+                <p class="paragraph-md">As we are currently only funded by donations, we need YOUR help. Support GTM's
                   501(c)(3) non-profit conversion with a donation today.</p>
                 <a href="#takeaction" class="link link--inline">Donor Benefits</a>
               </div>
-              <a class="btn btn-lg btn-cta max-w-150" href="#" target="_blank">Donate Now <svg
-                  class="w-4 h-4 fill-neutral-two-dark">
+              <a class="btn btn-lg btn-cta max-w-150" href="#" target="_blank">Donate Now <svg aria-hidden="true"
+                  class="icon-xs fill-neutral-two-dark">
                   <use href="/assets/sprites/solid.svg#arrow-up-right-from-square"></use>
                 </svg></a>
             </div>
@@ -237,25 +273,191 @@
         </div>
       </div>
     </section>
+
+    <section class="justify-center" id="quiz">
+      <div class="flex flex-col gap-8 max-w-750">
+        <div class="flex flex-col text-center gap-1">
+          <p class="paragraph-accent">Knowledge Check</p>
+          <h2><span class="text-primary-one">Design Roles IQ</h2>
+          <p class="paragraph-md">Test your industry knowledge. Drag the job title to its corresponding
+            definition.</p>
+        </div>
+        <div class="flex gap-8 w-full">
+          <div class="flex flex-col gap-8 w-[50%]">
+            <div class="flex gap-8 flex-col xl:flex-row xxl:flex-col">
+              <div class="card border-l-1 border-solid border-primary-one bg-neutral-four">
+                <div class="flex gap-4 items-center">
+                  <div class="quiz-instruction">
+                    <p class="text-3xl text-neutral-two-dark">1</p>
+                  </div>
+                  <p class="paragraph-lg">Drag job titles from the right panel.</p>
+                </div>
+              </div>
+              <div class="card border-l-1 border-solid border-primary-one bg-neutral-four">
+                <div class="flex gap-4 items-center">
+                  <div class="quiz-instruction">
+                    <p class="text-3xl text-neutral-two-dark">2</p>
+                  </div>
+                  <p class="paragraph-lg">Drop them into the matching definition boxes.</p>
+                </div>
+              </div>
+              <div class="card border-l-1 border-solid border-primary-one bg-neutral-four">
+                <div class="flex gap-4 items-center">
+                  <div class="quiz-instruction">
+                    <p class="text-3xl text-neutral-two-dark">3</p>
+                  </div>
+                  <p class="paragraph-lg"><span class="text-primary-one">Green = correct</span>,<span
+                      class="text-secondary-five"> Red = try again!</span></p>
+                </div>
+              </div>
+            </div>
+            <div class="card bg-neutral-four">
+              <div class="flex flex-col gap-6 lg:flex-row xxl:flex-col">
+                <button type="button" class="btn btn-draggable" aria-labelledby="quiz-btn-label-ia">
+                  <div class="flex items-center"><svg aria-hidden="true" class="btn-icon-sm fill-neutral-nine">
+                      <use href="/assets/sprites/solid.svg#user"></use>
+                    </svg><span class="font-button" id="quiz-btn-label-ia">interior architect</span></div>
+                  <svg aria-hidden="true" class="btn-icon-sm fill-neutral-nine">
+                    <use href="/assets/sprites/solid.svg#grips-vertical"></use>
+                  </svg>
+                </button>
+                <button type="button" class="btn btn-draggable" aria-labelledby="quiz-btn-label-id">
+                  <div class="flex items-center"><svg aria-hidden="true" class="btn-icon-sm fill-neutral-nine">
+                      <use href="/assets/sprites/solid.svg#user"></use>
+                    </svg><span class="font-button" id="quiz-btn-label-id">interior designer</span></div>
+                  <svg aria-hidden="true" class="btn-icon-sm fill-neutral-nine">
+                    <use href="/assets/sprites/solid.svg#grips-vertical"></use>
+                  </svg>
+                </button>
+              </div>
+              <div class="flex flex-col gap-6 lg:flex-row xxl:flex-col">
+                <button type="button" class="btn btn-draggable" aria-labelledby="quiz-btn-label-arch">
+                  <div class="flex items-center"><svg aria-hidden="true" class="btn-icon-sm fill-neutral-nine">
+                      <use href="/assets/sprites/solid.svg#user"></use>
+                    </svg><span class="font-button" id="quiz-btn-label-arch">architect</span></div>
+                  <svg aria-hidden="true" class="btn-icon-sm fill-neutral-nine">
+                    <use href="/assets/sprites/solid.svg#grips-vertical"></use>
+                  </svg>
+                </button>
+                <button type="button" class="btn btn-draggable" aria-labelledby="quiz-btn-label-idec">
+                  <div class="flex items-center"><svg aria-hidden="true" class="btn-icon-sm fill-neutral-nine">
+                      <use href="/assets/sprites/solid.svg#user"></use>
+                    </svg><span class="font-button" id="quiz-btn-label-idec">interior decorator</span></div>
+                  <svg aria-hidden="true" class="btn-icon-sm fill-neutral-nine">
+                    <use href="/assets/sprites/solid.svg#grips-vertical"></use>
+                  </svg>
+                </button>
+              </div>
+            </div>
+            <div class="flex flex-col gap-6 lg:flex-row xxl:flex-col">
+              <button type="button" class="btn btn-lg btn-secondary" id="reset-quiz-btn">Reset Quiz</button>
+              <button type="button" class="btn btn-accordion" id="quiz-sources-btn" aria-expanded="false"
+                aria-controls="quiz-sources"><svg aria-hidden="true" class="icon-xs fill-primary-one">
+                  <use href="/assets/sprites/solid.svg#angle-down"></use>
+                </svg>See our sources</button>
+              <div class="flex flex-col pl-11 gap-4 hidden" id="quiz-sources">
+                <p>BLS. <a class="link--inline-neutral"
+                    href="https://www.bls.gov/ooh/architecture-and-engineering/architects.html" target="_blank">Outlook
+                    Handbook: Architects</a>. U.S. Bureau of Labor Statistics (2025). Available at:
+                  https://www.bls.gov/ooh/architecture-and-engineering/architects.html (Accessed 27 September 2025).</p>
+                <p>BLS. <a class="link--inline-neutral"
+                    href="https://www.bls.gov/ooh/arts-and-design/interior-designers.html" target="_blank">Occupational
+                    Outlook Handbook: Interior Designers</a>. U.S. Bureau of Labor Statistics (2025). Available at:
+                  https://www.bls.gov/ooh/arts-and-design/interior-designers.html (Accessed 27 September 2025).</p>
+                <p>CCIDC. <a class="link--inline-neutral"
+                    href="https://ccidc.org/using-the-title-interior-architect-is-illegal" target="_blank">Why is it
+                    Illegal to Use the Title "Interior Architect"</a>. CCIDC (2025). Available at:
+                  https://ccidc.org/using-the-title-interior-architect-is-illegal (Accessed 27 September 2025).</p>
+                <p>CIDQ. <a class="link--inline-neutral" href="https://www.cidq.org/why-ncidq-certification-matters"
+                    target="_blank">The Professional Difference Between "Interior Designer" and "Interior
+                    Decorator"</a>.
+                  Council for Interior Design Qualification (2025). Available at:
+                  https://www.cidq.org/why-ncidq-certification-matters (Accessed 27 September 2025).</p>
+                <p>NCARB. <a class="link--inline-neutral" href="https://www.ncarb.org/become-architect/why-architecture"
+                    target="_blank">Why Architecture</a>. NCARB (2025). Available at:
+                  https://www.ncarb.org/become-architect/why-architecture (Accessed 27 September 2025).</p>
+              </div>
+            </div>
+          </div>
+          <div class="flex flex-col gap-8 w-[50%]" id="dropzones">
+            <div class="card bg-neutral-four h-[230px]">
+              <div class="flex items-center justify-center gap-4">
+                <p class="text-center">A licensed architect who practices interior design.</p>
+                <svg aria-hidden="true" class="w-9 h-9 fill-neutral-seven">
+                  <use href="/assets/sprites/brands.svg#id-card"></use>
+                </svg>
+                <svg aria-hidden="true" class="w-9 h-9 fill-neutral-seven">
+                  <use href="/assets/sprites/brands.svg#palette"></use>
+                </svg>
+              </div>
+              <button type="button" class="btn btn-lg btn-dropzone">place job title here</button>
+            </div>
+            <div class="card bg-neutral-four h-[230px]">
+              <div class="flex items-center justify-center gap-4">
+                <p class="text-center">Designs interiors that are safe and functional.</p>
+                <svg aria-hidden="true" class="w-9 h-9 fill-neutral-seven">
+                  <use href="/assets/sprites/brands.svg#palette"></use>
+                </svg>
+                <svg aria-hidden="true" class="w-9 h-9 fill-neutral-seven">
+                  <use href="/assets/sprites/brands.svg#lock"></use>
+                </svg>
+                <svg aria-hidden="true" class="w-9 h-9 fill-neutral-seven">
+                  <use href="/assets/sprites/brands.svg#gears"></use>
+                </svg>
+              </div>
+              <button type="button" class="btn btn-lg btn-dropzone">place job title here</button>
+            </div>
+            <div class="card bg-neutral-four h-[230px]">
+              <div class="flex items-center justify-center gap-4">
+                <p class="text-center">Designs buildings. Requires a license.</p>
+                <svg aria-hidden="true" class="w-9 h-9 fill-neutral-seven">
+                  <use href="/assets/sprites/brands.svg#palette"></use>
+                </svg>
+                <svg aria-hidden="true" class="w-9 h-9 fill-neutral-seven">
+                  <use href="/assets/sprites/brands.svg#building"></use>
+                </svg>
+                <svg aria-hidden="true" class="w-9 h-9 fill-neutral-seven">
+                  <use href="/assets/sprites/brands.svg#id-card"></use>
+                </svg>
+              </div>
+              <button type="button" class="btn btn-lg btn-dropzone">place job title here</button>
+            </div>
+            <div class="card bg-neutral-four h-[230px]">
+              <div class="flex items-center justify-center gap-4">
+                <p class="text-center">Furnishes a space with fashionable or attractive items.</p>
+                <svg aria-hidden="true" class="w-9 h-9 fill-neutral-seven">
+                  <use href="/assets/sprites/brands.svg#chair"></use>
+                </svg>
+                <svg aria-hidden="true" class="w-9 h-9 fill-neutral-seven">
+                  <use href="/assets/sprites/brands.svg#sofa"></use>
+                </svg>
+              </div>
+              <button type="button" class="btn btn-lg btn-dropzone">place job title here</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
   </main>
 
-  <footer class="flex flex-col p-4 gap-6 justify-between" id="footer">
-    <!-- update  this first line so year is dyanmically updated -->
+  <footer class="flex flex-col items-center justify-between gap-6 p-4 bg-neutral-two md:flex-row">
+    <!-- update this first line so year is dyanmically updated -->
     <p>© 2026 The Green Tape Measure</p>
-    <div class="flex gap-6 justify-center">
+    <div class="flex gap-3 justify-center">
       <div class="dialog-wrapper">
         <input type="checkbox" id="disclaimer-fallback-toggle">
         <label for="disclaimer-fallback-toggle" class="fallback-label">
           <button type="button" commandfor="disclaimer" command="show-modal" aria-haspopup="dialog"
             aria-controls="privacy" aria-expanded="false" class="link link--footer">Disclaimer</button>
         </label>
-        <dialog class="no-js-dialog" id="disclaimer" aria-labelledby="disclaimer-title" aria-modal="true">
+        <dialog class="translate-y-full" id="disclaimer" aria-labelledby="disclaimer-title" aria-modal="true">
           <article>
             <div class="flex justify-between">
               <h2 id="disclaimer-title">Terms of Use / Disclaimer</h2>
-              <button type="button" commandfor="disclaimer" command="close" class="btn" aria-label="close dialog">
-                <svg class="btn-icon btn-icon-sm">
-                  <use href="/assets/sprites/solid.svg#x-mark"></use>
+              <button type="button" commandfor="disclaimer" command="close" class="btn btn-icon-lg btn-icon--rounded"
+                aria-label="close dialog">
+                <svg aria-hidden="true" class="fill-primary-one icon-xs">
+                  <use href=" /assets/sprites/solid.svg#x-mark"></use>
                 </svg>
               </button>
               <form method="dialog">
@@ -278,12 +480,12 @@
                 general awareness and should not be considered legal or regulatory advice. For advice specific to your
                 situation, please consult a qualified professional.</p>
               <div class="flex flex-col">
-                <p class="paragraph-med">Third-Party Links</p>
+                <p class="paragraph-md">Third-Party Links</p>
                 <p>We are not responsible for content on third-party websites linked from this
                   site, including social media platforms.</p>
               </div>
               <div class="flex flex-col">
-                <p class="paragraph-med">Copyright and Trademarks</p>
+                <p class="paragraph-md">Copyright and Trademarks</p>
                 <p>All content created and shared by The Green Tape Measure, including but not
                   limited to text, graphics, logos, designs, images, videos, and animations, is the property of The
                   Green Tape Measure and is protected by copyright law. The company name "The Green Tape Measure", its
@@ -308,12 +510,13 @@
           <button type="button" commandfor="privacy" command="show-modal" aria-haspopup="dialog" aria-controls="privacy"
             aria-expanded="false" class="link link--footer">Privacy Policy</button>
         </label>
-        <dialog class="no-js-dialog" id="privacy" aria-labelledby="privacy-title" aria-modal="true">
+        <dialog class="translate-y-full" id="privacy" aria-labelledby="privacy-title" aria-modal="true">
           <article>
             <div class="flex justify-between">
               <h2 id="privacy-title">Privacy Statement</h2>
-              <button type="button" commandfor="disclaimer" command="close" class="btn" aria-label="close dialog">
-                <svg class="btn-icon btn-icon-sm">
+              <button type="button" commandfor="disclaimer" command="close" class="btn btn-icon-lg btn-icon--rounded"
+                aria-label="close dialog">
+                <svg aria-hidden="true" class="fill-primary-one icon-xs">
                   <use href="/assets/sprites/solid.svg#x-mark"></use>
                 </svg>
               </button>
@@ -326,47 +529,47 @@
               <p>We respect your privacy and are committed to protecting your personal
                 information.</p>
               <div class="flex flex-col">
-                <p class="paragraph-med">Use of Cookies</p>
+                <p class="paragraph-md">Use of Cookies</p>
                 <p>Our website does not utilize non-essential cookies, tracking technologies, or
                   third-party marketing trackers.</p>
               </div>
               <div class="flex flex-col">
-                <p class="paragraph-med">Strictly Necessary Cookies</p>
+                <p class="paragraph-md">Strictly Necessary Cookies</p>
                 <p>To function correctly and securely, our server may automatically set "strictly
                   necessary" cookies. These are essential for the website to function properly and for security
                   purposes, such as preventing fraudulent activity. These cookies do not collect personal information
                   and are exempt from consent requirements under GDPR and other privacy laws.</p>
               </div>
               <div class="flex flex-col">
-                <p class="paragraph-med">Data Handling</p>
+                <p class="paragraph-md">Data Handling</p>
                 <p>No personal information is collected through these essential cookies, and they
                   are not used to analyze visitor behavior or for advertising purposes.</p>
               </div>
               <div class="flex flex-col">
-                <p class="paragraph-med">Control Options</p>
+                <p class="paragraph-md">Control Options</p>
                 <p>You can set your browser to refuse all cookies or to indicate when a cookie is
                   being sent. However, if you do not accept these essential cookies, some parts of our site may not
                   function properly.</p>
               </div>
               <div class="flex flex-col">
-                <p class="paragraph-med">Contact Emails & Volunteer Form</p>
+                <p class="paragraph-md">Contact Emails & Volunteer Form</p>
                 <p>If you choose to contact us, we will collect your inputted information solely
                   to respond to your inquiry. We will not share, sell, or rent your information to third parties.</p>
               </div>
               <div class="flex flex-col">
-                <p class="paragraph-med">External Links</p>
+                <p class="paragraph-md">External Links</p>
                 <p>Our website contains links to social media platforms and to other external
                   sites.
                   Please note that these platforms may collect information about your interaction with their content. We
                   are not responsible for the privacy practices of these third-party platforms.</p>
               </div>
               <div class="flex flex-col">
-                <p class="paragraph-med">Analytics</p>
+                <p class="paragraph-md">Analytics</p>
                 <p>We use privacy-friendly analytics (Umami) to understand general website
                   traffic. No personal information is collected through this service.</p>
               </div>
               <div class="flex flex-col">
-                <p class="paragraph-med">Updates</p>
+                <p class="paragraph-md">Updates</p>
                 <p>This Privacy Policy may be updated from time to time. The most current version
                   will always be available on this website.</p>
               </div>
@@ -377,18 +580,19 @@
       </div>
     </div>
     <div class="flex gap-6 justify-center">
-      <a class="btn" href="https://www.linkedin.com/company/gtmeasure" aria-label="LinkedIn" target="_blank">
-        <svg class="btn-icon btn-icon-sm fill-neutral-seven">
+      <a class="btn btn-icon-sm" href="https://www.linkedin.com/company/gtmeasure" aria-label="LinkedIn"
+        target="_blank">
+        <svg aria-hidden="true" class="fill-neutral-seven">
           <use href="/assets/sprites/brands.svg#linkedin"></use>
         </svg>
       </a>
-      <a class="btn" href="https://x.com/GTMeasure" aria-label="X Twitter" target="_blank">
-        <svg class="btn-icon btn-icon-sm fill-neutral-seven">
+      <a class="btn btn-icon-sm" href="https://x.com/GTMeasure" aria-label="X Twitter" target="_blank">
+        <svg aria-hidden="true" class="fill-neutral-seven">
           <use href="/assets/sprites/brands.svg#x-twitter"></use>
         </svg>
       </a>
-      <a class="btn" href="https://www.instagram.com/gtmeasure" aria-label="Instagram" target="_blank">
-        <svg class="btn-icon btn-icon-sm fill-neutral-seven">
+      <a class="btn btn-icon-sm" href="https://www.instagram.com/gtmeasure" aria-label="Instagram" target="_blank">
+        <svg aria-hidden="true" class="fill-neutral-seven">
           <use href="/assets/sprites/brands.svg#instagram"></use>
         </svg>
       </a>
