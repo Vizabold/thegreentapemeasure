@@ -327,7 +327,7 @@
   ───────────────────────────────────────── */
 
   .card {
-    @apply flex flex-col gap-4 p-4 rounded-xl;
+    @apply flex flex-col gap-2 p-4 rounded-xl;
   }
 
 }

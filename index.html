@@ -287,7 +287,7 @@
         <div class="flex flex-col gap-8 w-full lg:flex-row">
           <div class="flex flex-col gap-8 lg:w-[50%]">
             <div class="flex gap-8 flex-col">
-              <div class="card border-l-1 border-solid border-primary-one bg-neutral-four">
+              <div class="card border-l border-solid border-primary-one bg-neutral-four">
                 <div class="flex gap-4 items-center">
                   <div class="quiz-instruction">
                     <p class="text-3xl text-neutral-two-dark">1</p>
@@ -295,7 +295,7 @@
                   <p class="paragraph-lg">Drag job titles from the right panel.</p>
                 </div>
               </div>
-              <div class="card border-l-1 border-solid border-primary-one bg-neutral-four">
+              <div class="card border-l border-solid border-primary-one bg-neutral-four">
                 <div class="flex gap-4 items-center">
                   <div class="quiz-instruction">
                     <p class="text-3xl text-neutral-two-dark">2</p>
@@ -303,17 +303,18 @@
                   <p class="paragraph-lg">Drop them into the matching definition boxes.</p>
                 </div>
               </div>
-              <div class="card border-l-1 border-solid border-primary-one bg-neutral-four">
+              <div class="card border-l border-solid border-primary-one bg-neutral-four">
                 <div class="flex gap-4 items-center">
                   <div class="quiz-instruction">
                     <p class="text-3xl text-neutral-two-dark">3</p>
                   </div>
                   <p class="paragraph-lg"><span class="text-primary-one">Green = correct</span>,<span
                       class="text-secondary-five"> Red = try again!</span></p>
+                  <button type="button" class="btn btn-md btn-cta">Ready?</button>
                 </div>
               </div>
             </div>
-            <div class="card bg-neutral-four">
+            <div class="card gap-6 bg-neutral-four">
               <div class="flex flex-col gap-6 sm:flex-row lg:flex-col">
                 <button type="button" class="btn btn-draggable sm:w-[50%] lg:w-full"
                   aria-labelledby="quiz-btn-label-ia">
@@ -321,7 +322,7 @@
                       <use href="/assets/sprites/solid.svg#user"></use>
                     </svg><span class="font-button" id="quiz-btn-label-ia">interior architect</span></div>
                   <svg aria-hidden="true" class="btn-icon-sm fill-neutral-nine">
-                    <use href="/assets/sprites/solid.svg#grips-vertical"></use>
+                    <use href="/assets/sprites/solid.svg#grip-vertical"></use>
                   </svg>
                 </button>
                 <button type="button" class="btn btn-draggable sm:w-[50%] lg:w-full"
@@ -330,7 +331,7 @@
                       <use href="/assets/sprites/solid.svg#user"></use>
                     </svg><span class="font-button" id="quiz-btn-label-id">interior designer</span></div>
                   <svg aria-hidden="true" class="btn-icon-sm fill-neutral-nine">
-                    <use href="/assets/sprites/solid.svg#grips-vertical"></use>
+                    <use href="/assets/sprites/solid.svg#grip-vertical"></use>
                   </svg>
                 </button>
               </div>
@@ -341,7 +342,7 @@
                       <use href="/assets/sprites/solid.svg#user"></use>
                     </svg><span class="font-button" id="quiz-btn-label-arch">architect</span></div>
                   <svg aria-hidden="true" class="btn-icon-sm fill-neutral-nine">
-                    <use href="/assets/sprites/solid.svg#grips-vertical"></use>
+                    <use href="/assets/sprites/solid.svg#grip-vertical"></use>
                   </svg>
                 </button>
                 <button type="button" class="btn btn-draggable sm:w-[50%] lg:w-full"
@@ -350,7 +351,7 @@
                       <use href="/assets/sprites/solid.svg#user"></use>
                     </svg><span class="font-button" id="quiz-btn-label-idec">interior decorator</span></div>
                   <svg aria-hidden="true" class="btn-icon-sm fill-neutral-nine">
-                    <use href="/assets/sprites/solid.svg#grips-vertical"></use>
+                    <use href="/assets/sprites/solid.svg#grip-vertical"></use>
                   </svg>
                 </button>
               </div>
@@ -358,7 +359,21 @@
           </div>
           <div class="flex flex-col gap-8 lg:w-[50%]" id="dropzones">
             <div class="flex flex-col gap-6 sm:flex-row lg:flex-col">
-              <div class="card bg-neutral-four justify-between sm:w-[50%] lg:w-full xxl:h-[230px]">
+              <div class="card bg-neutral-four justify-between sm:w-[50%] lg:w-full xxl:h-57.5">
+                <div class="justify-center hidden">
+                  <div class="flex gap-1">
+                    <svg aria-hidden="true" class="icon-xs fill-primary-one">
+                      <use href="/assets/sprites/solid.svg#check"></use>
+                    </svg>
+                    <p class="text-primary-one">Correct!</p>
+                  </div>
+                  <div class="flex gap-1">
+                    <svg aria-hidden="true" class="icon-xs fill-secondary-five">
+                      <use href="/assets/sprites/solid.svg#x-mark"></use>
+                    </svg>
+                    <p class="text-secondary-five">Try again!</p>
+                  </div>
+                </div>
                 <div class="flex items-center justify-center gap-4">
                   <p class="text-center">A licensed architect who practices interior design.</p>
                   <svg aria-hidden="true" class="w-9 h-9 fill-neutral-seven">
@@ -370,7 +385,21 @@
                 </div>
                 <button type="button" class="btn btn-lg btn-dropzone">place job title here</button>
               </div>
-              <div class="card bg-neutral-four justify-between sm:w-[50%] lg:w-full xxl:h-[230px]">
+              <div class="card bg-neutral-four justify-between sm:w-[50%] lg:w-full xxl:h-57.5">
+                <div class="justify-center hidden">
+                  <div class="flex gap-1">
+                    <svg aria-hidden="true" class="icon-xs fill-primary-one">
+                      <use href="/assets/sprites/solid.svg#check"></use>
+                    </svg>
+                    <p class="text-primary-one">Correct!</p>
+                  </div>
+                  <div class="flex gap-1">
+                    <svg aria-hidden="true" class="icon-xs fill-secondary-five">
+                      <use href="/assets/sprites/solid.svg#x-mark"></use>
+                    </svg>
+                    <p class="text-secondary-five">Try again!</p>
+                  </div>
+                </div>
                 <div class="flex items-center justify-center gap-4">
                   <p class="text-center">Designs interiors that are safe and functional.</p>
                   <svg aria-hidden="true" class="w-9 h-9 fill-neutral-seven">
@@ -387,7 +416,21 @@
               </div>
             </div>
             <div class="flex flex-col gap-6 sm:flex-row lg:flex-col">
-              <div class="card bg-neutral-four justify-between sm:w-[50%] lg:w-full xxl:h-[230px]">
+              <div class="card bg-neutral-four justify-between sm:w-[50%] lg:w-full xxl:h-57.5">
+                <div class="justify-center hidden">
+                  <div class="flex gap-1">
+                    <svg aria-hidden="true" class="icon-xs fill-primary-one">
+                      <use href="/assets/sprites/solid.svg#check"></use>
+                    </svg>
+                    <p class="text-primary-one">Correct!</p>
+                  </div>
+                  <div class="flex gap-1">
+                    <svg aria-hidden="true" class="icon-xs fill-secondary-five">
+                      <use href="/assets/sprites/solid.svg#x-mark"></use>
+                    </svg>
+                    <p class="text-secondary-five">Try again!</p>
+                  </div>
+                </div>
                 <div class="flex items-center justify-center gap-4">
                   <p class="text-center">Designs buildings. Requires a license.</p>
                   <svg aria-hidden="true" class="w-9 h-9 fill-neutral-seven">
@@ -402,7 +445,21 @@
                 </div>
                 <button type="button" class="btn btn-lg btn-dropzone">place job title here</button>
               </div>
-              <div class="card bg-neutral-four justify-between sm:w-[50%] lg:w-full xxl:h-[230px]">
+              <div class="card bg-neutral-four justify-between sm:w-[50%] lg:w-full xxl:h-57.5">
+                <div class="justify-center hidden">
+                  <div class="flex gap-1">
+                    <svg aria-hidden="true" class="icon-xs fill-primary-one">
+                      <use href="/assets/sprites/solid.svg#check"></use>
+                    </svg>
+                    <p class="text-primary-one">Correct!</p>
+                  </div>
+                  <div class="flex gap-1">
+                    <svg aria-hidden="true" class="icon-xs fill-secondary-five">
+                      <use href="/assets/sprites/solid.svg#x-mark"></use>
+                    </svg>
+                    <p class="text-secondary-five">Try again!</p>
+                  </div>
+                </div>
                 <div class="flex items-center justify-center gap-4">
                   <p class="text-center">Furnishes a space with fashionable or attractive items.</p>
                   <svg aria-hidden="true" class="w-9 h-9 fill-neutral-seven">
@@ -421,7 +478,7 @@
                 aria-controls="quiz-sources"><svg aria-hidden="true" class="icon-xs fill-primary-one">
                   <use href="/assets/sprites/solid.svg#angle-down"></use>
                 </svg>See our sources</button>
-              <div class="flex flex-col pl-11 gap-4 hidden" id="quiz-sources">
+              <div class="flex-col pl-11 gap-4 hidden" id="quiz-sources">
                 <p>BLS. <a class="link--inline-neutral"
                     href="https://www.bls.gov/ooh/architecture-and-engineering/architects.html" target="_blank">Outlook
                     Handbook: Architects</a>. U.S. Bureau of Labor Statistics (2025). Available at:
