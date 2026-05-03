@@ -4,12 +4,10 @@
 @layer base, components, utilities;
 
 @layer base {
-  html {
-    @apply box-border scroll-smooth text-base;
-  }
 
+  html,
   body {
-    @apply font-base bg-neutral-three text-neutral-seven overflow-x-hidden;
+    @apply m-0 p-0 box-border w-screen min-w-full scroll-smooth text-base font-base font-normal bg-neutral-three text-neutral-seven overflow-x-hidden transition-colors duration-300 ease-in-out;
   }
 
   .light {
@@ -46,7 +44,7 @@
   }
 
   section {
-    @apply flex gap-8 w-full px-4 py-12;
+    @apply flex gap-8 px-4 py-12;
   }
 
   h2,
@@ -77,6 +75,14 @@
 
   .paragraph-lg {
     @apply text-xl;
+  }
+
+  .skip-link {
+    @apply absolute -top-10 left-0 bg-neutral-one text-neutral-seven px-2 py-4 z-1000 rounded-sm;
+  }
+
+  .skip-link:focus {
+    @apply top-0;
   }
 
 }
@@ -141,6 +147,10 @@
   }
 
   /* ── SVGs ── */
+
+  svg {
+    @apply h-full;
+  }
 
   .btn-icon-lg {
     @apply w-[48px] h-[48px];
@@ -317,7 +327,7 @@
   ───────────────────────────────────────── */
 
   .card {
-    @apply flex flex-col gap-4 p-8 rounded-xl;
+    @apply flex flex-col gap-4 p-4 rounded-xl;
   }
 
 }
@@ -333,7 +343,7 @@
   }
 
   .quiz-instruction {
-    @apply w-16 h-16 rounded-full flex justify-center items-center bg-primary-one;
+    @apply w-16 min-w-16 h-16 rounded-full flex justify-center items-center bg-primary-one;
   }
 
 }

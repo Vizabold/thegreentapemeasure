@@ -158,3 +158,9 @@
         @apply px-8;
     }
 }
+
+@media screen and (min-width: 1000px) {
+    .card {
+        @apply p-8;
+    }
+}

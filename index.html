@@ -11,6 +11,8 @@
 </head>
 
 <body>
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
   <dialog class="-translate-x-full" id="mobile-nav-menu">
     <div class="flex px-4 pt-8 pb-2 justify-between items-end bg-neutral-one">
       <picture class="mb-1">
@@ -20,7 +22,7 @@
       </picture>
       <div class="flex gap-6">
         <button type="button" class="toggle" aria-label="dark mode on" data-theme-toggle><span class="slider"><svg
-              aria-hidden="true" class="fill-neutral-two-light w-3.75 h-auto">
+              aria-hidden="true" class="fill-neutral-two-light w-4 h-4">
               <use href="/assets/sprites/solid.svg#moon"></use>
             </svg></span>
         </button>
@@ -65,7 +67,7 @@
     <div class="flex gap-6 pb-1 items-end">
       <a class="btn btn-md btn-cta xxs:hidden" href="#takeaction">Take Action</a>
       <button type="button" class="toggle xxs:hidden xl:block" aria-label="dark mode on" data-theme-toggle><span
-          class="slider"><svg aria-hidden="true" class="fill-neutral-two-light w-3.75 h-auto">
+          class="slider"><svg aria-hidden="true" class="fill-neutral-two-light w-4 h-4">
             <use href="/assets/sprites/solid.svg#moon"></use>
           </svg></span>
       </button>
@@ -78,9 +80,9 @@
   </header>
 
   <main id="main-content">
-    <section class="max-w-750" id="hero">
+    <section class="xxl:max-w-750" id="hero">
       <div
-        class="flex flex-col gap-8 w-full items-center sm:max-w-87.5 md:max-w-100 xl:max-w-[500px] xxl:max-w-175 xxl:items-start">
+        class="flex flex-col gap-8 items-center sm:max-w-87.5 md:max-w-100 xl:max-w-[500px] xxl:max-w-175 xxl:items-start">
         <h1>
           <picture>
             <source srcset="assets/images/hero-img-dk-lg.webp" type="image/webp" media="(min-width: 1280px)"
@@ -282,9 +284,9 @@
           <p class="paragraph-md">Test your industry knowledge. Drag the job title to its corresponding
             definition.</p>
         </div>
-        <div class="flex gap-8 w-full">
-          <div class="flex flex-col gap-8 w-[50%]">
-            <div class="flex gap-8 flex-col xl:flex-row xxl:flex-col">
+        <div class="flex flex-col gap-8 w-full lg:flex-row">
+          <div class="flex flex-col gap-8 lg:w-[50%]">
+            <div class="flex gap-8 flex-col">
               <div class="card border-l-1 border-solid border-primary-one bg-neutral-four">
                 <div class="flex gap-4 items-center">
                   <div class="quiz-instruction">
@@ -312,8 +314,9 @@
               </div>
             </div>
             <div class="card bg-neutral-four">
-              <div class="flex flex-col gap-6 lg:flex-row xxl:flex-col">
-                <button type="button" class="btn btn-draggable" aria-labelledby="quiz-btn-label-ia">
+              <div class="flex flex-col gap-6 sm:flex-row lg:flex-col">
+                <button type="button" class="btn btn-draggable sm:w-[50%] lg:w-full"
+                  aria-labelledby="quiz-btn-label-ia">
                   <div class="flex items-center"><svg aria-hidden="true" class="btn-icon-sm fill-neutral-nine">
                       <use href="/assets/sprites/solid.svg#user"></use>
                     </svg><span class="font-button" id="quiz-btn-label-ia">interior architect</span></div>
@@ -321,7 +324,8 @@
                     <use href="/assets/sprites/solid.svg#grips-vertical"></use>
                   </svg>
                 </button>
-                <button type="button" class="btn btn-draggable" aria-labelledby="quiz-btn-label-id">
+                <button type="button" class="btn btn-draggable sm:w-[50%] lg:w-full"
+                  aria-labelledby="quiz-btn-label-id">
                   <div class="flex items-center"><svg aria-hidden="true" class="btn-icon-sm fill-neutral-nine">
                       <use href="/assets/sprites/solid.svg#user"></use>
                     </svg><span class="font-button" id="quiz-btn-label-id">interior designer</span></div>
@@ -330,8 +334,9 @@
                   </svg>
                 </button>
               </div>
-              <div class="flex flex-col gap-6 lg:flex-row xxl:flex-col">
-                <button type="button" class="btn btn-draggable" aria-labelledby="quiz-btn-label-arch">
+              <div class="flex flex-col gap-6 sm:flex-row lg:flex-col">
+                <button type="button" class="btn btn-draggable sm:w-[50%] lg:w-full"
+                  aria-labelledby="quiz-btn-label-arch">
                   <div class="flex items-center"><svg aria-hidden="true" class="btn-icon-sm fill-neutral-nine">
                       <use href="/assets/sprites/solid.svg#user"></use>
                     </svg><span class="font-button" id="quiz-btn-label-arch">architect</span></div>
@@ -339,7 +344,8 @@
                     <use href="/assets/sprites/solid.svg#grips-vertical"></use>
                   </svg>
                 </button>
-                <button type="button" class="btn btn-draggable" aria-labelledby="quiz-btn-label-idec">
+                <button type="button" class="btn btn-draggable sm:w-[50%] lg:w-full"
+                  aria-labelledby="quiz-btn-label-idec">
                   <div class="flex items-center"><svg aria-hidden="true" class="btn-icon-sm fill-neutral-nine">
                       <use href="/assets/sprites/solid.svg#user"></use>
                     </svg><span class="font-button" id="quiz-btn-label-idec">interior decorator</span></div>
@@ -349,7 +355,67 @@
                 </button>
               </div>
             </div>
-            <div class="flex flex-col gap-6 lg:flex-row xxl:flex-col">
+          </div>
+          <div class="flex flex-col gap-8 lg:w-[50%]" id="dropzones">
+            <div class="flex flex-col gap-6 sm:flex-row lg:flex-col">
+              <div class="card bg-neutral-four justify-between sm:w-[50%] lg:w-full xxl:h-[230px]">
+                <div class="flex items-center justify-center gap-4">
+                  <p class="text-center">A licensed architect who practices interior design.</p>
+                  <svg aria-hidden="true" class="w-9 h-9 fill-neutral-seven">
+                    <use href="/assets/sprites/brands.svg#id-card"></use>
+                  </svg>
+                  <svg aria-hidden="true" class="w-9 h-9 fill-neutral-seven">
+                    <use href="/assets/sprites/brands.svg#palette"></use>
+                  </svg>
+                </div>
+                <button type="button" class="btn btn-lg btn-dropzone">place job title here</button>
+              </div>
+              <div class="card bg-neutral-four justify-between sm:w-[50%] lg:w-full xxl:h-[230px]">
+                <div class="flex items-center justify-center gap-4">
+                  <p class="text-center">Designs interiors that are safe and functional.</p>
+                  <svg aria-hidden="true" class="w-9 h-9 fill-neutral-seven">
+                    <use href="/assets/sprites/brands.svg#palette"></use>
+                  </svg>
+                  <svg aria-hidden="true" class="w-9 h-9 fill-neutral-seven">
+                    <use href="/assets/sprites/brands.svg#lock"></use>
+                  </svg>
+                  <svg aria-hidden="true" class="w-9 h-9 fill-neutral-seven">
+                    <use href="/assets/sprites/brands.svg#gears"></use>
+                  </svg>
+                </div>
+                <button type="button" class="btn btn-lg btn-dropzone">place job title here</button>
+              </div>
+            </div>
+            <div class="flex flex-col gap-6 sm:flex-row lg:flex-col">
+              <div class="card bg-neutral-four justify-between sm:w-[50%] lg:w-full xxl:h-[230px]">
+                <div class="flex items-center justify-center gap-4">
+                  <p class="text-center">Designs buildings. Requires a license.</p>
+                  <svg aria-hidden="true" class="w-9 h-9 fill-neutral-seven">
+                    <use href="/assets/sprites/brands.svg#palette"></use>
+                  </svg>
+                  <svg aria-hidden="true" class="w-9 h-9 fill-neutral-seven">
+                    <use href="/assets/sprites/brands.svg#building"></use>
+                  </svg>
+                  <svg aria-hidden="true" class="w-9 h-9 fill-neutral-seven">
+                    <use href="/assets/sprites/brands.svg#id-card"></use>
+                  </svg>
+                </div>
+                <button type="button" class="btn btn-lg btn-dropzone">place job title here</button>
+              </div>
+              <div class="card bg-neutral-four justify-between sm:w-[50%] lg:w-full xxl:h-[230px]">
+                <div class="flex items-center justify-center gap-4">
+                  <p class="text-center">Furnishes a space with fashionable or attractive items.</p>
+                  <svg aria-hidden="true" class="w-9 h-9 fill-neutral-seven">
+                    <use href="/assets/sprites/brands.svg#chair"></use>
+                  </svg>
+                  <svg aria-hidden="true" class="w-9 h-9 fill-neutral-seven">
+                    <use href="/assets/sprites/brands.svg#sofa"></use>
+                  </svg>
+                </div>
+                <button type="button" class="btn btn-lg btn-dropzone">place job title here</button>
+              </div>
+            </div>
+            <div class="flex flex-col gap-6">
               <button type="button" class="btn btn-lg btn-secondary" id="reset-quiz-btn">Reset Quiz</button>
               <button type="button" class="btn btn-accordion" id="quiz-sources-btn" aria-expanded="false"
                 aria-controls="quiz-sources"><svg aria-hidden="true" class="icon-xs fill-primary-one">
@@ -377,62 +443,6 @@
                     target="_blank">Why Architecture</a>. NCARB (2025). Available at:
                   https://www.ncarb.org/become-architect/why-architecture (Accessed 27 September 2025).</p>
               </div>
-            </div>
-          </div>
-          <div class="flex flex-col gap-8 w-[50%]" id="dropzones">
-            <div class="card bg-neutral-four h-[230px]">
-              <div class="flex items-center justify-center gap-4">
-                <p class="text-center">A licensed architect who practices interior design.</p>
-                <svg aria-hidden="true" class="w-9 h-9 fill-neutral-seven">
-                  <use href="/assets/sprites/brands.svg#id-card"></use>
-                </svg>
-                <svg aria-hidden="true" class="w-9 h-9 fill-neutral-seven">
-                  <use href="/assets/sprites/brands.svg#palette"></use>
-                </svg>
-              </div>
-              <button type="button" class="btn btn-lg btn-dropzone">place job title here</button>
-            </div>
-            <div class="card bg-neutral-four h-[230px]">
-              <div class="flex items-center justify-center gap-4">
-                <p class="text-center">Designs interiors that are safe and functional.</p>
-                <svg aria-hidden="true" class="w-9 h-9 fill-neutral-seven">
-                  <use href="/assets/sprites/brands.svg#palette"></use>
-                </svg>
-                <svg aria-hidden="true" class="w-9 h-9 fill-neutral-seven">
-                  <use href="/assets/sprites/brands.svg#lock"></use>
-                </svg>
-                <svg aria-hidden="true" class="w-9 h-9 fill-neutral-seven">
-                  <use href="/assets/sprites/brands.svg#gears"></use>
-                </svg>
-              </div>
-              <button type="button" class="btn btn-lg btn-dropzone">place job title here</button>
-            </div>
-            <div class="card bg-neutral-four h-[230px]">
-              <div class="flex items-center justify-center gap-4">
-                <p class="text-center">Designs buildings. Requires a license.</p>
-                <svg aria-hidden="true" class="w-9 h-9 fill-neutral-seven">
-                  <use href="/assets/sprites/brands.svg#palette"></use>
-                </svg>
-                <svg aria-hidden="true" class="w-9 h-9 fill-neutral-seven">
-                  <use href="/assets/sprites/brands.svg#building"></use>
-                </svg>
-                <svg aria-hidden="true" class="w-9 h-9 fill-neutral-seven">
-                  <use href="/assets/sprites/brands.svg#id-card"></use>
-                </svg>
-              </div>
-              <button type="button" class="btn btn-lg btn-dropzone">place job title here</button>
-            </div>
-            <div class="card bg-neutral-four h-[230px]">
-              <div class="flex items-center justify-center gap-4">
-                <p class="text-center">Furnishes a space with fashionable or attractive items.</p>
-                <svg aria-hidden="true" class="w-9 h-9 fill-neutral-seven">
-                  <use href="/assets/sprites/brands.svg#chair"></use>
-                </svg>
-                <svg aria-hidden="true" class="w-9 h-9 fill-neutral-seven">
-                  <use href="/assets/sprites/brands.svg#sofa"></use>
-                </svg>
-              </div>
-              <button type="button" class="btn btn-lg btn-dropzone">place job title here</button>
             </div>
           </div>
         </div>
