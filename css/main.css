@@ -49,8 +49,22 @@
     @apply flex gap-8 w-full px-4 py-12;
   }
 
+  h2,
+  h3,
+  h4 {
+    @apply font-heading text-neutral-nine;
+  }
+
   h2 {
-    @apply font-heading text-4xl font-bold text-neutral-nine;
+    @apply text-4xl font-bold;
+  }
+
+  h3 {
+    @apply text-xl font-bold;
+  }
+
+  h4 {
+    @apply text-lg;
   }
 
   .paragraph-accent {
@@ -252,8 +266,12 @@
 }
 
 @layer utilities {
-  .about-stack {
+  .about-stacks {
     @apply flex flex-col gap-8 max-w-750;
+  }
+
+  .about-stack {
+    @apply flex flex-col gap-8;
   }
 
   .about-stack-right,
