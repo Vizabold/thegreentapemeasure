@@ -222,11 +222,12 @@
         @apply max-w-[500px];
     }
 
-    #about-stack {
+    .about-stack {
         @apply flex-row items-center;
     }
 
-    #about-stack-right {
+    .about-stack-right,
+    .about-stack-left {
         @apply max-w-[50%];
     }
 }

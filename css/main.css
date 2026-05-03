@@ -249,9 +249,17 @@
     @apply absolute w-[25px] h-[25px] flex justify-center items-center rounded-full p-1 bg-primary-three translate-y-[-50%] top-[50%] left-[5px] transition-transform duration-750 ease-out;
   }
 
-  /* ─────────────────────────────────────────
-     Non-interactive Icon Components
-  ───────────────────────────────────────── */
+}
+
+@layer utilities {
+  .about-stack {
+    @apply flex flex-col gap-8 max-w-750;
+  }
+
+  .about-stack-right,
+  .about-stack-left {
+    @apply flex flex-col gap-8;
+  }
 
   .icon-container {
     @apply w-12 h-12 flex justify-center items-center rounded-lg bg-neutral-six;
@@ -260,5 +268,4 @@
   .icon-container svg {
     @apply w-5 h-5 fill-current text-primary-one;
   }
-
 }
