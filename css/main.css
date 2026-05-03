@@ -161,7 +161,7 @@
   }
 
   .btn-icon--rounded {
-    @apply rounded-full border-[0.5px] border-solid border-primary-one fill-neutral-two-dark;
+    @apply rounded-full border-[0.5px] border-solid border-primary-one bg-neutral-two-dark;
   }
 
   .btn-icon--rounded svg {
