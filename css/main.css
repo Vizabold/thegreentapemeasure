@@ -164,7 +164,7 @@
   .btn-icon-lg:active,
   .btn-icon-sm:hover,
   .btn-icon-sm:active {
-    @apply fill-primary-two;
+    @apply fill-current text-primary-two;
   }
 
   .btn-icon--rounded {

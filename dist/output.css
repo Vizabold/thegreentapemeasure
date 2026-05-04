@@ -941,7 +941,8 @@
     min-width: calc(var(--spacing) * 8.75);
   }
   .btn-icon-lg:hover, .btn-icon-lg:active, .btn-icon-sm:hover, .btn-icon-sm:active {
-    fill: var(--color-primary-two);
+    fill: currentcolor;
+    color: var(--color-primary-two);
   }
   .btn-icon--rounded {
     border-radius: calc(infinity * 1px);
