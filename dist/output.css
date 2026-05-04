@@ -1096,6 +1096,11 @@
     gap: calc(var(--spacing) * 2);
     color: var(--color-primary-one);
   }
+  .btn-accordion label {
+    display: flex;
+    align-items: center;
+    gap: calc(var(--spacing) * 2);
+  }
   #timeline .btn-accordion {
     justify-content: flex-end;
   }
