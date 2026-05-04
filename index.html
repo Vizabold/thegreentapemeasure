@@ -11,6 +11,8 @@
 </head>
 
 <body>
+  <input type="checkbox" id="mode-toggle" class="peer hidden">
+
   <a href="#main-content" class="skip-link">Skip to main content</a>
 
   <dialog class="-translate-x-full" id="mobile-nav-menu">
@@ -21,11 +23,20 @@
         <img src="assets/images/logo-lt.png" alt="GTM logo that resembles a green tape measure">
       </picture>
       <div class="flex gap-6">
-        <button type="button" class="toggle" aria-label="dark mode on" data-theme-toggle><span class="slider"><svg
-              aria-hidden="true" class="fill-neutral-two-light w-4 h-4">
+        <label for="mode-toggle" class="toggle peer-checked:hidden" aria-label="dark mode on"><span class="slider"><svg
+              aria-hidden="true" class="moon-icon fill-neutral-two-light w-4 h-4 peer-checked:hidden">
               <use href="/assets/sprites/solid.svg#moon"></use>
+            </svg><svg aria-hidden="true" class="sun-icon fill-neutral-two-light w-4 h-4 peer-checked:block">
+              <use href="/assets/sprites/solid.svg#sun"></use>
             </svg></span>
-        </button>
+        </label>
+        <label for="mode-toggle" class="toggle hidden peer-checked:block" aria-label="light mode on"><span
+            class="slider"><svg aria-hidden="true" class="moon-icon fill-neutral-two-light w-4 h-4 peer-checked:hidden">
+              <use href="/assets/sprites/solid.svg#moon"></use>
+            </svg><svg aria-hidden="true" class="sun-icon fill-neutral-two-light w-4 h-4 peer-checked:block">
+              <use href="/assets/sprites/solid.svg#sun"></use>
+            </svg></span>
+        </label>
         <button type="button" class="btn btn-icon btn-icon--rounded" aria-label="close menu">
           <svg class="icon-lg" aria-hidden="true">
             <use href=" /assets/sprites/solid.svg#x-mark"></use>
@@ -52,7 +63,8 @@
           <img src="assets/images/logo-lt.png" alt="GTM logo that resembles a green tape measure">
         </picture>
       </a>
-      <p class="font-name text-primary-one text-xl tracking-wide uppercase xxs:hidden lg:block xl:hidden xxl:block">The
+      <p class="font-name text-primary-one text-xl tracking-wide uppercase xxs:hidden lg:block xl:hidden xxl:block">
+        The
         Green Tape Measure</p>
     </div>
     <nav class="gap-8 items-end xxs:hidden xl:flex">
@@ -64,11 +76,20 @@
     </nav>
     <div class="flex gap-6 pb-1 items-end">
       <a class="btn btn-md btn-cta xxs:hidden" href="#takeaction">Take Action</a>
-      <button type="button" class="toggle xxs:hidden xl:block" aria-label="dark mode on" data-theme-toggle><span
-          class="slider"><svg aria-hidden="true" class="fill-neutral-two-light icon-xs">
+      <label for="mode-toggle" class="toggle peer-checked:hidden" aria-label="dark mode on"><span class="slider"><svg
+            aria-hidden="true" class="moon-icon fill-neutral-two-light w-4 h-4 peer-checked:hidden">
             <use href="/assets/sprites/solid.svg#moon"></use>
+          </svg><svg aria-hidden="true" class="sun-icon fill-neutral-two-light w-4 h-4 peer-checked:block">
+            <use href="/assets/sprites/solid.svg#sun"></use>
           </svg></span>
-      </button>
+      </label>
+      <label for="mode-toggle" class="toggle hidden peer-checked:block" aria-label="light mode on"><span
+          class="slider"><svg aria-hidden="true" class="moon-icon fill-neutral-two-light w-4 h-4 peer-checked:hidden">
+            <use href="/assets/sprites/solid.svg#moon"></use>
+          </svg><svg aria-hidden="true" class="sun-icon fill-neutral-two-light w-4 h-4 peer-checked:block">
+            <use href="/assets/sprites/solid.svg#sun"></use>
+          </svg></span>
+      </label>
       <button type="button" class="btn btn-icon xxs:block xl:hidden" id="mobile-nav-btn" aria-label="open menu">
         <svg class="icon-lg" aria-hidden="true" class="fill-primary-one">
           <use href="/assets/sprites/solid.svg#bars"></use>
@@ -148,7 +169,8 @@
             </div>
             <p class="paragraph-md">The Green Tape Measure is on a mission to champion the next generation of interior
               designers. Through
-              data-driven advocacy, we’re expanding career paths and protecting public safety by ensuring the profession
+              data-driven advocacy, we’re expanding career paths and protecting public safety by ensuring the
+              profession
               is recognized, regulated, and respected.</p>
             <div class="flex flex-col gap-4">
               <div class="flex gap-4 items-center">
@@ -494,7 +516,8 @@
                         https://www.bls.gov/ooh/arts-and-design/interior-designers.html (Accessed 27 September 2025).
                       </p>
                       <p class="wrap-break-word">CCIDC. <a class="link link--inline-neutral"
-                          href="https://ccidc.org/using-the-title-interior-architect-is-illegal" target="_blank">Why is
+                          href="https://ccidc.org/using-the-title-interior-architect-is-illegal" target="_blank">Why
+                          is
                           it
                           Illegal to Use the Title "Interior Architect"</a>. CCIDC (2025). Available at:
                         https://ccidc.org/using-the-title-interior-architect-is-illegal (Accessed 27 September 2025).
@@ -810,7 +833,8 @@
               </svg>
             </div>
             <h3 class="text-right">FIDER / CIDA</h3>
-            <p class="text-right">FIDER, now called CIDA, the Council for Interior Design Accreditation, is formed.</p>
+            <p class="text-right">FIDER, now called CIDA, the Council for Interior Design Accreditation, is formed.
+            </p>
             <div class="max-w-full">
               <input name="accordion-input" type="radio" id="toggle-time-9" class="legacy-toggle">
               <details name="accordion">
@@ -904,7 +928,8 @@
               </svg>
             </div>
             <h3 class="text-right">Hotel Fire</h3>
-            <p class="text-right">Hotel fire kills 85 due to toxic smoke from interior finishes and lack of sprinklers.
+            <p class="text-right">Hotel fire kills 85 due to toxic smoke from interior finishes and lack of
+              sprinklers.
             </p>
             <div class="max-w-full">
               <input name="accordion-input" type="radio" id="toggle-time-12" class="legacy-toggle">
@@ -1087,7 +1112,8 @@
                 <div class="accordion-content-wrapper">
                   <div class="flex flex-col pl-11 gap-4 text-right">
                     <p class="wrap-break-word">AIA Las Vegas. <a class="link link--inline-neutral"
-                        href="https://usmodernist.org/AIANV/AIALV-1999-07.pdf#page=3" target="_blank">Interior Designers
+                        href="https://usmodernist.org/AIANV/AIALV-1999-07.pdf#page=3" target="_blank">Interior
+                        Designers
                         Abandon 1989 Accord</a>. Forum, July 2000. Available at:
                       https://usmodernist.org/AIANV/AIALV-1999-07.pdf#page=3 (Accessed 27 September 2025).
                     </p>
@@ -1122,7 +1148,8 @@
                         href="https://fsri.org/news/remembering-station-nightclub-fire-twenty-years-later"
                         target="_blank">Remembering The Station Nightclub Fire: Twenty Years
                         Later</a>. UL Research Institutes, 20 Feb. 2023. Available at:
-                      https://fsri.org/news/remembering-station-nightclub-fire-twenty-years-later (Accessed 27 September
+                      https://fsri.org/news/remembering-station-nightclub-fire-twenty-years-later (Accessed 27
+                      September
                       2025).
                     </p>
                     <p class="wrap-break-word">NIST. <a class="link link--inline-neutral"
@@ -1160,7 +1187,8 @@
                   <div class="flex flex-col pl-11 gap-4 text-right">
                     <p class="wrap-break-word">Institute for Justice. <a class="link link--inline-neutral"
                         href="https://ij.org/case/susan-roberts-v-jerry-farrell" target="_blank">Connecticut Interior
-                        Design: Challenging Connecticut's Licensing of Speech for Interior Designers</a>. Institute for
+                        Design: Challenging Connecticut's Licensing of Speech for Interior Designers</a>. Institute
+                      for
                       Justice (2008). Available at: https://ij.org/case/susan-roberts-v-jerry-farrell (Accessed 27
                       September
                       2025).
@@ -1168,11 +1196,13 @@
                     <p class="wrap-break-word">Institute for Justice. <a class="link link--inline-neutral"
                         href="https://ij.org/case/byrum-et-al-v-landreth-et-al-2/" target="_blank">Texas Interior
                         Design:
-                        Challenging Texas' Licensing of Speech for Interior Designers</a>. Institute for Justice (2007).
+                        Challenging Texas' Licensing of Speech for Interior Designers</a>. Institute for Justice
+                      (2007).
                       Available at: https://ij.org/case/byrum-et-al-v-landreth-et-al-2/ (Accessed 27 September 2025).
                     </p>
                     <p class="wrap-break-word">FindLaw. <a class="link link--inline-neutral"
-                        href="https://caselaw.findlaw.com/court/us-11th-circuit/1557399.html" target="_blank">Eva Locke
+                        href="https://caselaw.findlaw.com/court/us-11th-circuit/1557399.html" target="_blank">Eva
+                        Locke
                         v.
                         Joyce Shore</a>. FindLaw (2011). Available at:
                       https://caselaw.findlaw.com/court/us-11th-circuit/1557399.html (Accessed 27 September 2025).
@@ -1282,7 +1312,8 @@
               </svg>
             </div>
             <h3 class="text-right">AIA Chapters Update</h3>
-            <p class="text-right">AIA no longer mandates its chapters to outright oppose interior design regulation.</p>
+            <p class="text-right">AIA no longer mandates its chapters to outright oppose interior design regulation.
+            </p>
             <div class="max-w-full">
               <input name="accordion-input" type="radio" id="toggle-time-22" class="legacy-toggle">
               <details name="accordion">
@@ -1295,7 +1326,8 @@
                     <p class="wrap-break-word">CIDQ. <a class="link link--inline-neutral"
                         href="https://www.cidq.org/advocacy-bulletin" target="_blank">AIA Revises Interior Design
                         Opposition Position Statement</a>. Council for Interior
-                      Design Qualification, 18 Jan. 2022. Available at: https://www.cidq.org/advocacy-bulletin (Accessed
+                      Design Qualification, 18 Jan. 2022. Available at: https://www.cidq.org/advocacy-bulletin
+                      (Accessed
                       27
                       September 2025).
                     </p>
@@ -1360,7 +1392,8 @@
                 <div class="accordion-content-wrapper">
                   <div class="flex flex-col pl-11 gap-4 text-right">
                     <p class="wrap-break-word">ASID. <a class="link link--inline-neutral"
-                        href="https://www.asid.org/lib24watch/files/pdf/8572" target="_blank">The Importance of Interior
+                        href="https://www.asid.org/lib24watch/files/pdf/8572" target="_blank">The Importance of
+                        Interior
                         Design</a>. ASID (2025). Available at:
                       https://www.asid.org/lib24watch/files/pdf/8572 (Accessed 27 September 2025).
                     </p>
@@ -1513,12 +1546,14 @@
               <p>The information provided on this website and through our social media accounts is
                 for educational and informational purposes only and is not intended as professional advice. While The
                 Green Tape Measure strives to provide accurate, current, and useful information, we make no
-                representations or warranties of any kind about the completeness, reliability, accuracy, or suitability
+                representations or warranties of any kind about the completeness, reliability, accuracy, or
+                suitability
                 of this information. Your use of this information is at <b>your own risk</b>.
               </p>
               <p>The Green Tape Measure is not liable for any losses, damages, or legal claims
                 that may arise from the use of content provided on its website or social media channels, or from
-                participation in activities including, but not limited to, surveys, donations, newsletter sign-ups, and
+                participation in activities including, but not limited to, surveys, donations, newsletter sign-ups,
+                and
                 volunteer interest submissions.
               </p>
               <p>Any references to laws, regulations, or industry practices are provided for
@@ -1605,7 +1640,8 @@
                 <p class="paragraph-md">External Links</p>
                 <p>Our website contains links to social media platforms and to other external
                   sites.
-                  Please note that these platforms may collect information about your interaction with their content. We
+                  Please note that these platforms may collect information about your interaction with their content.
+                  We
                   are not responsible for the privacy practices of these third-party platforms.</p>
               </div>
               <div class="flex flex-col">
@@ -1644,6 +1680,7 @@
   </footer>
 
   <script type="module" src="js/app.js"></script>
+
 </body>
 
 </html>
