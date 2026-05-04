@@ -160,6 +160,13 @@
     @apply w-8.75 min-w-8.75 h-8.75 min-h-8.75;
   }
 
+  .btn-icon-lg:hover,
+  .btn-icon-lg:active,
+  .btn-icon-sm:hover,
+  .btn-icon-sm:active {
+    @apply fill-primary-two;
+  }
+
   .btn-icon--rounded {
     @apply rounded-full border-[0.5px] border-solid border-primary-one bg-neutral-two-dark;
   }
@@ -174,11 +181,6 @@
 
   .icon-xs {
     @apply w-4 min-w-4 h-4 min-h-4;
-  }
-
-  .btn-icon:hover,
-  .btn-icon:active {
-    @apply fill-primary-two;
   }
 
   /* ── Draggable ── */
