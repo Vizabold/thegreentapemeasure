@@ -316,6 +316,9 @@
   .max-w-750 {
     max-width: calc(var(--spacing) * 750);
   }
+  .min-w-4 {
+    min-width: calc(var(--spacing) * 4);
+  }
   .min-w-75 {
     min-width: calc(var(--spacing) * 75);
   }
@@ -928,23 +931,33 @@
     height: auto;
     max-height: 100%;
   }
-  .btn-icon-lg {
+  .icon-lg {
     height: calc(var(--spacing) * 12);
     min-height: calc(var(--spacing) * 12);
     width: calc(var(--spacing) * 12);
     min-width: calc(var(--spacing) * 12);
   }
-  .btn-icon-sm {
+  .icon-sm {
     height: calc(var(--spacing) * 8.75);
     min-height: calc(var(--spacing) * 8.75);
     width: calc(var(--spacing) * 8.75);
     min-width: calc(var(--spacing) * 8.75);
   }
-  .btn-icon-lg:hover, .btn-icon-lg:active, .btn-icon-sm:hover, .btn-icon-sm:active {
+  .icon-xs {
+    height: calc(var(--spacing) * 4);
+    min-height: calc(var(--spacing) * 4);
+    width: calc(var(--spacing) * 4);
+    min-width: calc(var(--spacing) * 4);
+  }
+  .btn-icon:hover, .btn-icon:active {
     fill: currentcolor;
     color: var(--color-primary-two);
   }
   .btn-icon--rounded {
+    height: calc(var(--spacing) * 12);
+    min-height: calc(var(--spacing) * 12);
+    width: calc(var(--spacing) * 12);
+    min-width: calc(var(--spacing) * 12);
     border-radius: calc(infinity * 1px);
     border-style: var(--tw-border-style);
     border-width: 0.5px;
@@ -954,8 +967,6 @@
     background-color: var(--color-neutral-two-dark);
   }
   .btn-icon--rounded svg {
-    width: calc(var(--spacing) * 4);
-    min-width: calc(var(--spacing) * 4);
     fill: currentcolor;
     color: var(--color-primary-one);
   }
@@ -972,12 +983,6 @@
   .btn-social:hover, .btn-social:active {
     fill: currentcolor;
     color: var(--color-primary-one);
-  }
-  .icon-xs {
-    height: calc(var(--spacing) * 4);
-    min-height: calc(var(--spacing) * 4);
-    width: calc(var(--spacing) * 4);
-    min-width: calc(var(--spacing) * 4);
   }
   .btn-draggable {
     justify-content: space-between;
