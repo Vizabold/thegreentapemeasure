@@ -12,8 +12,9 @@ if (modeToggle) {
 
   const toggleLabels = document.querySelectorAll('label[for="mode-toggle"]');
   const syncAriaLabel = () => {
-    const text = modeToggle.checked ? 'light mode on' : 'dark mode on';
-    toggleLabels.forEach(l => l.setAttribute('aria-label', text));
+    const isLight = modeToggle.checked;
+    toggleLabels.forEach(l => l.setAttribute('aria-label', isLight ? 'light mode on' : 'dark mode on'));
+    document.documentElement.setAttribute('data-theme', isLight ? 'light' : 'dark');
   };
   syncAriaLabel();
 
