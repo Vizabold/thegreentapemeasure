@@ -10,14 +10,22 @@ if (modeToggle) {
     modeToggle.checked = true;
   }
 
+  const themeSources = document.querySelectorAll('source[data-theme]');
+  themeSources.forEach(source => {
+    source.dataset.originalMedia = source.getAttribute('media') ?? 'all';
+  });
+
   const toggleLabels = document.querySelectorAll('label[for="mode-toggle"]');
   const syncAriaLabel = () => {
     const isLight = modeToggle.checked;
     const theme = isLight ? 'light' : 'dark';
     toggleLabels.forEach(l => l.setAttribute('aria-label', isLight ? 'light mode on' : 'dark mode on'));
     document.documentElement.setAttribute('data-theme', theme);
-    document.querySelectorAll('source[data-theme]').forEach(source => {
-      source.media = source.dataset.theme === theme ? 'all' : 'not all';
+    themeSources.forEach(source => {
+      const themes = source.dataset.theme.split(',').map(t => t.trim());
+      source.media = themes.includes(theme) || themes.includes('all')
+        ? source.dataset.originalMedia
+        : 'not all';
     });
   };
   syncAriaLabel();
