@@ -4,7 +4,9 @@ import('details-polyfill').catch(() => {});
 
 const modeToggle = document.getElementById('mode-toggle');
 if (modeToggle) {
-  if (!modeToggle.checked && window.matchMedia('(prefers-color-scheme: light)').matches) {
+  const osPref = window.matchMedia('(prefers-color-scheme: light)');
+
+  if (!modeToggle.checked && osPref.matches) {
     modeToggle.checked = true;
   }
 
@@ -14,7 +16,13 @@ if (modeToggle) {
     toggleLabels.forEach(l => l.setAttribute('aria-label', text));
   };
   syncAriaLabel();
+
   modeToggle.addEventListener('change', syncAriaLabel);
+
+  osPref.addEventListener('change', (e) => {
+    modeToggle.checked = e.matches;
+    syncAriaLabel();
+  });
 }
 
 /*

@@ -1268,7 +1268,7 @@
   .toggle-sun {
     display: none;
   }
-  body:has(#mode-toggle:checked):root {
+  :root:has(#mode-toggle:checked) {
     --primary-one: #006E1C;
     --primary-two: #009927;
     --primary-three: #6F7A6B;
