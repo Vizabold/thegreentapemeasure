@@ -7,7 +7,7 @@
 
   html,
   body {
-    @apply m-0 p-0 box-border w-screen min-w-full scroll-smooth text-base font-base font-normal bg-neutral-three text-neutral-seven overflow-x-hidden transition-colors duration-300 ease-in-out;
+    @apply m-0 p-0 box-border w-screen min-w-full scroll-smooth text-base font-base font-normal [interpolate-size:allow-keywords] bg-neutral-three text-neutral-seven overflow-x-hidden transition-colors duration-300 ease-in-out;
   }
 
   .light {
@@ -43,8 +43,12 @@
     cursor: pointer;
   }
 
-  section {
-    @apply flex gap-8 px-4 py-12;
+  details::details-content {
+    @apply block-0 opacity-0 overflow-hidden transition-[block-size_opacity_content-visibility] duration-500 ease-in-out transition-discrete;
+  }
+
+  details[open]::details-content {
+    @apply block-auto opacity-100;
   }
 
   h2,
@@ -75,6 +79,10 @@
 
   .paragraph-lg {
     @apply text-xl;
+  }
+
+  section {
+    @apply flex gap-8 px-4 py-12;
   }
 
   .skip-link {
@@ -215,7 +223,7 @@
   /* ── Accordions ── */
 
   .btn-accordion {
-    @apply gap-2 text-primary-one justify-start;
+    @apply gap-2 text-primary-one justify-start cursor-pointer;
   }
 
   .btn-accordion:hover,
@@ -232,18 +240,17 @@
     @apply transition-colors duration-300 ease-out;
   }
 
-  /* ── Nav ── */
-  .link--nav {
-    @apply inline-flex justify-center font-nav font-bold text-neutral-nine;
-  }
-
-  .link--nav:hover {
+  .link:hover {
     @apply text-primary-two;
   }
 
-  .link--nav:active,
-  .link--nav.link--active {
+  .link:active {
     @apply text-primary-one;
+  }
+
+  /* ── Nav ── */
+  .link--nav {
+    @apply inline-flex justify-center font-nav font-bold text-neutral-nine;
   }
 
   .link--nav:active::after,
@@ -253,11 +260,11 @@
 
   /* ── Inline ── */
   .link--inline {
-    @apply text-primary-one underline;
+    @apply text-primary-one;
   }
 
   .link--inline-neutral {
-    @apply text-neutral-seven;
+    @apply text-neutral-seven underline;
   }
 
   .link--inline:hover,

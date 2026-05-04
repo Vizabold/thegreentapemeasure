@@ -53,9 +53,7 @@
         </picture>
       </a>
       <p class="font-name text-primary-one text-xl tracking-wide uppercase xxs:hidden lg:block xl:hidden xxl:block">The
-        Green Tape
-        Measure
-      </p>
+        Green Tape Measure</p>
     </div>
     <nav class="gap-8 items-end xxs:hidden xl:flex">
       <a class="link link--nav" href="#about">About</a>
@@ -262,7 +260,7 @@
                 </div>
                 <p class="paragraph-md">As we are currently only funded by donations, we need YOUR help. Support GTM's
                   501(c)(3) non-profit conversion with a donation today.</p>
-                <a href="#takeaction" class="link link--inline">Donor Benefits</a>
+                <a href="#takeaction" class="link link link-inline">Donor Benefits</a>
               </div>
               <a class="btn btn-lg btn-cta max-w-150" href="#" target="_blank">Donate Now <svg aria-hidden="true"
                   class="icon-xs fill-neutral-two-dark">
@@ -275,14 +273,14 @@
     </section>
 
     <section class="justify-center" id="quiz">
-      <div class="flex flex-col gap-8 max-w-750">
+      <div class="flex flex-col gap-8 xxl:w-304">
         <div class="flex flex-col text-center gap-1">
           <p class="paragraph-accent">Knowledge Check</p>
           <h2><span class="text-primary-one">Design Roles IQ</h2>
           <p class="paragraph-md">Test your industry knowledge. Drag the job title to its corresponding
             definition.</p>
         </div>
-        <div class="flex flex-col gap-8 w-full lg:flex-row">
+        <div class="flex flex-col gap-8 lg:flex-row">
           <div class="flex flex-col gap-8 lg:w-[50%]">
             <div class="flex gap-8 flex-col">
               <div class="card border-l border-solid border-primary-one bg-neutral-four">
@@ -472,32 +470,38 @@
             </div>
             <div class="flex flex-col gap-6">
               <button type="button" class="btn btn-lg btn-secondary" id="reset-quiz-btn">Reset Quiz</button>
-              <button type="button" class="btn btn-accordion" id="quiz-sources-btn" aria-expanded="false"
-                aria-controls="quiz-sources"><svg aria-hidden="true" class="icon-xs fill-primary-one">
-                  <use href="/assets/sprites/solid.svg#angle-down"></use>
-                </svg>See our sources</button>
-              <div class="flex-col pl-11 gap-4 hidden" id="quiz-sources">
-                <p>BLS. <a class="link--inline-neutral"
-                    href="https://www.bls.gov/ooh/architecture-and-engineering/architects.html" target="_blank">Outlook
-                    Handbook: Architects</a>. U.S. Bureau of Labor Statistics (2025). Available at:
-                  https://www.bls.gov/ooh/architecture-and-engineering/architects.html (Accessed 27 September 2025).</p>
-                <p>BLS. <a class="link--inline-neutral"
-                    href="https://www.bls.gov/ooh/arts-and-design/interior-designers.html" target="_blank">Occupational
-                    Outlook Handbook: Interior Designers</a>. U.S. Bureau of Labor Statistics (2025). Available at:
-                  https://www.bls.gov/ooh/arts-and-design/interior-designers.html (Accessed 27 September 2025).</p>
-                <p>CCIDC. <a class="link--inline-neutral"
-                    href="https://ccidc.org/using-the-title-interior-architect-is-illegal" target="_blank">Why is it
-                    Illegal to Use the Title "Interior Architect"</a>. CCIDC (2025). Available at:
-                  https://ccidc.org/using-the-title-interior-architect-is-illegal (Accessed 27 September 2025).</p>
-                <p>CIDQ. <a class="link--inline-neutral" href="https://www.cidq.org/why-ncidq-certification-matters"
-                    target="_blank">The Professional Difference Between "Interior Designer" and "Interior
-                    Decorator"</a>.
-                  Council for Interior Design Qualification (2025). Available at:
-                  https://www.cidq.org/why-ncidq-certification-matters (Accessed 27 September 2025).</p>
-                <p>NCARB. <a class="link--inline-neutral" href="https://www.ncarb.org/become-architect/why-architecture"
-                    target="_blank">Why Architecture</a>. NCARB (2025). Available at:
-                  https://www.ncarb.org/become-architect/why-architecture (Accessed 27 September 2025).</p>
-              </div>
+              <details name="accordion">
+                <summary class="btn btn-accordion"><svg aria-hidden="true" class="icon-xs fill-primary-one">
+                    <use href="/assets/sprites/solid.svg#angle-down"></use>
+                  </svg>See our sources</button></summary>
+                <div class="flex flex-col pl-11 gap-4">
+                  <p class="wrap-break-word">BLS. <a class="link link--inline-neutral"
+                      href="https://www.bls.gov/ooh/architecture-and-engineering/architects.html"
+                      target="_blank">Outlook
+                      Handbook: Architects</a>. U.S. Bureau of Labor Statistics (2025). Available at:
+                    https://www.bls.gov/ooh/architecture-and-engineering/architects.html (Accessed 27 September 2025).
+                  </p class="wrap-break-word">
+                  <p class="wrap-break-word">BLS. <a class="link link--inline-neutral"
+                      href="https://www.bls.gov/ooh/arts-and-design/interior-designers.html"
+                      target="_blank">Occupational
+                      Outlook Handbook: Interior Designers</a>. U.S. Bureau of Labor Statistics (2025). Available at:
+                    https://www.bls.gov/ooh/arts-and-design/interior-designers.html (Accessed 27 September 2025).</p>
+                  <p class="wrap-break-word">CCIDC. <a class="link link--inline-neutral"
+                      href="https://ccidc.org/using-the-title-interior-architect-is-illegal" target="_blank">Why is it
+                      Illegal to Use the Title "Interior Architect"</a>. CCIDC (2025). Available at:
+                    https://ccidc.org/using-the-title-interior-architect-is-illegal (Accessed 27 September 2025).</p>
+                  <p class="wrap-break-word">CIDQ. <a class="link link--inline-neutral"
+                      href="https://www.cidq.org/why-ncidq-certification-matters" target="_blank">The Professional
+                      Difference Between "Interior Designer" and "Interior
+                      Decorator"</a>.
+                    Council for Interior Design Qualification (2025). Available at:
+                    https://www.cidq.org/why-ncidq-certification-matters (Accessed 27 September 2025).</p>
+                  <p class="wrap-break-word">NCARB. <a class="link link--inline-neutral"
+                      href="https://www.ncarb.org/become-architect/why-architecture" target="_blank">Why
+                      Architecture</a>. NCARB (2025). Available at:
+                    https://www.ncarb.org/become-architect/why-architecture (Accessed 27 September 2025).</p>
+                </div>
+              </details>
             </div>
           </div>
         </div>
@@ -533,8 +537,9 @@
                   <use href="/assets/sprites/solid.svg#angle-down"></use>
                 </svg>Sources</button>
               <div class="flex-col pl-11 gap-4 hidden" id="timeline-one-sources">
-                <p>NCARB. <a class="link--inline-neutral" href="https://centennial.ncarb.org/beginning-of-licensure"
-                    target="_blank">The Need for Regulation: The Rise of Professions</a>. NCARB (2025). Available at:
+                <p>NCARB. <a class="link link--inline-neutral"
+                    href="https://centennial.ncarb.org/beginning-of-licensure" target="_blank">The Need for Regulation:
+                    The Rise of Professions</a>. NCARB (2025). Available at:
                   https://centennial.ncarb.org/beginning-of-licensure (Accessed 27 September 2025).
                 </p>
               </div>
@@ -558,8 +563,9 @@
                   <use href="/assets/sprites/solid.svg#angle-down"></use>
                 </svg>Sources</button>
               <div class="flex-col pl-11 gap-4 hidden" id="timeline-two-sources">
-                <p>NCARB. <a class="link--inline-neutral" href="https://centennial.ncarb.org/beginning-of-licensure"
-                    target="_blank">The Need for Regulation: The First License Law</a>. NCARB (2025). Available at:
+                <p>NCARB. <a class="link link--inline-neutral"
+                    href="https://centennial.ncarb.org/beginning-of-licensure" target="_blank">The Need for Regulation:
+                    The First License Law</a>. NCARB (2025). Available at:
                   https://centennial.ncarb.org/beginning-of-licensure (Accessed 27 September 2025).
                 </p>
               </div>
@@ -583,12 +589,12 @@
                   <use href="/assets/sprites/solid.svg#angle-down"></use>
                 </svg>Sources</button>
               <div class="flex-col pl-11 gap-4 hidden" id="timeline-three-sources">
-                <p>Massasoit Community College. <a class="link--inline-neutral"
+                <p>Massasoit Community College. <a class="link link--inline-neutral"
                     href="https://library.massasoit.edu/americanfires/iroquois" target="_blank">Major American Fires:
                     Iroquois Theater Fire - 1903</a>. Massasoit Community College (2017). Available at:
                   https://library.massasoit.edu/americanfires/iroquois (Accessed 27 September 2025).
                 </p>
-                <p>Uenuma, Francine. <a class="link--inline-neutral"
+                <p>Uenuma, Francine. <a class="link link--inline-neutral"
                     href="https://www.smithsonianmag.com/history/how-theater-blaze-killed-hundreds-forever-changed-way-we-approach-fire-safety-180969315/"
                     target="_blank">The Iroquois Theater Disaster Killed Hundreds andChanged Fire Safety Forever</a>.
                   Smithsonian Magazine, 12 June 2018. Available at:
@@ -616,13 +622,13 @@
                   <use href="/assets/sprites/solid.svg#angle-down"></use>
                 </svg>Sources</button>
               <div class="flex-col pl-11 gap-4 hidden" id="timeline-four-sources">
-                <p>AFL-CIO. <a class="link--inline-neutral"
+                <p>AFL-CIO. <a class="link link--inline-neutral"
                     href="https://aflcio.org/about/history/labor-history-events/triangle-shirtwaist-fire"
                     target="_blank">Triangle Shirtwaist Fire</a>. AFL-CIO (2025). Available at:
                   https://aflcio.org/about/history/labor-history-events/triangle-shirtwaist-fire (Accessed 27
                   September 2025).
                 </p>
-                <p>History.com Editors. <a class="link--inline-neutral"
+                <p>History.com Editors. <a class="link link--inline-neutral"
                     href="https://www.history.com/articles/triangle-shirtwaist-fire" target="_blank">Triangle Shirtwaist
                     Factory Fire</a>. History.com, 2 Dec. 2009. Available at:
                   https://www.history.com/articles/triangle-shirtwaist-fire (Accessed 27
@@ -649,7 +655,7 @@
                   <use href="/assets/sprites/solid.svg#angle-down"></use>
                 </svg>Sources</button>
               <div class="flex-col pl-11 gap-4 hidden" id="timeline-five-sources">
-                <p>NCARB. <a class="link--inline-neutral" href="https://www.ncarb.org/about/history-ncarb"
+                <p>NCARB. <a class="link link--inline-neutral" href="https://www.ncarb.org/about/history-ncarb"
                     target="_blank">History of NCARB</a>. NCARB (2025). Available at:
                   https://www.ncarb.org/about/history-ncarb (Accessed 27 September 2025).
                 </p>
@@ -674,7 +680,8 @@
                   <use href="/assets/sprites/solid.svg#angle-down"></use>
                 </svg>Sources</button>
               <div class="flex-col pl-11 gap-4 hidden" id="timeline-six-sources">
-                <p>ASID. <a class="link--inline-neutral" href="https://www.asid.org/50years" target="_blank">A History
+                <p>ASID. <a class="link link--inline-neutral" href="https://www.asid.org/50years" target="_blank">A
+                    History
                     of the American Society of Interior Designers</a>. ASID (2025). Available at:
                   https://www.asid.org/50years (Accessed 27 September 2025).
                 </p>
@@ -699,7 +706,7 @@
                   <use href="/assets/sprites/solid.svg#angle-down"></use>
                 </svg>Sources</button>
               <div class="flex-col pl-11 gap-4 hidden" id="timeline-seven-sources">
-                <p>NAAB. <a class="link--inline-neutral" href="https://www.naab.org/who-we-are/our-history"
+                <p>NAAB. <a class="link link--inline-neutral" href="https://www.naab.org/who-we-are/our-history"
                     target="_blank">>Our History: Why
                     Accreditation?</a>. NAAB (2025). Available at:
                   https://www.naab.org/who-we-are/our-history (Accessed 27 September 2025).
@@ -725,7 +732,8 @@
                   <use href="/assets/sprites/solid.svg#angle-down"></use>
                 </svg>Sources</button>
               <div class="flex-col pl-11 gap-4 hidden" id="timeline-eight-sources">
-                <p>ASID. <a class="link--inline-neutral" href="https://www.asid.org/50years" target="_blank">A History
+                <p>ASID. <a class="link link--inline-neutral" href="https://www.asid.org/50years" target="_blank">A
+                    History
                     of the American Society of Interior Designers</a>. ASID (2025). Available at:
                   https://www.asid.org/50years (Accessed 27 September 2025).
                 </p>
@@ -750,7 +758,7 @@
                   <use href="/assets/sprites/solid.svg#angle-down"></use>
                 </svg>Sources</button>
               <div class="flex-col pl-11 gap-4 hidden" id="timeline-nine-sources">
-                <p>CIDA. <a class="link--inline-neutral" href="https://cida.org/cida-history" target="_blank">Our
+                <p>CIDA. <a class="link link--inline-neutral" href="https://cida.org/cida-history" target="_blank">Our
                     Story</a>. Council for Interior Design Accreditation (2025). Available
                   at: https://cida.org/cida-history (Accessed 27 September 2025).
                 </p>
@@ -775,7 +783,7 @@
                   <use href="/assets/sprites/solid.svg#angle-down"></use>
                 </svg>Sources</button>
               <div class="flex-col pl-11 gap-4 hidden" id="timeline-ten-sources">
-                <p>CIDQ. <a class="link--inline-neutral" href="https://www.cidq.org/50th-anniversary"
+                <p>CIDQ. <a class="link link--inline-neutral" href="https://www.cidq.org/50th-anniversary"
                     target="_blank">50th Anniversary</a>. Council for Interior Design Qualification (2025). Available
                   at: https://www.cidq.org/50th-anniversary (Accessed 27 September 2025).
                 </p>
@@ -800,7 +808,8 @@
                   <use href="/assets/sprites/solid.svg#angle-down"></use>
                 </svg>Sources</button>
               <div class="flex-col pl-11 gap-4 hidden" id="timeline-eleven-sources">
-                <p>ASID. <a class="link--inline-neutral" href="https://www.asid.org/50years" target="_blank">A History
+                <p>ASID. <a class="link link--inline-neutral" href="https://www.asid.org/50years" target="_blank">A
+                    History
                     of the American Society of Interior Designers</a>. ASID (2025). Available at:
                   https://www.asid.org/50years (Accessed 27 September 2025).
                 </p>
@@ -826,14 +835,14 @@
                   <use href="/assets/sprites/solid.svg#angle-down"></use>
                 </svg>Sources</button>
               <div class="flex-col pl-11 gap-4 hidden" id="timeline-twelve-sources">
-                <p>Best, Richard, and Demers, David P. <a class="link--inline-neutral"
+                <p>Best, Richard, and Demers, David P. <a class="link link--inline-neutral"
                     href="https://www.firefighternation.com/wp-content/uploads/2016/11/lasvegasmgmgrand.pdf"
                     target="_blank">Investigation Report on the MGM Grand Hotel Fire</a>. National Fire
                   Protection Association, 15 Jan. 1982.
                   https://www.firefighternation.com/wp-content/uploads/2016/11/lasvegasmgmgrand.pdf (Accessed 27
                   September 2025).
                 </p>
-                <p>Jensen Hughes. <a class="link--inline-neutral"
+                <p>Jensen Hughes. <a class="link link--inline-neutral"
                     href="https://www.jensenhughes.com/insights/how-the-mgm-grand-fire-changed-fire-codes-standards"
                     target="_blank">How the MGM Grand Fire Changed Fire Codes + Standards</a>. Jensen Hughes
                   19 Nov. 2021. Available at:
@@ -862,7 +871,7 @@
                   <use href="/assets/sprites/solid.svg#angle-down"></use>
                 </svg>Sources</button>
               <div class="flex-col pl-11 gap-4 hidden" id="timeline-thirteen-sources">
-                <p>IIDA Alabama Chapter. <a class="link--inline-neutral"
+                <p>IIDA Alabama Chapter. <a class="link link--inline-neutral"
                     href="https://www.iida-al.org/resources/advocacy-legislation" target="_blank">Advocacy &
                     Legislation</a>. IIDA Alabama Chapter (2025). Available at:
                   https://www.iida-al.org/resources/advocacy-legislation (Accessed 27 September 2025).
@@ -889,7 +898,7 @@
                   <use href="/assets/sprites/solid.svg#angle-down"></use>
                 </svg>Sources</button>
               <div class="flex-col pl-11 gap-4 hidden" id="timeline-fourteen-sources">
-                <p>Gillman, Todd J. <a class="link--inline-neutral"
+                <p>Gillman, Todd J. <a class="link link--inline-neutral"
                     href=" https://www.washingtonpost.com/archive/business/1987/08/24/architects-fight-dc-law-licensing-interior-designers/b4afb5fa-aa7e-4b59-9536-3fd85ecd9963"
                     target="_blank">Architects Fight D.C. Law Licensing Interior Designers</a>. The Washington
                   Post, 23 Aug. 1987.
@@ -918,7 +927,7 @@
                   <use href="/assets/sprites/solid.svg#angle-down"></use>
                 </svg>Sources</button>
               <div class="flex-col pl-11 gap-4 hidden" id="timeline-fifteen-sources">
-                <p>Whitney, Marilyn Corson. <a class="link--inline-neutral"
+                <p>Whitney, Marilyn Corson. <a class="link link--inline-neutral"
                     href="https://vtechworks.lib.vt.edu/server/api/core/bitstreams/75802a53-f826-4e1b-9e44-1afa7c02bd4f/content#page=92"
                     target="_blank">A History of the Professionalization of Interior Design</a>. Virginia Tech
                   VTechWorks, 18 Aug. 2008.
@@ -970,7 +979,7 @@
                   <use href="/assets/sprites/solid.svg#angle-down"></use>
                 </svg>Sources</button>
               <div class="flex-col pl-11 gap-4 hidden" id="timeline-seventeen-sources">
-                <p>AIA Las Vegas. <a class="link--inline-neutral"
+                <p>AIA Las Vegas. <a class="link link--inline-neutral"
                     href="https://usmodernist.org/AIANV/AIALV-1999-07.pdf#page=3" target="_blank">Interior Designers
                     Abandon 1989 Accord</a>. Forum, July 2000. Available at:
                   https://usmodernist.org/AIANV/AIALV-1999-07.pdf#page=3 (Accessed 27 September 2025).
@@ -997,14 +1006,14 @@
                   <use href="/assets/sprites/solid.svg#angle-down"></use>
                 </svg>Sources</button>
               <div class="flex-col pl-11 gap-4 hidden" id="timeline-eighteen-sources">
-                <p>FSRI. <a class="link--inline-neutral"
+                <p>FSRI. <a class="link link--inline-neutral"
                     href="https://fsri.org/news/remembering-station-nightclub-fire-twenty-years-later"
                     target="_blank">Remembering The Station Nightclub Fire: Twenty Years
                     Later</a>. UL Research Institutes, 20 Feb. 2023. Available at:
                   https://fsri.org/news/remembering-station-nightclub-fire-twenty-years-later (Accessed 27 September
                   2025).
                 </p>
-                <p>NIST. <a class="link--inline-neutral"
+                <p>NIST. <a class="link link--inline-neutral"
                     href="https://www.nist.gov/disaster-failure-studies/station-nightclub-fire-2003"
                     target="_blank">Disaster & Failure Studies: The Station Nightclub Fire 2003</a>. NIST
                   3 June 2011. Available at: https://www.nist.gov/disaster-failure-studies/station-nightclub-fire-2003
@@ -1031,23 +1040,23 @@
                   <use href="/assets/sprites/solid.svg#angle-down"></use>
                 </svg>Sources</button>
               <div class="flex-col pl-11 gap-4 hidden" id="timeline-nineteen-sources">
-                <p>Institute for Justice. <a class="link--inline-neutral"
+                <p>Institute for Justice. <a class="link link--inline-neutral"
                     href="https://ij.org/case/susan-roberts-v-jerry-farrell" target="_blank">Connecticut Interior
                     Design: Challenging Connecticut's Licensing of Speech for Interior Designers</a>. Institute for
                   Justice (2008). Available at: https://ij.org/case/susan-roberts-v-jerry-farrell (Accessed 27 September
                   2025).
                 </p>
-                <p>Institute for Justice. <a class="link--inline-neutral"
+                <p>Institute for Justice. <a class="link link--inline-neutral"
                     href="https://ij.org/case/byrum-et-al-v-landreth-et-al-2/" target="_blank">Texas Interior Design:
                     Challenging Texas' Licensing of Speech for Interior Designers</a>. Institute for Justice (2007).
                   Available at: https://ij.org/case/byrum-et-al-v-landreth-et-al-2/ (Accessed 27 September 2025).
                 </p>
-                <p>FindLaw. <a class="link--inline-neutral"
+                <p>FindLaw. <a class="link link--inline-neutral"
                     href="https://caselaw.findlaw.com/court/us-11th-circuit/1557399.html" target="_blank">Eva Locke v.
                     Joyce Shore</a>. FindLaw (2011). Available at:
                   https://caselaw.findlaw.com/court/us-11th-circuit/1557399.html (Accessed 27 September 2025).
                 </p>
-                <p>ASID FLS. <a class="link--inline-neutral"
+                <p>ASID FLS. <a class="link link--inline-neutral"
                     href="https://fls.asid.org/resources/advocacy/response-to-interior-design-deregulation"
                     target="_blank">Response to
                     Interior Design Deregulation</a>. American Society of Interior
@@ -1076,7 +1085,7 @@
                   <use href="/assets/sprites/solid.svg#angle-down"></use>
                 </svg>Sources</button>
               <div class="flex-col pl-11 gap-4 hidden" id="timeline-twenty-sources">
-                <p>ASID. <a class="link--inline-neutral"
+                <p>ASID. <a class="link link--inline-neutral"
                     href="https://www.asid.org/frequently_asked_questions/frequently_asked_questions"
                     target="_blank">Frequently Asked Questions: Why is ASID including architects in its
                     membership structure?</a>. American Society of Interior Designers (2025). Available at:
@@ -1104,21 +1113,21 @@
                   <use href="/assets/sprites/solid.svg#angle-down"></use>
                 </svg>Sources</button>
               <div class="flex-col pl-11 gap-4 hidden" id="timeline-twentyone-sources">
-                <p>Daly, Michael. <a class="link--inline-neutral"
+                <p>Daly, Michael. <a class="link link--inline-neutral"
                     href="https://www.thedailybeast.com/bronx-buildings-oil-based-paint-made-it-burn-like-gasoline"
                     target="_blank">Bronx Building's Oil-Based Paint Made it Burn Like
                     'Gasoline'</a>. Daily Beast, 29 Dec. 2017. Available at:
                   https://www.thedailybeast.com/bronx-buildings-oil-based-paint-made-it-burn-like-gasoline
                   (Accessed 27 September 2025).
                 </p>
-                <p>Sullivan, C.J. <a class="link--inline-neutral"
+                <p>Sullivan, C.J. <a class="link link--inline-neutral"
                     href="https://nypost.com/2017/12/28/multiple-people-seriously-injured-as-fire-rips-through-bronx-building/"
                     target="_blank">12 dead after fire sweeps through Bronx apartment building</a>.
                   New York Post, 28 Dec. 2017. Available at:
                   https://nypost.com/2017/12/28/multiple-people-seriously-injured-as-fire-rips-through-bronx-building/
                   (Accessed 27 September 2025).
                 </p>
-                <p>Tobias, Michael. <a class="link--inline-neutral"
+                <p>Tobias, Michael. <a class="link link--inline-neutral"
                     href="https://www.ny-engineers.com/blog/new-fire-safety-bills-passed-in-may-2018"
                     target="_blank">New Fire Safety Bills Passed by the NYC Council in May 2018:
                     A Brief Overview</a>. Nearby Engineers (2025). Available at:
@@ -1146,7 +1155,7 @@
                   <use href="/assets/sprites/solid.svg#angle-down"></use>
                 </svg>Sources</button>
               <div class="flex-col pl-11 gap-4 hidden" id="timeline-twentytwo-sources">
-                <p>CIDQ. <a class="link--inline-neutral" href="https://www.cidq.org/advocacy-bulletin"
+                <p>CIDQ. <a class="link link--inline-neutral" href="https://www.cidq.org/advocacy-bulletin"
                     target="_blank">AIA Revises Interior Design Opposition Position Statement</a>. Council for Interior
                   Design Qualification, 18 Jan. 2022. Available at: https://www.cidq.org/advocacy-bulletin (Accessed 27
                   September 2025).
@@ -1172,7 +1181,7 @@
                   <use href="/assets/sprites/solid.svg#angle-down"></use>
                 </svg>Sources</button>
               <div class="flex-col pl-11 gap-4 hidden" id="timeline-twentythree-sources">
-                <p>ASID. <a class="link--inline-neutral"
+                <p>ASID. <a class="link link--inline-neutral"
                     href="https://www.asid.org/news/asid-cidq-and-iida-announce-consortium-for-interior-design-advocating-for-public-health-safety-and-well-being"
                     target="_blank">ASID, CIDQ, and IIDA Announce Consortium for Interior Design: Advocating
                     for Public Health, Safety, and Well-being</a>. ASID, 29 Mar. 2023. Available
@@ -1201,22 +1210,22 @@
                   <use href="/assets/sprites/solid.svg#angle-down"></use>
                 </svg>Sources</button>
               <div class="flex-col pl-11 gap-4 hidden" id="timeline-twentyfour-sources">
-                <p>ASID. <a class="link--inline-neutral" href="https://www.asid.org/lib24watch/files/pdf/8572"
+                <p>ASID. <a class="link link--inline-neutral" href="https://www.asid.org/lib24watch/files/pdf/8572"
                     target="_blank">The Importance of Interior Design</a>. ASID (2025). Available at:
                   https://www.asid.org/lib24watch/files/pdf/8572 (Accessed 27 September 2025).
                 </p>
-                <p>CIDQ. <a class="link--inline-neutral" href="https://www.cidq.org/advocacy"
+                <p>CIDQ. <a class="link link--inline-neutral" href="https://www.cidq.org/advocacy"
                     target="_blank">Advocacy</a>. Council for Interior
                   Design Qualification (2025). Available at: https://www.cidq.org/advocacy (Accessed 27 September 2025).
                 </p>
-                <p>IIDA. <a class="link--inline-neutral" href="https://iida.org/advocacy" target="_blank">Advocacy:
+                <p>IIDA. <a class="link link--inline-neutral" href="https://iida.org/advocacy" target="_blank">Advocacy:
                     About</a>. IIDA (2025). Available at: https://iida.org/advocacy (Accessed 27 September 2025).
                 </p>
-                <p><a class="link--inline-neutral" href=" https://consortiumforinteriordesign.splashthat.com/"
+                <p><a class="link link--inline-neutral" href=" https://consortiumforinteriordesign.splashthat.com/"
                     target="_blank">The Consortium for Interior Design</a> (2025). Available at:
                   https://consortiumforinteriordesign.splashthat.com/ (Accessed 27 September 2025).</li>
                 </p>
-                <p>The Consortium for Interior Design. <a class="link--inline-neutral"
+                <p>The Consortium for Interior Design. <a class="link link--inline-neutral"
                     href="https://www.cidq.org/_files/ugd/0784c1_0558650d7ba1424da5a7149e4e5c8869.pdf"
                     target="_blank">Working Together to Protect the Public</a>. CIDQ (2025). Available at:
                   https://www.cidq.org/_files/ugd/0784c1_0558650d7ba1424da5a7149e4e5c8869.pdf
