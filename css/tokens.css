@@ -1,160 +1,223 @@
-@theme {
-    --color-*: initial;
-    --color-primary-one: #5BBE5D;
-    --color-primary-two: #7FCC81;
-    --color-primary-three: #899484;
-    --color-primary-four: #ACBAA5;
-    --color-primary-five: #3F4A3C;
-    --color-secondary-one: #EB8825;
-    --color-secondary-two: #EFA152;
-    --color-secondary-three: #FFC081;
-    --color-secondary-four: #9E8265;
-    --color-secondary-five: #FF9A81;
-    --color-neutral-one: #0E0E0E;
-    --color-neutral-two: #121212;
-    --color-neutral-two-dark: #121212;
-    --color-neutral-two-light: #F0EDED;
-    --color-neutral-three: #131313;
-    --color-neutral-four: #1C1B1B;
-    --color-neutral-five: #2B2A2A;
-    --color-neutral-six: #353535;
-    --color-neutral-seven: #BECAB9;
-    --color-neutral-seven-light: #BECAB9;
-    --color-neutral-eight-light: #DDE5D9;
-    --color-neutral-nine: #D8D5D4;
+  /* ─────────────────────────────────────────
+     Variables
+  ───────────────────────────────────────── */
+  @theme {
+      --color-*: initial;
+      --color-primary-one: #5BBE5D;
+      --color-primary-two: #7FCC81;
+      --color-primary-three: #899484;
+      --color-primary-four: #ACBAA5;
+      --color-primary-five: #3F4A3C;
+      --color-secondary-one: #EB8825;
+      --color-secondary-two: #EFA152;
+      --color-secondary-three: #FFC081;
+      --color-secondary-four: #9E8265;
+      --color-secondary-five: #FF9A81;
+      --color-neutral-one: #0E0E0E;
+      --color-neutral-two: #121212;
+      --color-neutral-two-dark: #121212;
+      --color-neutral-two-light: #F0EDED;
+      --color-neutral-three: #131313;
+      --color-neutral-four: #1C1B1B;
+      --color-neutral-five: #2B2A2A;
+      --color-neutral-six: #353535;
+      --color-neutral-seven: #BECAB9;
+      --color-neutral-seven-light: #BECAB9;
+      --color-neutral-eight-light: #DDE5D9;
+      --color-neutral-nine: #D8D5D4;
 
-    /* font variables */
-    --font-base: "Inter", sans-serif;
-    --font-button: "Manrope", sans-serif;
-    --font-p-accent: "Manrope", sans-serif;
-    --font-heading: "Space Grotesk", sans-serif;
-    --font-nav: "Space Grotesk", sans-serif;
-    --font-name: "Space Grotesk", sans-serif;
-    --font-graph: "Space Grotesk", sans-serif;
+      /* font variables */
+      --font-base: "Inter", sans-serif;
+      --font-button: "Manrope", sans-serif;
+      --font-p-accent: "Manrope", sans-serif;
+      --font-heading: "Space Grotesk", sans-serif;
+      --font-nav: "Space Grotesk", sans-serif;
+      --font-name: "Space Grotesk", sans-serif;
+      --font-graph: "Space Grotesk", sans-serif;
 
-    /* stroke variables */
-    --weight-thin: 0.5px;
-    --weight-light: 1px;
-    --weight-medium: 2px;
-    --weight-heavy: 4px;
+      /* stroke variables */
+      --weight-thin: 0.5px;
+      --weight-light: 1px;
+      --weight-medium: 2px;
+      --weight-heavy: 4px;
 
-    /* breakpoints */
-    --breakpoint-xxs: 300px;
-    --breakpoint-xs: 400px;
-    --breakpoint-sm: 600px;
-    --breakpoint-md: 700px;
-    --breakpoint-lg: 850px;
-    --breakpoint-xl: 1000px;
-    --breakpoint-xxl: 1280px;
-}
+      /* breakpoints */
+      --breakpoint-xxs: 300px;
+      --breakpoint-xs: 400px;
+      --breakpoint-sm: 600px;
+      --breakpoint-md: 700px;
+      --breakpoint-lg: 850px;
+      --breakpoint-xl: 1000px;
+      --breakpoint-xxl: 1280px;
+  }
 
-/* inter-regular - latin */
-@font-face {
-    font-display: swap;
-    font-family: 'Inter';
-    font-style: normal;
-    font-weight: 400;
-    src: url('../assets/fonts/inter-v20-latin-regular.woff2') format('woff2'),
-        url('../assets/fonts/inter-v20-latin-regular.ttf') format('truetype');
-}
+  /* ─────────────────────────────────────────
+     Fonts
+  ───────────────────────────────────────── */
 
-/* inter-italic - latin */
-@font-face {
-    font-display: swap;
-    font-family: 'Inter';
-    font-style: italic;
-    font-weight: 400;
-    src: url('../assets/fonts/inter-v20-latin-italic.woff2') format('woff2'),
-        url('../assets/fonts/inter-v20-latin-italic.ttf') format('truetype');
-}
+  /* inter-regular - latin */
+  @font-face {
+      font-display: swap;
+      font-family: 'Inter';
+      font-style: normal;
+      font-weight: 400;
+      src: url('../assets/fonts/inter-v20-latin-regular.woff2') format('woff2'),
+          url('../assets/fonts/inter-v20-latin-regular.ttf') format('truetype');
+  }
 
-/* inter-700 - latin */
-@font-face {
-    font-display: swap;
-    font-family: 'Inter';
-    font-style: normal;
-    font-weight: 700;
-    src: url('../assets/fonts/inter-v20-latin-700.woff2') format('woff2'),
-        url('../assets/fonts/inter-v20-latin-700.ttf') format('truetype');
-}
+  /* inter-italic - latin */
+  @font-face {
+      font-display: swap;
+      font-family: 'Inter';
+      font-style: italic;
+      font-weight: 400;
+      src: url('../assets/fonts/inter-v20-latin-italic.woff2') format('woff2'),
+          url('../assets/fonts/inter-v20-latin-italic.ttf') format('truetype');
+  }
 
-/* inter-700italic - latin */
-@font-face {
-    font-display: swap;
-    font-family: 'Inter';
-    font-style: italic;
-    font-weight: 700;
-    src: url('../assets/fonts/inter-v20-latin-700italic.woff2') format('woff2'),
-        url('../assets/fonts/inter-v20-latin-700italic.ttf') format('truetype');
-}
+  /* inter-700 - latin */
+  @font-face {
+      font-display: swap;
+      font-family: 'Inter';
+      font-style: normal;
+      font-weight: 700;
+      src: url('../assets/fonts/inter-v20-latin-700.woff2') format('woff2'),
+          url('../assets/fonts/inter-v20-latin-700.ttf') format('truetype');
+  }
+
+  /* inter-700italic - latin */
+  @font-face {
+      font-display: swap;
+      font-family: 'Inter';
+      font-style: italic;
+      font-weight: 700;
+      src: url('../assets/fonts/inter-v20-latin-700italic.woff2') format('woff2'),
+          url('../assets/fonts/inter-v20-latin-700italic.ttf') format('truetype');
+  }
 
 
-/* manrope-regular - latin */
-@font-face {
-    font-display: swap;
-    font-family: 'Manrope';
-    font-style: normal;
-    font-weight: 400;
-    src: url('../assets/fonts/manrope-v20-latin-regular.woff2') format('woff2'),
-        url('../assets/fonts/manrope-v20-latin-regular.ttf') format('truetype');
-}
+  /* manrope-regular - latin */
+  @font-face {
+      font-display: swap;
+      font-family: 'Manrope';
+      font-style: normal;
+      font-weight: 400;
+      src: url('../assets/fonts/manrope-v20-latin-regular.woff2') format('woff2'),
+          url('../assets/fonts/manrope-v20-latin-regular.ttf') format('truetype');
+  }
 
-/* manrope-700 - latin */
-@font-face {
-    font-display: swap;
-    font-family: 'Manrope';
-    font-style: normal;
-    font-weight: 700;
-    src: url('../assets/fonts/manrope-v20-latin-700.woff2') format('woff2'),
-        url('../assets/fonts/manrope-v20-latin-700.ttf') format('truetype');
-}
+  /* manrope-700 - latin */
+  @font-face {
+      font-display: swap;
+      font-family: 'Manrope';
+      font-style: normal;
+      font-weight: 700;
+      src: url('../assets/fonts/manrope-v20-latin-700.woff2') format('woff2'),
+          url('../assets/fonts/manrope-v20-latin-700.ttf') format('truetype');
+  }
 
-/* space-grotesk-regular - latin */
-@font-face {
-    font-display: swap;
-    font-family: 'Space Grotesk';
-    font-style: normal;
-    font-weight: 400;
-    src: url('../assets/fonts/space-grotesk-v22-latin-regular.woff2') format('woff2'),
-        url('../assets/fonts/space-grotesk-v22-latin-regular.ttf') format('truetype');
-}
+  /* space-grotesk-regular - latin */
+  @font-face {
+      font-display: swap;
+      font-family: 'Space Grotesk';
+      font-style: normal;
+      font-weight: 400;
+      src: url('../assets/fonts/space-grotesk-v22-latin-regular.woff2') format('woff2'),
+          url('../assets/fonts/space-grotesk-v22-latin-regular.ttf') format('truetype');
+  }
 
-/* space-grotesk-700 - latin */
-@font-face {
-    font-display: swap;
-    font-family: 'Space Grotesk';
-    font-style: normal;
-    font-weight: 700;
-    src: url('../assets/fonts/space-grotesk-v22-latin-700.woff2') format('woff2'),
-        url('../assets/fonts/space-grotesk-v22-latin-700.ttf') format('truetype');
-}
+  /* space-grotesk-700 - latin */
+  @font-face {
+      font-display: swap;
+      font-family: 'Space Grotesk';
+      font-style: normal;
+      font-weight: 700;
+      src: url('../assets/fonts/space-grotesk-v22-latin-700.woff2') format('woff2'),
+          url('../assets/fonts/space-grotesk-v22-latin-700.ttf') format('truetype');
+  }
 
-@supports (commandfor: "privacy") {
-    .fallback-label {
-        @apply hidden;
-    }
-}
 
-@supports (commandfor: "disclaimer") {
-    .fallback-label {
-        @apply hidden;
-    }
-}
+  /* ─────────────────────────────────────────
+     Animations
+  ───────────────────────────────────────── */
 
-@media screen and (min-width: 400px) {
-    h2 {
-        @apply text-5xl;
-    }
-}
+  @keyframes slideDown {
+      from {
+          opacity: 0;
+          transform: translateY(-10px);
+      }
 
-@media screen and (min-width: 850px) {
-    section {
-        @apply px-8;
-    }
-}
+      to {
+          opacity: 1;
+          transform: translateY(0);
+      }
+  }
 
-@media screen and (min-width: 1000px) {
-    .card {
-        @apply p-8;
-    }
-}
+  /* ─────────────────────────────────────────
+     Legacy Supports
+  ───────────────────────────────────────── */
+
+  /* dialogs */
+  @supports (commandfor: "privacy") {
+      .fallback-label {
+          @apply hidden;
+      }
+  }
+
+  @supports (commandfor: "disclaimer") {
+      .fallback-label {
+          @apply hidden;
+      }
+  }
+
+  /* accordions */
+  @media all and (-ms-high-contrast:none),
+  (-ms-high-contrast: active) {
+
+      .accordion-content-wrapper {
+          @apply max-h-0 overflow-hidden opacity-0 transition-[max-height_opacity] duration-400 ease-in-out;
+      }
+
+      summary {
+          @apply block;
+      }
+
+      details summary label {
+          @apply pointer-events-auto block w-full;
+      }
+
+      .accordion-content {
+          @apply hidden;
+      }
+
+      .legacy-toggle:checked~details .accordion-content {
+          @apply flex max-h-[1000px] opacity-100;
+      }
+
+      .legacy-label {
+          @apply block cursor-pointer w-full pointer-events-auto;
+      }
+
+  }
+
+
+  /* ─────────────────────────────────────────
+     Breakpoints (when variables cannot be used)
+  ───────────────────────────────────────── */
+  @media screen and (min-width: 400px) {
+      h2 {
+          @apply text-5xl;
+      }
+  }
+
+  @media screen and (min-width: 850px) {
+      section {
+          @apply px-8;
+      }
+  }
+
+  @media screen and (min-width: 1000px) {
+      .card {
+          @apply p-8;
+      }
+  }

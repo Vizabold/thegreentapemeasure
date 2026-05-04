@@ -62,7 +62,7 @@
   }
 
   h3 {
-    @apply text-xl font-bold;
+    @apply text-lg font-bold sm:text-xl;
   }
 
   h4 {
@@ -221,14 +221,29 @@
   }
 
   /* ── Accordions ── */
-
   .btn-accordion {
     @apply gap-2 text-primary-one justify-start cursor-pointer;
+  }
+
+  #timeline .btn-accordion {
+    @apply justify-end;
   }
 
   .btn-accordion:hover,
   .btn-accordiion:active {
     @apply text-primary-two;
+  }
+
+  .legacy-toggle {
+    @apply hidden;
+  }
+
+  .legacy-label {
+    @apply cursor-[inherit] pointer-events-none;
+  }
+
+  details[open] .accordion-content-wrapper {
+    @apply animate-[slideDown_0.3s_ease-out];
   }
 
   /* ─────────────────────────────────────────
@@ -383,7 +398,7 @@
   }
 
   .timeline-event {
-    @apply gap-8 justify-center items-center relative z-1;
+    @apply justify-center items-center relative z-1 w-full sm:gap-4 lg:gap-8;
   }
 
   .timeline-event-descript {

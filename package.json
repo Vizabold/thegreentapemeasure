@@ -1,6 +1,7 @@
 {
   "dependencies": {
-    "@tailwindcss/cli": "^4.2.4"
+    "@tailwindcss/cli": "^4.2.4",
+    "details-polyfill": "^1.2.0"
   },
   "name": "website-new",
   "version": "1.0.0",
