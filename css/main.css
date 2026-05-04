@@ -180,12 +180,12 @@
   }
 
   .btn-social {
-    @apply w-4 min-w-4 h-4 min-4 fill-neutral-seven;
+    @apply w-8.75 min-w-8.75 h-8.75 min-h-8.75 fill-neutral-seven;
   }
 
   .btn-social:hover,
   .btn-social:active {
-    @apply fill-primary-one;
+    @apply fill-current text-primary-one;
   }
 
   .icon-xs {

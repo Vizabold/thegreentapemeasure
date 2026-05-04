@@ -961,19 +961,22 @@
   .btn-icon--rounded:hover {
     background-color: var(--color-neutral-six);
   }
+  .btn-social {
+    height: calc(var(--spacing) * 8.75);
+    min-height: calc(var(--spacing) * 8.75);
+    width: calc(var(--spacing) * 8.75);
+    min-width: calc(var(--spacing) * 8.75);
+    fill: var(--color-neutral-seven);
+  }
+  .btn-social:hover, .btn-social:active {
+    fill: currentcolor;
+    color: var(--color-primary-one);
+  }
   .icon-xs {
     height: calc(var(--spacing) * 4);
     min-height: calc(var(--spacing) * 4);
     width: calc(var(--spacing) * 4);
     min-width: calc(var(--spacing) * 4);
-  }
-  .btn-social {
-    width: calc(var(--spacing) * 4);
-    min-width: calc(var(--spacing) * 4);
-    fill: var(--color-neutral-seven);
-  }
-  .btn-social:hover, .btn-social:active {
-    fill: var(--color-primary-one);
   }
   .btn-draggable {
     justify-content: space-between;
