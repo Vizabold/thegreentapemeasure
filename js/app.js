@@ -13,8 +13,12 @@ if (modeToggle) {
   const toggleLabels = document.querySelectorAll('label[for="mode-toggle"]');
   const syncAriaLabel = () => {
     const isLight = modeToggle.checked;
+    const theme = isLight ? 'light' : 'dark';
     toggleLabels.forEach(l => l.setAttribute('aria-label', isLight ? 'light mode on' : 'dark mode on'));
-    document.documentElement.setAttribute('data-theme', isLight ? 'light' : 'dark');
+    document.documentElement.setAttribute('data-theme', theme);
+    document.querySelectorAll('source[data-theme]').forEach(source => {
+      source.media = source.dataset.theme === theme ? 'all' : 'not all';
+    });
   };
   syncAriaLabel();
 
