@@ -2,6 +2,21 @@
 
 import 'details-polyfill';
 
+const modeToggle = document.getElementById('mode-toggle');
+if (modeToggle) {
+  if (!modeToggle.checked && window.matchMedia('(prefers-color-scheme: light)').matches) {
+    modeToggle.checked = true;
+  }
+
+  const toggleLabels = document.querySelectorAll('label[for="mode-toggle"]');
+  const syncAriaLabel = () => {
+    const text = modeToggle.checked ? 'light mode on' : 'dark mode on';
+    toggleLabels.forEach(l => l.setAttribute('aria-label', text));
+  };
+  syncAriaLabel();
+  modeToggle.addEventListener('change', syncAriaLabel);
+}
+
 /*
 const container = document.querySelector('#buttons');
 

@@ -181,6 +181,14 @@
           --neutral-seven: #3F4A3C;
           --neutral-nine: #1C1B1B;
       }
+
+      body:not(:has(#mode-toggle:checked)) .toggle-moon {
+          @apply hidden;
+      }
+
+      body:not(:has(#mode-toggle:checked)) .toggle-sun {
+          @apply block;
+      }
   }
 
 

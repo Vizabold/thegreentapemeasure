@@ -23,17 +23,10 @@
         <img src="assets/images/logo-lt.png" alt="GTM logo that resembles a green tape measure">
       </picture>
       <div class="flex gap-6">
-        <label for="mode-toggle" class="toggle peer-checked:hidden" aria-label="dark mode on"><span class="slider"><svg
-              aria-hidden="true" class="moon-icon fill-neutral-two-light w-4 h-4 peer-checked:hidden">
+        <label for="mode-toggle" class="toggle" aria-label="dark mode on"><span class="slider"><svg aria-hidden="true"
+              class="toggle-moon fill-neutral-two-light w-4 h-4">
               <use href="/assets/sprites/solid.svg#moon"></use>
-            </svg><svg aria-hidden="true" class="sun-icon fill-neutral-two-light w-4 h-4 peer-checked:block">
-              <use href="/assets/sprites/solid.svg#sun"></use>
-            </svg></span>
-        </label>
-        <label for="mode-toggle" class="toggle hidden peer-checked:block" aria-label="light mode on"><span
-            class="slider"><svg aria-hidden="true" class="moon-icon fill-neutral-two-light w-4 h-4 peer-checked:hidden">
-              <use href="/assets/sprites/solid.svg#moon"></use>
-            </svg><svg aria-hidden="true" class="sun-icon fill-neutral-two-light w-4 h-4 peer-checked:block">
+            </svg><svg aria-hidden="true" class="toggle-sun fill-neutral-two-light w-4 h-4">
               <use href="/assets/sprites/solid.svg#sun"></use>
             </svg></span>
         </label>
@@ -76,9 +69,11 @@
     </nav>
     <div class="flex gap-6 pb-1 items-end">
       <a class="btn btn-md btn-cta xxs:hidden" href="#takeaction">Take Action</a>
-      <label for="mode-toggle" class="toggle peer-checked:hidden" aria-label="dark mode on"><span class="slider"><svg
-            aria-hidden="true" class="moon-icon fill-neutral-two-light w-4 h-4 peer-checked:hidden">
+      <label for="mode-toggle" class="toggle" aria-label="dark mode on"><span class="slider"><svg aria-hidden="true"
+            class="toggle-moon fill-current text-neutral-two-light w-4 h-4">
             <use href="/assets/sprites/solid.svg#moon"></use>
+          </svg><svg aria-hidden="true" class="toggle-sun fill-current text-neutral-two-light w-4 h-4">
+            <use href="/assets/sprites/solid.svg#sun"></use>
           </svg></span>
       </label>
       <button type="button" class="btn btn-icon xxs:block xl:hidden" id="mobile-nav-btn" aria-label="open menu">

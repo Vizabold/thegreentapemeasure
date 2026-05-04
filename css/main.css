@@ -335,8 +335,20 @@
     @apply absolute w-6.25 h-6.25 flex justify-center items-center rounded-full p-1 bg-primary-three translate-y-[-50%] top-[50%] left-1.25 transition-transform duration-750 ease-out;
   }
 
-  #mode-toggle:checked~header .slider {
+  .toggle-sun {
+    @apply hidden;
+  }
+
+  body:has(#mode-toggle:checked) .slider {
     @apply translate-x-6.25;
+  }
+
+  body:has(#mode-toggle:checked) .toggle-moon {
+    @apply hidden;
+  }
+
+  body:has(#mode-toggle:checked) .toggle-sun {
+    @apply block;
   }
 
   /* ─────────────────────────────────────────
