@@ -967,6 +967,14 @@
     width: calc(var(--spacing) * 4);
     min-width: calc(var(--spacing) * 4);
   }
+  .btn-social {
+    width: calc(var(--spacing) * 4);
+    min-width: calc(var(--spacing) * 4);
+    fill: var(--color-neutral-seven);
+  }
+  .btn-social:hover, .btn-social:active {
+    fill: var(--color-primary-one);
+  }
   .btn-draggable {
     justify-content: space-between;
     border-radius: var(--radius-xl);

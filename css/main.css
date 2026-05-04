@@ -179,6 +179,15 @@
     @apply bg-neutral-six;
   }
 
+  .btn-social {
+    @apply w-4 min-w-4 h-4 min-4 fill-neutral-seven;
+  }
+
+  .btn-social:hover,
+  .btn-social:active {
+    @apply fill-primary-one;
+  }
+
   .icon-xs {
     @apply w-4 min-w-4 h-4 min-h-4;
   }
