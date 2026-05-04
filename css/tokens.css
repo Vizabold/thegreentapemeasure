@@ -182,12 +182,16 @@
           --neutral-nine: #1C1B1B;
       }
 
-      body:not(:has(#mode-toggle:checked)) .toggle-moon {
+      .toggle-moon {
           @apply hidden;
       }
 
-      body:not(:has(#mode-toggle:checked)) .toggle-sun {
+      .toggle-sun {
           @apply block;
+      }
+
+      .slider {
+          @apply translate-x-6.25;
       }
   }
 

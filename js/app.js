@@ -1,6 +1,6 @@
 /* import { createButton } from './components/Button.js'; */
 
-import 'details-polyfill';
+import('details-polyfill').catch(() => {});
 
 const modeToggle = document.getElementById('mode-toggle');
 if (modeToggle) {
