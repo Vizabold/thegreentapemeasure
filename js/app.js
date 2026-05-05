@@ -4,23 +4,18 @@ import('details-polyfill').catch(() => { });
 
 /*--------------- SCROLLING FUNCTIONS --------------------- */
 
-function startIntersectionObserver() {
-  const intersectObserver = window.Observer || window.tailwindcssIntersect;
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach((entry) => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('intersecting');
+    }
+  });
+}, { threshold: 0.1 });
 
-  if (intersectObserver) {
-    intersectObserver.start();
-    console.log("Tailwind Intersect started successfully.");
-  } else {
-    console.error("Could not find Intersection Observer global variable.");
-  }
-}
-
-// Ensure the DOM and all scripts are ready
-if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', startIntersectionObserver);
-} else {
-  startIntersectionObserver();
-}
+document.addEventListener('DOMContentLoaded', () => {
+  const elements = document.querySelectorAll('[class*="intersect:"]');
+  elements.forEach((el) => observer.observe(el));
+});
 
 let lastScrollY = window.scrollY;
 const header = document.getElementById('header');
