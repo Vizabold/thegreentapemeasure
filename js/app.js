@@ -25,28 +25,6 @@ const observer = new IntersectionObserver((entries) => {
 
 sections.forEach(section => observer.observe(section));
 
-
-const sections = document.querySelectorAll('section');
-sections.forEach(section => {
-  section.classList.add('scroll-appear');
-  setTimeout(() => {
-    void section.offsetHeight;
-  }, 1)
-})
-
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach((entry) => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('intersecting');
-    }
-  });
-}, { threshold: 0.1 });
-
-document.addEventListener('DOMContentLoaded', () => {
-  const elements = document.querySelectorAll('[class*="intersect:"]');
-  elements.forEach((el) => observer.observe(el));
-});
-
 let lastScrollY = window.scrollY;
 const header = document.getElementById('header');
 
