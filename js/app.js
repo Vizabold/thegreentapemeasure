@@ -9,6 +9,9 @@ document.documentElement.classList.add('js');
 const sections = document.querySelectorAll('section');
 sections.forEach(section => {
   section.classList.add('scroll-appear');
+  setTimeout(() => {
+    void section.offsetHeight;
+  }, 1)
 })
 
 const observer = new IntersectionObserver((entries) => {

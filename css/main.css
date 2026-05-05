@@ -91,16 +91,16 @@
     @apply text-xl text-neutral-nine;
   }
 
-  section {
-    @apply flex flex-col gap-8 px-4 py-12 lg:px-8;
-  }
-
   .js section {
     @apply opacity-0;
   }
 
   .scroll-appear {
     @apply translate-y-10 transition-all duration-1000 intersect:opacity-100 intersect:translate-y-0;
+  }
+
+  section {
+    @apply flex flex-col gap-8 px-4 py-12 lg:px-8;
   }
 
   .skip-link {

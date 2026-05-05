@@ -1098,16 +1098,6 @@
     line-height: var(--tw-leading, var(--text-xl--line-height));
     color: var(--color-neutral-nine);
   }
-  section {
-    display: flex;
-    flex-direction: column;
-    gap: calc(var(--spacing) * 8);
-    padding-inline: calc(var(--spacing) * 4);
-    padding-block: calc(var(--spacing) * 12);
-    @media (width >= 850px) {
-      padding-inline: calc(var(--spacing) * 8);
-    }
-  }
   .js section {
     opacity: 0%;
   }
@@ -1125,6 +1115,16 @@
     }
     &:not([no-intersect]) {
       opacity: 100%;
+    }
+  }
+  section {
+    display: flex;
+    flex-direction: column;
+    gap: calc(var(--spacing) * 8);
+    padding-inline: calc(var(--spacing) * 4);
+    padding-block: calc(var(--spacing) * 12);
+    @media (width >= 850px) {
+      padding-inline: calc(var(--spacing) * 8);
     }
   }
   .skip-link {
