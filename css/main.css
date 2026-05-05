@@ -62,7 +62,7 @@
   }
 
   section {
-    @apply flex flex-col gap-8 px-4 py-12 opacity-100 intersect:opacity-100 transition-opacity;
+    @apply flex flex-col gap-8 px-4 py-12 intersect-hidden opacity-100 transition-all duration-700 intersect:opacity-100 intersect:translate-y-0;
   }
 
   .skip-link {
@@ -393,8 +393,8 @@
     @apply translate-x-1;
   }
 
-  .js-enabled [data-animate] {
-    @apply opacity-0;
+  .js .intersect-hidden {
+    @apply opacity-0 translate-y-5;
   }
 
   .quiz-instruction {

@@ -4,7 +4,7 @@ import('details-polyfill').catch(() => { });
 
 /*--------------- SCROLLING FUNCTIONS --------------------- */
 
-document.documentElement.classList.add('js-enabled');
+document.documentElement.classList.replace('no-js', 'js');
 
 Observer.start();
 
