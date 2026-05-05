@@ -1109,9 +1109,11 @@
     }
   }
   .js section {
+    opacity: 0%;
+  }
+  .scroll-appear {
     --tw-translate-y: calc(var(--spacing) * 10);
     translate: var(--tw-translate-x) var(--tw-translate-y);
-    opacity: 0%;
     transition-property: all;
     transition-timing-function: var(--tw-ease, var(--default-transition-timing-function));
     transition-duration: var(--tw-duration, var(--default-transition-duration));
