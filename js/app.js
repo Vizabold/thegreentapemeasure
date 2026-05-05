@@ -6,8 +6,6 @@ import('details-polyfill').catch(() => { });
 
 document.documentElement.classList.add('js');
 
-Observer.start();
-
 let lastScrollY = window.scrollY;
 const header = document.getElementById('header');
 
