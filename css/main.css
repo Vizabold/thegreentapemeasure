@@ -99,7 +99,7 @@
     @apply flex flex-col gap-8 px-4 py-12 lg:px-8;
   }
 
-  .scroll-appear {
+  .js section .scroll-appear {
     @apply opacity-1 transition-opacity duration-500 ease-in-out;
   }
 

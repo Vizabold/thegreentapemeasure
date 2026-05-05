@@ -1111,7 +1111,7 @@
       padding-inline: calc(var(--spacing) * 8);
     }
   }
-  .scroll-appear {
+  .js section .scroll-appear {
     opacity: 1%;
     transition-property: opacity;
     transition-timing-function: var(--tw-ease, var(--default-transition-timing-function));
