@@ -4,7 +4,27 @@ import('details-polyfill').catch(() => { });
 
 /*--------------- SCROLLING FUNCTIONS --------------------- */
 
-document.documentElement.classList.add('js');
+document.documentElement.classList.replace('no-js', 'js');
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('scroll-appear');
+      setTimeout(() => {
+        void entry.offsetHeight;
+        entry.style.opacity = '1';
+      }, 1)
+    }
+
+  }), {
+    root: null,
+    rootMargin: '0px',
+    threshold: 0.05
+  }
+})
+
+sections.forEach(section => observer.observe(section));
+
 
 const sections = document.querySelectorAll('section');
 sections.forEach(section => {
