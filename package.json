@@ -9,6 +9,7 @@
   "description": "> **Measuring Advancement with Facts.**",
   "main": "index.js",
   "devDependencies": {
+    "tailwind-scrollbar": "^4.0.2",
     "tailwindcss": "^4.2.4"
   },
   "scripts": {

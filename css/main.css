@@ -1,6 +1,10 @@
 @import "tailwindcss";
 @import "./tokens.css";
-@import "tailwindcss-intersect";
+@plugin "tailwindcss-intersect";
+
+@plugin "tailwind-scrollbar" {
+  nocompatible: true;
+}
 
 @layer base, components, utilities;
 
@@ -63,7 +67,7 @@
   }
 
   section {
-    @apply flex flex-col gap-8 px-4 py-12 intersect-hidden opacity-100 transition-all duration-700 intersect:opacity-100 intersect:translate-y-0 intersect-once;
+    @apply flex flex-col gap-8 px-4 py-12;
   }
 
   .skip-link {
@@ -395,11 +399,15 @@
   }
 
   .js .intersect-hidden {
-    @apply opacity-0 translate-y-5;
+    @apply opacity-0 transition-opacity duration-1000 intersect:opacity-100 intersect-once;
   }
 
   .quiz-instruction {
     @apply w-16 min-w-16 h-16 rounded-full flex justify-center items-center bg-primary-one;
+  }
+
+  .scrollbar {
+    @apply scrollbar-thin scrollbar-thumb-neutral-six scrollbar-track-transparent scrollbar-thumb-rounded-full;
   }
 
   .timeline-event {

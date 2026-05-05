@@ -88,7 +88,7 @@
   </header>
 
   <main class="flex flex-col gap-31" id="main-content">
-    <section class="mt-21 xxl:max-w-750" id="hero">
+    <section class="mt-21 xxl:max-w-750 intersect-hidden" id="hero">
       <div class="flex gap-8">
         <div
           class="flex flex-col gap-8 items-center sm:max-w-87.5 md:max-w-100 xl:max-w-125 xxl:max-w-175 xxl:items-start">
@@ -143,10 +143,9 @@
       </div>
     </section>
 
-    <section class="bg-neutral-four" id="about">
+    <section class="bg-neutral-four intersect-hidden" id="about">
       <div class="flex flex-col gap-20 max-w-750">
-        <div
-          class="flex flex-col gap-8 intersect-hidden opacity-100 transition-all duration-700 intersect:opacity-100 intersect:translate-y-0 intersect-once xl:flex-row xl:items-center">
+        <div class="flex flex-col gap-8 xl:flex-row xl:items-center">
           <div class="flex flex-col gap-8 w-full items-center xl:w-[50%]">
             <picture>
               <source srcset="assets/images/Scrib-shadow-lg.webp" type="image/webp" media="(min-width:1280px)"
@@ -197,8 +196,7 @@
             </div>
           </div>
         </div>
-        <div
-          class="flex flex-col gap-8 intersect-hidden opacity-100 transition-all duration-700 intersect:opacity-100 intersect:translate-y-0 intersect-once xl:flex-row xl:items-center">
+        <div class="flex flex-col gap-8 xl:flex-row xl:items-center">
           <div class="flex flex-col gap-8 w-full xl:w-[50%]">
             <div class="flex flex-col">
               <p class="paragraph-accent">Founding</p>
@@ -217,8 +215,7 @@
             <iframe class="flex aspect-video bg-neutral-one w-full"></iframe>
           </div>
         </div>
-        <div
-          class="flex flex-col gap-4 intersect-hidden opacity-100 transition-all duration-700 intersect:opacity-100 intersect:translate-y-0 intersect-once">
+        <div class="flex flex-col gap-4">
           <div class="flex flex-col">
             <p class="paragraph-accent">Funding</p>
             <h2><span class="text-primary-one">Transparent</span> Operations.</h2>
@@ -293,7 +290,7 @@
       </div>
     </section>
 
-    <section class="items-center" id="quiz">
+    <section class="items-center intersect-hidden" id="quiz">
       <div class="flex flex-col gap-8 xxl:w-304">
         <div class="flex flex-col text-center gap-1">
           <p class="paragraph-accent">Knowledge Check</p>
@@ -541,7 +538,7 @@
       </div>
     </section>
 
-    <section class="bg-neutral-one gap-16 items-center" id="timeline">
+    <section class="bg-neutral-one gap-16 items-center intersect-hidden" id="timeline">
       <div class="flex flex-col gap-1 w-full">
         <p class="paragraph-accent">Archive Logs</p>
         <h2>Industry Regulation: Evolution & Impact</h2>
@@ -1436,7 +1433,7 @@
       </div>
     </section>
 
-    <section id="research">
+    <section class="intersect-hidden" id="research">
       <div class="flex flex-col gap-1">
         <p class="paragraph-accent">Industry Insights</p>
         <h2>Data. Analysis. <span class="text-primary-one">Results</span>.</h2>
@@ -1445,19 +1442,19 @@
       </div>
       <div class="flex gap-6 xxl:hidden">
         <button type="button" class="btn btn-icon btn-icon--rounded" id="research-prev-btn"
-          aria-label="see previous analysis">
+          aria-label="see previous analysis" aria-controls="research-cards">
           <svg class="icon-xs" aria-hidden="true">
             <use href="/assets/sprites/solid.svg#angle-left"></use>
           </svg>
         </button>
         <button type="button" class="btn btn-icon btn-icon--rounded" id="research-next-btn"
-          aria-label="see next analysis">
+          aria-label="see next analysis" aria-controls="research-cards">
           <svg class="icon-xs" aria-hidden="true">
             <use href="/assets/sprites/solid.svg#angle-right"></use>
           </svg>
         </button>
       </div>
-      <div class="flex gap-20 overflow-x-auto">
+      <div class="flex gap-20 overflow-x-auto" id="research-cards">
         <div class="card gap-0 justify-between w-75 min-w-75 h-129 bg-neutral-four">
           <p class="paragraph-accent">July 2025</p>
           <h3>Fire, Design, and Liability</h3>
@@ -1511,6 +1508,310 @@
             </svg>
             Open Analysis
           </button>
+        </div>
+      </div>
+    </section>
+
+    <section class="intersect-hidden" id="advocacy">
+      <div class="flex flex-col gap-1">
+        <p class="paragraph-accent">HSW in Action</p>
+        <h2>Our Legislative <span class="text-primary-one">Voice</span>.</h2>
+        <p class="paragraph-md">We advocate for inclusive and data-supported regulation that elevates the profession and
+          protects the public.</p>
+      </div>
+      <div class="flex gap-6">
+        <button type="button" class="btn btn-icon btn-icon--rounded" id="research-prev-btn"
+          aria-label="see previous legislation" aria-controls="advocacy-cards">
+          <svg class="icon-xs" aria-hidden="true">
+            <use href="/assets/sprites/solid.svg#angle-left"></use>
+          </svg>
+        </button>
+        <button type="button" class="btn btn-icon btn-icon--rounded" id="research-next-btn"
+          aria-label="see next legislation" aria-controls="advocacy-cards">
+          <svg class="icon-xs" aria-hidden="true">
+            <use href="/assets/sprites/solid.svg#angle-right"></use>
+          </svg>
+        </button>
+      </div>
+      <div class="flex gap-20 overflow-x-auto scrollbar" id="advocacy-cards">
+        <div class="card gap-4 w-75 min-w-75 min-h-145 bg-neutral-four">
+          <p class="paragraph-accent">April 2026</p>
+          <h3>Our Legislative Goals</h3>
+          <div class="flex justify-between">
+            <div class="icon-container">
+              <svg aria-hidden="true">
+                <use href="assets/sprites/solid.svg#hands-holding"></use>
+              </svg>
+            </div>
+            <div class="icon-container">
+              <svg aria-hidden="true">
+                <use href="assets/sprites/solid.svg#scale-balanced"></use>
+              </svg>
+            </div>
+            <div class="icon-container">
+              <svg aria-hidden="true">
+                <use href="assets/sprites/solid.svg#shield"></use>
+              </svg>
+            </div>
+            <div class="icon-container">
+              <svg aria-hidden="true">
+                <use href="assets/sprites/solid.svg#maximize"></use>
+              </svg>
+            </div>
+          </div>
+          <details name="accordion">
+            <summary class="btn btn-accordion paragraph-md"><label for="toggle-leg-1" class="legacy-label"><svg
+                  aria-hidden="true" class="icon-xs fill-primary-one">
+                  <use href="/assets/sprites/solid.svg#angle-down"></use>
+                </svg>Inclusive Pathways</label></summary>
+            <div class="accordion-content-wrapper">
+              <div class="flex flex-col">
+                <p class="wrap-break-word">Create diverse licensing tracks, including non-degree options and exams
+                  tailored to specific practice areas like residential or commercial design.</p>
+              </div>
+            </div>
+          </details>
+          <details name="accordion">
+            <summary class="btn btn-accordion paragraph-md"><label for="toggle-leg-2" class="legacy-label"><svg
+                  aria-hidden="true" class="icon-xs fill-primary-one">
+                  <use href="/assets/sprites/solid.svg#angle-down"></use>
+                </svg>Professional Parity</label></summary>
+            <div class="accordion-content-wrapper">
+              <div class="flex flex-col">
+                <p class="wrap-break-word">Establish independent or equal-representation boards and implement mandatory,
+                  non-voluntary licensing for all interior design practitioners.</p>
+              </div>
+            </div>
+          </details>
+          <details name="accordion">
+            <summary class="btn btn-accordion paragraph-md"><label for="toggle-leg-3" class="legacy-label"><svg
+                  aria-hidden="true" class="icon-xs fill-primary-one">
+                  <use href="/assets/sprites/solid.svg#angle-down"></use>
+                </svg>Title Protection</label></summary>
+            <div class="accordion-content-wrapper">
+              <div class="flex flex-col">
+                <p class="wrap-break-word">Secure exclusive use of "Interior Designer" and "Licensed Interior Designer"
+                  while restricting "Interior Architect" and mandating "Licensed Architect" for architectural
+                  professionals.</p>
+              </div>
+            </div>
+          </details>
+          <details name="accordion">
+            <summary class="btn btn-accordion paragraph-md"><label for="toggle-leg-4" class="legacy-label"><svg
+                  aria-hidden="true" class="icon-xs fill-primary-one">
+                  <use href="/assets/sprites/solid.svg#angle-down"></use>
+                </svg>Expanded Authority</label></summary>
+            <div class="accordion-content-wrapper">
+              <div class="flex flex-col">
+                <p class="wrap-break-word">Grant designers full permitting privileges, including the authority to sign
+                  and seal plans without restrictions, including on square footage, occupancy, construction scope, or
+                  hiring and coordination of professions.</p>
+              </div>
+            </div>
+          </details>
+        </div>
+        <div class="card gap-4 w-75 min-w-75 min-h-145 bg-neutral-four">
+          <div class="flex flex-col gap-1">
+            <p class="paragraph-accent">April 2026</p>
+            <h3>California AB 1796</h3>
+            <a class="link link--inline-neutral"
+              href="https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=202520260AB1796"
+              target="_blank">Full bill text</a>
+          </div>
+          <div class="flex flex-col gap-4">
+            <h4>Voluntary Title Act</h4>
+            <div class="flex gap-1"><svg class="icon-sm fill-current text-neutral-seven">
+                <use href="/assets/sprites/solid.svg#scale-unbalanced"></use>
+              </svg>
+              <p>Unequal Board & Titles</p>
+            </div>
+            <div class="flex gap-1"><svg class="icon-sm fill-current text-neutral-seven">
+                <use href="/assets/sprites/solid.svg#waves-square"></use>
+              </svg>
+              <p>No Clear Path for CIDs</p>
+            </div>
+            <div class="flex gap-1"><svg class="icon-sm fill-current text-neutral-seven">
+                <use href="/assets/sprites/solid.svg#link-slash"></use>
+              </svg>
+              <p>Misleading Statistics</p>
+            </div>
+            <div class="flex gap-1"><svg class="icon-sm fill-current text-neutral-seven">
+                <use href="/assets/sprites/solid.svg#unlock"></use>
+              </svg>
+              <p>Public is not protected</p>
+            </div>
+            <div class="flex gap-1"><svg class="icon-sm fill-current text-neutral-seven">
+                <use href="/assets/sprites/solid.svg#question"></use>
+              </svg>
+              <p>Vague scope language</p>
+            </div>
+            <a class="link link--inline" href="/assets/docs/AB1796_GTM-Response.pdf" target="_blank">Our position
+              statement</a>
+          </div>
+          <button class="btn btn-icon text-primary-one justify-start" aria-expanded="false" aria-controls="ca-analysis">
+            <svg class="icon-sm fill-primary-one">
+              <use href="/assets/sprites/solid.svg#arrow-up-right-from-square"></use>
+            </svg>
+            Open Analysis
+          </button>
+        </div>
+        <div class="card gap-4 w-75 min-w-75 min-h-145 bg-neutral-four">
+          <div class="flex flex-col gap-1">
+            <p class="paragraph-accent">March 2026</p>
+            <h3>ICOR Practice Overlap</h3>
+            <a class="link link--inline-neutral"
+              href="https://icor-reg.org/wp-content/uploads/2026/03/icor-practice-overlap-guidance.pdf"
+              target="_blank">ICOR Document</a>
+          </div>
+          <div class="flex flex-col gap-4">
+            <h4>Favors Architects</h4>
+            <div class="flex gap-1"><svg class="icon-sm fill-current text-neutral-seven">
+                <use href="/assets/sprites/solid.svg#scale-unbalanced"></use>
+              </svg>
+              <div class="flex flex-col gap-1">
+                <p class="paragraph-md">Group 1</p>
+                <p>Authority gaps on contracts & project management</p>
+              </div>
+            </div>
+            <div class="flex gap-1"><svg class="icon-sm fill-current text-neutral-seven">
+                <use href="/assets/sprites/solid.svg#scale-unbalanced"></use>
+              </svg>
+              <div class="flex flex-col gap-1">
+                <p class="paragraph-md">Group 2</p>
+                <p>Definitions narrower than actual practice</p>
+              </div>
+            </div>
+            <div class="flex gap-1"><svg class="icon-sm fill-current text-neutral-seven">
+                <use href="/assets/sprites/solid.svg#scale-unbalanced"></use>
+              </svg>
+              <div class="flex flex-col gap-1">
+                <p class="paragraph-md">Group 3</p>
+                <p>"No scope distinction" language subordinates designers</p>
+              </div>
+            </div>
+            <a class="link link--inline" href="/assets/docs/GTM_ICOR_202603.pdf" target="_blank">Our Responses to
+              CIDQ</a>
+          </div>
+        </div>
+        <div class="card gap-4 w-75 min-w-75 min-h-145 bg-neutral-four">
+          <div class="flex flex-col gap-1">
+            <p class="paragraph-accent">April 2026</p>
+            <h3>Missouri SB 1233</h3>
+            <a class="link link--inline-neutral"
+              href="https://www.senate.mo.gov/BillTracking/Bills/BillInformation?handler=legislation&year=2026&session=R&billPrefix=SB&billSuffix=1233"
+              target="_blank">Full bill text</a>
+          </div>
+          <div class="flex flex-col gap-4">
+            <h4>Voluntary Title Act</h4>
+            <div class="flex gap-1"><svg class="icon-sm fill-current text-neutral-seven">
+                <use href="/assets/sprites/solid.svg#scale-unbalanced"></use>
+              </svg>
+              <p>Unequal Board</p>
+            </div>
+            <div class="flex gap-1"><svg class="icon-sm fill-current text-neutral-seven">
+                <use href="/assets/sprites/solid.svg#ban"></use>
+              </svg>
+              <p>Practice Restrictions</p>
+            </div>
+            <div class="flex gap-1"><svg class="icon-sm fill-current text-neutral-seven">
+                <use href="/assets/sprites/solid.svg#unlock"></use>
+              </svg>
+              <p>Public is not protected</p>
+            </div>
+            <div class="flex gap-1"><svg class="icon-sm fill-current text-neutral-seven">
+                <use href="/assets/sprites/solid.svg#question"></use>
+              </svg>
+              <p>Vague scope language</p>
+            </div>
+            <a class="link link--inline" href="/assets/docs/GTM_Testimony_MO_SB1233.pdf" target="_blank">Our position
+              statement</a>
+          </div>
+        </div>
+        <div class="card gap-4 w-75 min-w-75 min-h-145 bg-neutral-four">
+          <div class="flex flex-col gap-1">
+            <p class="paragraph-accent">April 2026</p>
+            <h3>Tennessee SB 2224</h3>
+            <a class="link link--inline-neutral"
+              href="https://wapp.capitol.tn.gov/apps/BillInfo/Default?BillNumber=SB2224&ga=114" target="_blank">Full
+              bill text</a>
+          </div>
+          <div class="flex flex-col gap-4">
+            <h4>Voluntary Title Act</h4>
+            <div class="flex gap-1"><svg class="icon-sm fill-current text-neutral-seven">
+                <use href="/assets/sprites/solid.svg#ban"></use>
+              </svg>
+              <p>Eliminates Voluntary Licensing</p>
+            </div>
+            <div class="flex gap-1"><svg class="icon-sm fill-current text-neutral-seven">
+                <use href="/assets/sprites/solid.svg#unlock"></use>
+              </svg>
+              <p>Public is not protected</p>
+            </div>
+            <a class="link link--inline" href="/assets/docs/GTM_Testimony_TN_SB2224-HB2530.pdf" target="_blank">Our
+              position statement</a>
+          </div>
+        </div>
+        <div class="card gap-4 w-75 min-w-75 min-h-145 bg-neutral-four">
+          <div class="flex flex-col gap-1">
+            <p class="paragraph-accent">April 2026</p>
+            <h3>Alaska HB 314</h3>
+            <a class="link link--inline-neutral" href="https://www.akleg.gov/basis/Bill/Detail/34?Root=HB314"
+              target="_blank">Full bill text</a>
+          </div>
+          <div class="flex flex-col gap-4">
+            <h4>Voluntary Title Act</h4>
+            <div class="flex gap-1"><svg class="icon-sm fill-current text-neutral-seven">
+                <use href="/assets/sprites/solid.svg#scale-unbalanced"></use>
+              </svg>
+              <p>Unequal Board & Titles</p>
+            </div>
+            <div class="flex gap-1"><svg class="icon-sm fill-current text-neutral-seven">
+                <use href="/assets/sprites/solid.svg#question"></use>
+              </svg>
+              <p>Vague scope language</p>
+            </div>
+            <div class="flex gap-1"><svg class="icon-sm fill-current text-neutral-seven">
+                <use href="/assets/sprites/solid.svg#unlock"></use>
+              </svg>
+              <p>Public is not protected</p>
+            </div>
+            <a class="link link--inline" href="/assets/docs/GTM_Testimony_AK_HB0314.pdf" target="_blank">Our position
+              statement</a>
+          </div>
+        </div>
+        <div class="card gap-4 w-75 min-w-75 min-h-145 bg-neutral-four">
+          <div class="flex flex-col gap-1">
+            <p class="paragraph-accent">April 2026</p>
+            <h3>South Carolina H5010</h3>
+            <a class="link link--inline-neutral"
+              href="https://www.scstatehouse.gov/billsearch.php?billnumbers=5010&session126&summary=B"
+              target="_blank">Full bill text</a>
+          </div>
+          <div class="flex flex-col gap-4">
+            <h4>Voluntary Title Act</h4>
+            <div class="flex gap-1"><svg class="icon-sm fill-current text-neutral-seven">
+                <use href="/assets/sprites/solid.svg#scale-unbalanced"></use>
+              </svg>
+              <p>Unequal Board & Titles</p>
+            </div>
+            <div class="flex gap-1"><svg class="icon-sm fill-current text-neutral-seven">
+                <use href="/assets/sprites/solid.svg#ban"></use>
+              </svg>
+              <p>Practice Restrictions</p>
+            </div>
+            <div class="flex gap-1"><svg class="icon-sm fill-current text-neutral-seven">
+                <use href="/assets/sprites/solid.svg#question"></use>
+              </svg>
+              <p>Vague scope language</p>
+            </div>
+            <div class="flex gap-1"><svg class="icon-sm fill-current text-neutral-seven">
+                <use href="/assets/sprites/solid.svg#unlock"></use>
+              </svg>
+              <p>Public is not protected</p>
+            </div>
+            <a class="link link--inline" href="/assets/docs/GTM_Testimony_SC_H5010.pdf" target="_blank">Our position
+              statement</a>
+          </div>
         </div>
       </div>
     </section>
