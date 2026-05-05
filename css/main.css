@@ -92,7 +92,7 @@
   }
 
   section {
-    @apply flex flex-col gap-8 px-4 py-12 lg:px-8;
+    @apply flex flex-col gap-8 px-4 py-12 lg:px-8 translate-y-10 transition-all duration-1000 intersect:opacity-100 intersect:translate-y-0;
   }
 
   .skip-link {

@@ -960,21 +960,7 @@
 }
 @media (scripting: enabled) {
   section {
-    --tw-translate-y: calc(var(--spacing) * 10);
-    translate: var(--tw-translate-x) var(--tw-translate-y);
     opacity: 0%;
-    transition-property: all;
-    transition-timing-function: var(--tw-ease, var(--default-transition-timing-function));
-    transition-duration: var(--tw-duration, var(--default-transition-duration));
-    --tw-duration: 1000ms;
-    transition-duration: 1000ms;
-    &:not([no-intersect]) {
-      --tw-translate-y: calc(var(--spacing) * 0);
-      translate: var(--tw-translate-x) var(--tw-translate-y);
-    }
-    &:not([no-intersect]) {
-      opacity: 100%;
-    }
   }
 }
 @media screen and (min-width: 400px) {
@@ -1124,12 +1110,26 @@
   }
   section {
     display: flex;
+    --tw-translate-y: calc(var(--spacing) * 10);
+    translate: var(--tw-translate-x) var(--tw-translate-y);
     flex-direction: column;
     gap: calc(var(--spacing) * 8);
     padding-inline: calc(var(--spacing) * 4);
     padding-block: calc(var(--spacing) * 12);
+    transition-property: all;
+    transition-timing-function: var(--tw-ease, var(--default-transition-timing-function));
+    transition-duration: var(--tw-duration, var(--default-transition-duration));
+    --tw-duration: 1000ms;
+    transition-duration: 1000ms;
     @media (width >= 850px) {
       padding-inline: calc(var(--spacing) * 8);
+    }
+    &:not([no-intersect]) {
+      --tw-translate-y: calc(var(--spacing) * 0);
+      translate: var(--tw-translate-x) var(--tw-translate-y);
+    }
+    &:not([no-intersect]) {
+      opacity: 100%;
     }
   }
   .skip-link {
