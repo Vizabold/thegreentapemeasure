@@ -1,6 +1,6 @@
 @import "tailwindcss";
 @import "./tokens.css";
-@import "tailwindcss-intersect";
+@variant js (&:where(.js *));
 
 @plugin "tailwind-scrollbar" {
   nocompatible: true;
@@ -91,15 +91,11 @@
     @apply text-xl text-neutral-nine;
   }
 
-  .js section {
-    @apply opacity-0;
-  }
-
   section {
-    @apply flex flex-col gap-8 px-4 py-12 lg:px-8;
+    @apply js:opacity-0 flex-col gap-8 px-4 py-12 lg:px-8;
   }
 
-  .js section .scroll-appear {
+  .scroll-appear {
     @apply opacity-1 transition-opacity duration-500 ease-in-out;
   }
 
