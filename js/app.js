@@ -11,10 +11,6 @@ const observer = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
       entry.target.classList.add('scroll-appear');
-      setTimeout(() => {
-        void entry.offsetHeight;
-        entry.style.opacity = '1';
-      }, 1)
     }
 
   }), {
