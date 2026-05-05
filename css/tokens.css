@@ -35,12 +35,6 @@
       --font-name: "Space Grotesk", sans-serif;
       --font-graph: "Space Grotesk", sans-serif;
 
-      /* stroke variables */
-      --weight-thin: 0.5px;
-      --weight-light: 1px;
-      --weight-medium: 2px;
-      --weight-heavy: 4px;
-
       /* breakpoints */
       --breakpoint-xxs: 300px;
       --breakpoint-xs: 400px;

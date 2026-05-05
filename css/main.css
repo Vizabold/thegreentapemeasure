@@ -54,6 +54,27 @@
     @apply text-lg;
   }
 
+  input,
+  textarea {
+    @apply p-2 bg-neutral-six text-neutral-nine border border-solid border-neutral-six rounded-lg;
+  }
+
+  input:hover {
+    @apply bg-primary-five;
+  }
+
+  input:active {
+    @apply border-primary-one;
+  }
+
+  input[type="checkbox"]:checked {
+    @apply bg-neutral-six border-neutral-six;
+  }
+
+  input[type="checkbox"]:checked::before {
+    @apply content-[url('/assets/sprites/solid.svg#check')] fill-current text-primary-one icon-xs;
+  }
+
   .paragraph-accent {
     @apply font-p-accent font-bold tracking-wide text-primary-two uppercase;
   }
@@ -66,8 +87,12 @@
     @apply text-xl;
   }
 
+  legend {
+    @apply paragraph-lg text-neutral-nine;
+  }
+
   section {
-    @apply flex flex-col gap-8 px-4 py-12;
+    @apply flex flex-col gap-8 px-4 py-12 lg:px-8;
   }
 
   .skip-link {

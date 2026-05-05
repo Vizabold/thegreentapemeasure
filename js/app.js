@@ -58,6 +58,15 @@ if (modeToggle) {
   });
 }
 
+/*--------------- FORMS --------------------- */
+
+const takeAction = document.getElementById('takeaction');
+const comment = takeAction.querySelector('textarea');
+const count = takeAction.querySelector('.textarea-count');
+comment.oninput = () => {
+  count.textContent = this.value.length;
+}
+
 /*
 const container = document.querySelector('#buttons');
 
