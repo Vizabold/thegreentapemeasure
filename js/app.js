@@ -5,6 +5,7 @@ import('details-polyfill').catch(() => { });
 /*--------------- SCROLLING FUNCTIONS --------------------- */
 
 document.documentElement.classList.replace('no-js', 'js');
+const sections = document.querySelectorAll('section');
 
 const observer = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
