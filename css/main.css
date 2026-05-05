@@ -1,6 +1,6 @@
 @import "tailwindcss";
 @import "./tokens.css";
-@plugin "tailwindcss-intersect";
+@import "tailwindcss-intersect";
 
 @plugin "tailwind-scrollbar" {
   nocompatible: true;
@@ -72,7 +72,7 @@
   }
 
   input[type="checkbox"]:checked::before {
-    @apply content-[url('/assets/sprites/solid.svg#check')] fill-current text-primary-one icon-xs;
+    @apply content-[url('/assets/sprites/solid.svg#check')] fill-current text-primary-one;
   }
 
   .paragraph-accent {
@@ -88,7 +88,7 @@
   }
 
   legend {
-    @apply paragraph-lg text-neutral-nine;
+    @apply text-xl text-neutral-nine;
   }
 
   section {
@@ -424,7 +424,7 @@
   }
 
   .js .intersect-hidden {
-    @apply opacity-0 transition-opacity duration-1000 intersect:opacity-100 intersect-once;
+    @apply opacity-0 transition-opacity duration-1000 intersect:opacity-100;
   }
 
   .quiz-instruction {
