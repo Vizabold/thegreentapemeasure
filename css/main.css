@@ -96,7 +96,7 @@
   }
 
   .scroll-appear {
-    @apply opacity-1 transition-opacity duration-500 ease-in-out;
+    @apply opacity-100 transition-opacity duration-500 ease-in-out;
   }
 
   .skip-link {
