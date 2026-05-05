@@ -48,7 +48,8 @@
   </dialog>
 
   <header
-    class="w-full flex p-4 justify-between bg-neutral-two -translate-y-full opacity-0 animate-[moveDown_1s_ease-out_forwards]">
+    class="fixed z-10 w-full flex p-4 justify-between bg-neutral-two animate-[moveDown_1s_ease-out_forwards] transition-transform duration-300"
+    id="header">
     <div class="flex gap-4 items-end">
       <a class="link link--nav" href="#">
         <picture class="mb-1">
@@ -86,7 +87,7 @@
   </header>
 
   <main class="flex flex-col gap-31" id="main-content">
-    <section class="flex-col xxl:max-w-750" id="hero">
+    <section data-animate class="xxl:max-w-750" id="hero">
       <div class="flex gap-8">
         <div
           class="flex flex-col gap-8 items-center sm:max-w-87.5 md:max-w-100 xl:max-w-125 xxl:max-w-175 xxl:items-start">
@@ -134,16 +135,16 @@
             alt="the GTM mascot scrib, a mix between a monkey and an otter with green eyes, looking towards the upper-left of the screen">
         </picture>
       </div>
-      <div class="flex items-center justify-center py-10 -mt-10 transition-opacity duration-500 scroll-fade">
+      <div class="flex items-center justify-center py-10 -mt-10 transition-opacity duration-500">
         <svg class="icon-lg fill-current text-primary-one animate-bounce">
           <use href="/assets/sprites/solid.svg#angles-down"></use>
         </svg>
       </div>
     </section>
 
-    <section class="bg-neutral-four flex-col" id="about">
+    <section data-animate class="bg-neutral-four" id="about">
       <div class="flex flex-col gap-20 max-w-750">
-        <div class="flex flex-col gap-8 xl:flex-row xl:items-center">
+        <div class="flex flex-col gap-8 xl:flex-row intersect:opacity-100 transition-opacity xl:items-center">
           <div class="flex flex-col gap-8 w-full items-center xl:w-[50%]">
             <picture>
               <source srcset="assets/images/Scrib-shadow-lg.webp" type="image/webp" media="(min-width:1280px)"
@@ -194,7 +195,7 @@
             </div>
           </div>
         </div>
-        <div class="flex flex-col gap-8 xl:flex-row xl:items-center">
+        <div class="flex flex-col gap-8 intersect:opacity-100 transition-opacity xl:flex-row xl:items-center">
           <div class="flex flex-col gap-8 w-full xl:w-[50%]">
             <div class="flex flex-col">
               <p class="paragraph-accent">Founding</p>
@@ -213,7 +214,7 @@
             <iframe class="flex aspect-video bg-neutral-one w-full"></iframe>
           </div>
         </div>
-        <div class="flex flex-col gap-4">
+        <div class="flex flex-col gap-4 intersect:opacity-100 transition-opacity">
           <div class="flex flex-col">
             <p class="paragraph-accent">Funding</p>
             <h2><span class="text-primary-one">Transparent</span> Operations.</h2>
@@ -288,7 +289,7 @@
       </div>
     </section>
 
-    <section class="justify-center" id="quiz">
+    <section data-animate class="items-center" id="quiz">
       <div class="flex flex-col gap-8 xxl:w-304">
         <div class="flex flex-col text-center gap-1">
           <p class="paragraph-accent">Knowledge Check</p>
@@ -536,8 +537,8 @@
       </div>
     </section>
 
-    <section class="flex-col bg-neutral-one gap-16" id="timeline">
-      <div class="flex flex-col gap-1">
+    <section data-animate class="bg-neutral-one gap-16 items-center" id="timeline">
+      <div class="flex flex-col gap-1 w-full">
         <p class="paragraph-accent">Archive Logs</p>
         <h2>Industry Regulation: Evolution & Impact</h2>
         <p class="paragraph-md">Regulation is often a reactive response to historical events, frequently shaped by
@@ -1431,7 +1432,7 @@
       </div>
     </section>
 
-    <section class="flex-col" id="research">
+    <section data-animate id="research">
       <div class="flex flex-col gap-1">
         <p class="paragraph-accent">Industry Insights</p>
         <h2>Data. Analysis. <span class="text-primary-one">Results</span>.</h2>

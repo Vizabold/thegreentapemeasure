@@ -1,6 +1,26 @@
 /* import { createButton } from './components/Button.js'; */
 
-import('details-polyfill').catch(() => {});
+import('details-polyfill').catch(() => { });
+
+/*--------------- SCROLLING FUNCTIONS --------------------- */
+
+document.documentElement.classList.add('js-enabled');
+
+Observer.start();
+
+let lastScrollY = window.scrollY;
+const header = document.getElementById('header');
+
+window.addEventListener('scroll', () => {
+  if (window.scrollY > lastScrollY) {
+    header.classList.add('-translate-y-full');
+  } else {
+    header.classList.remove('-translate-y-full');
+  }
+  lastScrollY = window.scrollY;
+});
+
+/*--------------- LIGHT, DARK TOGGLE --------------------- */
 
 const modeToggle = document.getElementById('mode-toggle');
 if (modeToggle) {

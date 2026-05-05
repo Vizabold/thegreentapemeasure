@@ -62,7 +62,7 @@
   }
 
   section {
-    @apply flex gap-8 px-4 py-12;
+    @apply flex flex-col gap-8 px-4 py-12 opacity-100 intersect:opacity-100 transition-opacity;
   }
 
   .skip-link {
@@ -393,6 +393,10 @@
     @apply translate-x-1;
   }
 
+  .js-enabled [data-animate] {
+    @apply opacity-0;
+  }
+
   .quiz-instruction {
     @apply w-16 min-w-16 h-16 rounded-full flex justify-center items-center bg-primary-one;
   }
@@ -411,12 +415,6 @@
 
   .timeline-date {
     @apply font-graph text-2xl font-bold text-neutral-seven opacity-50 w-[46%] lg:text-5xl;
-  }
-
-  .scroll-fade {
-    animation: fade-out linear both;
-    animation-timeline: scroll();
-    animation-range: 0 200px;
   }
 
 }
