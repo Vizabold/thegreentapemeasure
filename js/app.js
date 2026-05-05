@@ -4,6 +4,9 @@ import('details-polyfill').catch(() => { });
 
 /*--------------- SCROLLING FUNCTIONS --------------------- */
 
+import { Observer } from 'tailwindcss-intersect';
+Observer.start();
+
 let lastScrollY = window.scrollY;
 const header = document.getElementById('header');
 
