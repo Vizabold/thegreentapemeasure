@@ -2,68 +2,73 @@
 
 import('details-polyfill').catch(() => { });
 
-/*--------------- SCROLLING FUNCTIONS --------------------- */
+document.addEventListener('DOMContentLoaded', () => {
 
-window.Observer.start();
+  /*--------------- SCROLLING FUNCTIONS --------------------- */
 
-let lastScrollY = window.scrollY;
-const header = document.getElementById('header');
+  window.Observer.start();
 
-window.addEventListener('scroll', () => {
-  if (window.scrollY > lastScrollY) {
-    header.classList.add('-translate-y-full');
-  } else {
-    header.classList.remove('-translate-y-full');
-  }
-  lastScrollY = window.scrollY;
-});
+  let lastScrollY = window.scrollY;
+  const header = document.getElementById('header');
 
-/*--------------- LIGHT, DARK TOGGLE --------------------- */
-
-const modeToggle = document.getElementById('mode-toggle');
-if (modeToggle) {
-  const osPref = window.matchMedia('(prefers-color-scheme: light)');
-
-  if (!modeToggle.checked && osPref.matches) {
-    modeToggle.checked = true;
-  }
-
-  const themeSources = document.querySelectorAll('source[data-theme]');
-  themeSources.forEach(source => {
-    source.dataset.originalMedia = source.getAttribute('media') ?? 'all';
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > lastScrollY) {
+      header.classList.add('-translate-y-full');
+    } else {
+      header.classList.remove('-translate-y-full');
+    }
+    lastScrollY = window.scrollY;
   });
 
-  const toggleLabels = document.querySelectorAll('label[for="mode-toggle"]');
-  const syncAriaLabel = () => {
-    const isLight = modeToggle.checked;
-    const theme = isLight ? 'light' : 'dark';
-    toggleLabels.forEach(l => l.setAttribute('aria-label', isLight ? 'light mode on' : 'dark mode on'));
-    document.documentElement.setAttribute('data-theme', theme);
+  /*--------------- LIGHT, DARK TOGGLE --------------------- */
+
+  const modeToggle = document.getElementById('mode-toggle');
+  if (modeToggle) {
+    const osPref = window.matchMedia('(prefers-color-scheme: light)');
+
+    if (!modeToggle.checked && osPref.matches) {
+      modeToggle.checked = true;
+    }
+
+    const themeSources = document.querySelectorAll('source[data-theme]');
     themeSources.forEach(source => {
-      const themes = source.dataset.theme.split(',').map(t => t.trim());
-      source.media = themes.includes(theme) || themes.includes('all')
-        ? source.dataset.originalMedia
-        : 'not all';
+      source.dataset.originalMedia = source.getAttribute('media') ?? 'all';
     });
-  };
-  syncAriaLabel();
 
-  modeToggle.addEventListener('change', syncAriaLabel);
-
-  osPref.addEventListener('change', (e) => {
-    modeToggle.checked = e.matches;
+    const toggleLabels = document.querySelectorAll('label[for="mode-toggle"]');
+    const syncAriaLabel = () => {
+      const isLight = modeToggle.checked;
+      const theme = isLight ? 'light' : 'dark';
+      toggleLabels.forEach(l => l.setAttribute('aria-label', isLight ? 'light mode on' : 'dark mode on'));
+      document.documentElement.setAttribute('data-theme', theme);
+      themeSources.forEach(source => {
+        const themes = source.dataset.theme.split(',').map(t => t.trim());
+        source.media = themes.includes(theme) || themes.includes('all')
+          ? source.dataset.originalMedia
+          : 'not all';
+      });
+    };
     syncAriaLabel();
-  });
-}
 
-/*--------------- FORMS --------------------- */
+    modeToggle.addEventListener('change', syncAriaLabel);
 
-const takeAction = document.getElementById('takeaction');
-const comment = takeAction.querySelector('textarea');
-const count = takeAction.querySelector('.textarea-count');
-comment.oninput = () => {
-  count.textContent = this.value.length;
-}
+    osPref.addEventListener('change', (e) => {
+      modeToggle.checked = e.matches;
+      syncAriaLabel();
+    });
+  }
+
+  /*--------------- FORMS --------------------- */
+
+  const takeAction = document.getElementById('takeaction');
+  const comment = takeAction.querySelector('textarea');
+  const count = takeAction.querySelector('.textarea-count');
+  comment.oninput = () => {
+    count.textContent = this.value.length;
+  }
+
+})
+
 
 /*
 const container = document.querySelector('#buttons');
