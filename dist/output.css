@@ -960,12 +960,18 @@
 }
 @media (scripting: enabled) {
   section {
+    --tw-translate-y: calc(var(--spacing) * 10);
+    translate: var(--tw-translate-x) var(--tw-translate-y);
     opacity: 0%;
-    transition-property: opacity;
+    transition-property: all;
     transition-timing-function: var(--tw-ease, var(--default-transition-timing-function));
     transition-duration: var(--tw-duration, var(--default-transition-duration));
     --tw-duration: 1000ms;
     transition-duration: 1000ms;
+    &:not([no-intersect]) {
+      --tw-translate-y: calc(var(--spacing) * 0);
+      translate: var(--tw-translate-x) var(--tw-translate-y);
+    }
     &:not([no-intersect]) {
       opacity: 100%;
     }
