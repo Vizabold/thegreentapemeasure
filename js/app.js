@@ -4,6 +4,8 @@ import('details-polyfill').catch(() => { });
 
 /*--------------- SCROLLING FUNCTIONS --------------------- */
 
+document.documentElement.classList.add('js');
+
 const sections = document.querySelectorAll('section');
 sections.forEach(section => {
   section.classList.add('scroll-appear');
