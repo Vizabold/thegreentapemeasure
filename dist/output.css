@@ -959,7 +959,7 @@
   }
 }
 @media (scripting: enabled) {
-  section {
+  .scroll-appear {
     --tw-translate-y: calc(var(--spacing) * 10);
     translate: var(--tw-translate-x) var(--tw-translate-y);
     opacity: 0%;

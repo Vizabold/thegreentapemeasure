@@ -4,6 +4,11 @@ import('details-polyfill').catch(() => { });
 
 /*--------------- SCROLLING FUNCTIONS --------------------- */
 
+const sections = document.querySelectorAll('section');
+sections.forEach(section => {
+  section.classList.add('scroll-appear');
+})
+
 const observer = new IntersectionObserver((entries) => {
   entries.forEach((entry) => {
     if (entry.isIntersecting) {
