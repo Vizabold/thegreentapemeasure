@@ -423,8 +423,8 @@
     @apply translate-x-1;
   }
 
-  .js .intersect-hidden {
-    @apply opacity-0 transition-opacity duration-1000 intersect:opacity-100;
+  .intersect-hidden {
+    @apply transition-opacity duration-1000 intersect:opacity-100;
   }
 
   .quiz-instruction {

@@ -4,8 +4,6 @@ import('details-polyfill').catch(() => { });
 
 /*--------------- SCROLLING FUNCTIONS --------------------- */
 
-document.documentElement.classList.add('js');
-
 let lastScrollY = window.scrollY;
 const header = document.getElementById('header');
 
