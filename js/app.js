@@ -6,7 +6,7 @@ import('details-polyfill').catch(() => { });
 
 document.documentElement.classList.add('js');
 
-import { Observer } from 'tailwindcss-intersect';
+import { Observer } from './node_modules/tailwindcss-intersect';
 Observer.start();
 
 let lastScrollY = window.scrollY;
