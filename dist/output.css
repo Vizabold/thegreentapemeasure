@@ -961,6 +961,14 @@
 @media (scripting: enabled) {
   section {
     opacity: 0%;
+    transition-property: opacity;
+    transition-timing-function: var(--tw-ease, var(--default-transition-timing-function));
+    transition-duration: var(--tw-duration, var(--default-transition-duration));
+    --tw-duration: 1000ms;
+    transition-duration: 1000ms;
+    &:not([no-intersect]) {
+      opacity: 100%;
+    }
   }
 }
 @media screen and (min-width: 400px) {
@@ -1535,16 +1543,6 @@
   #hero-btn-one:hover svg {
     --tw-translate-x: calc(var(--spacing) * 1);
     translate: var(--tw-translate-x) var(--tw-translate-y);
-  }
-  .intersect-hidden {
-    transition-property: opacity;
-    transition-timing-function: var(--tw-ease, var(--default-transition-timing-function));
-    transition-duration: var(--tw-duration, var(--default-transition-duration));
-    --tw-duration: 1000ms;
-    transition-duration: 1000ms;
-    &:not([no-intersect]) {
-      opacity: 100%;
-    }
   }
   .quiz-instruction {
     display: flex;

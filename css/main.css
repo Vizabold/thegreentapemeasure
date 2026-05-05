@@ -423,10 +423,6 @@
     @apply translate-x-1;
   }
 
-  .intersect-hidden {
-    @apply transition-opacity duration-1000 intersect:opacity-100;
-  }
-
   .quiz-instruction {
     @apply w-16 min-w-16 h-16 rounded-full flex justify-center items-center bg-primary-one;
   }
