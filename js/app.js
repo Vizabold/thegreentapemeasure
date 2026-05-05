@@ -6,11 +6,6 @@ import('details-polyfill').catch(() => { });
 
 document.documentElement.classList.add('js');
 
-const sections = document.querySelectorAll('section');
-sections.forEach(section => {
-  section.classList.add('scroll-appear');
-})
-
 const observer = new IntersectionObserver((entries) => {
   entries.forEach((entry) => {
     if (entry.isIntersecting) {

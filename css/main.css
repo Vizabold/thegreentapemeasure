@@ -92,11 +92,12 @@
   }
 
   section {
-    @apply flex flex-col gap-8 px-4 py-12 lg:px-8 opacity-100;
+    @apply flex flex-col gap-8 px-4 py-12 lg:px-8;
   }
 
   .js section {
-    @apply opacity-0;
+    @apply opacity-0 translate-y-10 transition-all duration-1000 intersect:opacity-100 intersect:translate-y-0;
+    ;
   }
 
   .skip-link {
@@ -429,10 +430,6 @@
 
   .quiz-instruction {
     @apply w-16 min-w-16 h-16 rounded-full flex justify-center items-center bg-primary-one;
-  }
-
-  .js section.scroll-appear {
-    @apply opacity-0 translate-y-10 transition-all duration-1000 intersect:opacity-100 intersect:translate-y-0;
   }
 
   .scrollbar {
