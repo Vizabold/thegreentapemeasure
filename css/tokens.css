@@ -266,6 +266,22 @@
 
   }
 
+  /* ─────────────────────────────────────────
+     JS Detection
+  ───────────────────────────────────────── */
+
+  @media (scripting: none) {
+      section {
+          @apply opacity-100;
+      }
+  }
+
+  @media (scripting: enabled) {
+      section {
+          @apply opacity-0;
+      }
+  }
+
 
   /* ─────────────────────────────────────────
      Breakpoints (when variables cannot be used)

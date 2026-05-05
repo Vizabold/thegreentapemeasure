@@ -953,6 +953,16 @@
     cursor: pointer;
   }
 }
+@media (scripting: none) {
+  section {
+    opacity: 100%;
+  }
+}
+@media (scripting: enabled) {
+  section {
+    opacity: 0%;
+  }
+}
 @media screen and (min-width: 400px) {
   h2 {
     font-size: var(--text-5xl);
