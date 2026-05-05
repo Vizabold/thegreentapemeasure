@@ -413,6 +413,12 @@
     @apply font-graph text-2xl font-bold text-neutral-seven opacity-50 w-[46%] lg:text-5xl;
   }
 
+  .scroll-fade {
+    animation: fade-out linear both;
+    animation-timeline: scroll();
+    animation-range: 0 200px;
+  }
+
 }
 
 :root:has(#mode-toggle:checked) {

@@ -223,6 +223,12 @@
       }
   }
 
+  @keyframes fade-out {
+      to {
+          opacity: 0;
+      }
+  }
+
 
   /* ─────────────────────────────────────────
      Legacy Supports
