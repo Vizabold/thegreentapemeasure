@@ -1,5 +1,8 @@
 /* import { createButton } from './components/Button.js'; */
 
+import('./quiz.js').catch(() => {});
+import('./timeline.js').catch(() => {});
+
 import('details-polyfill').catch(() => { });
 
 /*--------------- POPOVER LEGACY SUPPORT --------------------- */

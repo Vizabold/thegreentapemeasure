@@ -307,7 +307,7 @@
         </div>
         <div class="flex flex-col gap-8 lg:flex-row">
           <div class="flex flex-col gap-8 lg:w-[50%]">
-            <div class="flex gap-8 flex-col">
+            <div class="flex gap-8 flex-col" id="instructions">
               <div class="card border-l border-solid border-primary-one bg-neutral-four">
                 <div class="flex gap-4 items-center">
                   <div class="quiz-instruction">
@@ -331,11 +331,11 @@
                   </div>
                   <p class="paragraph-lg"><span class="text-primary-one">Green = correct</span>,<span
                       class="text-secondary-five"> Red = try again!</span></p>
-                  <button type="button" class="btn btn-md btn-cta">Ready?</button>
+                  <button type="button" class="btn btn-md btn-cta" id="ready-btn">Ready?</button>
                 </div>
               </div>
             </div>
-            <div class="card gap-6 bg-neutral-four">
+            <div class="card gap-6 bg-neutral-four" id="draggables">
               <div class="flex flex-col gap-6 sm:flex-row lg:flex-col">
                 <button type="button" class="btn btn-draggable sm:w-[50%] lg:w-full"
                   aria-labelledby="quiz-btn-label-ia">
@@ -380,7 +380,7 @@
           </div>
           <div class="flex flex-col gap-8 lg:w-[50%]" id="dropzones">
             <div class="flex flex-col gap-6 sm:flex-row lg:flex-col">
-              <div class="card bg-neutral-four justify-between sm:w-[50%] lg:w-full xxl:h-57.5">
+              <div class="card bg-neutral-four justify-between sm:w-[50%] lg:w-full xxl:h-57.5" data-answer="interior architect">
                 <div class="justify-center hidden">
                   <div class="flex gap-1">
                     <svg aria-hidden="true" class="icon-xs fill-primary-one">
@@ -406,7 +406,7 @@
                 </div>
                 <button type="button" class="btn btn-lg btn-dropzone">place job title here</button>
               </div>
-              <div class="card bg-neutral-four justify-between sm:w-[50%] lg:w-full xxl:h-57.5">
+              <div class="card bg-neutral-four justify-between sm:w-[50%] lg:w-full xxl:h-57.5" data-answer="interior designer">
                 <div class="justify-center hidden">
                   <div class="flex gap-1">
                     <svg aria-hidden="true" class="icon-xs fill-primary-one">
@@ -437,7 +437,7 @@
               </div>
             </div>
             <div class="flex flex-col gap-6 sm:flex-row lg:flex-col">
-              <div class="card bg-neutral-four justify-between sm:w-[50%] lg:w-full xxl:h-57.5">
+              <div class="card bg-neutral-four justify-between sm:w-[50%] lg:w-full xxl:h-57.5" data-answer="architect">
                 <div class="justify-center hidden">
                   <div class="flex gap-1">
                     <svg aria-hidden="true" class="icon-xs fill-primary-one">
@@ -466,7 +466,7 @@
                 </div>
                 <button type="button" class="btn btn-lg btn-dropzone">place job title here</button>
               </div>
-              <div class="card bg-neutral-four justify-between sm:w-[50%] lg:w-full xxl:h-57.5">
+              <div class="card bg-neutral-four justify-between sm:w-[50%] lg:w-full xxl:h-57.5" data-answer="interior decorator">
                 <div class="justify-center hidden">
                   <div class="flex gap-1">
                     <svg aria-hidden="true" class="icon-xs fill-primary-one">
