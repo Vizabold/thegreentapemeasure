@@ -2,9 +2,22 @@
 
 import('details-polyfill').catch(() => { });
 
-/*--------------- SCROLLING FUNCTIONS --------------------- */
+/*--------------- POPOVER LEGACY SUPPORT --------------------- */
+
+if (!HTMLElement.prototype.hasOwnProperty('popover')) {
+  document.querySelectorAll('[popovertarget]').forEach(btn => {
+    btn.onclick = () => document.getElementById(btn.getAttribute('popovertarget')).toggleAttribute('open');
+  });
+}
+
+
+/*--------------- SCROLLING & NAV FUNCTIONS --------------------- */
 
 const sections = document.querySelectorAll('section');
+const desktopNav = document.getElementById('desktop-nav');
+const mobileNav = document.getElementById('mobile-nav-menu');
+const desktopNavBtns = desktopNav.querySelectorAll('.link--nav');
+const mobileNavBtns = document.querySelectorAll('.link--nav-mobile');
 
 const observer = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
@@ -33,6 +46,7 @@ window.addEventListener('scroll', () => {
   }
   lastScrollY = window.scrollY;
 });
+
 
 /*--------------- LIGHT, DARK TOGGLE --------------------- */
 

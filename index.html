@@ -16,7 +16,9 @@
 
   <a href="#main-content" class="skip-link">Skip to main content</a>
 
-  <dialog class="-translate-x-full" id="mobile-nav-menu">
+  <dialog
+    class="-translate-x-full backdrop:bg-black/50 backdrop:backdrop-blur-sm open:translate-x-0 transition-all duration-300"
+    id="mobile-nav-menu" popover>
     <div class="flex px-4 pt-8 pb-2 justify-between items-end bg-neutral-one">
       <picture class="mb-1">
         <source srcset="assets/images/logo-dk.webp" type="image/webp" media="all" data-theme="dark">
@@ -24,14 +26,14 @@
         <img src="assets/images/logo-lt.png" alt="GTM logo that resembles a green tape measure">
       </picture>
       <div class="flex gap-6">
-        <label for="mode-toggle" class="toggle" aria-label="dark mode on"><span class="slider"><svg aria-hidden="true"
-              class="toggle-moon fill-neutral-two-light w-4 h-4">
+        <label role="button" for="mode-toggle" class="toggle" aria-label="dark mode on"><span class="slider"><svg
+              aria-hidden="true" class="toggle-moon fill-neutral-two-light w-4 h-4">
               <use href="/assets/sprites/solid.svg#moon"></use>
             </svg><svg aria-hidden="true" class="toggle-sun fill-neutral-two-light w-4 h-4">
               <use href="/assets/sprites/solid.svg#sun"></use>
             </svg></span>
         </label>
-        <button type="button" class="btn btn-icon btn-icon--rounded" aria-label="close menu">
+        <button type="button" class="btn btn-icon btn-icon--rounded" aria-label="close menu" popovertargetaction="hide">
           <svg class="icon-lg" aria-hidden="true">
             <use href=" /assets/sprites/solid.svg#x-mark"></use>
           </svg>
@@ -63,7 +65,7 @@
         The
         Green Tape Measure</p>
     </div>
-    <nav class="gap-8 items-end xxs:hidden xl:flex">
+    <nav class="gap-8 items-end xxs:hidden xl:flex" id="desktop-nav">
       <a class="link link--nav" href="#about">About</a>
       <a class="link link--nav" href="#quiz">Quiz</a>
       <a class="link link--nav" href="#timeline">Timeline</a>
@@ -72,14 +74,15 @@
     </nav>
     <div class="flex gap-6 pb-1 items-end">
       <a class="btn btn-md btn-cta xxs:hidden" href="#takeaction">Take Action</a>
-      <label for="mode-toggle" class="toggle" aria-label="dark mode on"><span class="slider"><svg aria-hidden="true"
-            class="toggle-moon fill-current text-neutral-two-light w-4 h-4">
+      <label type="button" for="mode-toggle" class="toggle" aria-label="dark mode on"><span class="slider"><svg
+            aria-hidden="true" class="toggle-moon fill-current text-neutral-two-light w-4 h-4">
             <use href="/assets/sprites/solid.svg#moon"></use>
           </svg><svg aria-hidden="true" class="toggle-sun fill-current text-neutral-two-light w-4 h-4">
             <use href="/assets/sprites/solid.svg#sun"></use>
           </svg></span>
       </label>
-      <button type="button" class="btn btn-icon xxs:block xl:hidden" id="mobile-nav-btn" aria-label="open menu">
+      <button type="button" popovertarget="mobile-nav-menu" class="btn btn-icon xxs:block xl:hidden" id="mobile-nav-btn"
+        aria-label="open menu">
         <svg class="icon-lg" aria-hidden="true" class="fill-primary-one">
           <use href="/assets/sprites/solid.svg#bars"></use>
         </svg>

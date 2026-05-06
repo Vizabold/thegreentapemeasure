@@ -236,6 +236,10 @@
       }
   }
 
+  #mobile-nav-menu:not(:popover-open) {
+      display: none;
+  }
+
   /* accordions */
   @media all and (-ms-high-contrast:none),
   (-ms-high-contrast: active) {
