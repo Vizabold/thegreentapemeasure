@@ -218,6 +218,16 @@
       }
   }
 
+  /* ─────────────────────────────────────────
+     Starting States
+  ───────────────────────────────────────── */
+
+  @starting-style {
+      [popover]:popover-open {
+          transform: translateX(-100%);
+          opacity: 0;
+      }
+  }
 
   /* ─────────────────────────────────────────
      Legacy Supports

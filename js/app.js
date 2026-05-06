@@ -10,26 +10,46 @@ if (!HTMLElement.prototype.hasOwnProperty('popover')) {
   });
 }
 
-
 /*--------------- SCROLLING & NAV FUNCTIONS --------------------- */
 
 const sections = document.querySelectorAll('section');
 const desktopNav = document.getElementById('desktop-nav');
 const mobileNav = document.getElementById('mobile-nav-menu');
-const desktopNavBtns = desktopNav.querySelectorAll('.link--nav');
-const mobileNavBtns = document.querySelectorAll('.link--nav-mobile');
+const desktopNavLinks = desktopNav.querySelectorAll('.link--nav');
+const mobileNavLinks = document.querySelectorAll('.link--nav-mobile');
+const mobileBtn = document.getElementById('mobile-nav-btn');
+const isMobileBtnShown = window.getComputedStyle(mobileBtn);
 
 const observer = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
       entry.target.classList.remove('opacity-0');
       entry.target.classList.add('scroll-appear');
+      if (isMobileBtnShown.display !== 'none') {
+        mobileNavLinks.forEach(link => {
+          if (entry.target.id === 'takeaction') {
+            mobileNavLinks[5].classList.toggle("link--nav-mobile-takeaction-active");
+          } else {
+            mobileNavLinks.forEach(link => {
+              link.classList.toggle("link--nav-mobile-active",
+                link.getAttribute("href").substring(1) === entry.target.id
+              );
+            })
+          }
+        });
+      } else {
+        desktopNavLinks.forEach(link => {
+          link.classList.toggle("link--nav-active",
+            link.getAttribute("href").substring(1) === entry.target.id
+          );
+        });
+      }
     }
 
   }), {
     root: null,
     rootMargin: '0px',
-    threshold: 0.05
+    threshold: 0.01
   }
 })
 
@@ -45,6 +65,14 @@ window.addEventListener('scroll', () => {
     header.classList.remove('-translate-y-full');
   }
   lastScrollY = window.scrollY;
+});
+
+const mobileNavMenu = document.getElementById('mobile-nav-menu');
+
+mobileNavMenu.addEventListener('click', (event) => {
+  if (event.target.tagName === 'A') {
+    mobileNavMenu.hidePopover();
+  }
 });
 
 

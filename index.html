@@ -16,16 +16,14 @@
 
   <a href="#main-content" class="skip-link">Skip to main content</a>
 
-  <dialog
-    class="-translate-x-full backdrop:bg-black/50 backdrop:backdrop-blur-sm open:translate-x-0 transition-all duration-300"
-    id="mobile-nav-menu" popover>
+  <dialog id="mobile-nav-menu" popover>
     <div class="flex px-4 pt-8 pb-2 justify-between items-end bg-neutral-one">
       <picture class="mb-1">
         <source srcset="assets/images/logo-dk.webp" type="image/webp" media="all" data-theme="dark">
         <source srcset="assets/images/logo-lt.webp" type="image/webp" media="all" data-theme="light">
         <img src="assets/images/logo-lt.png" alt="GTM logo that resembles a green tape measure">
       </picture>
-      <div class="flex gap-6">
+      <div class="flex gap-6 items-center">
         <label role="button" for="mode-toggle" class="toggle" aria-label="dark mode on"><span class="slider"><svg
               aria-hidden="true" class="toggle-moon fill-neutral-two-light w-4 h-4">
               <use href="/assets/sprites/solid.svg#moon"></use>
@@ -33,7 +31,8 @@
               <use href="/assets/sprites/solid.svg#sun"></use>
             </svg></span>
         </label>
-        <button type="button" class="btn btn-icon btn-icon--rounded" aria-label="close menu" popovertargetaction="hide">
+        <button type="button" class="btn btn-icon btn-icon--rounded" aria-label="close menu"
+          popovertarget="mobile-nav-menu" popovertargetaction="hide">
           <svg class="icon-lg" aria-hidden="true">
             <use href=" /assets/sprites/solid.svg#x-mark"></use>
           </svg>
@@ -54,7 +53,7 @@
     class="fixed z-10 w-full flex p-4 justify-between bg-neutral-two animate-[moveDown_1s_ease-out_forwards] transition-transform duration-300"
     id="header">
     <div class="flex gap-4 items-end">
-      <a class="link link--nav" href="#">
+      <a href="#">
         <picture class="mb-1">
           <source srcset="assets/images/logo-dk.webp" type="image/webp" media="all" data-theme="dark">
           <source srcset="assets/images/logo-lt.webp" type="image/webp" media="all" data-theme="light">
@@ -72,7 +71,7 @@
       <a class="link link--nav" href="#research">Research</a>
       <a class="link link--nav" href="#advocacy">Advocacy</a>
     </nav>
-    <div class="flex gap-6 pb-1 items-end">
+    <div class="flex gap-6 pb-1 items-center xl:items-end">
       <a class="btn btn-md btn-cta xxs:hidden" href="#takeaction">Take Action</a>
       <label type="button" for="mode-toggle" class="toggle" aria-label="dark mode on"><span class="slider"><svg
             aria-hidden="true" class="toggle-moon fill-current text-neutral-two-light w-4 h-4">

@@ -270,7 +270,7 @@
 
   /* ── Base ── */
   .link {
-    @apply transition-colors duration-300 ease-out;
+    @apply transition-all duration-300 ease-out;
   }
 
   .link:hover {
@@ -278,17 +278,42 @@
   }
 
   .link:active {
-    @apply text-primary-one;
+    @apply text-primary-one outline-none border-none;
   }
 
-  /* ── Nav ── */
+  /* ── Desktop Nav ── */
   .link--nav {
-    @apply inline-flex justify-center font-nav font-bold text-neutral-nine;
+    @apply inline-flex justify-center font-nav font-bold text-neutral-nine border-b-3 border-solid border-transparent;
   }
 
-  .link--nav:active::after,
-  .link--nav.link--active::after {
-    @apply content-[''] block w-full h-[1px] bg-primary-one;
+  .link--nav-active {
+    @apply text-primary-one border-primary-one;
+  }
+
+  /* ── Mobile Nav ── */
+  .link--nav-mobile {
+    @apply flex flex-1 justify-center items-center w-full px-4 py-8 font-nav font-bold text-neutral-nine text-xl border-t-[0.5px] border-neutral-four border-solid;
+  }
+
+  .link--nav-mobile:active {
+    @apply bg-neutral-four text-neutral-nine;
+  }
+
+  .link--nav-mobile-active {
+    @apply bg-primary-one text-neutral-two-dark;
+  }
+
+  /* ── Nav Mobile TakeAction ── */
+  .link--nav-mobile-takeaction {
+    @apply bg-neutral-two text-secondary-one;
+  }
+
+  .link--nav-mobile-takeaction:active {
+    @apply bg-neutral-four text-secondary-one;
+  }
+
+  .link--nav-mobile-takeaction-active {
+    @apply bg-secondary-three text-neutral-two-dark;
   }
 
   /* ── Inline ── */
@@ -319,23 +344,6 @@
     @apply text-primary-two;
   }
 
-  /* ── Nav Mobile ── */
-  .link--nav-mobile {
-    @apply flex justify-center items-center w-full px-4 py-8 font-nav font-bold text-xl border-t-[0.5px] border-neutral-four border-solid;
-  }
-
-  .link--nav-mobile:active {
-    @apply bg-primary-one text-neutral-two-dark;
-  }
-
-  /* ── Nav Mobile TakeAction ── */
-  .link--nav-mobile-takeaction {
-    @apply bg-neutral-two text-secondary-one;
-  }
-
-  .link--nav-mobile-takeaction:active {
-    @apply bg-secondary-three text-neutral-two-dark;
-  }
 
   /* ─────────────────────────────────────────
      Toggle Components
@@ -370,29 +378,8 @@
   ───────────────────────────────────────── */
 
   dialog {
-    @apply flex-col w-screen h-screen transition-transform transition-opacity duration-1500 ease-in-out hidden opacity-0
-  }
 
-  dialog::backdrop {
-    @apply bg-neutral-one opacity-70 backdrop-blur-xs;
-  }
-
-  .dialog-wrapper {
-    @apply relative;
-  }
-
-  .dialog-wrapper input[type="checkbox"] {
-    @apply absolute opacity-0 pointer-events-none;
-  }
-
-  #privacy-fallback-toggle:checked~.no-js-dialog,
-  #disclaimer-fallback-toggle:checked~.no-js-dialog {
-    @apply block fixed top-[50%] left-[50%] translate-[-50%] border-0 bg-neutral-four z-9999;
-  }
-
-  #privacy-fallback-toggle:checked~.no-js-dialog::before,
-  #disclaimer-fallback-toggle:checked~.no-js-dialog::before {
-    @apply content-none fixed top-0 left-0 w-screen h-screen bg-neutral-one opacity-70 z-[-1] cursor-default;
+    @apply fixed top-0 left-0 m-0 w-full h-full min-w-screen min-h-screen opacity-0 hidden -translate-x-full backdrop:bg-neutral-one backdrop:opacity-70 backdrop:backdrop-blur-sm transition-all duration-1000 ease-in-out [&:popover-open]:translate-x-0 open:flex flex-col [&:popover-open]:opacity-100 [transition-behavior:allow-discrete];
   }
 
   /* ─────────────────────────────────────────
