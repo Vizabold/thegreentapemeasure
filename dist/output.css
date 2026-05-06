@@ -412,6 +412,9 @@
   .animate-\[appear_1s_ease-out_3s_forwards\] {
     animation: appear 1s ease-out 3s forwards;
   }
+  .animate-\[appear_2\.5s_ease-out_1s_forwards\] {
+    animation: appear 2.5s ease-out 1s forwards;
+  }
   .animate-\[moveDown_1s_ease-out_forwards\] {
     animation: moveDown 1s ease-out forwards;
   }
