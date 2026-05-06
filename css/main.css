@@ -144,11 +144,11 @@
 
   /* ── Secondary ── */
   .btn-secondary {
-    @apply bg-neutral-six text-secondary-three;
+    @apply bg-neutral-five text-secondary-one;
   }
 
   .btn-secondary:hover {
-    @apply bg-neutral-five;
+    @apply bg-neutral-six;
   }
 
   .btn-secondary:active {

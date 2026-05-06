@@ -20,6 +20,7 @@ const mobileNavLinks = document.querySelectorAll('.link--nav-mobile');
 const mobileBtn = document.getElementById('mobile-nav-btn');
 const isMobileBtnShown = window.getComputedStyle(mobileBtn);
 
+/* Scrolling & Nav Links */
 const observer = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
@@ -55,6 +56,7 @@ const observer = new IntersectionObserver((entries) => {
 
 sections.forEach(section => observer.observe(section));
 
+/* Header Hide and Appear */
 let lastScrollY = window.scrollY;
 const header = document.getElementById('header');
 
@@ -67,6 +69,7 @@ window.addEventListener('scroll', () => {
   lastScrollY = window.scrollY;
 });
 
+/* Close Mobile Nav When Nav Btn Tapped */
 const mobileNavMenu = document.getElementById('mobile-nav-menu');
 
 mobileNavMenu.addEventListener('click', (event) => {
@@ -75,6 +78,16 @@ mobileNavMenu.addEventListener('click', (event) => {
   }
 });
 
+/* Remove Scroll Indicator */
+const scrollIndicator = document.getElementById('scroll-indicator');
+
+window.addEventListener('scroll', () => {
+  if (window.scrollY > 50) {
+    scrollIndicator.classList.add('opacity-0', 'pointer-events-none');
+  } else {
+    scrollIndicator.classList.remove('opacity-0', 'pointer-events-none');
+  }
+});
 
 /*--------------- LIGHT, DARK TOGGLE --------------------- */
 

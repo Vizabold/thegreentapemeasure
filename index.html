@@ -34,7 +34,7 @@
         <button type="button" class="btn btn-icon btn-icon--rounded" aria-label="close menu"
           popovertarget="mobile-nav-menu" popovertargetaction="hide">
           <svg class="icon-lg" aria-hidden="true">
-            <use href=" /assets/sprites/solid.svg#x-mark"></use>
+            <use href=" /assets/sprites/solid.svg#x"></use>
           </svg>
         </button>
       </div>
@@ -72,7 +72,7 @@
       <a class="link link--nav" href="#advocacy">Advocacy</a>
     </nav>
     <div class="flex gap-6 pb-1 items-center xl:items-end">
-      <a class="btn btn-md btn-cta xxs:hidden" href="#takeaction">Take Action</a>
+      <a class="btn btn-md btn-cta xxs:hidden xl:block" href="#takeaction">Take Action</a>
       <label type="button" for="mode-toggle" class="toggle" aria-label="dark mode on"><span class="slider"><svg
             aria-hidden="true" class="toggle-moon fill-current text-neutral-two-light w-4 h-4">
             <use href="/assets/sprites/solid.svg#moon"></use>
@@ -93,7 +93,7 @@
     <section class="mt-21 " id="hero">
       <div class="flex gap-8">
         <div
-          class="flex flex-col gap-8 items-center sm:max-w-87.5 md:max-w-100 xl:max-w-125 xxl:max-w-175 xxl:items-start">
+          class="flex flex-col gap-8 items-center animate-[slideInLeft_1.25s_ease-out_forwards] sm:max-w-87.5 md:max-w-100 xl:max-w-125 xxl:max-w-175 xxl:items-start">
           <h1>
             <picture>
               <source srcset="assets/images/hero-img-dk-lg.webp" type="image/webp" media="(min-width: 1280px)"
@@ -115,9 +115,12 @@
               <img src="assets/images/hero-img-lt-sm.png" alt="Interior Design Has Been Stolen">
             </picture>
           </h1>
-          <p class="text-base/[24px] lg:text-lg/[32px]">Uncovering the real-world consequences of unequal regulation on
+          <p class="opacity-0 animate-[appear_1s_ease-out_1s_forwards] text-base/[24px] lg:text-lg/[32px]">
+            Uncovering
+            the real-world consequences of unequal regulation on
             design safety and careers through data-driven investigations.</p>
-          <div class="flex flex-col w-full max-w-150 gap-6 lg:flex-row">
+          <div
+            class="flex flex-col w-full max-w-150 gap-6 opacity-0 animate-[appear_1s_ease-out_2s_forwards] lg:flex-row">
             <a href="#takeaction" class="btn btn-lg btn-primary w-full max-w-100" id="hero-btn-one">Support Our Mission
               <svg aria-hidden="true" class="icon-xs fill-neutral-two-dark">
                 <use href="/assets/sprites/solid.svg#arrow-right"></use>
@@ -125,7 +128,7 @@
             <a href="#research" class="btn btn-lg btn-secondary w-full max-w-100">Explore Findings</a>
           </div>
         </div>
-        <picture class="xxs:hidden sm:block xxl:pl-50">
+        <picture class="animate-[slideInRight_1.25s_ease-out_forwards] xxs:hidden sm:block xxl:pl-50">
           <source srcset="assets/images/hero-scrib-lg.webp" type="image/webp" media="(min-width: 1280px)"
             data-theme="dark, light">
           <source srcset="assets/images/hero-scrib-med.webp" type="image/webp" media="(min-width: 1000px)"
@@ -138,7 +141,8 @@
             alt="the GTM mascot scrib, a mix between a monkey and an otter with green eyes, looking towards the upper-left of the screen">
         </picture>
       </div>
-      <div class="flex items-center justify-center py-10 -mt-10 transition-opacity duration-500">
+      <div class="flex items-center justify-center py-10 -mt-10  opacity-0 animate-[appear_1s_ease-out_3s_forwards]"
+        id="scroll-indicator">
         <svg class="icon-lg fill-current text-primary-one animate-bounce">
           <use href="/assets/sprites/solid.svg#angles-down"></use>
         </svg>
