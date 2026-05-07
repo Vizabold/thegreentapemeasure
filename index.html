@@ -382,7 +382,7 @@
             <div class="flex flex-col gap-6 sm:flex-row lg:flex-col">
               <div class="card bg-neutral-four justify-between sm:w-[50%] lg:w-full xxl:h-57.5"
                 data-answer="interior architect">
-                <div class="justify-center hidden">
+                <div class="quiz-status hidden">
                   <div class="flex gap-1">
                     <svg aria-hidden="true" class="icon-xs fill-primary-one">
                       <use href="/assets/sprites/solid.svg#check"></use>
@@ -409,7 +409,7 @@
               </div>
               <div class="card bg-neutral-four justify-between sm:w-[50%] lg:w-full xxl:h-57.5"
                 data-answer="interior designer">
-                <div class="justify-center hidden">
+                <div class="quiz-status hidden">
                   <div class="flex gap-1">
                     <svg aria-hidden="true" class="icon-xs fill-primary-one">
                       <use href="/assets/sprites/solid.svg#check"></use>
@@ -440,7 +440,7 @@
             </div>
             <div class="flex flex-col gap-6 sm:flex-row lg:flex-col">
               <div class="card bg-neutral-four justify-between sm:w-[50%] lg:w-full xxl:h-57.5" data-answer="architect">
-                <div class="justify-center hidden">
+                <div class="quiz-status hidden">
                   <div class="flex gap-1">
                     <svg aria-hidden="true" class="icon-xs fill-primary-one">
                       <use href="/assets/sprites/solid.svg#check"></use>
@@ -470,7 +470,7 @@
               </div>
               <div class="card bg-neutral-four justify-between sm:w-[50%] lg:w-full xxl:h-57.5"
                 data-answer="interior decorator">
-                <div class="justify-center hidden">
+                <div class="quiz-status hidden">
                   <div class="flex gap-1">
                     <svg aria-hidden="true" class="icon-xs fill-primary-one">
                       <use href="/assets/sprites/solid.svg#check"></use>
@@ -2659,8 +2659,9 @@
               </div>
             </div>
           </div>
-          <form class="card gap-10 bg-neutral-four xl:w-[65%] xl:grow-1 xl:gap-0 xl:justify-between" data-netlify="true"
-            name="volunteer-interest" method="POST" netlify-honeypot="bot-field" data-netlify-recaptcha="true">
+          <form class="card gap-10 bg-neutral-four xl:w-[65%] xl:grow xl:gap-0 xl:justify-between"
+            id="volunteer-interest" data-netlify="true" name="volunteer-interest" method="POST"
+            netlify-honeypot="bot-field" data-netlify-recaptcha="true">
             <input name="bot-field" hidden />
             <h3 class="text-center">Join Scrib's Team of Investigators!</h3>
             <fieldset>
@@ -2783,7 +2784,7 @@
                 placeholder="skills, experience, questions..."></textarea>
               <p class="text-right"></span class="textarea-count"></span>/1000</p>
             </fieldset>
-            <div class="flex gap-2 justify-center">
+            <div class="flex gap-2 justify-center lg:items-center">
               <input id="agree" type="checkbox" name="agree" />
               <label for="agree">By submitting, you agree to and understand our <button type="button"
                   popovertarget="privacy" aria-haspopup="dialog" aria-controls="privacy" aria-expanded="false"

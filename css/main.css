@@ -238,6 +238,16 @@
     @apply bg-neutral-six;
   }
 
+  /* ── Quiz status indicator (correct / incorrect) ── */
+  .quiz-status {
+    @apply justify-center gap-4;
+  }
+
+  /* ── Dropzone placed state — overrides btn-dropzone defaults ── */
+  .btn-dropzone--placed {
+    @apply p-4 border-0 text-neutral-nine justify-between shadow-xs;
+  }
+
   /* ── Accordions ── */
   .btn-accordion {
     @apply gap-2 text-primary-one justify-start cursor-pointer;

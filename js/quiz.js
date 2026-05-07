@@ -56,6 +56,7 @@ if (draggablesEl && dropzonesEl && readyBtn) {
   /* ── state ── */
 
   let activeDraggable = null;
+  let draggingBtn     = null;
   let timerInterval   = null;
   let timeLeft        = TIMER_SECONDS;
   let quizRunning     = false;
@@ -226,7 +227,7 @@ if (draggablesEl && dropzonesEl && readyBtn) {
       btn.disabled = false;
       delete btn.dataset.correct;
       delete btn.dataset.placedIn;
-      btn.classList.remove('opacity-30', 'opacity-50');
+      btn.classList.remove('opacity-30', 'opacity-50', 'invisible');
       btn.setAttribute('draggable', 'true');
       btn.setAttribute('aria-pressed', 'false');
     });
@@ -239,6 +240,13 @@ if (draggablesEl && dropzonesEl && readyBtn) {
 
   function clearDropzoneCard(card) {
     const dropzoneBtn = card.querySelector('.btn-dropzone');
+
+    if (dropzoneBtn.dataset.placedValue) {
+      const draggable = getDraggables().find(d => getDraggableValue(d) === dropzoneBtn.dataset.placedValue);
+      if (draggable) draggable.classList.remove('invisible');
+    }
+
+    dropzoneBtn.className          = 'btn btn-lg btn-dropzone';
     dropzoneBtn.textContent        = 'place job title here';
     dropzoneBtn.dataset.placedValue = '';
     dropzoneBtn.disabled           = false;
@@ -246,11 +254,9 @@ if (draggablesEl && dropzonesEl && readyBtn) {
     const def = getDefinitionText(card);
     dropzoneBtn.setAttribute('aria-label', `Empty drop zone: ${def}`);
 
-    card.classList.remove('bg-primary-two', 'bg-secondary-five');
-    card.classList.add('bg-neutral-four');
     delete card.dataset.correct;
 
-    const statusDiv = card.querySelector('.justify-center');
+    const statusDiv = card.querySelector('.quiz-status');
     statusDiv.classList.add('hidden');
     statusDiv.classList.remove('flex');
     statusDiv.querySelectorAll(':scope > div').forEach(d => d.classList.remove('hidden'));
@@ -315,7 +321,6 @@ if (draggablesEl && dropzonesEl && readyBtn) {
       if (btn.dataset.placedIn) {
         const card = dropzonesEl.querySelector(`[data-answer="${btn.dataset.placedIn}"]`);
         if (card) clearDropzoneCard(card);
-        btn.classList.remove('opacity-50');
       }
 
       selectDraggable(btn);
@@ -329,16 +334,24 @@ if (draggablesEl && dropzonesEl && readyBtn) {
       if (btn.dataset.placedIn) {
         const card = dropzonesEl.querySelector(`[data-answer="${btn.dataset.placedIn}"]`);
         if (card) clearDropzoneCard(card);
-        btn.classList.remove('opacity-50');
       }
 
       e.dataTransfer.setData('text/plain', getDraggableValue(btn));
       e.dataTransfer.effectAllowed = 'move';
+      e.dataTransfer.setDragImage(btn, btn.offsetWidth / 2, btn.offsetHeight / 2);
+      draggingBtn = btn;
       selectDraggable(btn);
+      requestAnimationFrame(() => { if (draggingBtn) draggingBtn.classList.add('invisible'); });
     });
 
     draggablesEl.addEventListener('dragend', () => {
-      if (activeDraggable) activeDraggable.classList.remove('ring-2', 'ring-primary-one');
+      if (draggingBtn) {
+        draggingBtn.classList.remove('ring-2', 'ring-primary-one');
+        if (!draggingBtn.dataset.placedIn && draggingBtn.dataset.correct !== 'true') {
+          draggingBtn.classList.remove('invisible');
+        }
+        draggingBtn = null;
+      }
     });
   }
 
@@ -356,17 +369,14 @@ if (draggablesEl && dropzonesEl && readyBtn) {
         if (btn.dataset.placedValue) {
           const draggable = getDraggables().find(d => getDraggableValue(d) === btn.dataset.placedValue);
           clearDropzoneCard(card);
-          if (draggable) {
-            draggable.classList.remove('opacity-50');
-            selectDraggable(draggable);
-          }
+          if (draggable) selectDraggable(draggable);
         }
         return;
       }
 
       if (btn.dataset.placedValue) {
         const prev = getDraggables().find(d => getDraggableValue(d) === btn.dataset.placedValue);
-        if (prev) { delete prev.dataset.placedIn; prev.classList.remove('opacity-50'); }
+        if (prev) { delete prev.dataset.placedIn; prev.classList.remove('invisible'); }
       }
 
       placeDraggable(activeDraggable, card);
@@ -396,7 +406,7 @@ if (draggablesEl && dropzonesEl && readyBtn) {
       const occupantValue = card.querySelector('.btn-dropzone').dataset.placedValue;
       if (occupantValue) {
         const prev = getDraggables().find(d => getDraggableValue(d) === occupantValue);
-        if (prev) { delete prev.dataset.placedIn; prev.classList.remove('opacity-50'); }
+        if (prev) { delete prev.dataset.placedIn; prev.classList.remove('invisible'); }
       }
 
       if (activeDraggable) {
@@ -432,15 +442,19 @@ if (draggablesEl && dropzonesEl && readyBtn) {
     const dropzoneBtn = dropzoneCard.querySelector('.btn-dropzone');
     const def         = getDefinitionText(dropzoneCard);
 
-    dropzoneBtn.textContent        = value;
+    // Render the draggable's appearance inside the dropzone button
+    const colorClass = isCorrect ? 'bg-primary-two' : 'bg-secondary-five';
+    dropzoneBtn.className = `btn btn-lg btn-dropzone btn-dropzone--placed ${colorClass}`;
+    const tempDiv = document.createElement('div');
+    tempDiv.innerHTML = draggableBtn.innerHTML;
+    tempDiv.querySelector('[id]')?.removeAttribute('id');
+    dropzoneBtn.innerHTML = tempDiv.innerHTML;
     dropzoneBtn.dataset.placedValue = value;
     dropzoneBtn.setAttribute('aria-label', `${isCorrect ? 'Correct' : 'Incorrect'}: ${value} placed in "${def}"`);
 
-    dropzoneCard.classList.remove('bg-neutral-four', 'bg-primary-two', 'bg-secondary-five');
-    dropzoneCard.classList.add(isCorrect ? 'bg-primary-two' : 'bg-secondary-five');
     if (isCorrect) dropzoneCard.dataset.correct = 'true';
 
-    const statusDiv = dropzoneCard.querySelector('.justify-center');
+    const statusDiv = dropzoneCard.querySelector('.quiz-status');
     const [correctEl, incorrectEl] = statusDiv.querySelectorAll(':scope > div');
     statusDiv.classList.remove('hidden');
     statusDiv.classList.add('flex');
@@ -450,17 +464,18 @@ if (draggablesEl && dropzonesEl && readyBtn) {
       correctEl.classList.add('hidden');
     }
 
+    // Hide draggable in its source container — it is now visible in the dropzone
+    draggableBtn.classList.add('invisible');
+
     if (isCorrect) {
       draggableBtn.disabled = true;
       draggableBtn.dataset.correct = 'true';
-      draggableBtn.classList.add('opacity-30');
       draggableBtn.setAttribute('draggable', 'false');
       delete draggableBtn.dataset.placedIn;
       dropzoneBtn.disabled = true;
       announce(`Correct! ${value} matches "${def}".`);
     } else {
       draggableBtn.dataset.placedIn = answer;
-      draggableBtn.classList.add('opacity-50');
       announce(`Incorrect. ${value} does not match "${def}". You can pick it up again to try another box.`);
     }
 
