@@ -64,6 +64,9 @@ if (prevBtn && nextBtn && timelineSection) {
     if (next === currentIndex) return;
     currentIndex = next;
     showCurrentEvents();
+    if (delta > 0) {
+      requestAnimationFrame(() => nextBtn.scrollIntoView({ behavior: 'smooth', block: 'nearest' }));
+    }
   }
 
   function updateButtons() {
