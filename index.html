@@ -2677,7 +2677,27 @@
                   </div>
                   <div class="flex flex-col gap-1">
                     <label for="phone">Phone Number</label>
-                    <input id="phone" type="tel" name="phone" autocomplete="tel" />
+                    <div class="flex gap-2">
+                      <select id="phone-country" name="phone-country" autocomplete="tel-country-code" aria-label="Country code" class="w-20 min-w-20">
+                        <option value="+1">+1</option>
+                        <option value="+7">+7</option>
+                        <option value="+27">+27</option>
+                        <option value="+33">+33</option>
+                        <option value="+34">+34</option>
+                        <option value="+39">+39</option>
+                        <option value="+44">+44</option>
+                        <option value="+49">+49</option>
+                        <option value="+52">+52</option>
+                        <option value="+55">+55</option>
+                        <option value="+61">+61</option>
+                        <option value="+64">+64</option>
+                        <option value="+81">+81</option>
+                        <option value="+82">+82</option>
+                        <option value="+86">+86</option>
+                        <option value="+91">+91</option>
+                      </select>
+                      <input id="phone" type="tel" name="phone" autocomplete="tel-national" class="flex-1 min-w-0" />
+                    </div>
                   </div>
                 </div>
                 <div class="flex flex-col gap-6 sm:w-[50%] xl:w-full xxl:w-[50%]">

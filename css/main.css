@@ -55,11 +55,14 @@
   }
 
   input,
-  textarea {
+  textarea,
+  select {
     @apply p-2 bg-neutral-six text-neutral-nine border border-solid border-neutral-three rounded-lg;
   }
 
-  input:hover {
+  input:hover,
+  textarea:hover,
+  select:hover {
     @apply bg-primary-five;
   }
 
@@ -69,6 +72,10 @@
 
   #takeaction input[type="checkbox"] {
     @apply appearance-none bg-neutral-six w-8 min-w-8 h-8 min-h-8 border border-neutral-three rounded-md checked:bg-neutral-six checked:border-neutral-three transition-all duration-200;
+  }
+
+  #takeaction input[type="checkbox"]:hover {
+    @apply bg-primary-five;
   }
 
   .paragraph-accent {
