@@ -52,19 +52,23 @@ if (prevBtn && nextBtn && timelineSection) {
   }, { passive: true });
 
   function navigate(delta) {
-    const next = Math.max(0, Math.min(maxIndex(), currentIndex + delta));
+    const max  = maxIndex();
+    let next;
+    if (delta < 0 && currentIndex === 0) {
+      next = max;
+    } else {
+      next = Math.max(0, Math.min(max, currentIndex + delta));
+    }
     if (next === currentIndex) return;
     currentIndex = next;
     showCurrentEvents();
-    events[currentIndex].scrollIntoView({ behavior: 'smooth', block: 'center' });
   }
 
   function updateButtons() {
-    const atStart = currentIndex === 0;
-    const atEnd   = currentIndex === maxIndex();
-    prevBtn.disabled = atStart;
-    prevBtn.setAttribute('aria-disabled', String(atStart));
-    prevBtn.classList.toggle('opacity-50', atStart);
+    const atEnd = currentIndex === maxIndex();
+    prevBtn.disabled = false;
+    prevBtn.setAttribute('aria-disabled', 'false');
+    prevBtn.classList.remove('opacity-50');
     nextBtn.disabled = atEnd;
     nextBtn.setAttribute('aria-disabled', String(atEnd));
     nextBtn.classList.toggle('opacity-50', atEnd);
