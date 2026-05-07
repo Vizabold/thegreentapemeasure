@@ -56,8 +56,10 @@ if (prevBtn && nextBtn && timelineSection) {
     let next;
     if (delta < 0 && currentIndex === 0) {
       next = max;
+    } else if (delta > 0 && currentIndex === max) {
+      next = 0;
     } else {
-      next = Math.max(0, Math.min(max, currentIndex + delta));
+      next = currentIndex + delta;
     }
     if (next === currentIndex) return;
     currentIndex = next;
@@ -65,13 +67,12 @@ if (prevBtn && nextBtn && timelineSection) {
   }
 
   function updateButtons() {
-    const atEnd = currentIndex === maxIndex();
     prevBtn.disabled = false;
     prevBtn.setAttribute('aria-disabled', 'false');
     prevBtn.classList.remove('opacity-50');
-    nextBtn.disabled = atEnd;
-    nextBtn.setAttribute('aria-disabled', String(atEnd));
-    nextBtn.classList.toggle('opacity-50', atEnd);
+    nextBtn.disabled = false;
+    nextBtn.setAttribute('aria-disabled', 'false');
+    nextBtn.classList.remove('opacity-50');
   }
 
 }
