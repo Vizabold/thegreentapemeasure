@@ -162,8 +162,8 @@ slideCloseBtns.forEach(btn => {
     function onOpen() {
       priorFocus = document.activeElement;
       const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
-      document.body.style.overflowY    = 'hidden';
-      document.body.style.paddingRight = scrollbarWidth ? `${scrollbarWidth}px` : '';
+      document.documentElement.style.overflowY = 'hidden';
+      document.body.style.paddingRight          = scrollbarWidth ? `${scrollbarWidth}px` : '';
       requestAnimationFrame(() => {
         const nodes = Array.from(dialogEl.querySelectorAll(FOCUSABLE));
         if (nodes.length) nodes[0].focus();
@@ -193,8 +193,8 @@ slideCloseBtns.forEach(btn => {
     }
 
     function onClose() {
-      document.body.style.overflowY    = '';
-      document.body.style.paddingRight = '';
+      document.documentElement.style.overflowY = '';
+      document.body.style.paddingRight          = '';
       if (removeKeyTrap) { removeKeyTrap(); removeKeyTrap = null; }
       if (priorFocus)    { priorFocus.focus(); priorFocus = null; }
     }
