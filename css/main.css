@@ -464,11 +464,11 @@
   }
 
   .presentation-slider {
-    @apply flex min-w-67 overflow-x-auto snap-x snap-mandatory scroll-smooth xs:min-w-92 xl:w-234;
+    @apply w-full;
   }
 
   .presentation-slide {
-    @apply gap-8 bg-neutral-four max-w-234 xl:flex-row xl:aspect-video;
+    @apply w-full gap-8 bg-neutral-four xl:flex-row xl:aspect-video;
   }
 
   .scrollbar {
@@ -482,6 +482,17 @@
   .no-scrollbar {
     @apply: ms-overflow-style-none scrollbar-width-none [&::-webkit-scrollbar]:hidden;
 
+  }
+
+  @supports selector(:has(*)) {
+    #research details[open] .presentation-slide {
+      display: none;
+    }
+
+    #research details[open]:not(:has(.presentation-slide:target)) .presentation-slide:first-child,
+    #research details[open] .presentation-slide:target {
+      display: flex;
+    }
   }
 
   .timeline-event {

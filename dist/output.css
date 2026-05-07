@@ -382,6 +382,9 @@
   .w-9 {
     width: calc(var(--spacing) * 9);
   }
+  .w-20 {
+    width: calc(var(--spacing) * 20);
+  }
   .w-35 {
     width: calc(var(--spacing) * 35);
   }
@@ -412,8 +415,17 @@
   .max-w-full {
     max-width: 100%;
   }
+  .min-w-0 {
+    min-width: calc(var(--spacing) * 0);
+  }
+  .min-w-20 {
+    min-width: calc(var(--spacing) * 20);
+  }
   .min-w-75 {
     min-width: calc(var(--spacing) * 75);
+  }
+  .flex-1 {
+    flex: 1;
   }
   .grow {
     flex-grow: 1;
@@ -1342,6 +1354,7 @@
     line-height: var(--tw-leading, var(--text-lg--line-height));
   }
   input, textarea, select {
+    cursor: pointer;
     border-radius: var(--radius-lg);
     border-style: var(--tw-border-style);
     border-width: 1px;
@@ -1351,7 +1364,6 @@
     background-color: var(--color-neutral-six);
     padding: calc(var(--spacing) * 2);
     color: var(--color-neutral-nine);
-    cursor: pointer;
   }
   select {
     background-color: var(--color-neutral-five);
@@ -1370,6 +1382,7 @@
     min-height: calc(var(--spacing) * 8);
     width: calc(var(--spacing) * 8);
     min-width: calc(var(--spacing) * 8);
+    cursor: pointer;
     appearance: none;
     border-radius: var(--radius-md);
     border-style: var(--tw-border-style);
@@ -1381,7 +1394,6 @@
     transition-duration: var(--tw-duration, var(--default-transition-duration));
     --tw-duration: 200ms;
     transition-duration: 200ms;
-    cursor: pointer;
     &:checked {
       border-color: var(--color-neutral-three);
     }
@@ -1909,21 +1921,10 @@
     background-color: var(--color-primary-one);
   }
   .presentation-slider {
-    display: flex;
-    min-width: calc(var(--spacing) * 67);
-    scroll-snap-type: x var(--tw-scroll-snap-strictness);
-    --tw-scroll-snap-strictness: mandatory;
-    overflow-x: auto;
-    scroll-behavior: smooth;
-    @media (width >= 400px) {
-      min-width: calc(var(--spacing) * 92);
-    }
-    @media (width >= 1000px) {
-      width: calc(var(--spacing) * 234);
-    }
+    width: 100%;
   }
   .presentation-slide {
-    max-width: calc(var(--spacing) * 234);
+    width: 100%;
     gap: calc(var(--spacing) * 8);
     background-color: var(--color-neutral-four);
     @media (width >= 1000px) {
@@ -1959,6 +1960,14 @@
   }
   .no-scrollbar::-webkit-scrollbar {
     display: none;
+  }
+  @supports selector(:has(*)) {
+    #research details[open] .presentation-slide {
+      display: none;
+    }
+    #research details[open]:not(:has(.presentation-slide:target)) .presentation-slide:first-child, #research details[open] .presentation-slide:target {
+      display: flex;
+    }
   }
   .timeline-event {
     position: relative;
@@ -2251,11 +2260,6 @@
   syntax: "*";
   inherits: false;
 }
-@property --tw-scroll-snap-strictness {
-  syntax: "*";
-  inherits: false;
-  initial-value: proximity;
-}
 @keyframes bounce {
   0%, 100% {
     transform: translateY(-25%);
@@ -2319,7 +2323,6 @@
       --tw-backdrop-opacity: initial;
       --tw-backdrop-saturate: initial;
       --tw-backdrop-sepia: initial;
-      --tw-scroll-snap-strictness: proximity;
     }
   }
 }
