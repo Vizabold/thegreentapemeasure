@@ -2557,9 +2557,9 @@
             alt="Scrib, the GTM mascot, a cross between a monkey and an otter, facing forward with a magnifying glass to its right eye">
         </picture>
       </div>
-      <div class="flex flex-col">
+      <div class="flex flex-col gap-4">
         <div class="flex flex-col gap-8 xl:flex-row">
-          <div class="flex gap-8 flex-col xl:w-[50%]">
+          <div class="flex gap-8 flex-col xl:w-[35%]">
             <div class="card gap-6 bg-neutral-four">
               <h3>Volunteer Benefits</h3>
               <div class="flex flex-col gap-4">
@@ -2659,10 +2659,10 @@
               </div>
             </div>
           </div>
-          <form class="card gap-10 bg-neutral-four xl:w-[50%]" data-netlify="true" name="volunteer-interest"
-            method="POST" netlify-honeypot="bot-field" data-netlify-recaptcha="true">
+          <form class="card gap-10 bg-neutral-four xl:w-[65%] xl:grow-1 xl:gap-0 xl:justify-between" data-netlify="true"
+            name="volunteer-interest" method="POST" netlify-honeypot="bot-field" data-netlify-recaptcha="true">
             <input name="bot-field" hidden />
-            <h3>Join Scrib's Team of Investigators!</h3>
+            <h3 class="text-center">Join Scrib's Team of Investigators!</h3>
             <fieldset>
               <legend class="text-xl text-neutral-nine">Basic Information</legend>
               <div class="flex flex-col gap-6 sm:flex-row xl:flex-col xxl:flex-row">
@@ -2688,8 +2688,8 @@
                     <input id="email" type="email" name="email" autocomplete="email" required />
                   </div>
                   <fieldset class="flex flex-col gap-1">
-                    <legend class="text-base neutral-seven">Local to Raleigh?</legend>
-                    <div class="flex w-30 justify-between">
+                    <legend class="text-base neutral-seven mb-1">Local to Raleigh?</legend>
+                    <div class="flex w-35 justify-between lg:gap-4">
                       <div class="flex gap-1 items-center">
                         <label for="local-yes">Yes</label>
                         <input id="local-yes" type="checkbox" name="local" />
@@ -2707,15 +2707,20 @@
             </fieldset>
             <fieldset class="flex flex-col gap-1">
               <legend class="text-xl text-neutral-nine mb-2">Availability</legend>
-              <div class="flex flex-col justify-between gap-8 sm:flex-row sm:gap-20 sm:justify-start">
+              <div
+                class="flex flex-col justify-between gap-8 sm:flex-row sm:gap-20 sm:justify-start lg:gap-32 xl:gap-12">
                 <fieldset class="flex flex-col">
                   <legend class="text-lg neutral-seven">Days</legend>
-                  <div class="flex flex-col gap-8 xs:flex-row xs:gap-12 xl:flex-col xl:gap-8">
-                    <div class="flex gap-1 w-30 justify-end">
+                  <div class="flex flex-col gap-8 xs:flex-row xs:gap-12 sm:flex-col sm:gap-6">
+                    <div class="relative flex gap-1 w-35 justify-end">
                       <label class="text-right" for="weekends">Weekends</label>
-                      <input id="weekends" type="checkbox" name="weekends" />
+                      <input class="peer" id="weekends" type="checkbox" name="weekends" />
+                      <svg
+                        class="absolute right-2 top-1.75 icon-xs fill-current text-primary-one hidden peer-checked:block">
+                        <use href="/assets/sprites/solid.svg#check"></use>
+                      </svg>
                     </div>
-                    <div class="flex gap-1 w-30 justify-end">
+                    <div class="flex gap-1 w-35 justify-end">
                       <label class="text-right" for="weekdays">Weekdays</label>
                       <input id="weekdays" type="checkbox" name="weekdays" />
                     </div>
@@ -2723,12 +2728,12 @@
                 </fieldset>
                 <fieldset class="flex flex-col">
                   <legend class="text-lg neutral-seven">Time of Day</legend>
-                  <div class="flex justify-between w-30">
-                    <div class="flex gap-1 xl:items-center">
+                  <div class="flex gap-6 w-35 justify-end">
+                    <div class="flex gap-1">
                       <label class="text-right" for="morning">AM</label>
                       <input id="morning" type="checkbox" name="morning" />
                     </div>
-                    <div class="flex gap-1 xl:items-center">
+                    <div class="flex gap-1">
                       <label class="text-right" for="afternoon">PM</label>
                       <input id="afternoon" type="checkbox" name="afternoon" />
                     </div>
@@ -2738,33 +2743,33 @@
             </fieldset>
             <fieldset class="flex flex-col">
               <legend class="text-xl text-neutral-nine mb-2">Interests</legend>
-              <div class="flex flex-col items-start justify-between gap-8">
-                <div class="flex flex-col gap-8 justify-end xs:flex-row xs:gap-12 xl:gap-16">
-                  <div class="flex justify-end gap-1 w-30">
+              <div class="flex flex-col items-start justify-between gap-8 sm:flex-row sm:justify-start lg:gap-12">
+                <div class="flex flex-col gap-8 justify-end xs:flex-row xs:gap-12 sm:flex-col lg:gap-6">
+                  <div class="flex justify-end gap-1 w-35">
                     <label class="text-right" for="events">Events</label>
                     <input id="events" type="checkbox" name="events" />
                   </div>
-                  <div class="flex justify-end gap-1 w-30">
+                  <div class="flex justify-end gap-1 w-35">
                     <label class="text-right" for="research">Research</label>
                     <input id="research" type="checkbox" name="research" />
                   </div>
                 </div>
-                <div class="flex flex-col gap-8 justify-end xs:flex-row xs:gap-12 xl:gap-16">
-                  <div class="flex justify-end gap-1 w-30">
+                <div class="flex flex-col gap-8 justify-end xs:flex-row xs:gap-12 sm:flex-col lg:gap-6">
+                  <div class="flex justify-end gap-1 w-35">
                     <label class="text-right" for="fundraising">Fundraising</label>
                     <input id="fundraising" type="checkbox" name="fundraising" />
                   </div>
-                  <div class="flex justify-end gap-1 w-30">
+                  <div class="flex justify-end gap-1 w-35">
                     <label class="text-right" for="social-media">Social Media</label>
                     <input id="social-media" type="checkbox" name="social-media" />
                   </div>
                 </div>
-                <div class="flex flex-col gap-8 justify-end xs:flex-row xs:gap-12 xl:gap-16">
-                  <div class="flex justify-end gap-1 w-30">
+                <div class="flex flex-col gap-8 justify-end xs:flex-row xs:gap-12 sm:flex-col lg:gap-6">
+                  <div class="flex justify-end gap-1 w-35">
                     <label class="text-right" for="legislation">Legislation</label>
                     <input id="legislation" type="checkbox" name="legislation" />
                   </div>
-                  <div class="flex justify-end gap-1 w-30">
+                  <div class="flex justify-end gap-1 w-35">
                     <label class="text-right" for="web-design">Web Design</label>
                     <input id="web-design" type="checkbox" name="web-design" />
                   </div>
@@ -2774,11 +2779,11 @@
             <fieldset class="flex flex-col gap-1">
               <legend class="text-xl text-neutral-nine">Tell us more!</legend>
               <label for="comment">Share more about yourself</label>
-              <textarea id="comment" name="comment" minlength="25" wrap="soft" maxlength="1000" rows="10"
+              <textarea id="comment" name="comment" minlength="25" wrap="soft" maxlength="1000" rows="5"
                 placeholder="skills, experience, questions..."></textarea>
               <p class="text-right"></span class="textarea-count"></span>/1000</p>
             </fieldset>
-            <div class="flex gap-1">
+            <div class="flex gap-2 justify-center">
               <input id="agree" type="checkbox" name="agree" />
               <label for="agree">By submitting, you agree to and understand our <button type="button"
                   popovertarget="privacy" aria-haspopup="dialog" aria-controls="privacy" aria-expanded="false"
@@ -2786,7 +2791,7 @@
                   aria-haspopup="dialog" aria-controls="privacy" aria-expanded="false"
                   class="link link--footer">Disclaimer</button>.</label>
             </div>
-            <button type="submit" class="btn btn-lg btn-cta max-w-150">Get Involved</button>
+            <button type="submit" class="btn btn-lg btn-cta">Get Involved</button>
           </form>
         </div>
         <div class="flex flex-col">

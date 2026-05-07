@@ -56,7 +56,7 @@
 
   input,
   textarea {
-    @apply p-2 bg-neutral-six text-neutral-nine border border-solid border-neutral-six rounded-lg;
+    @apply p-2 bg-neutral-six text-neutral-nine border border-solid border-neutral-three rounded-lg;
   }
 
   input:hover {
@@ -67,12 +67,8 @@
     @apply border-primary-one;
   }
 
-  #takeaction input[type="checkbox"]:checked {
-    @apply bg-neutral-six border-neutral-six;
-  }
-
-  #takeaction input[type="checkbox"]:checked::before {
-    @apply content-[url('/assets/sprites/solid.svg#check')] fill-current text-primary-one;
+  #takeaction input[type="checkbox"] {
+    @apply appearance-none bg-neutral-six w-8 min-w-8 h-8 min-h-8 border border-neutral-three rounded-md checked:bg-neutral-six checked:border-neutral-three transition-all duration-200;
   }
 
   .paragraph-accent {
