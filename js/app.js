@@ -1,7 +1,7 @@
 /* import { createButton } from './components/Button.js'; */
 
-import('./quiz.js').catch(() => {});
-import('./timeline.js').catch(() => {});
+import('./quiz.js').catch(() => { });
+import('./timeline.js').catch(() => { });
 
 import('details-polyfill').catch(() => { });
 
@@ -138,6 +138,16 @@ const count = takeAction.querySelector('.textarea-count');
 comment.oninput = () => {
   count.textContent = this.value.length;
 }
+
+/*--------------- SLIDES CLOSE BUTTON --------------------- */
+
+const slideCloseBtns = document.querySelectorAll('.close-slides-btn');
+
+slideCloseBtns.forEach(btn => {
+  btn.addEventListener('click', (e) => {
+    e.currentTarget.closest('details').open = false;
+  })
+})
 
 /*
 const container = document.querySelector('#buttons');
