@@ -243,9 +243,25 @@
     @apply justify-center gap-4;
   }
 
+  .quiz-status svg {
+    @apply fill-current;
+  }
+
   /* ── Dropzone placed state — overrides btn-dropzone defaults ── */
   .btn-dropzone--placed {
-    @apply p-4 border-0 text-neutral-nine justify-between shadow-xs;
+    @apply p-4 border-0 text-neutral-two-dark justify-between shadow-xs;
+  }
+
+  .btn-dropzone--placed svg {
+    @apply fill-neutral-two-dark;
+  }
+
+  .btn-dropzone--placed:not(:disabled) {
+    @apply cursor-grab;
+  }
+
+  .btn-dropzone--placed:not(:disabled):active {
+    @apply cursor-grabbing;
   }
 
   /* ── Accordions ── */

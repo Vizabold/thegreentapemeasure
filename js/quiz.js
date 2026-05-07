@@ -250,6 +250,7 @@ if (draggablesEl && dropzonesEl && readyBtn) {
     dropzoneBtn.textContent        = 'place job title here';
     dropzoneBtn.dataset.placedValue = '';
     dropzoneBtn.disabled           = false;
+    dropzoneBtn.removeAttribute('draggable');
 
     const def = getDefinitionText(card);
     dropzoneBtn.setAttribute('aria-label', `Empty drop zone: ${def}`);
@@ -304,6 +305,18 @@ if (draggablesEl && dropzonesEl && readyBtn) {
     if (next) next.focus();
   }
 
+  /* ── shared drag helpers ── */
+
+  function handleDragEnd() {
+    if (draggingBtn) {
+      draggingBtn.classList.remove('ring-2', 'ring-primary-one');
+      if (!draggingBtn.dataset.placedIn && draggingBtn.dataset.correct !== 'true') {
+        draggingBtn.classList.remove('invisible');
+      }
+      draggingBtn = null;
+    }
+  }
+
   /* ── drag & click — draggables ── */
 
   function setupDraggables() {
@@ -344,15 +357,7 @@ if (draggablesEl && dropzonesEl && readyBtn) {
       requestAnimationFrame(() => { if (draggingBtn) draggingBtn.classList.add('invisible'); });
     });
 
-    draggablesEl.addEventListener('dragend', () => {
-      if (draggingBtn) {
-        draggingBtn.classList.remove('ring-2', 'ring-primary-one');
-        if (!draggingBtn.dataset.placedIn && draggingBtn.dataset.correct !== 'true') {
-          draggingBtn.classList.remove('invisible');
-        }
-        draggingBtn = null;
-      }
-    });
+    draggablesEl.addEventListener('dragend', handleDragEnd);
   }
 
   /* ── drag & click — dropzones ── */
@@ -382,6 +387,26 @@ if (draggablesEl && dropzonesEl && readyBtn) {
       placeDraggable(activeDraggable, card);
       deselectDraggable();
     });
+
+    dropzonesEl.addEventListener('dragstart', (e) => {
+      if (!quizRunning) return;
+      const btn = e.target.closest('.btn-dropzone');
+      if (!btn || !btn.dataset.placedValue) return;
+      const card = btn.closest('[data-answer]');
+      if (!card || card.dataset.correct === 'true') return;
+
+      const draggable = getDraggables().find(d => getDraggableValue(d) === btn.dataset.placedValue);
+      if (!draggable) return;
+
+      clearDropzoneCard(card);
+      e.dataTransfer.setData('text/plain', getDraggableValue(draggable));
+      e.dataTransfer.effectAllowed = 'move';
+      draggingBtn = draggable;
+      selectDraggable(draggable);
+      requestAnimationFrame(() => { if (draggingBtn) draggingBtn.classList.add('invisible'); });
+    });
+
+    dropzonesEl.addEventListener('dragend', handleDragEnd);
 
     dropzonesEl.addEventListener('dragover', (e) => {
       const card = e.target.closest('[data-answer]');
@@ -476,6 +501,7 @@ if (draggablesEl && dropzonesEl && readyBtn) {
       announce(`Correct! ${value} matches "${def}".`);
     } else {
       draggableBtn.dataset.placedIn = answer;
+      dropzoneBtn.setAttribute('draggable', 'true');
       announce(`Incorrect. ${value} does not match "${def}". You can pick it up again to try another box.`);
     }
 
