@@ -67,11 +67,11 @@
     @apply border-primary-one;
   }
 
-  input[type="checkbox"]:checked {
+  #takeaction input[type="checkbox"]:checked {
     @apply bg-neutral-six border-neutral-six;
   }
 
-  input[type="checkbox"]:checked::before {
+  #takeaction input[type="checkbox"]:checked::before {
     @apply content-[url('/assets/sprites/solid.svg#check')] fill-current text-primary-one;
   }
 
