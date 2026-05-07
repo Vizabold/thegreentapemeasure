@@ -149,6 +149,71 @@ slideCloseBtns.forEach(btn => {
   })
 })
 
+/*--------------- DIALOG FOCUS TRAP & SCROLL LOCK --------------------- */
+
+(function () {
+  const FOCUSABLE = 'a[href], button:not([disabled]), input:not([disabled]), textarea:not([disabled]), select:not([disabled]), details > summary, [tabindex]:not([tabindex="-1"])';
+  const hasNativePopover = HTMLElement.prototype.hasOwnProperty('popover');
+
+  function setupDialog(dialogEl) {
+    let priorFocus    = null;
+    let removeKeyTrap = null;
+
+    function onOpen() {
+      priorFocus = document.activeElement;
+      const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
+      document.body.style.overflowY    = 'hidden';
+      document.body.style.paddingRight = scrollbarWidth ? `${scrollbarWidth}px` : '';
+      requestAnimationFrame(() => {
+        const nodes = Array.from(dialogEl.querySelectorAll(FOCUSABLE));
+        if (nodes.length) nodes[0].focus();
+      });
+
+      function onKeydown(e) {
+        if (e.key === 'Escape' && !hasNativePopover) {
+          dialogEl.removeAttribute('open');
+          return;
+        }
+        if (e.key !== 'Tab') return;
+        const nodes = Array.from(dialogEl.querySelectorAll(FOCUSABLE));
+        if (!nodes.length) return;
+        const first = nodes[0];
+        const last  = nodes[nodes.length - 1];
+        if (e.shiftKey && document.activeElement === first) {
+          e.preventDefault();
+          last.focus();
+        } else if (!e.shiftKey && document.activeElement === last) {
+          e.preventDefault();
+          first.focus();
+        }
+      }
+
+      dialogEl.addEventListener('keydown', onKeydown);
+      removeKeyTrap = () => dialogEl.removeEventListener('keydown', onKeydown);
+    }
+
+    function onClose() {
+      document.body.style.overflowY    = '';
+      document.body.style.paddingRight = '';
+      if (removeKeyTrap) { removeKeyTrap(); removeKeyTrap = null; }
+      if (priorFocus)    { priorFocus.focus(); priorFocus = null; }
+    }
+
+    if (hasNativePopover) {
+      dialogEl.addEventListener('toggle', (e) => (e.newState === 'open' ? onOpen() : onClose()));
+    } else {
+      new MutationObserver(() =>
+        (dialogEl.hasAttribute('open') ? onOpen() : onClose())
+      ).observe(dialogEl, { attributes: true, attributeFilter: ['open'] });
+    }
+  }
+
+  ['disclaimer', 'privacy'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) setupDialog(el);
+  });
+}());
+
 /*
 const container = document.querySelector('#buttons');
 
