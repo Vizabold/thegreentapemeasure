@@ -1341,7 +1341,7 @@
     font-size: var(--text-lg);
     line-height: var(--tw-leading, var(--text-lg--line-height));
   }
-  input, textarea {
+  input, textarea, select {
     border-radius: var(--radius-lg);
     border-style: var(--tw-border-style);
     border-width: 1px;
@@ -1351,8 +1351,15 @@
     background-color: var(--color-neutral-six);
     padding: calc(var(--spacing) * 2);
     color: var(--color-neutral-nine);
+    cursor: pointer;
   }
-  input:hover {
+  select {
+    background-color: var(--color-neutral-five);
+  }
+  input:hover, textarea:hover, select:hover {
+    background-color: var(--color-primary-five);
+  }
+  option:hover {
     background-color: var(--color-primary-five);
   }
   input:active {
@@ -1374,12 +1381,16 @@
     transition-duration: var(--tw-duration, var(--default-transition-duration));
     --tw-duration: 200ms;
     transition-duration: 200ms;
+    cursor: pointer;
     &:checked {
       border-color: var(--color-neutral-three);
     }
     &:checked {
       background-color: var(--color-neutral-six);
     }
+  }
+  #takeaction input[type="checkbox"]:hover {
+    background-color: var(--color-primary-five);
   }
   .paragraph-accent {
     font-family: var(--font-p-accent);
