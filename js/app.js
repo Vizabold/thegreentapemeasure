@@ -2,7 +2,7 @@
 
 import('./quiz.js').catch(() => { });
 import('./timeline.js').catch(() => { });
-
+import('./presentation.js').catch(() => { });
 import('details-polyfill').catch(() => { });
 
 /*--------------- POPOVER LEGACY SUPPORT --------------------- */
@@ -141,6 +141,7 @@ comment.oninput = () => {
 
 /*--------------- SLIDES CLOSE BUTTON --------------------- */
 
+/*
 const slideCloseBtns = document.querySelectorAll('.close-slides-btn');
 
 slideCloseBtns.forEach(btn => {
@@ -148,6 +149,7 @@ slideCloseBtns.forEach(btn => {
     e.currentTarget.closest('details').open = false;
   })
 })
+  */
 
 /*--------------- DIALOG FOCUS TRAP & SCROLL LOCK --------------------- */
 
@@ -156,14 +158,14 @@ slideCloseBtns.forEach(btn => {
   const hasNativePopover = HTMLElement.prototype.hasOwnProperty('popover');
 
   function setupDialog(dialogEl) {
-    let priorFocus    = null;
+    let priorFocus = null;
     let removeKeyTrap = null;
 
     function onOpen() {
       priorFocus = document.activeElement;
       const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
       document.documentElement.style.overflowY = 'hidden';
-      document.body.style.paddingRight          = scrollbarWidth ? `${scrollbarWidth}px` : '';
+      document.body.style.paddingRight = scrollbarWidth ? `${scrollbarWidth}px` : '';
       requestAnimationFrame(() => {
         const nodes = Array.from(dialogEl.querySelectorAll(FOCUSABLE));
         if (nodes.length) nodes[0].focus();
@@ -178,7 +180,7 @@ slideCloseBtns.forEach(btn => {
         const nodes = Array.from(dialogEl.querySelectorAll(FOCUSABLE));
         if (!nodes.length) return;
         const first = nodes[0];
-        const last  = nodes[nodes.length - 1];
+        const last = nodes[nodes.length - 1];
         if (e.shiftKey && document.activeElement === first) {
           e.preventDefault();
           last.focus();
@@ -194,9 +196,9 @@ slideCloseBtns.forEach(btn => {
 
     function onClose() {
       document.documentElement.style.overflowY = '';
-      document.body.style.paddingRight          = '';
+      document.body.style.paddingRight = '';
       if (removeKeyTrap) { removeKeyTrap(); removeKeyTrap = null; }
-      if (priorFocus)    { priorFocus.focus(); priorFocus = null; }
+      if (priorFocus) { priorFocus.focus(); priorFocus = null; }
     }
 
     if (hasNativePopover) {
@@ -208,7 +210,7 @@ slideCloseBtns.forEach(btn => {
     }
   }
 
-  ['disclaimer', 'privacy'].forEach(id => {
+  ['disclaimer', 'privacy', 'analysis-one'].forEach(id => {
     const el = document.getElementById(id);
     if (el) setupDialog(el);
   });

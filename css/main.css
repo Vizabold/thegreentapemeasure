@@ -463,12 +463,28 @@
     @apply w-16 min-w-16 h-16 rounded-full flex justify-center items-center bg-primary-one;
   }
 
+  .analysis-dialog {
+    @apply flex flex-col w-screen min-w-full h-screen min-h-full bg-neutral-three overflow-y-hidden;
+  }
+
   .presentation-slider {
-    @apply w-full;
+    @apply flex grow items-center overflow-x-auto snap-x snap-mandatory scroll-smooth xl:gap-15;
+  }
+
+  .presentation-slider .presentation-slide:first-of-type {
+    @apply xl:ml-[calc((100vw-934px)/2)];
   }
 
   .presentation-slide {
-    @apply w-full gap-8 bg-neutral-four xl:flex-row xl:aspect-video;
+    @apply min-w-full gap-8 bg-neutral-four snap-center xl:flex-row xl:min-w-234 xl:h-128.75;
+  }
+
+  .presentation-slide p {
+    @apply text-neutral-seven;
+  }
+
+  .slide-current {
+    @apply outline-2 outline-offset-2 outline-primary-one;
   }
 
   .scrollbar {
@@ -482,17 +498,6 @@
   .no-scrollbar {
     @apply: ms-overflow-style-none scrollbar-width-none [&::-webkit-scrollbar]:hidden;
 
-  }
-
-  @supports selector(:has(*)) {
-    #research details[open] .presentation-slide {
-      display: none;
-    }
-
-    #research details[open]:not(:has(.presentation-slide:target)) .presentation-slide:first-child,
-    #research details[open] .presentation-slide:target {
-      display: flex;
-    }
   }
 
   .timeline-event {

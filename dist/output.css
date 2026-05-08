@@ -470,14 +470,8 @@
   .cursor-not-allowed {
     cursor: not-allowed;
   }
-  .cursor-pointer {
-    cursor: pointer;
-  }
   .flex-col {
     flex-direction: column;
-  }
-  .flex-col-reverse {
-    flex-direction: column-reverse;
   }
   .items-center {
     align-items: center;
@@ -736,11 +730,6 @@
     transition-timing-function: var(--tw-ease, var(--default-transition-timing-function));
     transition-duration: var(--tw-duration, var(--default-transition-duration));
   }
-  .transition-all {
-    transition-property: all;
-    transition-timing-function: var(--tw-ease, var(--default-transition-timing-function));
-    transition-duration: var(--tw-duration, var(--default-transition-duration));
-  }
   .transition-opacity {
     transition-property: opacity;
     transition-timing-function: var(--tw-ease, var(--default-transition-timing-function));
@@ -759,26 +748,13 @@
     --tw-duration: 750ms;
     transition-duration: 750ms;
   }
-  .duration-1000 {
-    --tw-duration: 1000ms;
-    transition-duration: 1000ms;
-  }
   .ease-in {
     --tw-ease: var(--ease-in);
     transition-timing-function: var(--ease-in);
   }
-  .ease-in-out {
-    --tw-ease: var(--ease-in-out);
-    transition-timing-function: var(--ease-in-out);
-  }
   .ease-out {
     --tw-ease: var(--ease-out);
     transition-timing-function: var(--ease-out);
-  }
-  .group-open\:hidden {
-    &:is(:where(.group):is([open], :popover-open, :open) *) {
-      display: none;
-    }
   }
   .peer-checked\:block {
     &:is(:where(.peer):checked ~ *) {
@@ -1920,19 +1896,56 @@
     border-radius: calc(infinity * 1px);
     background-color: var(--color-primary-one);
   }
+  .analysis-dialog {
+    display: flex;
+    height: 100vh;
+    min-height: 100%;
+    width: 100vw;
+    min-width: 100%;
+    flex-direction: column;
+    overflow-y: hidden;
+    background-color: var(--color-neutral-three);
+  }
   .presentation-slider {
-    width: 100%;
+    display: flex;
+    flex-grow: 1;
+    scroll-snap-type: x var(--tw-scroll-snap-strictness);
+    --tw-scroll-snap-strictness: mandatory;
+    align-items: center;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    @media (width >= 1000px) {
+      gap: calc(var(--spacing) * 15);
+    }
+  }
+  .presentation-slider .presentation-slide:first-of-type {
+    @media (width >= 1000px) {
+      margin-left: calc((100vw - 934px) / 2);
+    }
   }
   .presentation-slide {
-    width: 100%;
+    min-width: 100%;
+    scroll-snap-align: center;
     gap: calc(var(--spacing) * 8);
     background-color: var(--color-neutral-four);
     @media (width >= 1000px) {
-      aspect-ratio: var(--aspect-video);
+      height: calc(var(--spacing) * 128.75);
+    }
+    @media (width >= 1000px) {
+      min-width: calc(var(--spacing) * 234);
     }
     @media (width >= 1000px) {
       flex-direction: row;
     }
+  }
+  .presentation-slide p {
+    color: var(--color-neutral-seven);
+  }
+  .slide-current {
+    outline-style: var(--tw-outline-style);
+    outline-width: 2px;
+    outline-offset: 2px;
+    outline-color: var(--color-primary-one);
   }
   .scrollbar {
     &::-webkit-scrollbar-track {
@@ -1960,14 +1973,6 @@
   }
   .no-scrollbar::-webkit-scrollbar {
     display: none;
-  }
-  @supports selector(:has(*)) {
-    #research details[open] .presentation-slide {
-      display: none;
-    }
-    #research details[open]:not(:has(.presentation-slide:target)) .presentation-slide:first-child, #research details[open] .presentation-slide:target {
-      display: flex;
-    }
   }
   .timeline-event {
     position: relative;
@@ -2260,6 +2265,11 @@
   syntax: "*";
   inherits: false;
 }
+@property --tw-scroll-snap-strictness {
+  syntax: "*";
+  inherits: false;
+  initial-value: proximity;
+}
 @keyframes bounce {
   0%, 100% {
     transform: translateY(-25%);
@@ -2323,6 +2333,7 @@
       --tw-backdrop-opacity: initial;
       --tw-backdrop-saturate: initial;
       --tw-backdrop-sepia: initial;
+      --tw-scroll-snap-strictness: proximity;
     }
   }
 }
