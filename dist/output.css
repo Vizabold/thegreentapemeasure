@@ -1930,10 +1930,10 @@
     gap: calc(var(--spacing) * 4);
     background-color: var(--color-neutral-four);
     @media (width >= 850px) {
-      height: 368px;
+      height: calc(var(--spacing) * 92);
     }
     @media (width >= 850px) {
-      min-width: 700px;
+      min-width: calc(var(--spacing) * 175);
     }
     @media (width >= 850px) {
       flex-direction: row;

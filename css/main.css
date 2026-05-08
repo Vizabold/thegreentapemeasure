@@ -424,7 +424,7 @@
 
   dialog {
 
-    @apply fixed top-0 left-0 m-0 w-full h-full min-w-screen min-h-screen opacity-0 hidden -translate-x-full backdrop:bg-neutral-one backdrop:opacity-70 backdrop:backdrop-blur-sm transition-all duration-1000 ease-in-out [&:popover-open]:translate-x-0 open:flex flex-col [&:popover-open]:opacity-100 [transition-behavior:allow-discrete];
+    @apply fixed top-0 left-0 m-0 w-full h-full min-w-screen min-h-screen opacity-0 hidden -translate-x-full backdrop:bg-neutral-one backdrop:opacity-70 backdrop:backdrop-blur-sm transition-all duration-1000 ease-in-out [&:popover-open]:translate-x-0 open:flex flex-col [&:popover-open]:opacity-100 transition-discrete;
   }
 
   /* ─────────────────────────────────────────
@@ -476,7 +476,7 @@
   }
 
   .presentation-slide {
-    @apply min-w-full gap-4 bg-neutral-four snap-center lg:flex-row lg:min-w-[700px] lg:h-[368px] xl:gap-8 xl:min-w-234 xl:h-128.75;
+    @apply min-w-full gap-4 bg-neutral-four snap-center lg:flex-row lg:min-w-175 lg:h-92 xl:gap-8 xl:min-w-234 xl:h-128.75;
   }
 
   .presentation-slide p {

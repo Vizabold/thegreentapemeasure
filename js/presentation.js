@@ -16,7 +16,7 @@ document.querySelectorAll('dialog.analysis-dialog').forEach(dialog => {
   function goTo(index) {
     slides[current].classList.remove('slide-current');
     const slideCenter = slides[current].offsetLeft + (slides[current].clientWidth / 2);
-    const diff = Math.abs(containerCenter - slideCenter);
+    const diff = Math.abs(sliderCenter - slideCenter);
     if (diff < minDiff) {
       minDiff = diff;
     }
