@@ -139,18 +139,6 @@ comment.oninput = () => {
   count.textContent = this.value.length;
 }
 
-/*--------------- SLIDES CLOSE BUTTON --------------------- */
-
-/*
-const slideCloseBtns = document.querySelectorAll('.close-slides-btn');
-
-slideCloseBtns.forEach(btn => {
-  btn.addEventListener('click', (e) => {
-    e.currentTarget.closest('details').open = false;
-  })
-})
-  */
-
 /*--------------- DIALOG FOCUS TRAP & SCROLL LOCK --------------------- */
 
 (function () {

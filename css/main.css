@@ -468,15 +468,15 @@
   }
 
   .presentation-slider {
-    @apply flex grow items-center overflow-x-auto snap-x snap-mandatory scroll-smooth xl:gap-15;
+    @apply flex grow items-center overflow-x-auto snap-x snap-mandatory scroll-smooth gap-15;
   }
 
   .presentation-slider .presentation-slide:first-of-type {
-    @apply xl:ml-[calc((100vw-934px)/2)];
+    @apply lg:ml-[calc((100vw-700px)/2)] xl:ml-[calc((100vw-936px)/2)];
   }
 
   .presentation-slide {
-    @apply min-w-full gap-8 bg-neutral-four snap-center xl:flex-row xl:min-w-234 xl:h-128.75;
+    @apply min-w-full gap-4 bg-neutral-four snap-center lg:flex-row lg:min-w-[700px] lg:h-[368px] xl:gap-8 xl:min-w-234 xl:h-128.75;
   }
 
   .presentation-slide p {
