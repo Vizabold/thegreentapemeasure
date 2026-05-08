@@ -21,6 +21,8 @@ document.querySelectorAll('dialog.analysis-dialog').forEach(dialog => {
       minDiff = diff;
     }
 
+    const direction = index > current ? 1 : -1;
+
     if (dots[current]) {
       dots[current].classList.replace('w-6', 'w-3');
       dots[current].classList.replace('bg-primary-one', 'bg-primary-three');
