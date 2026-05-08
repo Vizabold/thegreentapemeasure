@@ -476,7 +476,7 @@
   }
 
   .presentation-slider .presentation-slide:last-of-type {
-    @apply lg:mr-[calc((100vw-700px)/2)] xl:mr-[calc((100vw-936px)/2)];
+    @apply flex-col lg:mr-[calc((100vw-700px)/2)] xl:mr-[calc((100vw-936px)/2)];
   }
 
   .presentation-slide {
