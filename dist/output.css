@@ -1924,6 +1924,14 @@
       margin-left: calc((100vw - 936px) / 2);
     }
   }
+  .presentation-slider .presentation-slide:last-of-type {
+    @media (width >= 850px) {
+      margin-right: calc((100vw - 700px) / 2);
+    }
+    @media (width >= 1000px) {
+      margin-right: calc((100vw - 936px) / 2);
+    }
+  }
   .presentation-slide {
     min-width: 100%;
     scroll-snap-align: center;
