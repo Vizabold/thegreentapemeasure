@@ -779,11 +779,6 @@
       width: calc(var(--spacing) * 73);
     }
   }
-  .xs\:flex-col {
-    @media (width >= 400px) {
-      flex-direction: column;
-    }
-  }
   .xs\:flex-row {
     @media (width >= 400px) {
       flex-direction: row;
