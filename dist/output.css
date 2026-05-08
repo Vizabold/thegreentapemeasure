@@ -774,9 +774,19 @@
       display: none;
     }
   }
+  .xs\:w-73 {
+    @media (width >= 400px) {
+      width: calc(var(--spacing) * 73);
+    }
+  }
   .xs\:flex-row {
     @media (width >= 400px) {
       flex-direction: row;
+    }
+  }
+  .xs\:justify-start {
+    @media (width >= 400px) {
+      justify-content: flex-start;
     }
   }
   .xs\:gap-12 {
