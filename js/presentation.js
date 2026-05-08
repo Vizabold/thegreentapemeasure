@@ -9,6 +9,7 @@ document.querySelectorAll('dialog.analysis-dialog').forEach(dialog => {
   const slider = dialog.querySelector('.presentation-slider');
   const sliderCenter = slider.scrollLeft + (slider.clientWidth / 2);
   let current = 0;
+  slides[current].classList.add('slide-current');
   let minDiff = Infinity;
 
   if (!slides.length || !prevBtn || !nextBtn) return;
@@ -40,6 +41,7 @@ document.querySelectorAll('dialog.analysis-dialog').forEach(dialog => {
     }
 
     slides[current].classList.add('slide-current');
+
     if (dots[current]) {
       dots[current].classList.replace('w-3', 'w-6');
       dots[current].classList.replace('bg-primary-three', 'bg-primary-one');
