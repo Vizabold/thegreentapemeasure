@@ -2588,92 +2588,78 @@
             <p>Tap a decade to get started</p>
           </div>
         </div>
-        <div class="accordion-item overflow-y-auto scrollbar xl:max-h-90.75">
-          <input name="accordion-input" type="radio" id="toggle-fires-1" class="legacy-toggle">
-          <details name="accordion">
-            <summary class="btn btn-accordion"><label for="toggle-fires-1" class="legacy-label"><svg aria-hidden="true"
-                  class="icon-xs fill-primary-one">
-                  <use href="/assets/sprites/solid.svg#angle-down"></use>
-                </svg>1900s</label></summary>
-            <div class="accordion-content-wrapper">
-              <div class="flex flex-col pl-11 gap-4">
-                <div class="accordion-item">
-                  <input name="accordion-input" type="radio" id="toggle-fires-1a" class="legacy-toggle">
-                  <details name="accordion">
-                    <summary class="btn btn-accordion"><label for="toggle-fires-1a" class="legacy-label"><svg
-                          aria-hidden="true" class="icon-xs fill-primary-one">
-                          <use href="/assets/sprites/solid.svg#angle-down"></use>
-                        </svg>Iroquois Theater Fire</label></summary>
-                    <div class="accordion-content-wrapper">
-                      <div class="flex flex-col pl-11 gap-4">
-                        <p class="wrap-break-word">Massasoit Community College. <a class="link link--inline-neutral"
-                            href="https://library.massasoit.edu/americanfires/iroquois" target="_blank">Major
-                            American Fires: Iroquois Theater Fire-1903</a>. UMassasoit Community College (2017).
-                          Available at: https://library.massasoit.edu/americanfires/iroquois (Accessed 27
-                          September 2025).
-                        </p>
-                        <p class="wrap-break-word">Uenuma, Francine. <a class="link link--inline-neutral"
-                            href="https://www.smithsonianmag.com/history/how-theater-blaze-killed-hundreds-forever-changed-way-we-approach-fire-safety-180969315/"
-                            target="_blank">The
-                            Iroquois Theater Disaster Killed Hundreds and Changed Fire Safety Forever</a>.
-                          Smithsonian Magazine, 12 June 2018. Available at:
-                          https://www.smithsonianmag.com/history/how-theater-blaze-killed-hundreds-forever-changed-way-we-approach-fire-safety-180969315/
-                          (Accessed 27 September 2025).
-                        </p>
-                      </div>
-                    </div>
-                  </details>
-                </div>
-                <div class="accordion-item">
-                  <input name="accordion-input" type="radio" id="toggle-fires-1b" class="legacy-toggle">
-                  <details name="accordion">
-                    <summary class="btn btn-accordion"><label for="toggle-fires-1b" class="legacy-label"><svg
-                          aria-hidden="true" class="icon-xs fill-primary-one">
-                          <use href="/assets/sprites/solid.svg#angle-down"></use>
-                        </svg>Rhoads Opera House Fire</label></summary>
-                    <div class="accordion-content-wrapper">
-                      <div class="flex flex-col pl-11 gap-4">
-                        <p class="wrap-break-word">Pearson, Samantha. <a class="link link--inline-neutral"
-                            href="ttps://pabook.libraries.psu.edu/literary-cultural-heritage-map-pa/feature-articles/trapped-third-act-rhoads-opera-house-fire"
-                            target="_blank">Trapped
-                            in the Third Act: The Rhoads Opera House Fire, Boyertown 1908</a>. Pennsylvania
-                          Center for the Book, Fall 2010. Available at:
-                          https://pabook.libraries.psu.edu/literary-cultural-heritage-map-pa/feature-articles/trapped-third-act-rhoads-opera-house-fire
-                          (Accessed 27 September 2025).
-                        </p>
-                        <p class="wrap-break-word">Roeder, Larry. <a class="link link--inline-neutral"
-                            href="https://upvnews.com/news/article.ashx?article=26438" target="_blank">Rhoads
-                            Opera House Fire</a>.Town and Country, 17 Jan. 2023. Available at:
-                          https://upvnews.com/news/article.ashx?article=26438 (Accessed 27 September 2025).
-                        </p>
-                      </div>
-                    </div>
-                  </details>
-                </div>
-                <div class="accordion-item">
-                  <input name="accordion-input" type="radio" id="toggle-fires-1b" class="legacy-toggle">
-                  <details name="accordion">
-                    <summary class="btn btn-accordion"><label for="toggle-fires-1b" class="legacy-label"><svg
-                          aria-hidden="true" class="icon-xs fill-primary-one">
-                          <use href="/assets/sprites/solid.svg#angle-down"></use>
-                        </svg>Collinwood School Fire</label></summary>
-                    <div class="accordion-content-wrapper">
-                      <div class="flex flex-col pl-11 gap-4">
-                        <p class="wrap-break-word">Case Western Reserve University. <a class="link link--inline-neutral"
-                            href="https://case.edu/ech/articles/c/collinwood-school-fire" target="_blank">Encyclopedia
-                            of Cleveland History: Collinwood School Fire</a>.Case
-                          Western Reserve University (2025). Available at:
-                          https://case.edu/ech/articles/c/collinwood-school-fire (Accessed 27 September 2025).
-                        </p>
-                        <p class="wrap-break-word">Fearing, Heidi. <a class="link link--inline-neutral"
-                            href="https://clevelandhistorical.org/items/show/394" target="_blank">Collinwood
-                            School Fire</a>.Cleveland Historical, 12 Jan. 2012. Available at:
-                          https://clevelandhistorical.org/items/show/394 (Accessed 27 September 2025).
-                        </p>
-                      </div>
-                    </div>
-                  </details>
-                </div>
+        <div class="overflow-y-auto scrollbar xl:max-h-90.75">
+          <details name="accordion" class="collapse">
+            <summary class="btn btn-accordion collapse-title"><svg aria-hidden="true" class="icon-xs fill-primary-one">
+                <use href="/assets/sprites/solid.svg#angle-down"></use>
+              </svg>1900s</summary>
+            <div class="flex flex-col pl-11 gap-4 collapse-content">
+              <div class="accordion-item-child">
+                <details name="accordion" class="collapse">
+                  <summary class="btn btn-accordion"><svg aria-hidden="true" class="icon-xs fill-primary-one">
+                      <use href="/assets/sprites/solid.svg#angle-down"></use>
+                    </svg>Iroquois Theater Fire</summary>
+                  <div class="flex flex-col pl-11 gap-4 collapse-content">
+                    <p class="wrap-break-word">Massasoit Community College. <a class="link link--inline-neutral"
+                        href="https://library.massasoit.edu/americanfires/iroquois" target="_blank">Major
+                        American Fires: Iroquois Theater Fire-1903</a>. UMassasoit Community College (2017).
+                      Available at: https://library.massasoit.edu/americanfires/iroquois (Accessed 27
+                      September 2025).
+                    </p>
+                    <p class="wrap-break-word">Uenuma, Francine. <a class="link link--inline-neutral"
+                        href="https://www.smithsonianmag.com/history/how-theater-blaze-killed-hundreds-forever-changed-way-we-approach-fire-safety-180969315/"
+                        target="_blank">The
+                        Iroquois Theater Disaster Killed Hundreds and Changed Fire Safety Forever</a>.
+                      Smithsonian Magazine, 12 June 2018. Available at:
+                      https://www.smithsonianmag.com/history/how-theater-blaze-killed-hundreds-forever-changed-way-we-approach-fire-safety-180969315/
+                      (Accessed 27 September 2025).
+                    </p>
+                  </div>
+                </details>
+              </div>
+              <div class="accordion-item-child">
+                <details name="accordion" class="collapse">
+                  <summary class="btn btn-accordion collapse-title"><svg aria-hidden="true"
+                      class="icon-xs fill-primary-one">
+                      <use href="/assets/sprites/solid.svg#angle-down"></use>
+                    </svg>Rhoads Opera House Fire</summary>
+                  <div class="flex flex-col pl-11 gap-4 collapse-content">
+                    <p class="wrap-break-word">Pearson, Samantha. <a class="link link--inline-neutral"
+                        href="ttps://pabook.libraries.psu.edu/literary-cultural-heritage-map-pa/feature-articles/trapped-third-act-rhoads-opera-house-fire"
+                        target="_blank">Trapped
+                        in the Third Act: The Rhoads Opera House Fire, Boyertown 1908</a>. Pennsylvania
+                      Center for the Book, Fall 2010. Available at:
+                      https://pabook.libraries.psu.edu/literary-cultural-heritage-map-pa/feature-articles/trapped-third-act-rhoads-opera-house-fire
+                      (Accessed 27 September 2025).
+                    </p>
+                    <p class="wrap-break-word">Roeder, Larry. <a class="link link--inline-neutral"
+                        href="https://upvnews.com/news/article.ashx?article=26438" target="_blank">Rhoads
+                        Opera House Fire</a>.Town and Country, 17 Jan. 2023. Available at:
+                      https://upvnews.com/news/article.ashx?article=26438 (Accessed 27 September 2025).
+                    </p>
+                  </div>
+                </details>
+              </div>
+              <div class="accordion-item-child">
+                <details name="accordion" class="collapse">
+                  <summary class="btn btn-accordion collapse-title"><svg aria-hidden="true"
+                      class="icon-xs fill-primary-one">
+                      <use href="/assets/sprites/solid.svg#angle-down"></use>
+                    </svg>Collinwood School Fire</summary>
+                  <div class="flex flex-col pl-11 gap-4 collapse-content">
+                    <p class="wrap-break-word">Case Western Reserve University. <a class="link link--inline-neutral"
+                        href="https://case.edu/ech/articles/c/collinwood-school-fire" target="_blank">Encyclopedia
+                        of Cleveland History: Collinwood School Fire</a>.Case
+                      Western Reserve University (2025). Available at:
+                      https://case.edu/ech/articles/c/collinwood-school-fire (Accessed 27 September 2025).
+                    </p>
+                    <p class="wrap-break-word">Fearing, Heidi. <a class="link link--inline-neutral"
+                        href="https://clevelandhistorical.org/items/show/394" target="_blank">Collinwood
+                        School Fire</a>.Cleveland Historical, 12 Jan. 2012. Available at:
+                      https://clevelandhistorical.org/items/show/394 (Accessed 27 September 2025).
+                    </p>
+                  </div>
+                </details>
               </div>
             </div>
           </details>

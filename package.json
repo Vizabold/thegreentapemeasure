@@ -9,6 +9,7 @@
   "description": "> **Measuring Advancement with Facts.**",
   "main": "index.js",
   "devDependencies": {
+    "daisyui": "^5.5.19",
     "tailwind-scrollbar": "^4.0.2",
     "tailwindcss": "^4.2.4"
   },
