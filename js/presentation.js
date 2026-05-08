@@ -11,11 +11,6 @@ document.querySelectorAll('dialog.analysis-dialog').forEach(dialog => {
   if (!slides.length || !prevBtn || !nextBtn) return;
   slides[current].classList.add('slide-current');
 
-  /*
-  const sliderCenter = slider.scrollLeft + (slider.clientWidth / 2);
-  let minDiff = Infinity;
-  */
-
   function goTo(index) {
     slides[current].classList.remove('slide-current');
 
@@ -41,28 +36,6 @@ document.querySelectorAll('dialog.analysis-dialog').forEach(dialog => {
 
     if (skipBtn) skipBtn.classList.toggle('invisible', current === slides.length - 1);
 
-
-    /*
-        const slideCenter = slides[current].offsetLeft + (slides[current].clientWidth / 2);
-        const diff = Math.abs(sliderCenter - slideCenter);
-        if (diff < minDiff) {
-          minDiff = diff;
-        }
-        const direction = index > current ? 1 : -1;
-        let nextIndex = current + direction;
-        if (nextIndex >= 0 && nextIndex < slides.length) {
-          slides[nextIndex].scrollIntoView({
-            behavior: 'smooth',
-            block: 'nearest',
-            inline: 'center'
-          });
-        }
-        if (dots[current]) {
-          dots[current].classList.replace('w-3', 'w-6');
-          dots[current].classList.replace('bg-primary-three', 'bg-primary-one');
-        }
-          */
-
   }
 
   prevBtn.addEventListener('click', () => {
@@ -74,12 +47,6 @@ document.querySelectorAll('dialog.analysis-dialog').forEach(dialog => {
     let next = current === slides.length - 1 ? 0 : current + 1;
     goTo(next);
   });
-
-
-  /*
-  prevBtn.addEventListener('click', () => goTo(current === 0 ? slides.length - 1 : current - 1));
-  nextBtn.addEventListener('click', () => goTo(current === slides.length - 1 ? 0 : current + 1));
-  */
 
   if (skipBtn) skipBtn.addEventListener('click', () => goTo(slides.length - 1));
 
@@ -94,38 +61,3 @@ document.querySelectorAll('dialog.analysis-dialog').forEach(dialog => {
   }
 
 })
-
-/*
-function goTo(index) {
-  slides[current].classList.add('hidden');
-  if (dots[current]) {
-    dots[current].classList.replace('w-6', 'w-3');
-    dots[current].classList.replace('bg-primary-one', 'bg-primary-three');
-  }
-  current = index;
-  slides[current].classList.remove('hidden');
-  if (dots[current]) {
-    dots[current].classList.replace('w-3', 'w-6');
-    dots[current].classList.replace('bg-primary-three', 'bg-primary-one');
-  }
-  if (skipBtn) skipBtn.classList.toggle('invisible', current === slides.length - 1);
-}
-
-slides.forEach((s, i) => { if (i !== 0) s.classList.add('hidden'); });
-
-prevBtn.addEventListener('click', () => goTo(current === 0 ? slides.length - 1 : current - 1));
-nextBtn.addEventListener('click', () => goTo(current === slides.length - 1 ? 0 : current + 1));
-if (skipBtn) skipBtn.addEventListener('click', () => goTo(slides.length - 1));
-
-function onClose() { if (current !== 0) goTo(0); }
-
-if (hasNativePopover) {
-  dialog.addEventListener('toggle', (e) => { if (e.newState === 'closed') onClose(); });
-} else {
-  new MutationObserver(() => {
-    if (!dialog.hasAttribute('open')) onClose();
-  }).observe(dialog, { attributes: true, attributeFilter: ['open'] });
-}
- 
-});
-*/

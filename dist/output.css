@@ -539,6 +539,9 @@
   .overflow-x-auto {
     overflow-x: auto;
   }
+  .overflow-y-auto {
+    overflow-y: auto;
+  }
   .rounded-full {
     border-radius: calc(infinity * 1px);
   }
@@ -900,6 +903,11 @@
   .xl\:hidden {
     @media (width >= 1000px) {
       display: none;
+    }
+  }
+  .xl\:max-h-90\.75 {
+    @media (width >= 1000px) {
+      max-height: calc(var(--spacing) * 90.75);
     }
   }
   .xl\:w-\[35\%\] {
