@@ -6,8 +6,6 @@
   nocompatible: true;
 }
 
-@plugin "daisyui";
-
 @layer base, components, utilities;
 
 @layer base {
