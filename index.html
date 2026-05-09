@@ -1931,14 +1931,14 @@
                 <div class="flex flex-col">
                   <h3>Current Campaign</h3>
                   <h4>Help Launch The Green Tape Measure</h4>
-                  <p>Let’s become a 501(c)(3) non-profit!</p>
+                  <p>Let's become a 501(c)(3) non-profit!</p>
                 </div>
                 <div class="flex flex-col gap-1">
                   <p>Goal Deadline: February 8, 2027</p>
                   <div class="flex gap-1 items-center">
                     <div
                       class="relative w-full h-4 flex align-center bg-neutral-four border-[0.5px] border-solid border-primary-one rounded-full">
-                      <div class="absolute w-[10%] h-2 rounded-full bg-primary-one left-1 -translate-y-[50%] top-[50%]">
+                      <div class="absolute w-[10%] h-2 rounded-full bg-primary-one left-1 translate-y-[-50%] top-[50%]">
                       </div>
                     </div>
                     <p>$7,500</p>
@@ -4655,6 +4655,280 @@
           </svg>
         </button>
         <button type="button" class="btn btn-icon btn-icon--rounded-sm" popovertarget="analysis-two"
+          popovertargetaction="hide" aria-label="close analysis">
+          <svg class="icon-xs" aria-hidden="true">
+            <use href="/assets/sprites/solid.svg#x"></use>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </dialog>
+
+  <dialog class="analysis-dialog" id="analysis-three" aria-labelledby="" aria-modal="true" popover>
+    <div class="presentation-slider scrollbar">
+      <div class="card presentation-slide" id="slide-3a">
+        <div class="flex justify-center items-center">
+          <picture>
+            <source srcset="assets/images/graph_3a-dk-lg.webp" type="image/webp" media="(min-width: 1000px)"
+              data-theme="dark">
+            <source srcset="assets/images/graph_3a-dk-md.webp" type="image/webp" media="(min-width: 400px)"
+              data-theme="dark">
+            <source srcset="assets/images/graph_3a-dk-sm.webp" type="image/webp" media="(min-width: 300px)"
+              data-theme="dark">
+            <source srcset="assets/images/graph_3a-lt-lg.webp" type="image/webp" media="(min-width: 1000px)"
+              data-theme="light">
+            <source srcset="assets/images/graph_3a-lt-md.webp" type="image/webp" media="(min-width: 400px)"
+              data-theme="light">
+            <source srcset="assets/images/graph_3a-lt-sm.webp" type="image/webp" media="(min-width: 300px)"
+              data-theme="light">
+            <img src="assets/images/graph_3a-lt-md.png" alt="a monochrome green line graph showing 5 lines">
+          </picture>
+        </div>
+        <div class="flex flex-col gap-4 justify-between items-center sm:flex-col xl:grow">
+          <div class="flex flex-col gap-4 max-w-100">
+            <div class="flex flex-col gap-1">
+              <h3>Interior Design Legislation</h3>
+              <h4>States per Decade, 1980s to today</h4>
+              <p class="hidden js:block">Tap a line on the graph to see more details</p>
+            </div>
+            <div class="flex flex-col gap-4">
+              <div class="flex flex-col gap-4 xs:flex-row">
+                <div class="flex gap-1 justify-between items-center xs:justify-start xs:w-73">
+                  <div class="w-9 h-1 bg-primary-one"></div>
+                  <p>Voluntary</p>
+                </div>
+                <div class="flex gap-1 justify-between items-center xs:justify-start xs:w-73">
+                  <div class="flex gap-2 justify-between">
+                    <div class="w-1 h-1 bg-primary-one"></div>
+                    <div class="w-2 h-1 bg-primary-one"></div>
+                    <div class="w-1 h-1 bg-primary-one"></div>
+                  </div>
+                  <p>Permitting</p>
+                </div>
+              </div>
+              <div class="flex flex-col gap-4 xs:flex-row">
+                <div class="flex gap-1 justify-between items-center xs:justify-start xs:w-73">
+                  <div class="w-9 h-1 bg-neutral-seven"></div>
+                  <p>Restrictions</p>
+                </div>
+                <div class="flex gap-1 justify-between items-center xs:justify-start xs:w-73">
+                  <div class="flex gap-2 justify-between">
+                    <div class="w-1 h-1 bg-neutral-seven"></div>
+                    <div class="w-2 h-1 bg-neutral-seven"></div>
+                    <div class="w-1 h-1 bg-neutral-seven"></div>
+                  </div>
+                  <p>Regulation</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <p class="graph-details"></p>
+      </div>
+      <div class="card presentation-slide group/states" id="slide-3b">
+        <div class="flex flex-col gap-8 pr-4 border-r border-solid border-neutral-six lg:w-[55%]">
+          <div class="flex flex-col gap-1">
+            <h3>Legislative Summary by State*</h3>
+            <h4>Select Your Region</h4>
+            <p>Though we try to keep this information accurate, we are not lawyers. Please see our <button type="button"
+                popovertarget="disclaimer" aria-haspopup="dialog" aria-controls="privacy" aria-expanded="false"
+                class="link link--footer">Disclaimer</button> for more information.</p>
+          </div>
+          <div class="flex flex-col gap-4 overflow-y-auto scrollbar xl:max-h-90.75">
+            <details name="accordion">
+              <summary class="btn btn-accordion"><svg aria-hidden="true" class="icon-xs fill-primary-one">
+                  <use href="/assets/sprites/solid.svg#angle-down"></use>
+                </svg>Mid-Atlantic</summary>
+              <div class="accordion-content-wrapper">
+                <div class="flex flex-col pl-11 gap-4">
+                  <input type="checkbox" id="delaware" class="peer/de hidden">
+                  <label for="delaware" class="link cursor-pointer">Delaware</label>
+                </div>
+              </div>
+            </details>
+            <details name="accordion">
+              <summary class="btn btn-accordion"><svg aria-hidden="true" class="icon-xs fill-primary-one">
+                  <use href="/assets/sprites/solid.svg#angle-down"></use>
+                </svg>Midwest</summary>
+              <div class="accordion-content-wrapper">
+                <div class="flex flex-col pl-11 gap-4">
+                </div>
+              </div>
+            </details>
+            <details name="accordion">
+              <summary class="btn btn-accordion"><svg aria-hidden="true" class="icon-xs fill-primary-one">
+                  <use href="/assets/sprites/solid.svg#angle-down"></use>
+                </svg>New England</summary>
+              <div class="accordion-content-wrapper">
+                <div class="flex flex-col pl-11 gap-4">
+                </div>
+              </div>
+            </details>
+            <details name="accordion">
+              <summary class="btn btn-accordion"><svg aria-hidden="true" class="icon-xs fill-primary-one">
+                  <use href="/assets/sprites/solid.svg#angle-down"></use>
+                </svg>Northwest</summary>
+              <div class="accordion-content-wrapper">
+                <div class="flex flex-col pl-11 gap-4">
+                </div>
+              </div>
+            </details>
+            <details name="accordion">
+              <summary class="btn btn-accordion"><svg aria-hidden="true" class="icon-xs fill-primary-one">
+                  <use href="/assets/sprites/solid.svg#angle-down"></use>
+                </svg>Southeast</summary>
+              <div class="accordion-content-wrapper">
+                <div class="flex flex-col pl-11 gap-4">
+                </div>
+              </div>
+            </details>
+            <details name="accordion">
+              <summary class="btn btn-accordion"><svg aria-hidden="true" class="icon-xs fill-primary-one">
+                  <use href="/assets/sprites/solid.svg#angle-down"></use>
+                </svg>Southwest</summary>
+              <div class="accordion-content-wrapper">
+                <div class="flex flex-col pl-11 gap-4">
+                </div>
+              </div>
+            </details>
+            <details name="accordion">
+              <summary class="btn btn-accordion"><svg aria-hidden="true" class="icon-xs fill-primary-one">
+                  <use href="/assets/sprites/solid.svg#angle-down"></use>
+                </svg>Alaska & Hawaii</summary>
+              <div class="accordion-content-wrapper">
+                <div class="flex flex-col pl-11 gap-4">
+                </div>
+              </div>
+            </details>
+            <!-- 
+              <select name="states" class="appearance-none w-full" id="state-select">
+                <option value="Alabama">Alabama</option>
+                <option value="Alaska">Alaska</option>
+                <option value="Arizona">Arizona</option>
+                <option value="Arkansas">Arkansas</option>
+                <option value="California">California</option>
+                <option value="Colorado">Colorado</option>
+                <option value="Connecticut">Connecticut</option>
+                <option value="District of Columbia">District of Columbia</option>
+                <option value="Delaware">Delaware</option>
+                <option value="Florida">Florida</option>
+                <option value="Georgia">Georgia</option>
+                <option value="Hawaii">Hawaii</option>
+                <option value="Idaho">Idaho</option>
+                <option value="Illinois">Illinois</option>
+                <option value="Indiana">Indiana</option>
+                <option value="Kansas">Kansas</option>
+                <option value="Iowa">Iowa</option>
+                <option value="Kentucky">Kentucky</option>
+                <option value="Louisiana">Louisiana</option>
+                <option value="Maine">Maine</option>
+                <option value="Maryland">Maryland</option>
+                <option value="Massachusetts">Massachusetts</option>
+                <option value="Michigan">Michigan</option>
+                <option value="Minnesota">Minnesota</option>
+                <option value="Mississippi">Mississippi</option>
+                <option value="Missouri">Missouri</option>
+                <option value="Montana">Montana</option>
+                <option value="Nebraska">Nebraska</option>
+                <option value="Nevada">Nevada</option>
+                <option value="New Hampshire">New Hampshire</option>
+                <option value="New Jersey">New Jersey</option>
+                <option value="New Mexico">New Mexico</option>
+                <option value="New York">New York</option>
+                <option value="North Carolina">North Carolina</option>
+                <option value="North Dakota">North Dakota</option>
+                <option value="Oklahoma">Oklahoma</option>
+                <option value="Ohio">Ohio</option>
+                <option value="Oregon">Oregon</option>
+                <option value="Pennsylvania">Pennsylvania</option>
+                <option value="Rhode Island">Rhode Island</option>
+                <option value="South Carolina">South Carolina</option>
+                <option value="South Dakota">South Dakota</option>
+                <option value="Tennessee">Tennessee</option>
+                <option value="Texas">Texas</option>
+                <option value="Utah">Utah</option>
+                <option value="Vermont">Vermont</option>
+                <option value="Virginia">Virginia</option>
+                <option value="Washington">Washington</option>
+                <option value="West Virginia">West Virginia</option>
+                <option value="Wisconsin">Wisconsin</option>
+                <option value="Wyoming">Wyoming</option>
+              </select>
+              -->
+          </div>
+          <p>*Last updated May 2026</p>
+        </div>
+        <div class="flex flex-col gap-4 x lg:w-[45%]">
+          <h3>Bill Details</h3>
+          <div class="flex gap-1">
+            <p class="paragraph-accent text-neutral-nine capitalize">State:</p>
+            <p class="hidden group-has-[:checked.peer\/de]/states:inline">
+              Delaware
+            </p>
+          </div>
+          <div class="flex gap-1">
+            <p class="paragraph-accent text-neutral-nine capitalize">Year:</p>
+            <p class="hidden group-has-[:checked.peer\/de]/states:inline">
+              n/a
+            </p>
+          </div>
+          <div class="flex gap-1">
+            <p class="paragraph-accent text-neutral-nine capitalize">Type:</p>
+            <p class="hidden group-has-[:checked.peer\/de]/states:inline">
+              n/a
+            </p>
+          </div>
+          <div class="flex gap-1">
+            <p class="paragraph-accent text-neutral-nine capitalize">Board:</p>
+            <p class="hidden group-has-[:checked.peer\/de]/states:inline">
+              n/a
+            </p>
+          </div>
+          <div class="flex gap-1">
+            <p class="paragraph-accent text-neutral-nine capitalize">Exam:</p>
+            <p class="hidden group-has-[:checked.peer\/de]/states:inline">
+              n/a
+            </p>
+          </div>
+          <div class="flex gap-1">
+            <p class="paragraph-accent text-neutral-nine capitalize">Restrictions:</p>
+            <p class="hidden group-has-[:checked.peer\/de]/states:inline">
+              n/a
+            </p>
+          </div>
+          <div class="flex gap-1">
+            <p class="paragraph-accent text-neutral-nine capitalize">Exemptions:</p>
+            <p class="hidden group-has-[:checked.peer\/de]/states:inline">
+              n/a
+            </p>
+          </div>
+          <div class="flex gap-1">
+            <p class="paragraph-accent text-neutral-nine capitalize">Links:</p>
+            <p class="hidden group-has-[:checked.peer\/de]/states:inline">
+              n/a
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="flex items-center justify-between p-4 gap-4">
+      <button type="button" class="link link--inline skip-to-sources-btn text-left">Skip to State Lookup</button>
+      <div class="flex gap-2">
+        <div class="w-6 h-3 rounded-full bg-primary-one slide-dot"></div>
+        <div class="w-3 h-3 rounded-full bg-primary-three slide-dot"></div>
+      </div>
+      <div class="flex gap-4 justify-center">
+        <button type="button" class="btn btn-icon btn-icon--rounded-sm analysis-prev-btn" aria-label="previous slide">
+          <svg class="icon-xs" aria-hidden="true">
+            <use href="/assets/sprites/solid.svg#angle-left"></use>
+          </svg>
+        </button>
+        <button type="button" class="btn btn-icon btn-icon--rounded-sm analysis-next-btn" aria-label="next slide">
+          <svg class="icon-xs" aria-hidden="true">
+            <use href="/assets/sprites/solid.svg#angle-right"></use>
+          </svg>
+        </button>
+        <button type="button" class="btn btn-icon btn-icon--rounded-sm" popovertarget="analysis-three"
           popovertargetaction="hide" aria-label="close analysis">
           <svg class="icon-xs" aria-hidden="true">
             <use href="/assets/sprites/solid.svg#x"></use>

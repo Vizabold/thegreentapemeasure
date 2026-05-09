@@ -475,9 +475,16 @@
     @apply lg:ml-[calc((100vw-700px)/2)] xl:ml-[calc((100vw-936px)/2)];
   }
 
-  .presentation-slider .presentation-slide:last-of-type {
+  #analysis-one .presentation-slider .presentation-slide:last-of-type,
+  #analysis-two .presentation-slider .presentation-slide:last-of-type,
+  #analysis-four .presentation-slider .presentation-slide:last-of-type {
     @apply flex-col lg:mr-[calc((100vw-700px)/2)] xl:mr-[calc((100vw-936px)/2)];
   }
+
+  #analysis-three .presentation-slider .presentation-slide:last-of-type {
+    @apply lg:mr-[calc((100vw-700px)/2)] xl:mr-[calc((100vw-936px)/2)];
+  }
+
 
   .presentation-slide {
     @apply min-w-full gap-4 bg-neutral-four snap-center lg:flex-row lg:min-w-175 lg:h-92 xl:gap-8 xl:min-w-234 xl:h-128.75;
@@ -501,7 +508,6 @@
 
   .no-scrollbar {
     @apply: ms-overflow-style-none scrollbar-width-none [&::-webkit-scrollbar]:hidden;
-
   }
 
   .timeline-event {
