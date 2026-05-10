@@ -7,10 +7,11 @@ var options = {
     series: [38, 21, 17, 10, 14],
     chart: {
         type: 'pie',
+        id: 'pie-1a',
         events: {
-            mounted: function (chartContext, config) {
+            mounted: function (chartContext) {
                 document.getElementById('pie-chart-1a-placeholder').style.display = 'none';
-                document.getElementById('pie-chart-1a').style.opacity = '1';
+                chartEl.style.opacity = '1';
             },
             dataPointSelection: function (event, chartContext, config) {
                 if (selectedSliceIndex === config.dataPointIndex) {
@@ -24,16 +25,21 @@ var options = {
         }
     },
     labels: ['hotel', 'assembly', 'schools', 'factory', 'hospital'],
+    plotOptions: {
+        pie: {
+            dataLabels: {
+                offset: -20,
+            }
+        }
+    },
     dataLabels: {
         enabled: true,
-        textAnchor: 'middle',
         formatter: function (val, opts) {
             if (opts.dataPointIndex === selectedSliceIndex) {
                 return val.toFixed(1) + '%';
             }
-            const iconsIds = ['#bed', '#masks-theater', '#graduation-cap', '#industry', '#house-medical'];
-            const currentId = iconsIds[opts.dataPointIndex];
-            return `<svg class="chart-icon"><use href="${currentId}"></use></svg>`;
+            const iconIds = ['#bed', '#masks-theater', '#graduation-cap', '#industry', '#house-medical'];
+            return iconIds[opts.dataPointIndex];
         },
         style: {
             fontFamily: '"Space Grotesk", sans-serif',
