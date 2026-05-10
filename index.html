@@ -2159,8 +2159,8 @@
     aria-modal="true" popover>
     <div class="presentation-slider scrollbar">
       <div class="card presentation-slide" id="slide-1a">
-        <div class="flex justify-center items-center">
-          <picture>
+        <div class="flex justify-center items-center" id="pie-chart-1a-container">
+          <picture id="pie-chart-1a-placeholder">
             <source srcset="assets/images/graph_1a-dk-lg.webp" type="image/webp" media="(min-width: 1000px)"
               data-theme="dark">
             <source srcset="assets/images/graph_1a-dk-md.webp" type="image/webp" media="(min-width: 400px)"
@@ -2176,6 +2176,7 @@
             <img src="assets/images/graph_1a-lt-md.png"
               alt="a monochrome green graph showing 6 slices, one for each space type">
           </picture>
+          <div id="pie-chart-1a"></div>
         </div>
         <div class="flex flex-col gap-4 justify-between items-center sm:flex-col xl:grow">
           <div class="flex flex-col gap-4 max-w-100">
@@ -3692,7 +3693,7 @@
         </div>
       </div>
     </div>
-    <div class="flex items-center justify-between p-4 gap-4">
+    <div class="flex flex-col items-center justify-between p-4 gap-4 sm:flex-row">
       <button type="button" class="link link--inline skip-to-sources-btn text-left">Skip to Sources</button>
       <div class="flex gap-2">
         <div class="w-6 h-3 rounded-full bg-primary-one slide-dot"></div>
@@ -4584,7 +4585,7 @@
         </div>
       </div>
     </div>
-    <div class="flex items-center justify-between p-4 gap-4">
+    <div class="flex flex-col items-center justify-between p-4 gap-4 sm:flex-row">
       <button type="button" class="link link--inline skip-to-sources-btn text-left">Skip to Sources</button>
       <div class="flex gap-2">
         <div class="w-6 h-3 rounded-full bg-primary-one slide-dot"></div>
@@ -5592,7 +5593,7 @@
       </div>
     </div>
     </div>
-    <div class="flex items-center justify-between p-4 gap-4">
+    <div class="flex flex-col items-center justify-between p-4 gap-4 sm:flex-row">
       <button type="button" class="link link--inline skip-to-sources-btn text-left">Skip to State Lookup</button>
       <div class="flex gap-2">
         <div class="w-6 h-3 rounded-full bg-primary-one slide-dot"></div>
@@ -5624,7 +5625,7 @@
     <div class="presentation-slider scrollbar">
       <div class="card presentation-slide" id="slide-4a">
         <div class="flex justify-center items-center">
-          <picture>
+          <picture id="pie1a-placeholder">
             <source srcset="assets/images/graph_4a-dk-lg.webp" type="image/webp" media="(min-width: 1000px)"
               data-theme="dark">
             <source srcset="assets/images/graph_4a-dk-md.webp" type="image/webp" media="(min-width: 400px)"
@@ -5717,7 +5718,7 @@
         </div>
       </div>
     </div>
-    <div class="flex items-center justify-between p-4 gap-4">
+    <div class="flex flex-col items-center justify-between p-4 gap-4 sm:flex-row">
       <a href="https://calmatters.digitaldemocracy.org/hearings/279021#t=389&f=a93768e272476899c88de384d1d675a3"
         class="link link--inline skip-to-sources-btn text-left" target="_blank">April 21, 2026 hearing</a>
       <div class="flex gap-2">
