@@ -485,6 +485,9 @@
     @apply lg:mr-[calc((100vw-700px)/2)] xl:mr-[calc((100vw-936px)/2)];
   }
 
+  #analysis-three-states label {
+    @apply text-primary-one;
+  }
 
   .presentation-slide {
     @apply min-w-full gap-4 bg-neutral-four snap-center lg:flex-row lg:min-w-175 lg:h-92 xl:gap-8 xl:min-w-234 xl:h-128.75;

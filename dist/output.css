@@ -787,6 +787,11 @@
     --tw-ease: var(--ease-out);
     transition-timing-function: var(--ease-out);
   }
+  .group-has-\[\:checked\.peer\\\/ak\]\/states\:inline {
+    &:is(:where(.group\/states):has(*:is(:checked.peer\/ak)) *) {
+      display: inline;
+    }
+  }
   .group-has-\[\:checked\.peer\\\/al\]\/states\:inline {
     &:is(:where(.group\/states):has(*:is(:checked.peer\/al)) *) {
       display: inline;
@@ -794,6 +799,21 @@
   }
   .group-has-\[\:checked\.peer\\\/ar\]\/states\:inline {
     &:is(:where(.group\/states):has(*:is(:checked.peer\/ar)) *) {
+      display: inline;
+    }
+  }
+  .group-has-\[\:checked\.peer\\\/az\]\/states\:inline {
+    &:is(:where(.group\/states):has(*:is(:checked.peer\/az)) *) {
+      display: inline;
+    }
+  }
+  .group-has-\[\:checked\.peer\\\/ca\]\/states\:inline {
+    &:is(:where(.group\/states):has(*:is(:checked.peer\/ca)) *) {
+      display: inline;
+    }
+  }
+  .group-has-\[\:checked\.peer\\\/co\]\/states\:inline {
+    &:is(:where(.group\/states):has(*:is(:checked.peer\/co)) *) {
       display: inline;
     }
   }
@@ -819,6 +839,11 @@
   }
   .group-has-\[\:checked\.peer\\\/ga\]\/states\:inline {
     &:is(:where(.group\/states):has(*:is(:checked.peer\/ga)) *) {
+      display: inline;
+    }
+  }
+  .group-has-\[\:checked\.peer\\\/hi\]\/states\:inline {
+    &:is(:where(.group\/states):has(*:is(:checked.peer\/hi)) *) {
       display: inline;
     }
   }
@@ -887,8 +912,18 @@
       display: inline;
     }
   }
+  .group-has-\[\:checked\.peer\\\/ms\]\/states\:inline {
+    &:is(:where(.group\/states):has(*:is(:checked.peer\/ms)) *) {
+      display: inline;
+    }
+  }
   .group-has-\[\:checked\.peer\\\/mt\]\/states\:inline {
     &:is(:where(.group\/states):has(*:is(:checked.peer\/mt)) *) {
+      display: inline;
+    }
+  }
+  .group-has-\[\:checked\.peer\\\/nc\]\/states\:inline {
+    &:is(:where(.group\/states):has(*:is(:checked.peer\/nc)) *) {
       display: inline;
     }
   }
@@ -912,6 +947,16 @@
       display: inline;
     }
   }
+  .group-has-\[\:checked\.peer\\\/nm\]\/states\:inline {
+    &:is(:where(.group\/states):has(*:is(:checked.peer\/nm)) *) {
+      display: inline;
+    }
+  }
+  .group-has-\[\:checked\.peer\\\/nv\]\/states\:inline {
+    &:is(:where(.group\/states):has(*:is(:checked.peer\/nv)) *) {
+      display: inline;
+    }
+  }
   .group-has-\[\:checked\.peer\\\/ny\]\/states\:inline {
     &:is(:where(.group\/states):has(*:is(:checked.peer\/ny)) *) {
       display: inline;
@@ -919,6 +964,11 @@
   }
   .group-has-\[\:checked\.peer\\\/oh\]\/states\:inline {
     &:is(:where(.group\/states):has(*:is(:checked.peer\/oh)) *) {
+      display: inline;
+    }
+  }
+  .group-has-\[\:checked\.peer\\\/ok\]\/states\:inline {
+    &:is(:where(.group\/states):has(*:is(:checked.peer\/ok)) *) {
       display: inline;
     }
   }
@@ -937,8 +987,33 @@
       display: inline;
     }
   }
+  .group-has-\[\:checked\.peer\\\/sc\]\/states\:inline {
+    &:is(:where(.group\/states):has(*:is(:checked.peer\/sc)) *) {
+      display: inline;
+    }
+  }
   .group-has-\[\:checked\.peer\\\/sd\]\/states\:inline {
     &:is(:where(.group\/states):has(*:is(:checked.peer\/sd)) *) {
+      display: inline;
+    }
+  }
+  .group-has-\[\:checked\.peer\\\/tn\]\/states\:inline {
+    &:is(:where(.group\/states):has(*:is(:checked.peer\/tn)) *) {
+      display: inline;
+    }
+  }
+  .group-has-\[\:checked\.peer\\\/tx\]\/states\:inline {
+    &:is(:where(.group\/states):has(*:is(:checked.peer\/tx)) *) {
+      display: inline;
+    }
+  }
+  .group-has-\[\:checked\.peer\\\/ut\]\/states\:inline {
+    &:is(:where(.group\/states):has(*:is(:checked.peer\/ut)) *) {
+      display: inline;
+    }
+  }
+  .group-has-\[\:checked\.peer\\\/va\]\/states\:inline {
+    &:is(:where(.group\/states):has(*:is(:checked.peer\/va)) *) {
       display: inline;
     }
   }
@@ -954,6 +1029,11 @@
   }
   .group-has-\[\:checked\.peer\\\/wi\]\/states\:inline {
     &:is(:where(.group\/states):has(*:is(:checked.peer\/wi)) *) {
+      display: inline;
+    }
+  }
+  .group-has-\[\:checked\.peer\\\/wv\]\/states\:inline {
+    &:is(:where(.group\/states):has(*:is(:checked.peer\/wv)) *) {
       display: inline;
     }
   }
@@ -2171,6 +2251,9 @@
     @media (width >= 1000px) {
       margin-right: calc((100vw - 936px) / 2);
     }
+  }
+  #analysis-three-states label {
+    color: var(--color-primary-one);
   }
   .presentation-slide {
     min-width: 100%;
