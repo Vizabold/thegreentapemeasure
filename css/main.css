@@ -501,7 +501,8 @@
     @apply text-neutral-seven;
   }
 
-  .slide-current {
+  .slide-current,
+  .card-current {
     @apply outline-2 outline-offset-2 outline-primary-one;
   }
 
