@@ -1,5 +1,6 @@
 /* ---------------------- Analysis 1 ------------------------- */
 
+const chartEl = document.getElementById('pie-chart-1a');
 let selectedSliceIndex = -1;
 
 var options = {
@@ -12,7 +13,12 @@ var options = {
                 document.getElementById('pie-chart-1a').style.opacity = '1';
             },
             dataPointSelection: function (event, chartContext, coonfig) {
-                selectedSliceIndex = coonfig.dataPointIndex;
+                if (selectedSliceIndex === config.dataPointIndex) {
+                    selectedSliceIndex = '-1';
+                } else {
+                    selectedSliceIndex = config.dataPointIndex;
+                };
+
                 chartContext.updateOption({});
             }
         }
@@ -42,10 +48,7 @@ var options = {
     }
 }
 
-var chart = new ApexCharts(document.querySelector("#chart"), options);
-
-try {
+if (chartEl) {
+    var chart = new ApexCharts(chartEl, options);
     chart.render();
-} catch (error) {
-    console.error("Chart failed ot initialize:", error);
 }
