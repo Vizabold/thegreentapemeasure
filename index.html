@@ -90,6 +90,7 @@
   </header>
 
   <main class="flex flex-col gap-31" id="main-content">
+    <span class="sr-only" aria-live="polite" id="live-region"></span>
     <section class="mt-21 " id="hero">
       <div class="flex gap-8">
         <div
@@ -128,7 +129,7 @@
             <a href="#research" class="btn btn-lg btn-secondary w-full max-w-100">Explore Findings</a>
           </div>
         </div>
-        <picture class="animate-[slideInRight_1.25s_ease-out_forwards] xxs:hidden sm:block xxl:pl-50">
+        <picture class="animate-[slideInRight_1.25s_ease-out_forwards] xxs:hidden sm:block">
           <source srcset="assets/images/hero-scrib-lg.webp" type="image/webp" media="(min-width: 1280px)"
             data-theme="dark, light">
           <source srcset="assets/images/hero-scrib-med.webp" type="image/webp" media="(min-width: 1000px)"
@@ -304,6 +305,9 @@
           <h2><span class="text-primary-one">Design Roles IQ</h2>
           <p class="paragraph-md">Test your industry knowledge. Drag the job title to its corresponding
             definition.</p>
+          <p class="text-secondary-five" id="quiz-js-note">Heads up! To participate in the quiz, you must have
+            JavaScript enabled in your browser.
+          </p>
         </div>
         <div class="flex flex-col gap-8 lg:flex-row">
           <div class="flex flex-col gap-8 lg:w-[50%]">
@@ -498,54 +502,49 @@
             </div>
             <div class="flex flex-col gap-6">
               <button type="button" class="btn btn-lg btn-secondary" id="reset-quiz-btn">Reset Quiz</button>
-              <div class="accordion-item">
-                <input name="accordion-input" type="radio" id="toggle-quiz" class="legacy-toggle">
-                <details name="accordion">
-                  <summary class="btn btn-accordion"><label for="toggle-quiz" class="legacy-label"><svg
-                        aria-hidden="true" class="icon-xs fill-primary-one">
-                        <use href="/assets/sprites/solid.svg#angle-down"></use>
-                      </svg>See our sources</label></summary>
-                  <div class="accordion-content-wrapper">
-                    <div class="flex flex-col pl-11 gap-4">
-                      <p class="wrap-break-word">BLS. <a class="link link--inline-neutral"
-                          href="https://www.bls.gov/ooh/architecture-and-engineering/architects.html"
-                          target="_blank">Outlook
-                          Handbook: Architects</a>. U.S. Bureau of Labor Statistics (2025). Available at:
-                        https://www.bls.gov/ooh/architecture-and-engineering/architects.html (Accessed 27 September
-                        2025).
-                      </p>
-                      <p class="wrap-break-word">BLS. <a class="link link--inline-neutral"
-                          href="https://www.bls.gov/ooh/arts-and-design/interior-designers.html"
-                          target="_blank">Occupational
-                          Outlook Handbook: Interior Designers</a>. U.S. Bureau of Labor Statistics (2025). Available
-                        at:
-                        https://www.bls.gov/ooh/arts-and-design/interior-designers.html (Accessed 27 September 2025).
-                      </p>
-                      <p class="wrap-break-word">CCIDC. <a class="link link--inline-neutral"
-                          href="https://ccidc.org/using-the-title-interior-architect-is-illegal" target="_blank">Why
-                          is
-                          it
-                          Illegal to Use the Title "Interior Architect"</a>. CCIDC (2025). Available at:
-                        https://ccidc.org/using-the-title-interior-architect-is-illegal (Accessed 27 September 2025).
-                      </p>
-                      <p class="wrap-break-word">CIDQ. <a class="link link--inline-neutral"
-                          href="https://www.cidq.org/why-ncidq-certification-matters" target="_blank">The Professional
-                          Difference Between "Interior Designer" and "Interior
-                          Decorator"</a>.
-                        Council for Interior Design Qualification (2025). Available at:
-                        https://www.cidq.org/why-ncidq-certification-matters (Accessed 27 September 2025).</p>
-                      <p class="wrap-break-word">NCARB. <a class="link link--inline-neutral"
-                          href="https://www.ncarb.org/become-architect/why-architecture" target="_blank">Why
-                          Architecture</a>. NCARB (2025). Available at:
-                        https://www.ncarb.org/become-architect/why-architecture (Accessed 27 September 2025).</p>
-                    </div>
+              <details name="accordion" class="w-76.75 xs:w-full min-w-full">
+                <summary class="btn btn-accordion"><svg aria-hidden="true" class="icon-xs fill-primary-one">
+                    <use href="/assets/sprites/solid.svg#angle-down"></use>
+                  </svg>See our sources</label></summary>
+                <div class="accordion-content-wrapper">
+                  <div class="flex flex-col pl-11 gap-4">
+                    <p class="wrap-break-word">BLS. <a class="link link--inline-neutral"
+                        href="https://www.bls.gov/ooh/architecture-and-engineering/architects.html"
+                        target="_blank">Outlook
+                        Handbook: Architects</a>. U.S. Bureau of Labor Statistics (2025). Available at:
+                      https://www.bls.gov/ooh/architecture-and-engineering/architects.html (Accessed 27 September
+                      2025).
+                    </p>
+                    <p class="wrap-break-word">BLS. <a class="link link--inline-neutral"
+                        href="https://www.bls.gov/ooh/arts-and-design/interior-designers.html"
+                        target="_blank">Occupational
+                        Outlook Handbook: Interior Designers</a>. U.S. Bureau of Labor Statistics (2025). Available
+                      at:
+                      https://www.bls.gov/ooh/arts-and-design/interior-designers.html (Accessed 27 September 2025).
+                    </p>
+                    <p class="wrap-break-word">CCIDC. <a class="link link--inline-neutral"
+                        href="https://ccidc.org/using-the-title-interior-architect-is-illegal" target="_blank">Why
+                        is
+                        it
+                        Illegal to Use the Title "Interior Architect"</a>. CCIDC (2025). Available at:
+                      https://ccidc.org/using-the-title-interior-architect-is-illegal (Accessed 27 September 2025).
+                    </p>
+                    <p class="wrap-break-word">CIDQ. <a class="link link--inline-neutral"
+                        href="https://www.cidq.org/why-ncidq-certification-matters" target="_blank">The Professional
+                        Difference Between "Interior Designer" and "Interior
+                        Decorator"</a>.
+                      Council for Interior Design Qualification (2025). Available at:
+                      https://www.cidq.org/why-ncidq-certification-matters (Accessed 27 September 2025).</p>
+                    <p class="wrap-break-word">NCARB. <a class="link link--inline-neutral"
+                        href="https://www.ncarb.org/become-architect/why-architecture" target="_blank">Why
+                        Architecture</a>. NCARB (2025). Available at:
+                      https://www.ncarb.org/become-architect/why-architecture (Accessed 27 September 2025).</p>
                   </div>
-                </details>
-              </div>
+                </div>
+              </details>
             </div>
           </div>
         </div>
-      </div>
     </section>
 
     <section class="bg-neutral-one gap-16 items-center" id="timeline">
@@ -555,7 +554,7 @@
         <p class="paragraph-md">Regulation is often a reactive response to historical events, frequently shaped by
           industry politics and territorial disputes.</p>
       </div>
-      <div class="flex flex-col max-w-304 gap-35 items-center relative">
+      <div class="flex flex-col w-full max-w-350 gap-35 items-center relative">
         <button type="button" class="btn btn-icon btn-icon--rounded relative z-1" id="timeline-prev-btn"
           aria-label="see previous event">
           <svg class="icon-xs" aria-hidden="true">
@@ -570,14 +569,12 @@
               </svg>
             </div>
             <h3 class="text-right">AIA</h3>
-            <p class=" text-right">The American Institute of Architects is formed.</p>
+            <p class="text-right">The American Institute of Architects is formed.</p>
             <div class="max-w-full">
-              <input name="accordion-input" type="radio" id="toggle-time-1" class="legacy-toggle">
               <details name="accordion">
-                <summary class="btn btn-accordion"><label for="toggle-time-1" class="legacy-label"><svg
-                      aria-hidden="true" class="icon-xs fill-primary-one">
-                      <use href="/assets/sprites/solid.svg#angle-down"></use>
-                    </svg>Sources</label></summary>
+                <summary class="btn btn-accordion"><svg aria-hidden="true" class="icon-xs fill-primary-one">
+                    <use href="/assets/sprites/solid.svg#angle-down"></use>
+                  </svg>Sources</summary>
                 <div class="accordion-content-wrapper">
                   <div class="flex flex-col pl-11 gap-4 text-right">
                     <p class="wrap-break-word">NCARB. <a class="link link--inline-neutral"
@@ -604,12 +601,10 @@
             <h3 class="text-right">Architecture Regulation</h3>
             <p class="text-right">Illinois is the first state to regulate architecture.</p>
             <div class="max-w-full">
-              <input name="accordion-input" type="radio" id="toggle-time-2" class="legacy-toggle">
               <details name="accordion">
-                <summary class="btn btn-accordion"><label for="toggle-time-2" class="legacy-label"><svg
-                      aria-hidden="true" class="icon-xs fill-primary-one">
-                      <use href="/assets/sprites/solid.svg#angle-down"></use>
-                    </svg>Sources</label></summary>
+                <summary class="btn btn-accordion"><svg aria-hidden="true" class="icon-xs fill-primary-one">
+                    <use href="/assets/sprites/solid.svg#angle-down"></use>
+                  </svg>Sources</summary>
                 <div class="accordion-content-wrapper">
                   <div class="flex flex-col pl-11 gap-4 text-right">
                     <p class="wrap-break-word">NCARB. <a class="link link--inline-neutral"
@@ -636,12 +631,10 @@
             <h3 class="text-right">Theater Fire</h3>
             <p class="text-right">Theater fire kills 602 due to flammable finishes & poor egress.</p>
             <div class="max-w-full">
-              <input name="accordion-input" type="radio" id="toggle-time-3" class="legacy-toggle">
               <details name="accordion">
-                <summary class="btn btn-accordion"><label for="toggle-time-3" class="legacy-label"><svg
-                      aria-hidden="true" class="icon-xs fill-primary-one">
-                      <use href="/assets/sprites/solid.svg#angle-down"></use>
-                    </svg>Sources</label></summary>
+                <summary class="btn btn-accordion"><svg aria-hidden="true" class="icon-xs fill-primary-one">
+                    <use href="/assets/sprites/solid.svg#angle-down"></use>
+                  </svg>Sources</summary>
                 <div class="accordion-content-wrapper">
                   <div class="flex flex-col pl-11 gap-4 text-right">
                     <p class="wrap-break-word">Massasoit Community College. <a class="link link--inline-neutral"
@@ -676,12 +669,10 @@
             <h3 class="text-right">Factory Fire</h3>
             <p class="text-right">A factory fire kills 146, mostly due to poor egress.</p>
             <div class="max-w-full">
-              <input name="accordion-input" type="radio" id="toggle-time-4" class="legacy-toggle">
               <details name="accordion">
-                <summary class="btn btn-accordion"><label for="toggle-time-4" class="legacy-label"><svg
-                      aria-hidden="true" class="icon-xs fill-primary-one">
-                      <use href="/assets/sprites/solid.svg#angle-down"></use>
-                    </svg>Sources</label></summary>
+                <summary class="btn btn-accordion"><svg aria-hidden="true" class="icon-xs fill-primary-one">
+                    <use href="/assets/sprites/solid.svg#angle-down"></use>
+                  </svg>Sources</summary>
                 <div class="accordion-content-wrapper">
                   <div class="flex flex-col pl-11 gap-4 text-right">
                     <p class="wrap-break-word">AFL-CIO. <a class="link link--inline-neutral"
@@ -715,12 +706,10 @@
             <h3 class="text-right">NCARB</h3>
             <p class="text-right">The National Council of Architectural Registration Board (NCARB) is formed.</p>
             <div class="max-w-full">
-              <input name="accordion-input" type="radio" id="toggle-time-5" class="legacy-toggle">
               <details name="accordion">
-                <summary class="btn btn-accordion"><label for="toggle-time-5" class="legacy-label"><svg
-                      aria-hidden="true" class="icon-xs fill-primary-one">
-                      <use href="/assets/sprites/solid.svg#angle-down"></use>
-                    </svg>Sources</label></summary>
+                <summary class="btn btn-accordion"><svg aria-hidden="true" class="icon-xs fill-primary-one">
+                    <use href="/assets/sprites/solid.svg#angle-down"></use>
+                  </svg>Sources</summary>
                 <div class="accordion-content-wrapper">
                   <div class="flex flex-col pl-11 gap-4 text-right">
                     <p class="wrap-break-word">NCARB. <a class="link link--inline-neutral"
@@ -746,12 +735,10 @@
             <h3 class="text-right">AIID</h3>
             <p class="text-right">American Institute of Interior Decorators is formed.</p>
             <div class="max-w-full">
-              <input name="accordion-input" type="radio" id="toggle-time-6" class="legacy-toggle">
               <details name="accordion">
-                <summary class="btn btn-accordion"><label for="toggle-time-6" class="legacy-label"><svg
-                      aria-hidden="true" class="icon-xs fill-primary-one">
-                      <use href="/assets/sprites/solid.svg#angle-down"></use>
-                    </svg>Sources</label></summary>
+                <summary class="btn btn-accordion"><svg aria-hidden="true" class="icon-xs fill-primary-one">
+                    <use href="/assets/sprites/solid.svg#angle-down"></use>
+                  </svg>Sources</summary>
                 <div class="accordion-content-wrapper">
                   <div class="flex flex-col pl-11 gap-4 text-right">
                     <p class="wrap-break-word">ASID. <a class="link link--inline-neutral"
@@ -778,12 +765,10 @@
             <h3 class="text-right">NAAB</h3>
             <p class="text-right">National Architectural Accrediting Board (NAAB) is formed.</p>
             <div class="max-w-full">
-              <input name="accordion-input" type="radio" id="toggle-time-7" class="legacy-toggle">
               <details name="accordion">
-                <summary class="btn btn-accordion"><label for="toggle-time-7" class="legacy-label"><svg
-                      aria-hidden="true" class="icon-xs fill-primary-one">
-                      <use href="/assets/sprites/solid.svg#angle-down"></use>
-                    </svg>Sources</label></summary>
+                <summary class="btn btn-accordion"><svg aria-hidden="true" class="icon-xs fill-primary-one">
+                    <use href="/assets/sprites/solid.svg#angle-down"></use>
+                  </svg>Sources</summary>
                 <div class="accordion-content-wrapper">
                   <div class="flex flex-col pl-11 gap-4 text-right">
                     <p class="wrap-break-word">NAAB. <a class="link link--inline-neutral"
@@ -809,12 +794,10 @@
             <h3 class="text-right">NSID</h3>
             <p class="text-right">National Society of Interior Designers (NSID) is formed.</p>
             <div class="max-w-full">
-              <input name="accordion-input" type="radio" id="toggle-time-8" class="legacy-toggle">
               <details name="accordion">
-                <summary class="btn btn-accordion"><label for="toggle-time-8" class="legacy-label"><svg
-                      aria-hidden="true" class="icon-xs fill-primary-one">
-                      <use href="/assets/sprites/solid.svg#angle-down"></use>
-                    </svg>Sources</label></summary>
+                <summary class="btn btn-accordion"><svg aria-hidden="true" class="icon-xs fill-primary-one">
+                    <use href="/assets/sprites/solid.svg#angle-down"></use>
+                  </svg>Sources</summary>
                 <div class="accordion-content-wrapper">
                   <div class="flex flex-col pl-11 gap-4 text-right">
                     <p class="wrap-break-word">ASID. <a class="link link--inline-neutral"
@@ -842,12 +825,10 @@
             <p class="text-right">FIDER, now called CIDA, the Council for Interior Design Accreditation, is formed.
             </p>
             <div class="max-w-full">
-              <input name="accordion-input" type="radio" id="toggle-time-9" class="legacy-toggle">
               <details name="accordion">
-                <summary class="btn btn-accordion"><label for="toggle-time-9" class="legacy-label"><svg
-                      aria-hidden="true" class="icon-xs fill-primary-one">
-                      <use href="/assets/sprites/solid.svg#angle-down"></use>
-                    </svg>Sources</label></summary>
+                <summary class="btn btn-accordion"><svg aria-hidden="true" class="icon-xs fill-primary-one">
+                    <use href="/assets/sprites/solid.svg#angle-down"></use>
+                  </svg>Sources</summary>
                 <div class="accordion-content-wrapper">
                   <div class="flex flex-col pl-11 gap-4 text-right">
                     <p class="wrap-break-word">CIDA. <a class="link link--inline-neutral"
@@ -873,12 +854,10 @@
             <h3 class="text-right">CIDQ</h3>
             <p class="text-right">CIDQ (Council for Interior Design Qualification) is formed.</p>
             <div class="max-w-full">
-              <input name="accordion-input" type="radio" id="toggle-time-10" class="legacy-toggle">
               <details name="accordion">
-                <summary class="btn btn-accordion"><label for="toggle-time-10" class="legacy-label"><svg
-                      aria-hidden="true" class="icon-xs fill-primary-one">
-                      <use href="/assets/sprites/solid.svg#angle-down"></use>
-                    </svg>Sources</label></summary>
+                <summary class="btn btn-accordion"><svg aria-hidden="true" class="icon-xs fill-primary-one">
+                    <use href="/assets/sprites/solid.svg#angle-down"></use>
+                  </svg>Sources</summary>
                 <div class="accordion-content-wrapper">
                   <div class="flex flex-col pl-11 gap-4 text-right">
                     <p class="wrap-break-word">CIDQ. <a class="link link--inline-neutral"
@@ -904,12 +883,10 @@
             <h3 class="text-right">ASID</h3>
             <p class="text-right">ASID (American Society of Interior Designers) is formed.</p>
             <div class="max-w-full">
-              <input name="accordion-input" type="radio" id="toggle-time-11" class="legacy-toggle">
               <details name="accordion">
-                <summary class="btn btn-accordion"><label for="toggle-time-11" class="legacy-label"><svg
-                      aria-hidden="true" class="icon-xs fill-primary-one">
-                      <use href="/assets/sprites/solid.svg#angle-down"></use>
-                    </svg>Sources</label></summary>
+                <summary class="btn btn-accordion"><svg aria-hidden="true" class="icon-xs fill-primary-one">
+                    <use href="/assets/sprites/solid.svg#angle-down"></use>
+                  </svg>Sources</summary>
                 <div class="accordion-content-wrapper">
                   <div class="flex flex-col pl-11 gap-4 text-right">
                     <p class="wrap-break-word">ASID. <a class="link link--inline-neutral"
@@ -938,12 +915,10 @@
               sprinklers.
             </p>
             <div class="max-w-full">
-              <input name="accordion-input" type="radio" id="toggle-time-12" class="legacy-toggle">
               <details name="accordion">
-                <summary class="btn btn-accordion"><label for="toggle-time-12" class="legacy-label"><svg
-                      aria-hidden="true" class="icon-xs fill-primary-one">
-                      <use href="/assets/sprites/solid.svg#angle-down"></use>
-                    </svg>Sources</label></summary>
+                <summary class="btn btn-accordion"><svg aria-hidden="true" class="icon-xs fill-primary-one">
+                    <use href="/assets/sprites/solid.svg#angle-down"></use>
+                  </svg>Sources</summary>
                 <div class="accordion-content-wrapper">
                   <div class="flex flex-col pl-11 gap-4 text-right">
                     <p class="wrap-break-word">Best, Richard, and Demers, David P. <a class="link link--inline-neutral"
@@ -979,12 +954,10 @@
             <p class="text-right">Alabama is the first state to pass interior design regulation.
             </p>
             <div class="max-w-full">
-              <input name="accordion-input" type="radio" id="toggle-time-13" class="legacy-toggle">
               <details name="accordion">
-                <summary class="btn btn-accordion"><label for="toggle-time-13" class="legacy-label"><svg
-                      aria-hidden="true" class="icon-xs fill-primary-one">
-                      <use href="/assets/sprites/solid.svg#angle-down"></use>
-                    </svg>Sources</label></summary>
+                <summary class="btn btn-accordion"><svg aria-hidden="true" class="icon-xs fill-primary-one">
+                    <use href="/assets/sprites/solid.svg#angle-down"></use>
+                  </svg>Sources</summary>
                 <div class="accordion-content-wrapper">
                   <div class="flex flex-col pl-11 gap-4 text-right">
                     <p class="wrap-break-word">IIDA Alabama Chapter. <a class="link link--inline-neutral"
@@ -1011,12 +984,10 @@
             <p class="text-right">Architects openly oppose interior design legislation.
             </p>
             <div class="max-w-full">
-              <input name="accordion-input" type="radio" id="toggle-time-14" class="legacy-toggle">
               <details name="accordion">
-                <summary class="btn btn-accordion"><label for="toggle-time-14" class="legacy-label"><svg
-                      aria-hidden="true" class="icon-xs fill-primary-one">
-                      <use href="/assets/sprites/solid.svg#angle-down"></use>
-                    </svg>Sources</label></summary>
+                <summary class="btn btn-accordion"><svg aria-hidden="true" class="icon-xs fill-primary-one">
+                    <use href="/assets/sprites/solid.svg#angle-down"></use>
+                  </svg>Sources</summary>
                 <div class="accordion-content-wrapper">
                   <div class="flex flex-col pl-11 gap-4 text-right">
                     <p class="wrap-break-word">Gillman, Todd J. <a class="link link--inline-neutral"
@@ -1045,12 +1016,10 @@
             <p class="text-right">National Accord established, placing restrictions on interior designers for AIA
               support.</p>
             <div class="max-w-full">
-              <input name="accordion-input" type="radio" id="toggle-time-15" class="legacy-toggle">
               <details name="accordion">
-                <summary class="btn btn-accordion"><label for="toggle-time-15" class="legacy-label"><svg
-                      aria-hidden="true" class="icon-xs fill-primary-one">
-                      <use href="/assets/sprites/solid.svg#angle-down"></use>
-                    </svg>Sources</label></summary>
+                <summary class="btn btn-accordion"><svg aria-hidden="true" class="icon-xs fill-primary-one">
+                    <use href="/assets/sprites/solid.svg#angle-down"></use>
+                  </svg>Sources</summary>
                 <div class="accordion-content-wrapper">
                   <div class="flex flex-col pl-11 gap-4 text-right">
                     <p class="wrap-break-word">Whitney, Marilyn Corson. <a class="link link--inline-neutral"
@@ -1078,12 +1047,10 @@
             <h3 class="text-right">IIDA</h3>
             <p class="text-right">IIDA (International Interior Design Association) is formed.</p>
             <div class="max-w-full">
-              <input name="accordion-input" type="radio" id="toggle-time-16" class="legacy-toggle">
               <details name="accordion">
-                <summary class="btn btn-accordion"><label for="toggle-time-16" class="legacy-label"><svg
-                      aria-hidden="true" class="icon-xs fill-primary-one">
-                      <use href="/assets/sprites/solid.svg#angle-down"></use>
-                    </svg>Sources</label></summary>
+                <summary class="btn btn-accordion"><svg aria-hidden="true" class="icon-xs fill-primary-one">
+                    <use href="/assets/sprites/solid.svg#angle-down"></use>
+                  </svg>Sources</summary>
                 <div class="accordion-content-wrapper">
                   <div class="flex flex-col pl-11 gap-4 text-right">
                     <p class="wrap-break-word"><a class="link link--inline-neutral"
@@ -1109,12 +1076,10 @@
             <h3 class="text-right">Accord Ends</h3>
             <p class="text-right">ASID votes to no longer honor the Accord.</p>
             <div class="max-w-full">
-              <input name="accordion-input" type="radio" id="toggle-time-17" class="legacy-toggle">
               <details name="accordion">
-                <summary class="btn btn-accordion"><label for="toggle-time-17" class="legacy-label"><svg
-                      aria-hidden="true" class="icon-xs fill-primary-one">
-                      <use href="/assets/sprites/solid.svg#angle-down"></use>
-                    </svg>Sources</label></summary>
+                <summary class="btn btn-accordion"><svg aria-hidden="true" class="icon-xs fill-primary-one">
+                    <use href="/assets/sprites/solid.svg#angle-down"></use>
+                  </svg>Sources</summary>
                 <div class="accordion-content-wrapper">
                   <div class="flex flex-col pl-11 gap-4 text-right">
                     <p class="wrap-break-word">AIA Las Vegas. <a class="link link--inline-neutral"
@@ -1142,12 +1107,10 @@
             <p class="text-right">Nightclub fire kills 100 due to rapid fire spread and toxic fumes from interior
               finishes.</p>
             <div class="max-w-full">
-              <input name="accordion-input" type="radio" id="toggle-time-18" class="legacy-toggle">
               <details name="accordion">
-                <summary class="btn btn-accordion"><label for="toggle-time-18" class="legacy-label"><svg
-                      aria-hidden="true" class="icon-xs fill-primary-one">
-                      <use href="/assets/sprites/solid.svg#angle-down"></use>
-                    </svg>Sources</label></summary>
+                <summary class="btn btn-accordion"><svg aria-hidden="true" class="icon-xs fill-primary-one">
+                    <use href="/assets/sprites/solid.svg#angle-down"></use>
+                  </svg>Sources</summary>
                 <div class="accordion-content-wrapper">
                   <div class="flex flex-col pl-11 gap-4 text-right">
                     <p class="wrap-break-word">FSRI. <a class="link link--inline-neutral"
@@ -1183,12 +1146,10 @@
             <h3 class="text-right">Freedom of Speech</h3>
             <p class="text-right">Regulation of the title “Interior Designer” is ruled unconstitutional.</p>
             <div class="max-w-full">
-              <input name="accordion-input" type="radio" id="toggle-time-19" class="legacy-toggle">
               <details name="accordion">
-                <summary class="btn btn-accordion"><label for="toggle-time-19" class="legacy-label"><svg
-                      aria-hidden="true" class="icon-xs fill-primary-one">
-                      <use href="/assets/sprites/solid.svg#angle-down"></use>
-                    </svg>Sources</label></summary>
+                <summary class="btn btn-accordion"><svg aria-hidden="true" class="icon-xs fill-primary-one">
+                    <use href="/assets/sprites/solid.svg#angle-down"></use>
+                  </svg>Sources</summary>
                 <div class="accordion-content-wrapper">
                   <div class="flex flex-col pl-11 gap-4 text-right">
                     <p class="wrap-break-word">Institute for Justice. <a class="link link--inline-neutral"
@@ -1239,12 +1200,10 @@
             <h3 class="text-right">Architects Join ASID</h3>
             <p class="text-right">ASID allows licensed architects to join as practitioner members.</p>
             <div class="max-w-full">
-              <input name="accordion-input" type="radio" id="toggle-time-20" class="legacy-toggle">
               <details name="accordion">
-                <summary class="btn btn-accordion"><label for="toggle-time-20" class="legacy-label"><svg
-                      aria-hidden="true" class="icon-xs fill-primary-one">
-                      <use href="/assets/sprites/solid.svg#angle-down"></use>
-                    </svg>Sources</label></summary>
+                <summary class="btn btn-accordion"><svg aria-hidden="true" class="icon-xs fill-primary-one">
+                    <use href="/assets/sprites/solid.svg#angle-down"></use>
+                  </svg>Sources</summary>
                 <div class="accordion-content-wrapper">
                   <div class="flex flex-col pl-11 gap-4 text-right">
                     <p class="wrap-break-word">ASID. <a class="link link--inline-neutral"
@@ -1272,12 +1231,10 @@
             <h3 class="text-right">Apartment Fire</h3>
             <p class="text-right">Apartment fire kills 13 due to lack of self-closing doors and oil-based paint.</p>
             <div class="max-w-full">
-              <input name="accordion-input" type="radio" id="toggle-time-21" class="legacy-toggle">
               <details name="accordion">
-                <summary class="btn btn-accordion"><label for="toggle-time-21" class="legacy-label"><svg
-                      aria-hidden="true" class="icon-xs fill-primary-one">
-                      <use href="/assets/sprites/solid.svg#angle-down"></use>
-                    </svg>Sources</label></summary>
+                <summary class="btn btn-accordion"><svg aria-hidden="true" class="icon-xs fill-primary-one">
+                    <use href="/assets/sprites/solid.svg#angle-down"></use>
+                  </svg>Sources</summary>
                 <div class="accordion-content-wrapper">
                   <div class="flex flex-col pl-11 gap-4 text-right">
                     <p class="wrap-break-word">Daly, Michael. <a class="link link--inline-neutral"
@@ -1321,12 +1278,10 @@
             <p class="text-right">AIA no longer mandates its chapters to outright oppose interior design regulation.
             </p>
             <div class="max-w-full">
-              <input name="accordion-input" type="radio" id="toggle-time-22" class="legacy-toggle">
               <details name="accordion">
-                <summary class="btn btn-accordion"><label for="toggle-time-22" class="legacy-label"><svg
-                      aria-hidden="true" class="icon-xs fill-primary-one">
-                      <use href="/assets/sprites/solid.svg#angle-down"></use>
-                    </svg>Sources</label></summary>
+                <summary class="btn btn-accordion"><svg aria-hidden="true" class="icon-xs fill-primary-one">
+                    <use href="/assets/sprites/solid.svg#angle-down"></use>
+                  </svg>Sources</summary>
                 <div class="accordion-content-wrapper">
                   <div class="flex flex-col pl-11 gap-4 text-right">
                     <p class="wrap-break-word">CIDQ. <a class="link link--inline-neutral"
@@ -1355,12 +1310,10 @@
             <h3 class="text-right">Consortium Formed</h3>
             <p class="text-right">ASID, IIDA, and CIDQ form the Consortium for Interior Design.</p>
             <div class="max-w-full">
-              <input name="accordion-input" type="radio" id="toggle-time-23" class="legacy-toggle">
               <details name="accordion">
-                <summary class="btn btn-accordion"><label for="toggle-time-23" class="legacy-label"><svg
-                      aria-hidden="true" class="icon-xs fill-primary-one">
-                      <use href="/assets/sprites/solid.svg#angle-down"></use>
-                    </svg>Sources</label></summary>
+                <summary class="btn btn-accordion"><svg aria-hidden="true" class="icon-xs fill-primary-one">
+                    <use href="/assets/sprites/solid.svg#angle-down"></use>
+                  </svg>Sources</summary>
                 <div class="accordion-content-wrapper">
                   <div class="flex flex-col pl-11 gap-4 text-right">
                     <p class="wrap-break-word">ASID. <a class="link link--inline-neutral"
@@ -1389,12 +1342,10 @@
             <h3 class="text-right">“Reasonable” Regulation</h3>
             <p class="text-right">ASID, IIDA, and CIDQ announce “reasonable” regulation.</p>
             <div class="max-w-full">
-              <input name="accordion-input" type="radio" id="toggle-time-24" class="legacy-toggle">
               <details name="accordion">
-                <summary class="btn btn-accordion"><label for="toggle-time-24" class="legacy-label"><svg
-                      aria-hidden="true" class="icon-xs fill-primary-one">
-                      <use href="/assets/sprites/solid.svg#angle-down"></use>
-                    </svg>Sources</label></summary>
+                <summary class="btn btn-accordion"><svg aria-hidden="true" class="icon-xs fill-primary-one">
+                    <use href="/assets/sprites/solid.svg#angle-down"></use>
+                  </svg>Sources</summary>
                 <div class="accordion-content-wrapper">
                   <div class="flex flex-col pl-11 gap-4 text-right">
                     <p class="wrap-break-word">ASID. <a class="link link--inline-neutral"
@@ -1579,10 +1530,9 @@
             </div>
           </div>
           <details name="accordion">
-            <summary class="btn btn-accordion paragraph-md"><label for="toggle-leg-1" class="legacy-label"><svg
-                  aria-hidden="true" class="icon-xs fill-primary-one">
-                  <use href="/assets/sprites/solid.svg#angle-down"></use>
-                </svg>Inclusive Pathways</label></summary>
+            <summary class="btn btn-accordion paragraph-md"><svg aria-hidden="true" class="icon-xs fill-primary-one">
+                <use href="/assets/sprites/solid.svg#angle-down"></use>
+              </svg>Inclusive Pathways</summary>
             <div class="accordion-content-wrapper">
               <div class="flex flex-col">
                 <p class="wrap-break-word">Create diverse licensing tracks, including non-degree options and exams
@@ -1591,10 +1541,9 @@
             </div>
           </details>
           <details name="accordion">
-            <summary class="btn btn-accordion paragraph-md"><label for="toggle-leg-2" class="legacy-label"><svg
-                  aria-hidden="true" class="icon-xs fill-primary-one">
-                  <use href="/assets/sprites/solid.svg#angle-down"></use>
-                </svg>Professional Parity</label></summary>
+            <summary class="btn btn-accordion paragraph-md"><svg aria-hidden="true" class="icon-xs fill-primary-one">
+                <use href="/assets/sprites/solid.svg#angle-down"></use>
+              </svg>Professional Parity</summary>
             <div class="accordion-content-wrapper">
               <div class="flex flex-col">
                 <p class="wrap-break-word">Establish independent or equal-representation boards and implement mandatory,
@@ -1603,10 +1552,9 @@
             </div>
           </details>
           <details name="accordion">
-            <summary class="btn btn-accordion paragraph-md"><label for="toggle-leg-3" class="legacy-label"><svg
-                  aria-hidden="true" class="icon-xs fill-primary-one">
-                  <use href="/assets/sprites/solid.svg#angle-down"></use>
-                </svg>Title Protection</label></summary>
+            <summary class="btn btn-accordion paragraph-md"><svg aria-hidden="true" class="icon-xs fill-primary-one">
+                <use href="/assets/sprites/solid.svg#angle-down"></use>
+              </svg>Title Protection</summary>
             <div class="accordion-content-wrapper">
               <div class="flex flex-col">
                 <p class="wrap-break-word">Secure exclusive use of "Interior Designer" and "Licensed Interior Designer"
@@ -1616,10 +1564,9 @@
             </div>
           </details>
           <details name="accordion">
-            <summary class="btn btn-accordion paragraph-md"><label for="toggle-leg-4" class="legacy-label"><svg
-                  aria-hidden="true" class="icon-xs fill-primary-one">
-                  <use href="/assets/sprites/solid.svg#angle-down"></use>
-                </svg>Expanded Authority</label></summary>
+            <summary class="btn btn-accordion paragraph-md"><svg aria-hidden="true" class="icon-xs fill-primary-one">
+                <use href="/assets/sprites/solid.svg#angle-down"></use>
+              </svg>Expanded Authority</summary>
             <div class="accordion-content-wrapper">
               <div class="flex flex-col">
                 <p class="wrap-break-word">Grant designers full permitting privileges, including the authority to sign
@@ -1667,7 +1614,8 @@
             <a class="link link--inline" href="/assets/docs/AB1796_GTM-Response.pdf" target="_blank">Our position
               statement</a>
           </div>
-          <button class="btn btn-icon text-primary-one justify-start" aria-expanded="false" aria-controls="ca-analysis">
+          <button class="btn btn-icon text-primary-one justify-start" aria-expanded="false"
+            aria-controls="analysis-four" popovertarget="analysis-four" aria-haspopup="dialog">
             <svg class="icon-sm fill-primary-one">
               <use href="/assets/sprites/solid.svg#arrow-up-right-from-square"></use>
             </svg>
@@ -2207,7 +2155,8 @@
     </div>
   </footer>
 
-  <dialog class="analysis-dialog" id="analysis-one" aria-labelledby="" aria-modal="true" popover>
+  <dialog class="analysis-dialog" id="analysis-one" aria-labelledby="Analysis of Deadly Building Fires in the U.S."
+    aria-modal="true" popover>
     <div class="presentation-slider scrollbar">
       <div class="card presentation-slide" id="slide-1a">
         <div class="flex justify-center items-center">
@@ -3776,7 +3725,8 @@
     </div>
   </dialog>
 
-  <dialog class="analysis-dialog" id="analysis-two" aria-labelledby="" aria-modal="true" popover>
+  <dialog class="analysis-dialog" id="analysis-two" aria-label="Architecture versus Interior Design Education and Exam"
+    aria-modal="true" popover>
     <div class="presentation-slider scrollbar">
       <div class="card presentation-slide" id="slide-2a">
         <div class="flex justify-center items-center">
@@ -3849,8 +3799,8 @@
               </div>
             </div>
           </div>
+          <p class="graph-details"></p>
         </div>
-        <p class="graph-details"></p>
       </div>
       <div class="card presentation-slide" id="slide-2b">
         <div class="flex justify-center items-center">
@@ -3923,8 +3873,8 @@
               </div>
             </div>
           </div>
+          <p class="graph-details"></p>
         </div>
-        <p class="graph-details"></p>
       </div>
       <div class="card presentation-slide" id="slide-2c">
         <div class="flex justify-center items-center">
@@ -3973,8 +3923,8 @@
               </div>
             </div>
           </div>
+          <p class="graph-details"></p>
         </div>
-        <p class="graph-details"></p>
       </div>
       <div class="card presentation-slide" id="slide-2d">
         <div class="flex justify-center items-center">
@@ -4029,8 +3979,8 @@
               </div>
             </div>
           </div>
+          <p class="graph-details"></p>
         </div>
-        <p class="graph-details"></p>
       </div>
       <div class="card presentation-slide" id="slide-2e">
         <div class="flex flex-col gap-4">
@@ -4722,8 +4672,8 @@
               </div>
             </div>
           </div>
+          <p class="graph-details"></p>
         </div>
-        <p class="graph-details"></p>
       </div>
       <div class="card presentation-slide group/states" id="slide-3b">
         <div class="flex flex-col gap-8 pr-4 border-r border-solid border-neutral-six lg:w-[55%]">
@@ -4741,17 +4691,23 @@
                 </svg>Mid-Atlantic</summary>
               <div class="accordion-content-wrapper">
                 <div class="flex flex-col pl-11 gap-4">
-                  <input type="radio" name="state" id="de" class="peer/de hidden">
+                  <input type="radio" name="state" id="de" class="peer/de sr-only" aria-controls="state-bill-details"
+                    aria-expanded="false">
                   <label for="de" class="link cursor-pointer">Delaware</label>
-                  <input type="radio" name="state" id="dc" class="peer/dc hidden">
+                  <input type="radio" name="state" id="dc" class="peer/dc sr-only" aria-controls="state-bill-details"
+                    aria-expanded="false">
                   <label for="dc" class="link cursor-pointer">District of Columbia</label>
-                  <input type="radio" name="state" id="md" class="peer/md hidden">
+                  <input type="radio" name="state" id="md" class="peer/md sr-only" aria-controls="state-bill-details"
+                    aria-expanded="false">
                   <label for="md" class="link cursor-pointer">Maryland</label>
-                  <input type="radio" name="state" id="nj" class="peer/nj hidden">
+                  <input type="radio" name="state" id="nj" class="peer/nj sr-only" aria-controls="state-bill-details"
+                    aria-expanded="false">
                   <label for="nj" class="link cursor-pointer">New Jersey</label>
-                  <input type="radio" name="state" id="ny" class="peer/ny hidden">
+                  <input type="radio" name="state" id="ny" class="peer/ny sr-only" aria-controls="state-bill-details"
+                    aria-expanded="false">
                   <label for="ny" class="link cursor-pointer">New York</label>
-                  <input type="radio" name="state" id="pa" class="peer/pa hidden">
+                  <input type="radio" name="state" id="pa" class="peer/pa sr-only" aria-controls="state-bill-details"
+                    aria-expanded="false">
                   <label for="pa" class="link cursor-pointer">Pennsylvania</label>
                 </div>
               </div>
@@ -4762,29 +4718,41 @@
                 </svg>Midwest</summary>
               <div class="accordion-content-wrapper">
                 <div class="flex flex-col pl-11 gap-4">
-                  <input type="radio" name="state" id="il" class="peer/il hidden">
+                  <input type="radio" name="state" id="il" class="peer/il sr-only" aria-controls="state-bill-details"
+                    aria-expanded="false">
                   <label for="il" class="link cursor-pointer">Illinois</label>
-                  <input type="radio" name="state" id="in" class="peer/in hidden">
+                  <input type="radio" name="state" id="in" class="peer/in sr-only" aria-controls="state-bill-details"
+                    aria-expanded="false">
                   <label for="in" class="link cursor-pointer">Indiana</label>
-                  <input type="radio" name="state" id="ia" class="peer/ia hidden">
+                  <input type="radio" name="state" id="ia" class="peer/ia sr-only" aria-controls="state-bill-details"
+                    aria-expanded="false">
                   <label for="ia" class="link cursor-pointer">Iowa</label>
-                  <input type="radio" name="state" id="ks" class="peer/ks hidden">
+                  <input type="radio" name="state" id="ks" class="peer/ks sr-only" aria-controls="state-bill-details"
+                    aria-expanded="false">
                   <label for="ks" class="link cursor-pointer">Kansas</label>
-                  <input type="radio" name="state" id="mi" class="peer/mi hidden">
+                  <input type="radio" name="state" id="mi" class="peer/mi sr-only" aria-controls="state-bill-details"
+                    aria-expanded="false">
                   <label for="mi" class="link cursor-pointer">Michigan</label>
-                  <input type="radio" name="state" id="mn" class="peer/mn hidden">
+                  <input type="radio" name="state" id="mn" class="peer/mn sr-only" aria-controls="state-bill-details"
+                    aria-expanded="false">
                   <label for="mn" class="link cursor-pointer">Minnesota</label>
-                  <input type="radio" name="state" id="mo" class="peer/mo hidden">
+                  <input type="radio" name="state" id="mo" class="peer/mo sr-only" aria-controls="state-bill-details"
+                    aria-expanded="false">
                   <label for="mo" class="link cursor-pointer">Missouri</label>
-                  <input type="radio" name="state" id="ne" class="peer/ne hidden">
+                  <input type="radio" name="state" id="ne" class="peer/ne sr-only" aria-controls="state-bill-details"
+                    aria-expanded="false">
                   <label for="ne" class="link cursor-pointer">Nebraska</label>
-                  <input type="radio" name="state" id="nd" class="peer/nd hidden">
+                  <input type="radio" name="state" id="nd" class="peer/nd sr-only" aria-controls="state-bill-details"
+                    aria-expanded="false">
                   <label for="nd" class="link cursor-pointer">North Dakota</label>
-                  <input type="radio" name="state" id="oh" class="peer/oh hidden">
+                  <input type="radio" name="state" id="oh" class="peer/oh sr-only" aria-controls="state-bill-details"
+                    aria-expanded="false">
                   <label for="oh" class="link cursor-pointer">Ohio</label>
-                  <input type="radio" name="state" id="sd" class="peer/sd hidden">
+                  <input type="radio" name="state" id="sd" class="peer/sd sr-only" aria-controls="state-bill-details"
+                    aria-expanded="false">
                   <label for="sd" class="link cursor-pointer">South Dakota</label>
-                  <input type="radio" name="state" id="wi" class="peer/wi hidden">
+                  <input type="radio" name="state" id="wi" class="peer/wi sr-only" aria-controls="state-bill-details"
+                    aria-expanded="false">
                   <label for="wi" class="link cursor-pointer">Wisconsin</label>
                 </div>
               </div>
@@ -4795,17 +4763,23 @@
                 </svg>New England</summary>
               <div class="accordion-content-wrapper">
                 <div class="flex flex-col pl-11 gap-4">
-                  <input type="radio" name="state" id="ct" class="peer/ct hidden">
+                  <input type="radio" name="state" id="ct" class="peer/ct sr-only" aria-controls="state-bill-details"
+                    aria-expanded="false">
                   <label for="ct" class="link cursor-pointer">Connecticut</label>
-                  <input type="radio" name="state" id="me" class="peer/me hidden">
+                  <input type="radio" name="state" id="me" class="peer/me sr-only" aria-controls="state-bill-details"
+                    aria-expanded="false">
                   <label for="me" class="link cursor-pointer">Maine</label>
-                  <input type="radio" name="state" id="ma" class="peer/ma hidden">
+                  <input type="radio" name="state" id="ma" class="peer/ma sr-only" aria-controls="state-bill-details"
+                    aria-expanded="false">
                   <label for="ma" class="link cursor-pointer">Massachusetts</label>
-                  <input type="radio" name="state" id="nh" class="peer/nh hidden">
+                  <input type="radio" name="state" id="nh" class="peer/nh sr-only" aria-controls="state-bill-details"
+                    aria-expanded="false">
                   <label for="nh" class="link cursor-pointer">New Hampshire</label>
-                  <input type="radio" name="state" id="ri" class="peer/ri hidden">
+                  <input type="radio" name="state" id="ri" class="peer/ri sr-only" aria-controls="state-bill-details"
+                    aria-expanded="false">
                   <label for="ri" class="link cursor-pointer">Rhode Island</label>
-                  <input type="radio" name="state" id="vt" class="peer/vt hidden">
+                  <input type="radio" name="state" id="vt" class="peer/vt sr-only" aria-controls="state-bill-details"
+                    aria-expanded="false">
                   <label for="vt" class="link cursor-pointer">Vermont</label>
                 </div>
               </div>
@@ -4816,15 +4790,20 @@
                 </svg>Northwest</summary>
               <div class="accordion-content-wrapper">
                 <div class="flex flex-col pl-11 gap-4">
-                  <input type="radio" name="state" id="id" class="peer/id hidden">
+                  <input type="radio" name="state" id="id" class="peer/id sr-only" aria-controls="state-bill-details"
+                    aria-expanded="false">
                   <label for="id" class="link cursor-pointer">Idaho</label>
-                  <input type="radio" name="state" id="mt" class="peer/mt hidden">
+                  <input type="radio" name="state" id="mt" class="peer/mt sr-only" aria-controls="state-bill-details"
+                    aria-expanded="false">
                   <label for="mt" class="link cursor-pointer">Montana</label>
-                  <input type="radio" name="state" id="or" class="peer/or hidden">
+                  <input type="radio" name="state" id="or" class="peer/or sr-only" aria-controls="state-bill-details"
+                    aria-expanded="false">
                   <label for="or" class="link cursor-pointer">Oregon</label>
-                  <input type="radio" name="state" id="wa" class="peer/wa hidden">
+                  <input type="radio" name="state" id="wa" class="peer/wa sr-only" aria-controls="state-bill-details"
+                    aria-expanded="false">
                   <label for="wa" class="link cursor-pointer">Washington</label>
-                  <input type="radio" name="state" id="wy" class="peer/wy hidden">
+                  <input type="radio" name="state" id="wy" class="peer/wy sr-only" aria-controls="state-bill-details"
+                    aria-expanded="false">
                   <label for="wy" class="link cursor-pointer">Wyoming</label>
                 </div>
               </div>
@@ -4835,31 +4814,44 @@
                 </svg>Southeast</summary>
               <div class="accordion-content-wrapper">
                 <div class="flex flex-col pl-11 gap-4">
-                  <input type="radio" name="state" id="al" class="peer/al hidden">
+                  <input type="radio" name="state" id="al" class="peer/al sr-only" aria-controls="state-bill-details"
+                    aria-expanded="false">
                   <label for="al" class="link cursor-pointer">Alabama</label>
-                  <input type="radio" name="state" id="ar" class="peer/ar hidden">
+                  <input type="radio" name="state" id="ar" class="peer/ar sr-only" aria-controls="state-bill-details"
+                    aria-expanded="false">
                   <label for="ar" class="link cursor-pointer">Arkansas</label>
-                  <input type="radio" name="state" id="fl" class="peer/fl hidden">
+                  <input type="radio" name="state" id="fl" class="peer/fl sr-only" aria-controls="state-bill-details"
+                    aria-expanded="false">
                   <label for="fl" class="link cursor-pointer">Florida</label>
-                  <input type="radio" name="state" id="ga" class="peer/ga hidden">
+                  <input type="radio" name="state" id="ga" class="peer/ga sr-only" aria-controls="state-bill-details"
+                    aria-expanded="false">
                   <label for="ga" class="link cursor-pointer">Georgia</label>
-                  <input type="radio" name="state" id="ky" class="peer/ky hidden">
+                  <input type="radio" name="state" id="ky" class="peer/ky sr-only" aria-controls="state-bill-details"
+                    aria-expanded="false">
                   <label for="ky" class="link cursor-pointer">Kentucky</label>
-                  <input type="radio" name="state" id="la" class="peer/la hidden">
+                  <input type="radio" name="state" id="la" class="peer/la sr-only" aria-controls="state-bill-details"
+                    aria-expanded="false">
                   <label for="la" class="link cursor-pointer">Louisiana</label>
-                  <input type="radio" name="state" id="ms" class="peer/ms hidden">
+                  <input type="radio" name="state" id="ms" class="peer/ms sr-only" aria-controls="state-bill-details"
+                    aria-expanded="false">
                   <label for="ms" class="link cursor-pointer">Mississippi</label>
-                  <input type="radio" name="state" id="nc" class="peer/nc hidden">
+                  <input type="radio" name="state" id="nc" class="peer/nc sr-only" aria-controls="state-bill-details"
+                    aria-expanded="false">
                   <label for="nc" class="link cursor-pointer">North Carolina</label>
-                  <input type="radio" name="state" id="sc" class="peer/sc hidden">
+                  <input type="radio" name="state" id="sc" class="peer/sc sr-only" aria-controls="state-bill-details"
+                    aria-expanded="false">
                   <label for="sc" class="link cursor-pointer">South Carolina</label>
-                  <input type="radio" name="state" id="tn" class="peer/tn hidden">
+                  <input type="radio" name="state" id="tn" class="peer/tn sr-only" aria-controls="state-bill-details"
+                    aria-expanded="false">
                   <label for="tn" class="link cursor-pointer">Tennessee</label>
-                  <input type="radio" name="state" id="va" class="peer/va hidden">
+                  <input type="radio" name="state" id="va" class="peer/va sr-only" aria-controls="state-bill-details"
+                    aria-expanded="false">
                   <label for="va" class="link cursor-pointer">Virginia</label>
-                  <input type="radio" name="state" id="wv" class="peer/wv hidden">
+                  <input type="radio" name="state" id="wv" class="peer/wv sr-only" aria-controls="state-bill-details"
+                    aria-expanded="false">
                   <label for="wv" class="link cursor-pointer">West Virginia</label>
-                  <input type="radio" name="state" id="co" class="peer/co hidden">
+                  <input type="radio" name="state" id="co" class="peer/co sr-only" aria-controls="state-bill-details"
+                    aria-expanded="false">
                   <label for="co" class="link cursor-pointer">Colorado</label>
                 </div>
               </div>
@@ -4870,19 +4862,26 @@
                 </svg>Southwest</summary>
               <div class="accordion-content-wrapper">
                 <div class="flex flex-col pl-11 gap-4">
-                  <input type="radio" name="state" id="az" class="peer/az hidden">
+                  <input type="radio" name="state" id="az" class="peer/az sr-only" aria-controls="state-bill-details"
+                    aria-expanded="false">
                   <label for="az" class="link cursor-pointer">Arizona</label>
-                  <input type="radio" name="state" id="ca" class="peer/ca hidden">
+                  <input type="radio" name="state" id="ca" class="peer/ca sr-only" aria-controls="state-bill-details"
+                    aria-expanded="false">
                   <label for="ca" class="link cursor-pointer">California</label>
-                  <input type="radio" name="state" id="nv" class="peer/nv hidden">
+                  <input type="radio" name="state" id="nv" class="peer/nv sr-only" aria-controls="state-bill-details"
+                    aria-expanded="false">
                   <label for="nv" class="link cursor-pointer">Nevada</label>
-                  <input type="radio" name="state" id="nm" class="peer/nm hidden">
+                  <input type="radio" name="state" id="nm" class="peer/nm sr-only" aria-controls="state-bill-details"
+                    aria-expanded="false">
                   <label for="nm" class="link cursor-pointer">New Mexico</label>
-                  <input type="radio" name="state" id="ok" class="peer/ok hidden">
+                  <input type="radio" name="state" id="ok" class="peer/ok sr-only" aria-controls="state-bill-details"
+                    aria-expanded="false">
                   <label for="ok" class="link cursor-pointer">Oklahoma</label>
-                  <input type="radio" name="state" id="tx" class="peer/tx hidden">
+                  <input type="radio" name="state" id="tx" class="peer/tx sr-only" aria-controls="state-bill-details"
+                    aria-expanded="false">
                   <label for="tx" class="link cursor-pointer">Texas</label>
-                  <input type="radio" name="state" id="ut" class="peer/ut hidden">
+                  <input type="radio" name="state" id="ut" class="peer/ut sr-only" aria-controls="state-bill-details"
+                    aria-expanded="false">
                   <label for="ut" class="link cursor-pointer">Utah</label>
                 </div>
               </div>
@@ -4893,9 +4892,11 @@
                 </svg>Alaska & Hawaii</summary>
               <div class="accordion-content-wrapper">
                 <div class="flex flex-col pl-11 gap-4">
-                  <input type="radio" name="state" id="ak" class="peer/ak hidden">
+                  <input type="radio" name="state" id="ak" class="peer/ak sr-only" aria-controls="state-bill-details"
+                    aria-expanded="false">
                   <label for="ak" class="link cursor-pointer">Alaska</label>
-                  <input type="radio" name="state" id="hi" class="peer/hi hidden">
+                  <input type="radio" name="state" id="hi" class="peer/hi sr-only" aria-controls="state-bill-details"
+                    aria-expanded="false">
                   <label for="hi" class="link cursor-pointer">Hawaii</label>
                 </div>
               </div>
@@ -4903,7 +4904,8 @@
           </div>
           <p>*Last updated May 2026</p>
         </div>
-        <div class="flex flex-col gap-4 overflow-y-auto scrollbar lg:w-[45%] xl:max-h-90.75">
+        <div class="flex flex-col gap-4 overflow-y-auto scrollbar lg:w-[45%] xl:max-h-90.75" id="state-bill-details"
+          tabindex="-1">
           <h3>Bill Details</h3>
           <div class="flex gap-1">
             <p class="paragraph-accent text-neutral-nine capitalize">State:</p>
@@ -5608,6 +5610,132 @@
           </svg>
         </button>
         <button type="button" class="btn btn-icon btn-icon--rounded-sm" popovertarget="analysis-three"
+          popovertargetaction="hide" aria-label="close analysis">
+          <svg class="icon-xs" aria-hidden="true">
+            <use href="/assets/sprites/solid.svg#x"></use>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </dialog>
+
+  <dialog class="analysis-dialog" id="analysis-four" aria-label="CA AB 1796 April 2026 Hearing Analysis"
+    aria-modal="true" popover>
+    <div class="presentation-slider scrollbar">
+      <div class="card presentation-slide" id="slide-4a">
+        <div class="flex justify-center items-center">
+          <picture>
+            <source srcset="assets/images/graph_4a-dk-lg.webp" type="image/webp" media="(min-width: 1000px)"
+              data-theme="dark">
+            <source srcset="assets/images/graph_4a-dk-md.webp" type="image/webp" media="(min-width: 400px)"
+              data-theme="dark">
+            <source srcset="assets/images/graph_4a-dk-sm.webp" type="image/webp" media="(min-width: 300px)"
+              data-theme="dark">
+            <source srcset="assets/images/graph_4a-lt-lg.webp" type="image/webp" media="(min-width: 1000px)"
+              data-theme="light">
+            <source srcset="assets/images/graph_4a-lt-md.webp" type="image/webp" media="(min-width: 400px)"
+              data-theme="light">
+            <source srcset="assets/images/graph_4a-lt-sm.webp" type="image/webp" media="(min-width: 300px)"
+              data-theme="light">
+            <img src="assets/images/graph_4a-lt-md.png"
+              alt="a monochrome green graph showing 3 slices, one for each industry">
+          </picture>
+        </div>
+        <div class="flex flex-col gap-4 justify-between items-center sm:flex-col xl:grow">
+          <div class="flex flex-col gap-4 max-w-100">
+            <div class="flex flex-col gap-1">
+              <h3>Supporters</h3>
+              <h4>CA AB 1796 April 2026 Hearing</h4>
+              <p class="hidden js:block">Tap a section on the graph to see more details</p>
+            </div>
+            <div class="flex flex-col gap-4">
+              <div class="flex gap-1 justify-between items-center xs:justify-start xs:w-73">
+                <svg class="icon-sm fill-current text-neutral-seven">
+                  <use href="/assets/sprites/solid.svg#person-shelter"></use>
+                </svg>
+                <p>Interior Design</p>
+              </div>
+              <div class="flex gap-1 justify-between items-center xs:justify-start xs:w-73">
+                <svg class="icon-sm fill-current text-neutral-seven">
+                  <use href="/assets/sprites/solid.svg#house"></use>
+                </svg>
+                <p>Architecture</p>
+              </div>
+              <div class="flex gap-1 justify-between items-center xs:justify-start xs:w-73">
+                <svg class="icon-sm fill-current text-neutral-seven">
+                  <use href="/assets/sprites/solid.svg#briefcase"></use>
+                </svg>
+                <p>Other</p>
+              </div>
+            </div>
+          </div>
+          <p class="graph-details"></p>
+        </div>
+      </div>
+      <div class="card presentation-slide" id="slide-4b">
+        <div class="flex justify-center items-center">
+          <picture>
+            <source srcset="assets/images/graph_4b-dk-lg.webp" type="image/webp" media="(min-width: 1000px)"
+              data-theme="dark">
+            <source srcset="assets/images/graph_4b-dk-md.webp" type="image/webp" media="(min-width: 400px)"
+              data-theme="dark">
+            <source srcset="assets/images/graph_4b-dk-sm.webp" type="image/webp" media="(min-width: 300px)"
+              data-theme="dark">
+            <source srcset="assets/images/graph_4b-lt-lg.webp" type="image/webp" media="(min-width: 1000px)"
+              data-theme="light">
+            <source srcset="assets/images/graph_4b-lt-md.webp" type="image/webp" media="(min-width: 400px)"
+              data-theme="light">
+            <source srcset="assets/images/graph_4b-lt-sm.webp" type="image/webp" media="(min-width: 300px)"
+              data-theme="light">
+            <img src="assets/images/graph_4a-lt-md.png"
+              alt="a monochrome green graph showing 2 slices, one for interior design and one for other">
+          </picture>
+        </div>
+        <div class="flex flex-col gap-4 justify-between items-center sm:flex-col xl:grow">
+          <div class="flex flex-col gap-4 max-w-100">
+            <div class="flex flex-col gap-1">
+              <h3>Supporters</h3>
+              <h4>CA AB 1796 April 2026 Hearing</h4>
+              <p class="hidden js:block">Tap a section on the graph to see more details</p>
+            </div>
+            <div class="flex flex-col gap-4">
+              <div class="flex gap-1 justify-between items-center xs:justify-start xs:w-73">
+                <svg class="icon-sm fill-current text-neutral-seven">
+                  <use href="/assets/sprites/solid.svg#person-shelter"></use>
+                </svg>
+                <p>Interior Design</p>
+              </div>
+              <div class="flex gap-1 justify-between items-center xs:justify-start xs:w-73">
+                <svg class="icon-sm fill-current text-neutral-seven">
+                  <use href="/assets/sprites/solid.svg#briefcase"></use>
+                </svg>
+                <p>Other</p>
+              </div>
+            </div>
+          </div>
+          <p class="graph-details"></p>
+        </div>
+      </div>
+    </div>
+    <div class="flex items-center justify-between p-4 gap-4">
+      <a href="https://calmatters.digitaldemocracy.org/hearings/279021#t=389&f=a93768e272476899c88de384d1d675a3"
+        class="link link--inline skip-to-sources-btn text-left" target="_blank">April 21, 2026 hearing</a>
+      <div class="flex gap-2">
+        <div class="w-6 h-3 rounded-full bg-primary-one slide-dot"></div>
+        <div class="w-3 h-3 rounded-full bg-primary-three slide-dot"></div>
+      </div>
+      <div class="flex gap-4 justify-center">
+        <button type="button" class="btn btn-icon btn-icon--rounded-sm analysis-prev-btn" aria-label="previous slide">
+          <svg class="icon-xs" aria-hidden="true">
+            <use href="/assets/sprites/solid.svg#angle-left"></use>
+          </svg>
+        </button>
+        <button type="button" class="btn btn-icon btn-icon--rounded-sm analysis-next-btn" aria-label="next slide">
+          <svg class="icon-xs" aria-hidden="true">
+            <use href="/assets/sprites/solid.svg#angle-right"></use>
+          </svg>
+        </button>
+        <button type="button" class="btn btn-icon btn-icon--rounded-sm" popovertarget="analysis-four"
           popovertargetaction="hide" aria-label="close analysis">
           <svg class="icon-xs" aria-hidden="true">
             <use href="/assets/sprites/solid.svg#x"></use>

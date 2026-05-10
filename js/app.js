@@ -198,7 +198,7 @@ comment.oninput = () => {
     }
   }
 
-  ['disclaimer', 'privacy', 'analysis-one', 'analysis-two', 'analysis-three'].forEach(id => {
+  ['disclaimer', 'privacy', 'analysis-one', 'analysis-two', 'analysis-three', 'analysis-four'].forEach(id => {
     const el = document.getElementById(id);
     if (el) setupDialog(el);
   });

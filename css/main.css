@@ -459,6 +459,10 @@
     @apply translate-x-1;
   }
 
+  #quiz-js-note {
+    @apply block js:hidden;
+  }
+
   .quiz-instruction {
     @apply w-16 min-w-16 h-16 rounded-full flex justify-center items-center bg-primary-one;
   }
@@ -476,12 +480,12 @@
   }
 
   #analysis-one .presentation-slider .presentation-slide:last-of-type,
-  #analysis-two .presentation-slider .presentation-slide:last-of-type,
-  #analysis-four .presentation-slider .presentation-slide:last-of-type {
+  #analysis-two .presentation-slider .presentation-slide:last-of-type {
     @apply flex-col lg:mr-[calc((100vw-700px)/2)] xl:mr-[calc((100vw-936px)/2)];
   }
 
-  #analysis-three .presentation-slider .presentation-slide:last-of-type {
+  #analysis-three .presentation-slider .presentation-slide:last-of-type,
+  #analysis-four .presentation-slider .presentation-slide:last-of-type {
     @apply lg:mr-[calc((100vw-700px)/2)] xl:mr-[calc((100vw-936px)/2)];
   }
 
@@ -518,7 +522,7 @@
   }
 
   .timeline-event-descript {
-    @apply flex flex-col gap-1 items-end w-[46%] lg:gap-4;
+    @apply flex flex-col flex-1 gap-1 items-end w-[46%] lg:gap-4;
   }
 
   .timeline-marker {
@@ -526,7 +530,7 @@
   }
 
   .timeline-date {
-    @apply font-graph text-2xl font-bold text-neutral-seven opacity-50 w-[46%] lg:text-5xl;
+    @apply flex-1 font-graph text-2xl font-bold text-neutral-seven opacity-50 w-[46%] lg:text-5xl;
   }
 
 }

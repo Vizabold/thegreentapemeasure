@@ -1,4 +1,8 @@
 const hasNativePopover = HTMLElement.prototype.hasOwnProperty('popover');
+const slide3b = document.getElementById('slide-3b');
+const analysis3Input = slide3b.querySelectorAll('input');
+const billDetailsContainer = document.getElementById('state-bill-details');
+const liveRegion = document.getElementById('live-region');
 
 document.querySelectorAll('dialog.analysis-dialog').forEach(dialog => {
   const slides = Array.from(dialog.querySelectorAll('.presentation-slide'));
@@ -61,3 +65,16 @@ document.querySelectorAll('dialog.analysis-dialog').forEach(dialog => {
   }
 
 })
+
+analysis3Input.forEach(input => {
+  input.addEventListener('click', () => {
+    let isExpanded = input.getAttribute('aria-expanded') === 'true';
+    input.setAttribute('aria-expanded', !isExpanded);
+    if (isExpanded) {
+      liveRegion.innerText = 'bill details updated';
+      billDetailsContainer.focus();
+    }
+  })
+})
+
+

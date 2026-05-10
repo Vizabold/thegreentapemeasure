@@ -400,6 +400,9 @@
   .w-75 {
     width: calc(var(--spacing) * 75);
   }
+  .w-76\.75 {
+    width: calc(var(--spacing) * 76.75);
+  }
   .w-\[10\%\] {
     width: 10%;
   }
@@ -415,8 +418,8 @@
   .max-w-150 {
     max-width: calc(var(--spacing) * 150);
   }
-  .max-w-304 {
-    max-width: calc(var(--spacing) * 304);
+  .max-w-350 {
+    max-width: calc(var(--spacing) * 350);
   }
   .max-w-750 {
     max-width: calc(var(--spacing) * 750);
@@ -432,6 +435,9 @@
   }
   .min-w-75 {
     min-width: calc(var(--spacing) * 75);
+  }
+  .min-w-full {
+    min-width: 100%;
   }
   .flex-1 {
     flex: 1;
@@ -1062,6 +1068,11 @@
       width: calc(var(--spacing) * 73);
     }
   }
+  .xs\:w-full {
+    @media (width >= 400px) {
+      width: 100%;
+    }
+  }
   .xs\:flex-row {
     @media (width >= 400px) {
       flex-direction: row;
@@ -1321,11 +1332,6 @@
   .xxl\:items-start {
     @media (width >= 1280px) {
       align-items: flex-start;
-    }
-  }
-  .xxl\:pl-50 {
-    @media (width >= 1280px) {
-      padding-left: calc(var(--spacing) * 50);
     }
   }
   .js\:block {
@@ -2197,6 +2203,12 @@
     --tw-translate-x: calc(var(--spacing) * 1);
     translate: var(--tw-translate-x) var(--tw-translate-y);
   }
+  #quiz-js-note {
+    display: block;
+    &:where(.js *) {
+      display: none;
+    }
+  }
   .quiz-instruction {
     display: flex;
     height: calc(var(--spacing) * 16);
@@ -2235,7 +2247,7 @@
       margin-left: calc((100vw - 936px) / 2);
     }
   }
-  #analysis-one .presentation-slider .presentation-slide:last-of-type, #analysis-two .presentation-slider .presentation-slide:last-of-type, #analysis-four .presentation-slider .presentation-slide:last-of-type {
+  #analysis-one .presentation-slider .presentation-slide:last-of-type, #analysis-two .presentation-slider .presentation-slide:last-of-type {
     flex-direction: column;
     @media (width >= 850px) {
       margin-right: calc((100vw - 700px) / 2);
@@ -2244,7 +2256,7 @@
       margin-right: calc((100vw - 936px) / 2);
     }
   }
-  #analysis-three .presentation-slider .presentation-slide:last-of-type {
+  #analysis-three .presentation-slider .presentation-slide:last-of-type, #analysis-four .presentation-slider .presentation-slide:last-of-type {
     @media (width >= 850px) {
       margin-right: calc((100vw - 700px) / 2);
     }
@@ -2331,6 +2343,7 @@
   .timeline-event-descript {
     display: flex;
     width: 46%;
+    flex: 1;
     flex-direction: column;
     align-items: flex-end;
     gap: calc(var(--spacing) * 1);
@@ -2353,6 +2366,7 @@
   }
   .timeline-date {
     width: 46%;
+    flex: 1;
     font-family: var(--font-graph);
     font-size: var(--text-2xl);
     line-height: var(--tw-leading, var(--text-2xl--line-height));
