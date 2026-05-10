@@ -8,19 +8,13 @@ var options = {
     chart: {
         type: 'pie',
         id: 'pie-1a',
-        width: '100%',
         events: {
             mounted: function (chartContext) {
                 document.getElementById('pie-chart-1a-placeholder').style.display = 'none';
                 chartEl.style.opacity = '1';
             },
             dataPointSelection: function (event, chartContext, config) {
-                if (selectedSliceIndex === config.dataPointIndex) {
-                    selectedSliceIndex = '-1';
-                } else {
-                    selectedSliceIndex = config.dataPointIndex;
-                };
-
+                selectedSliceIndex = (selectedSliceIndex === config.dataPointIndex) ? -1 : config.dataPointIndex;
                 chartContext.updateOptions({});
             }
         }
@@ -39,13 +33,13 @@ var options = {
             if (opts.dataPointIndex === selectedSliceIndex) {
                 return val.toFixed(1) + '%';
             }
-            const iconIds = ['#bed', '#masks-theater', '#graduation-cap', '#industry', '#house-medical'];
-            return 'X';
+            const iconIds = ['\f236', '\f630', '\f19d', '\f275', '\e3b2'];
+            return icons[opts.dataPointIndex];
         },
         style: {
-            fontFamily: '"Space Grotesk", sans-serif',
-            fontSize: '3rem',
-            fontWeight: 'bold',
+            fontFamily: '"Font Awesome 6 Free", "Space Grotesk", sans-serif',
+            fontSize: '35px',
+            fontWeight: '900',
             colors: ['var(--neutral-two-dark'],
         }
     },
