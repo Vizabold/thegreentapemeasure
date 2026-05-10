@@ -173,15 +173,12 @@ function checkScroll() {
   const researchScroll = researchCards.scrollWidth > researchCards.clientWidth;
   advocacyBtns.classList.toggle('hidden', !advocacyScroll);
   researchBtns.classList.toggle('hidden', !researchScroll);
-  if (advocacyBtns.classList.contains('hidden')) { handleSectionBtns(advocacyBtns) };
-  if (researchBtns.classList.contains('hidden')) { handleSectionBtns(researchBtns) };
+  if (!advocacyBtns.classList.contains('hidden')) { handleSectionBtns(advocacyBtns) };
+  if (!researchBtns.classList.contains('hidden')) { handleSectionBtns(researchBtns) };
 }
 
 window.addEventListener('resize', checkScroll);
 checkScroll();
-
-
-
 
 /*--------------- FORMS --------------------- */
 
