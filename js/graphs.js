@@ -1,5 +1,3 @@
-import ApexCharts from 'apexcharts';
-
 /* ---------------------- Analysis 1 ------------------------- */
 
 let selectedSliceIndex = -1;
