@@ -152,7 +152,7 @@ function handleSectionBtns(container) {
     cards[current].scrollIntoView({
       behavior: 'smooth',
       block: 'nearest',
-      inline: 'left'
+      inline: 'start'
     })
   }
 
