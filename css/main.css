@@ -439,6 +439,12 @@
 
 @layer utilities {
 
+  .apexcharts-datalabel svg {
+    width: 36px !important;
+    height: 36px !important;
+    display: inline-block;
+  }
+
   .icon-container {
     @apply w-12 h-12 min-w-12 flex justify-center items-center rounded-lg bg-neutral-six;
   }

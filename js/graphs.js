@@ -28,11 +28,12 @@ var options = {
         enabled: true,
         textAnchor: 'middle',
         formatter: function (val, opts) {
-            if (opts.seriesIndex === selectedSliceIndex) {
+            if (opts.dataPointIndex === selectedSliceIndex) {
                 return val.toFixed(1) + '%';
             }
-            const icons = ['#bed', '#masks-theater', '#graduation-cap', '#industry', '#house-medical'];
-            return `<svg class="icon-sm fill-current text-neutral-two-dark"><use href="${icons[opts.dataPointIndex]}"></use></svg>`;
+            const iconsIds = ['#bed', '#masks-theater', '#graduation-cap', '#industry', '#house-medical'];
+            const currentId = iconsIds[opts.dataPointIndex];
+            return `<svg class="chart-icon"><use href="${currentId}"></use></svg>`;
         },
         style: {
             fontFamily: '"Space Grotesk", sans-serif',
