@@ -26,12 +26,13 @@ var options = {
     labels: ['hotel', 'assembly', 'schools', 'factory', 'hospital'],
     dataLabels: {
         enabled: true,
+        textAnchor: 'middle',
         formatter: function (val, opts) {
             if (opts.seriesIndex === selectedSliceIndex) {
                 return val.toFixed(1) + '%';
             }
             const icons = ['#bed', '#masks-theater', '#graduation-cap', '#industry', '#house-medical'];
-            return `<svg class="icon-sm fill-current text-neutral-two-dark"><use href="../assets/sprites/solid.svg${icons[opts.dataPointIndex]}"></use></svg>`;
+            return `<svg class="icon-sm fill-current text-neutral-two-dark"><use href="${icons[opts.dataPointIndex]}"></use></svg>`;
         },
         style: {
             fontFamily: '"Space Grotesk", sans-serif',
