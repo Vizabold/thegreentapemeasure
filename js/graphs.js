@@ -40,7 +40,7 @@ var options = {
                 return val.toFixed(1) + '%';
             }
             const iconIds = ['#bed', '#masks-theater', '#graduation-cap', '#industry', '#house-medical'];
-            return iconIds[opts.dataPointIndex];
+            return 'X';
         },
         style: {
             fontFamily: '"Space Grotesk", sans-serif',
