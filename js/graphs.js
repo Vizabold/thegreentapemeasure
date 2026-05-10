@@ -1,4 +1,4 @@
-import ApexCharts from "../node_modules/apexcharts/dist/apexcharts.esm.js";
+import ApexCharts from 'apexcharts';
 
 /* ---------------------- Analysis 1 ------------------------- */
 
