@@ -19,7 +19,7 @@ var options = {
                     selectedSliceIndex = config.dataPointIndex;
                 };
 
-                chartContext.updateOption({});
+                chartContext.updateOptions({});
             }
         }
     },
