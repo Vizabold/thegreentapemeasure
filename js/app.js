@@ -142,6 +142,7 @@ function handleSectionBtns(container) {
   const nextBtn = container.lastElementChild;
   const cards = container.nextElementSibling.querySelectorAll('.card');
   let current = 0;
+  cards[current].classList.add('card-current');
 
   function goToCard(index) {
     cards[current].classList.remove('card-current');
