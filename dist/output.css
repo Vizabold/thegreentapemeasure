@@ -247,9 +247,6 @@
   .static {
     position: static;
   }
-  .top-1 {
-    top: calc(var(--spacing) * 1);
-  }
   .top-1\.75 {
     top: calc(var(--spacing) * 1.75);
   }
@@ -439,14 +436,8 @@
   .flex-1 {
     flex: 1;
   }
-  .flex-grow {
-    flex-grow: 1;
-  }
   .grow {
     flex-grow: 1;
-  }
-  .border-collapse {
-    border-collapse: collapse;
   }
   .translate-\[-50\%\] {
     --tw-translate-x: -50%;
@@ -490,12 +481,6 @@
   }
   .cursor-pointer {
     cursor: pointer;
-  }
-  .resize {
-    resize: both;
-  }
-  .appearance-none {
-    appearance: none;
   }
   .flex-col {
     flex-direction: column;
@@ -571,10 +556,6 @@
   }
   .rounded-full {
     border-radius: calc(infinity * 1px);
-  }
-  .border {
-    border-style: var(--tw-border-style);
-    border-width: 1px;
   }
   .border-\[0\.5px\] {
     border-style: var(--tw-border-style);
@@ -652,9 +633,6 @@
   }
   .px-4 {
     padding-inline: calc(var(--spacing) * 4);
-  }
-  .py-2 {
-    padding-block: calc(var(--spacing) * 2);
   }
   .py-10 {
     padding-block: calc(var(--spacing) * 10);
@@ -775,16 +753,8 @@
   .ring-primary-one {
     --tw-ring-color: var(--color-primary-one);
   }
-  .outline {
-    outline-style: var(--tw-outline-style);
-    outline-width: 1px;
-  }
   .filter {
     filter: var(--tw-blur,) var(--tw-brightness,) var(--tw-contrast,) var(--tw-grayscale,) var(--tw-hue-rotate,) var(--tw-invert,) var(--tw-saturate,) var(--tw-sepia,) var(--tw-drop-shadow,);
-  }
-  .backdrop-filter {
-    -webkit-backdrop-filter: var(--tw-backdrop-blur,) var(--tw-backdrop-brightness,) var(--tw-backdrop-contrast,) var(--tw-backdrop-grayscale,) var(--tw-backdrop-hue-rotate,) var(--tw-backdrop-invert,) var(--tw-backdrop-opacity,) var(--tw-backdrop-saturate,) var(--tw-backdrop-sepia,);
-    backdrop-filter: var(--tw-backdrop-blur,) var(--tw-backdrop-brightness,) var(--tw-backdrop-contrast,) var(--tw-backdrop-grayscale,) var(--tw-backdrop-hue-rotate,) var(--tw-backdrop-invert,) var(--tw-backdrop-opacity,) var(--tw-backdrop-saturate,) var(--tw-backdrop-sepia,);
   }
   .transition {
     transition-property: color, background-color, border-color, outline-color, text-decoration-color, fill, stroke, --tw-gradient-from, --tw-gradient-via, --tw-gradient-to, opacity, box-shadow, transform, translate, scale, rotate, filter, -webkit-backdrop-filter, backdrop-filter, display, content-visibility, overlay, pointer-events;
@@ -817,11 +787,23 @@
     --tw-ease: var(--ease-out);
     transition-timing-function: var(--ease-out);
   }
-  .ring-inset {
-    --tw-ring-inset: inset;
+  .group-has-\[\:checked\.peer\\\/al\]\/states\:inline {
+    &:is(:where(.group\/states):has(*:is(:checked.peer\/al)) *) {
+      display: inline;
+    }
   }
-  .group-has-\[\:checked\.peer\\\/de\]\/main\:inline {
-    &:is(:where(.group\/main):has(*:is(:checked.peer\/de)) *) {
+  .group-has-\[\:checked\.peer\\\/ar\]\/states\:inline {
+    &:is(:where(.group\/states):has(*:is(:checked.peer\/ar)) *) {
+      display: inline;
+    }
+  }
+  .group-has-\[\:checked\.peer\\\/ct\]\/states\:inline {
+    &:is(:where(.group\/states):has(*:is(:checked.peer\/ct)) *) {
+      display: inline;
+    }
+  }
+  .group-has-\[\:checked\.peer\\\/dc\]\/states\:inline {
+    &:is(:where(.group\/states):has(*:is(:checked.peer\/dc)) *) {
       display: inline;
     }
   }
@@ -830,39 +812,138 @@
       display: inline;
     }
   }
+  .group-has-\[\:checked\.peer\\\/ia\]\/states\:inline {
+    &:is(:where(.group\/states):has(*:is(:checked.peer\/ia)) *) {
+      display: inline;
+    }
+  }
+  .group-has-\[\:checked\.peer\\\/id\]\/states\:inline {
+    &:is(:where(.group\/states):has(*:is(:checked.peer\/id)) *) {
+      display: inline;
+    }
+  }
+  .group-has-\[\:checked\.peer\\\/il\]\/states\:inline {
+    &:is(:where(.group\/states):has(*:is(:checked.peer\/il)) *) {
+      display: inline;
+    }
+  }
+  .group-has-\[\:checked\.peer\\\/in\]\/states\:inline {
+    &:is(:where(.group\/states):has(*:is(:checked.peer\/in)) *) {
+      display: inline;
+    }
+  }
+  .group-has-\[\:checked\.peer\\\/ks\]\/states\:inline {
+    &:is(:where(.group\/states):has(*:is(:checked.peer\/ks)) *) {
+      display: inline;
+    }
+  }
+  .group-has-\[\:checked\.peer\\\/ma\]\/states\:inline {
+    &:is(:where(.group\/states):has(*:is(:checked.peer\/ma)) *) {
+      display: inline;
+    }
+  }
+  .group-has-\[\:checked\.peer\\\/md\]\/states\:inline {
+    &:is(:where(.group\/states):has(*:is(:checked.peer\/md)) *) {
+      display: inline;
+    }
+  }
+  .group-has-\[\:checked\.peer\\\/me\]\/states\:inline {
+    &:is(:where(.group\/states):has(*:is(:checked.peer\/me)) *) {
+      display: inline;
+    }
+  }
+  .group-has-\[\:checked\.peer\\\/mi\]\/states\:inline {
+    &:is(:where(.group\/states):has(*:is(:checked.peer\/mi)) *) {
+      display: inline;
+    }
+  }
+  .group-has-\[\:checked\.peer\\\/mn\]\/states\:inline {
+    &:is(:where(.group\/states):has(*:is(:checked.peer\/mn)) *) {
+      display: inline;
+    }
+  }
+  .group-has-\[\:checked\.peer\\\/mo\]\/states\:inline {
+    &:is(:where(.group\/states):has(*:is(:checked.peer\/mo)) *) {
+      display: inline;
+    }
+  }
+  .group-has-\[\:checked\.peer\\\/mt\]\/states\:inline {
+    &:is(:where(.group\/states):has(*:is(:checked.peer\/mt)) *) {
+      display: inline;
+    }
+  }
+  .group-has-\[\:checked\.peer\\\/nd\]\/states\:inline {
+    &:is(:where(.group\/states):has(*:is(:checked.peer\/nd)) *) {
+      display: inline;
+    }
+  }
+  .group-has-\[\:checked\.peer\\\/ne\]\/states\:inline {
+    &:is(:where(.group\/states):has(*:is(:checked.peer\/ne)) *) {
+      display: inline;
+    }
+  }
+  .group-has-\[\:checked\.peer\\\/nh\]\/states\:inline {
+    &:is(:where(.group\/states):has(*:is(:checked.peer\/nh)) *) {
+      display: inline;
+    }
+  }
+  .group-has-\[\:checked\.peer\\\/nj\]\/states\:inline {
+    &:is(:where(.group\/states):has(*:is(:checked.peer\/nj)) *) {
+      display: inline;
+    }
+  }
+  .group-has-\[\:checked\.peer\\\/ny\]\/states\:inline {
+    &:is(:where(.group\/states):has(*:is(:checked.peer\/ny)) *) {
+      display: inline;
+    }
+  }
+  .group-has-\[\:checked\.peer\\\/oh\]\/states\:inline {
+    &:is(:where(.group\/states):has(*:is(:checked.peer\/oh)) *) {
+      display: inline;
+    }
+  }
+  .group-has-\[\:checked\.peer\\\/or\]\/states\:inline {
+    &:is(:where(.group\/states):has(*:is(:checked.peer\/or)) *) {
+      display: inline;
+    }
+  }
+  .group-has-\[\:checked\.peer\\\/pa\]\/states\:inline {
+    &:is(:where(.group\/states):has(*:is(:checked.peer\/pa)) *) {
+      display: inline;
+    }
+  }
+  .group-has-\[\:checked\.peer\\\/ri\]\/states\:inline {
+    &:is(:where(.group\/states):has(*:is(:checked.peer\/ri)) *) {
+      display: inline;
+    }
+  }
+  .group-has-\[\:checked\.peer\\\/sd\]\/states\:inline {
+    &:is(:where(.group\/states):has(*:is(:checked.peer\/sd)) *) {
+      display: inline;
+    }
+  }
+  .group-has-\[\:checked\.peer\\\/vt\]\/states\:inline {
+    &:is(:where(.group\/states):has(*:is(:checked.peer\/vt)) *) {
+      display: inline;
+    }
+  }
+  .group-has-\[\:checked\.peer\\\/wa\]\/states\:inline {
+    &:is(:where(.group\/states):has(*:is(:checked.peer\/wa)) *) {
+      display: inline;
+    }
+  }
+  .group-has-\[\:checked\.peer\\\/wi\]\/states\:inline {
+    &:is(:where(.group\/states):has(*:is(:checked.peer\/wi)) *) {
+      display: inline;
+    }
+  }
+  .group-has-\[\:checked\.peer\\\/wy\]\/states\:inline {
+    &:is(:where(.group\/states):has(*:is(:checked.peer\/wy)) *) {
+      display: inline;
+    }
+  }
   .peer-checked\:block {
     &:is(:where(.peer):checked ~ *) {
-      display: block;
-    }
-  }
-  .peer-checked\/de\:inline {
-    &:is(:where(.peer\/de):checked ~ *) {
-      display: inline;
-    }
-  }
-  .peer-checked\/delaware\:bg-transparent {
-    &:is(:where(.peer\/delaware):checked ~ *) {
-      background-color: transparent;
-    }
-  }
-  .peer-checked\/delaware\:text-primary-one {
-    &:is(:where(.peer\/delaware):checked ~ *) {
-      color: var(--color-primary-one);
-    }
-  }
-  .peer-focus\/opt2\:ring-2 {
-    &:is(:where(.peer\/opt2):focus ~ *) {
-      --tw-ring-shadow: var(--tw-ring-inset,) 0 0 0 calc(2px + var(--tw-ring-offset-width)) var(--tw-ring-color, currentcolor);
-      box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow);
-    }
-  }
-  .peer-has-\[\#delaware\:checked\]\/menu\:inline {
-    &:is(:where(.peer\/menu):has(*:is(#delaware:checked)) ~ *) {
-      display: inline;
-    }
-  }
-  .peer-has-\[\#opt1\:checked\]\/menu\:block {
-    &:is(:where(.peer\/menu):has(*:is(#opt1:checked)) ~ *) {
       display: block;
     }
   }
@@ -2316,11 +2397,6 @@
   inherits: false;
   initial-value: 0 0 #0000;
 }
-@property --tw-outline-style {
-  syntax: "*";
-  inherits: false;
-  initial-value: solid;
-}
 @property --tw-blur {
   syntax: "*";
   inherits: false;
@@ -2374,6 +2450,23 @@
   syntax: "*";
   inherits: false;
 }
+@property --tw-duration {
+  syntax: "*";
+  inherits: false;
+}
+@property --tw-ease {
+  syntax: "*";
+  inherits: false;
+}
+@property --tw-font-weight {
+  syntax: "*";
+  inherits: false;
+}
+@property --tw-outline-style {
+  syntax: "*";
+  inherits: false;
+  initial-value: solid;
+}
 @property --tw-backdrop-blur {
   syntax: "*";
   inherits: false;
@@ -2407,18 +2500,6 @@
   inherits: false;
 }
 @property --tw-backdrop-sepia {
-  syntax: "*";
-  inherits: false;
-}
-@property --tw-duration {
-  syntax: "*";
-  inherits: false;
-}
-@property --tw-ease {
-  syntax: "*";
-  inherits: false;
-}
-@property --tw-font-weight {
   syntax: "*";
   inherits: false;
 }
@@ -2464,7 +2545,6 @@
       --tw-ring-offset-width: 0px;
       --tw-ring-offset-color: #fff;
       --tw-ring-offset-shadow: 0 0 #0000;
-      --tw-outline-style: solid;
       --tw-blur: initial;
       --tw-brightness: initial;
       --tw-contrast: initial;
@@ -2478,6 +2558,10 @@
       --tw-drop-shadow-color: initial;
       --tw-drop-shadow-alpha: 100%;
       --tw-drop-shadow-size: initial;
+      --tw-duration: initial;
+      --tw-ease: initial;
+      --tw-font-weight: initial;
+      --tw-outline-style: solid;
       --tw-backdrop-blur: initial;
       --tw-backdrop-brightness: initial;
       --tw-backdrop-contrast: initial;
@@ -2487,9 +2571,6 @@
       --tw-backdrop-opacity: initial;
       --tw-backdrop-saturate: initial;
       --tw-backdrop-sepia: initial;
-      --tw-duration: initial;
-      --tw-ease: initial;
-      --tw-font-weight: initial;
       --tw-scroll-snap-strictness: proximity;
     }
   }
