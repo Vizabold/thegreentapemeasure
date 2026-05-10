@@ -130,6 +130,21 @@ if (modeToggle) {
   });
 }
 
+/*--------------- SHOW  / HIDE NAV BTNS IN RESEARCH AND ADVOCACY --------------------- */
+
+const advocacyCards = document.getElementById('advocacy-cards');
+const researchCards = document.getElementById('research-cards');
+
+function checkScroll() {
+  const advocacyScroll = advocacyCards.scrollWidth > advocacyCards.clientWidth;
+  const researchScroll = researchCards.scrollWidth > researchCards.clientWidth;
+  advocacyCards.previousElementSibling.classList.toggle('hidden', !advocacyScroll);
+  researchCards.previousElementSibling.classList.toggle('hidden', !researchScroll);
+}
+
+window.addEventListener('resize', checkScroll);
+checkScroll();
+
 /*--------------- FORMS --------------------- */
 
 const takeAction = document.getElementById('takeaction');
