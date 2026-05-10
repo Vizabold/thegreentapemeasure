@@ -33,7 +33,7 @@ var options = {
             if (opts.dataPointIndex === selectedSliceIndex) {
                 return val.toFixed(1) + '%';
             }
-            const iconIds = ['\f236', '\f630', '\f19d', '\f275', '\e3b2'];
+            const icons = ['\f236', '\f630', '\f19d', '\f275', '\e3b2'];
             return icons[opts.dataPointIndex];
         },
         style: {
