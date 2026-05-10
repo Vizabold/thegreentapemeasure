@@ -812,6 +812,16 @@
       display: inline;
     }
   }
+  .group-has-\[\:checked\.peer\\\/fl\]\/states\:inline {
+    &:is(:where(.group\/states):has(*:is(:checked.peer\/fl)) *) {
+      display: inline;
+    }
+  }
+  .group-has-\[\:checked\.peer\\\/ga\]\/states\:inline {
+    &:is(:where(.group\/states):has(*:is(:checked.peer\/ga)) *) {
+      display: inline;
+    }
+  }
   .group-has-\[\:checked\.peer\\\/ia\]\/states\:inline {
     &:is(:where(.group\/states):has(*:is(:checked.peer\/ia)) *) {
       display: inline;
@@ -834,6 +844,16 @@
   }
   .group-has-\[\:checked\.peer\\\/ks\]\/states\:inline {
     &:is(:where(.group\/states):has(*:is(:checked.peer\/ks)) *) {
+      display: inline;
+    }
+  }
+  .group-has-\[\:checked\.peer\\\/ky\]\/states\:inline {
+    &:is(:where(.group\/states):has(*:is(:checked.peer\/ky)) *) {
+      display: inline;
+    }
+  }
+  .group-has-\[\:checked\.peer\\\/la\]\/states\:inline {
+    &:is(:where(.group\/states):has(*:is(:checked.peer\/la)) *) {
       display: inline;
     }
   }
