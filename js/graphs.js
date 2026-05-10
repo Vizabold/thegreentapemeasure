@@ -8,6 +8,7 @@ var options = {
     chart: {
         type: 'pie',
         id: 'pie-1a',
+        width: '100%',
         events: {
             mounted: function (chartContext) {
                 document.getElementById('pie-chart-1a-placeholder').style.display = 'none';
