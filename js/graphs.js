@@ -54,7 +54,7 @@ var options = {
     plotOptions: {
         pie: {
             dataLabels: {
-                offset: 0,
+                offset: -20,
             }
         }
     },
