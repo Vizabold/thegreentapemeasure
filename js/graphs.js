@@ -14,6 +14,8 @@ let selectedIndex1a = -1;
 /* Graph-1b Variables */
 const icons1b = ['', '', '', '', ''];
 const series1b = [52, 19, 12, 11, 6];
+const series1b2 = [1872, 692, 442, 404, 226];
+const linevalue1b = 'DEATHS';
 const labels1b = ['assembly', 'hotel', 'schools', 'hospital', 'factory'];
 const chart1b = document.getElementById('pie-chart-1b');
 const placeholder1b = document.getElementById('pie-chart-1b-placeholder');
@@ -210,7 +212,7 @@ function piechart(icons, series1, series2, linevalue, labels, chartEl, placehold
 
 
 piechart(icons1a, series1a, series1a2, linevalue1a, labels1a, chart1a, placeholder1a, colors1a, selectedIndex1a);
-piechart(icons1b, series1b, labels1b, chart1b, placeholder1b, colors1b, selectedIndex1b);
+piechart(icons1b, series1b, series1b2, linevalue1b, labels1b, chart1b, placeholder1b, colors1b, selectedIndex1b);
 /* Evoke function for Graph-1c */
 /* Evoke function for Graph-1d */
 /* Evoke function for Graph-1e */
