@@ -1,7 +1,7 @@
 /* ---------------------- Analysis 1 ------------------------- */
 
 /* Graph-1a Variables */
-const icons1a = ['', '', '', '', ''];
+const icons1a = ['', '', '', '', '\u{e3b2}'];
 const series1a = [38, 21, 17, 10, 14];
 const labels1a = ['hotel', 'assembly', 'schools', 'factory', 'hospital'];
 const chart1a = document.getElementById('pie-chart-1a');
