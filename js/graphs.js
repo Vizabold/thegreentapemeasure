@@ -121,12 +121,16 @@ function piechart(icons, series1, series2, linevalue, labels, chartEl, placehold
                         const el = getPieLabelEl(clickedIdx);
                         const pieTotal = series1.reduce((a, b) => a + b, 0);
                         if (el) {
-                            el.style.fontFamily = 'sans-serif';
-                            el.style.textAlign = 'center';
-                            if (series1a2) {
-                                el.textContent = Math.round(series1[clickedIdx] / pieTotal * 100) + '%\n' + series1a2[clickedIdx] + ' ' + linevalue;
+                            el.style.fontFamily = '"Space Grotesk", sans-serif';
+                            const line1 = Math.round(series1[clickedIdx] / pieTotal * 100) + '%';
+                            const line2 = (typeof series1a2 !== 'undefined' && series1a2) ? (series1a2[clickedIdx] + ' ' + linevalue) : null;
+                            if (line2) {
+                                el.innerHTML = `
+                                    <tspan x="0" dy="-0.2em" style="font-size: 35px;">${line1}</tspan>
+                                    <tspan x="0" dy="1.4em" style="font-size: 16px; font-weight: 400;">${line2}</tspan>
+                                `;
                             } else {
-                                el.textContent = Math.round(series1[clickedIdx] / pieTotal * 100) + '%';
+                                el.innerHTML = `<tspan x="0" dy="0.3em" style="font-size: 35px;">${line1}</tspan>`;
                             }
                         }
                         selectedSliceIndex = clickedIdx;
@@ -157,7 +161,7 @@ function piechart(icons, series1, series2, linevalue, labels, chartEl, placehold
             style: {
                 fontSize: '35px',
                 fontWeight: '900',
-                fontFamily: '"Font Awesome 7 Free", sans-serif',
+                fontFamily: '"Font Awesome 7 Free", "Space Grotesk", sans-serif',
                 colors: ['var(--neutral-two-dark)'],
             },
             dropShadow: {
