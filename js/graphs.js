@@ -1,9 +1,11 @@
 /* ---------------------- Analysis 1 ------------------------- */
 
 /* Graph-1a Variables */
-const icons1a = ['', '', '', '', '\u{e3b2}'];
-const series1a = [38, 21, 17, 10, 14];
-const labels1a = ['hotel', 'assembly', 'schools', 'factory', 'hospital'];
+const icons1a = ['', '', '', '\u{e3b2}', ''];
+const series1a = [38, 21, 17, 14, 10];
+const series1a2 = [16, 9, 7, 6, 4];
+const linevalue1a = 'FIRES';
+const labels1a = ['hotel', 'assembly', 'schools', 'hospital', 'factory'];
 const chart1a = document.getElementById('pie-chart-1a');
 const placeholder1a = document.getElementById('pie-chart-1a-placeholder');
 const colors1a = ['var(--primary-one)', 'var(--primary-two)', 'var(--primary-three)', 'var(--primary-four)', 'var(--neutral-seven-light)'];
@@ -84,14 +86,14 @@ const placeholder4b = document.getElementById('pie-chart-4b-placeholder');
 const colors4b = ['var(--primary-one)', 'var(--primary-two)'];
 let selectedIndex4b = -1;
 
-function piechart(pieIcons, pieSeries, labels, chartEl, placeholder, colors, selectedSliceIndex) {
+function piechart(icons, series1, series2, linevalue, labels, chartEl, placeholder, colors, selectedSliceIndex) {
     function getPieLabelEl(idx) {
         return chartEl.querySelector(`.apexcharts-datalabels[data-realindex="${idx}"] text`)
             || [...chartEl.querySelectorAll('.apexcharts-datalabels text')][idx];
     }
 
     var options = {
-        series: pieSeries,
+        series: series1,
         labels: labels,
         chart: {
             type: 'pie',
@@ -111,16 +113,21 @@ function piechart(pieIcons, pieSeries, labels, chartEl, placeholder, colors, sel
                         const prevEl = getPieLabelEl(selectedSliceIndex);
                         if (prevEl) {
                             prevEl.style.fontFamily = '"Font Awesome 7 Free"';
-                            prevEl.textContent = pieIcons[selectedSliceIndex];
+                            prevEl.textContent = icons[selectedSliceIndex];
                         }
                     }
 
                     if (isNowSelected) {
                         const el = getPieLabelEl(clickedIdx);
-                        const pieTotal = pieSeries.reduce((a, b) => a + b, 0);
+                        const pieTotal = series1.reduce((a, b) => a + b, 0);
                         if (el) {
                             el.style.fontFamily = 'sans-serif';
-                            el.textContent = Math.round(pieSeries[clickedIdx] / pieTotal * 100) + '%';
+                            el.style.textAlign = 'center';
+                            if (series1a2) {
+                                el.textContent = Math.round(series1[clickedIdx] / pieTotal * 100) + '%\n' + series1a2[clickedIdx] + ' ' + linevalue;
+                            } else {
+                                el.textContent = Math.round(series1[clickedIdx] / pieTotal * 100) + '%';
+                            }
                         }
                         selectedSliceIndex = clickedIdx;
                     } else {
@@ -145,7 +152,7 @@ function piechart(pieIcons, pieSeries, labels, chartEl, placeholder, colors, sel
         dataLabels: {
             enabled: true,
             formatter: function (val, opts) {
-                return pieIcons[opts.seriesIndex];
+                return icons[opts.seriesIndex];
             },
             style: {
                 fontSize: '35px',
@@ -193,7 +200,7 @@ function piechart(pieIcons, pieSeries, labels, chartEl, placeholder, colors, sel
 }
 
 
-piechart(icons1a, series1a, labels1a, chart1a, placeholder1a, colors1a, selectedIndex1a);
+piechart(icons1a, series1a, series1a2, linevalue1a, labels1a, chart1a, placeholder1a, colors1a, selectedIndex1a);
 piechart(icons1b, series1b, labels1b, chart1b, placeholder1b, colors1b, selectedIndex1b);
 /* Evoke function for Graph-1c */
 /* Evoke function for Graph-1d */
