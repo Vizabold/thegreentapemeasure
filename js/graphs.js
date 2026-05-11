@@ -121,16 +121,21 @@ function piechart(icons, series1, series2, linevalue, labels, chartEl, placehold
                         const el = getPieLabelEl(clickedIdx);
                         const pieTotal = series1.reduce((a, b) => a + b, 0);
                         if (el) {
+                            const origX = el.getAttribute('x') || 0;
                             el.style.fontFamily = '"Space Grotesk", sans-serif';
                             const line1 = Math.round(series1[clickedIdx] / pieTotal * 100) + '%';
-                            const line2 = (typeof series1a2 !== 'undefined' && series1a2) ? (series1a2[clickedIdx] + ' ' + linevalue) : null;
+                            let line2 = null;
+                            if (typeof series1a2 !== 'undefined' && series1a2 && typeof linevalue !== 'undefined') {
+                                line2 = series1a2[clickedIdx] + ' ' + linevalue;
+                            }
+
                             if (line2) {
                                 el.innerHTML = `
-                                    <tspan x="0" dy="-0.2em" style="font-size: 35px;">${line1}</tspan>
-                                    <tspan x="0" dy="1.4em" style="font-size: 16px; font-weight: 400;">${line2}</tspan>
+                                    <tspan x="${origX}" dy="-0.4em" style="font-size: 35px;">${line1}</tspan>
+                                    <tspan x="${origX}" dy="1.5em" style="font-size: 16px; font-weight: 400;">${line2}</tspan>
                                 `;
                             } else {
-                                el.innerHTML = `<tspan x="0" dy="0.3em" style="font-size: 35px;">${line1}</tspan>`;
+                                el.innerHTML = `<tspan x="${origX}" dy="0.3em" style="font-size: 35px;">${line1}</tspan>`;
                             }
                         }
                         selectedSliceIndex = clickedIdx;
