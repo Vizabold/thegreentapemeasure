@@ -2183,7 +2183,7 @@
     </div>
   </footer>
 
-  <dialog class="analysis-dialog" id="analysis-one" aria-labelledby="Analysis of Deadly Building Fires in the U.S."
+  <dialog class="analysis-dialog" id="analysis-one" aria-label="Analysis of Deadly Building Fires in the U.S."
     aria-modal="true" popover>
     <div class="presentation-slider scrollbar">
       <div class="card presentation-slide" id="slide-1a">
@@ -2311,8 +2311,8 @@
         </div>
       </div>
       <div class="card presentation-slide" id="slide-1c">
-        <div class="flex justify-center items-center">
-          <picture>
+        <div class="flex justify-center items-center" id="bar-chart-1c-container">
+          <picture id="bar-chart-1c-placeholder">
             <source srcset="assets/images/graph_1c-dk-lg.webp" type="image/webp" media="(min-width: 1000px)"
               data-theme="dark">
             <source srcset="assets/images/graph_1c-dk-md.webp" type="image/webp" media="(min-width: 400px)"
@@ -2328,6 +2328,7 @@
             <img src="assets/images/graph_1c-lt-md.png"
               alt="a monochrome green bar graph showing 1 bar for number of deaths for each decade">
           </picture>
+          <div id="bar-chart-1c"></div>
         </div>
         <div class="flex flex-col gap-4 justify-between items-center sm:flex-col xl:grow">
           <div class="flex flex-col gap-4 max-w-100">
@@ -2364,8 +2365,8 @@
         </div>
       </div>
       <div class="card presentation-slide" id="slide-1d">
-        <div class="flex justify-center items-center">
-          <picture>
+        <div class="flex justify-center items-center" id="venn-chart-1d-container">
+          <picture id="venn-chart-1d-placeholder">
             <source srcset="assets/images/graph_1d-dk-lg.webp" type="image/webp" media="(min-width: 1000px)"
               data-theme="dark">
             <source srcset="assets/images/graph_1d-dk-md.webp" type="image/webp" media="(min-width: 400px)"
@@ -2381,6 +2382,7 @@
             <img src="assets/images/graph_1d-lt-md.png"
               alt="a monochrome green venn diagram showing circles for each combination of 3 causes of fires">
           </picture>
+          <div id="venn-chart-1d"></div>
         </div>
         <div class="flex flex-col gap-4 justify-between items-center sm:flex-col xl:grow">
           <div class="flex flex-col gap-4 max-w-100">
@@ -2389,32 +2391,32 @@
               <h4>Improperly Designed Interiors</h4>
               <p class="hidden js:block">Tap a section on the graph to see more details</p>
             </div>
-            <div class="flex flex-col gap-1">
-              <div class="flex gap-1">
+            <div class="flex flex-col gap-4">
+              <div class="flex gap-2">
                 <svg class="icon-sm fill-current text-neutral-seven">
                   <use href="/assets/sprites/solid.svg#door-open"></use>
                 </svg>
-                <p>Unable to Exit</p>
+                <p class="self-center">Unable to Exit</p>
               </div>
-              <div class="flex gap-1">
+              <div class="flex gap-2">
                 <svg class="icon-sm fill-current text-neutral-seven">
                   <use href="/assets/sprites/solid.svg#bell"></use>
                 </svg>
-                <p>Lack of Alarms or Sprinklers</p>
+                <p class="self-center">Lack of Alarms or Sprinklers</p>
               </div>
-              <div class="flex gap-1">
+              <div class="flex gap-2">
                 <svg class="icon-sm fill-current text-neutral-seven">
                   <use href="/assets/sprites/solid.svg#paint-roller"></use>
                 </svg>
-                <p>Flammable or Toxic Materials</p>
+                <p class="self-center">Flammable or Toxic Materials</p>
               </div>
             </div>
           </div>
         </div>
       </div>
       <div class="card presentation-slide" id="slide-1e">
-        <div class="flex justify-center items-center">
-          <picture>
+        <div class="flex justify-center items-center" id="venn-chart-1e-container">
+          <picture id="venn-chart-1e-placeholder">
             <source srcset="assets/images/graph_1e-dk-lg.webp" type="image/webp" media="(min-width: 1000px)"
               data-theme="dark">
             <source srcset="assets/images/graph_1e-dk-md.webp" type="image/webp" media="(min-width: 400px)"
@@ -2430,6 +2432,7 @@
             <img src="assets/images/graph_1e-lt-md.png"
               alt="a monochrome green venn diagram showing circles for each combination of 3 causes of deaths">
           </picture>
+          <div id="venn-chart-1e"></div>
         </div>
         <div class="flex flex-col gap-4 justify-between items-center sm:flex-col xl:grow">
           <div class="flex flex-col gap-4 max-w-100">
@@ -2438,32 +2441,32 @@
               <h4>Improperly Designed Interiors</h4>
               <p class="hidden js:block">Tap a section on the graph to see more details</p>
             </div>
-            <div class="flex flex-col gap-1">
-              <div class="flex gap-1">
+            <div class="flex flex-col gap-4">
+              <div class="flex gap-2">
                 <svg class="icon-sm fill-current text-neutral-seven">
                   <use href="/assets/sprites/solid.svg#door-open"></use>
                 </svg>
-                <p>Unable to Exit</p>
+                <p class="self-center">Unable to Exit</p>
               </div>
-              <div class="flex gap-1">
+              <div class="flex gap-2">
                 <svg class="icon-sm fill-current text-neutral-seven">
                   <use href="/assets/sprites/solid.svg#bell"></use>
                 </svg>
-                <p>Lack of Alarms or Sprinklers</p>
+                <p class="self-center">Lack of Alarms or Sprinklers</p>
               </div>
-              <div class="flex gap-1">
+              <div class="flex gap-2">
                 <svg class="icon-sm fill-current text-neutral-seven">
                   <use href="/assets/sprites/solid.svg#paint-roller"></use>
                 </svg>
-                <p>Flammable or Toxic Materials</p>
+                <p class="self-center">Flammable or Toxic Materials</p>
               </div>
             </div>
           </div>
         </div>
       </div>
       <div class="card presentation-slide" id="slide-1f">
-        <div class="flex justify-center items-center">
-          <picture>
+        <div class="flex justify-center items-center" id="pyramid-chart-1f-container">
+          <picture id="pyramid-chart-1f-placeholder">
             <source srcset="assets/images/graph_1f-dk-lg.webp" type="image/webp" media="(min-width: 1000px)"
               data-theme="dark">
             <source srcset="assets/images/graph_1f-dk-md.webp" type="image/webp" media="(min-width: 400px)"
@@ -2479,6 +2482,7 @@
             <img src="assets/images/graph_1f-lt-md.png"
               alt="a monochrome pyramid diagram showing proportions of 3 reasons blamed for the fires">
           </picture>
+          <div id="pyramid-chart-1f"></div>
         </div>
         <div class="flex flex-col gap-4 justify-between items-center sm:flex-col xl:grow">
           <div class="flex flex-col gap-4 max-w-100">
@@ -2487,32 +2491,32 @@
               <h4>Blamed for the Fires</h4>
               <p class="hidden js:block">Tap a section on the graph to see more details</p>
             </div>
-            <div class="flex flex-col gap-1">
-              <div class="flex gap-1">
+            <div class="flex flex-col gap-4">
+              <div class="flex gap-2">
                 <svg class="icon-sm fill-current text-neutral-seven">
                   <use href="/assets/sprites/solid.svg#gavel"></use>
                 </svg>
-                <p>Lack of Code Enforcement</p>
+                <p class="self-center">Lack of Code Enforcement</p>
               </div>
-              <div class="flex gap-1">
+              <div class="flex gap-2">
                 <svg class="icon-sm fill-current text-neutral-seven">
                   <use href="/assets/sprites/solid.svg#building-shield"></use>
                 </svg>
-                <p>Outdated Building Codes</p>
+                <p class="self-center">Outdated Building Codes</p>
               </div>
-              <div class="flex gap-1">
+              <div class="flex gap-2">
                 <svg class="icon-sm fill-current text-neutral-seven">
                   <use href="/assets/sprites/solid.svg#compass-drafting"></use>
                 </svg>
-                <p>Architect</p>
+                <p class="self-center">Architect</p>
               </div>
             </div>
           </div>
         </div>
       </div>
       <div class="card presentation-slide" id="slide-1g">
-        <div class="flex justify-center items-center">
-          <picture>
+        <div class="flex justify-center items-center" id="pyramid-chart-1g-container">
+          <picture id="pyramid-chart-1g-placeholder">
             <source srcset="assets/images/graph_1g-dk-lg.webp" type="image/webp" media="(min-width: 1000px)"
               data-theme="dark">
             <source srcset="assets/images/graph_1g-dk-md.webp" type="image/webp" media="(min-width: 400px)"
@@ -2528,6 +2532,7 @@
             <img src="assets/images/graph_1g-lt-md.png"
               alt="a monochrome pyramid diagram showing proportions of 3 reasons blamed for the fires">
           </picture>
+          <div id="pyramid-chart-1g"></div>
         </div>
         <div class="flex flex-col gap-4 justify-between items-center sm:flex-col xl:grow">
           <div class="flex flex-col gap-4 max-w-100">
@@ -2536,24 +2541,24 @@
               <h4>Blamed for the Deaths</h4>
               <p class="hidden js:block">Tap a section on the graph to see more details</p>
             </div>
-            <div class="flex flex-col gap-1">
-              <div class="flex gap-1">
+            <div class="flex flex-col gap-4">
+              <div class="flex gap-2">
                 <svg class="icon-sm fill-current text-neutral-seven">
                   <use href="/assets/sprites/solid.svg#gavel"></use>
                 </svg>
-                <p>Lack of Code Enforcement</p>
+                <p class="self-center">Lack of Code Enforcement</p>
               </div>
-              <div class="flex gap-1">
+              <div class="flex gap-2">
                 <svg class="icon-sm fill-current text-neutral-seven">
                   <use href="/assets/sprites/solid.svg#building-shield"></use>
                 </svg>
-                <p>Outdated Building Codes</p>
+                <p class="self-center">Outdated Building Codes</p>
               </div>
-              <div class="flex gap-1">
+              <div class="flex gap-2">
                 <svg class="icon-sm fill-current text-neutral-seven">
                   <use href="/assets/sprites/solid.svg#compass-drafting"></use>
                 </svg>
-                <p>Architect</p>
+                <p class="self-center">Architect</p>
               </div>
             </div>
           </div>
@@ -3759,8 +3764,8 @@
     aria-modal="true" popover>
     <div class="presentation-slider scrollbar">
       <div class="card presentation-slide" id="slide-2a">
-        <div class="flex justify-center items-center">
-          <picture>
+        <div class="flex justify-center items-center" id="pie-chart-2a-container">
+          <picture id="pie-chart-2a-placeholder">
             <source srcset="assets/images/graph_2a-dk-lg.webp" type="image/webp" media="(min-width: 1000px)"
               data-theme="dark">
             <source srcset="assets/images/graph_2a-dk-md.webp" type="image/webp" media="(min-width: 400px)"
@@ -3776,6 +3781,7 @@
             <img src="assets/images/graph_2a-lt-md.png"
               alt="a monochrome green graph showing 6 slices, one for each subject">
           </picture>
+          <div id="pie-chart-2a"></div>
         </div>
         <div class="flex flex-col gap-4 justify-between items-center sm:flex-col xl:grow">
           <div class="flex flex-col gap-4 max-w-100">
@@ -3786,45 +3792,45 @@
             </div>
             <div class="flex flex-col gap-4">
               <div class="flex flex-col gap-4 xs:flex-row">
-                <div class="flex gap-1 justify-between items-center xs:justify-start xs:w-73">
+                <div class="flex gap-2 justify-between items-center xs:justify-start xs:w-73">
                   <svg class="icon-sm fill-current text-neutral-seven">
                     <use href="/assets/sprites/solid.svg#cubes"></use>
                   </svg>
-                  <p>Fundamentals</p>
+                  <p class="self-center">Fundamentals</p>
                 </div>
-                <div class="flex gap-1 justify-between items-center xs:justify-start xs:w-73">
+                <div class="flex gap-2 justify-between items-center xs:justify-start xs:w-73">
                   <svg class="icon-sm fill-current text-neutral-seven">
                     <use href="/assets/sprites/solid.svg#gear"></use>
                   </svg>
-                  <p>Systems</p>
+                  <p class="self-center">Systems</p>
                 </div>
               </div>
               <div class="flex flex-col gap-4 xs:flex-row">
-                <div class="flex gap-1 justify-between items-center xs:justify-start xs:w-73">
+                <div class="flex gap-2 justify-between items-center xs:justify-start xs:w-73">
                   <svg class="icon-sm fill-current text-neutral-seven">
                     <use href="/assets/sprites/solid.svg#display"></use>
                   </svg>
-                  <p>Graphics</p>
+                  <p class="self-center">Graphics</p>
                 </div>
-                <div class="flex gap-1 justify-between items-center xs:justify-start xs:w-73">
+                <div class="flex gap-2 justify-between items-center xs:justify-start xs:w-73">
                   <svg class="icon-sm fill-current text-neutral-seven">
                     <use href="/assets/sprites/solid.svg#user-tie"></use>
                   </svg>
-                  <p>Professional Practice</p>
+                  <p class="self-center">Professional Practice</p>
                 </div>
               </div>
               <div class="flex flex-col gap-4 xs:flex-row">
-                <div class="flex gap-1 justify-between items-center xs:justify-start xs:w-73">
+                <div class="flex gap-2 justify-between items-center xs:justify-start xs:w-73">
                   <svg class="icon-sm fill-current text-neutral-seven">
                     <use href="/assets/sprites/solid.svg#building"></use>
                   </svg>
-                  <p>Commercial Projects</p>
+                  <p class="self-center">Commercial Projects</p>
                 </div>
-                <div class="flex gap-1 justify-between items-center xs:justify-start xs:w-73">
+                <div class="flex gap-2 justify-between items-center xs:justify-start xs:w-73">
                   <svg class="icon-sm fill-current text-neutral-seven">
                     <use href="/assets/sprites/solid.svg#house-chimney"></use>
                   </svg>
-                  <p>Residential Projects</p>
+                  <p class="self-center">Residential Projects</p>
                 </div>
               </div>
             </div>
@@ -3833,8 +3839,8 @@
         </div>
       </div>
       <div class="card presentation-slide" id="slide-2b">
-        <div class="flex justify-center items-center">
-          <picture>
+        <div class="flex justify-center items-center" id="pie-chart-2b-container">
+          <picture id="pie-chart-2b-placeholder">
             <source srcset="assets/images/graph_2b-dk-lg.webp" type="image/webp" media="(min-width: 1000px)"
               data-theme="dark">
             <source srcset="assets/images/graph_2b-dk-md.webp" type="image/webp" media="(min-width: 400px)"
@@ -3850,6 +3856,7 @@
             <img src="assets/images/graph_2b-lt-md.png"
               alt="a monochrome green graph showing 6 slices, one for each subject">
           </picture>
+          <div id="pie-chart-2b"></div>
         </div>
         <div class="flex flex-col gap-4 justify-between items-center sm:flex-col xl:grow">
           <div class="flex flex-col gap-4 max-w-100">
@@ -3860,45 +3867,45 @@
             </div>
             <div class="flex flex-col gap-4">
               <div class="flex flex-col gap-4 xs:flex-row">
-                <div class="flex gap-1 justify-between items-center xs:justify-start xs:w-73">
+                <div class="flex gap-2 justify-between items-center xs:justify-start xs:w-73">
                   <svg class="icon-sm fill-current text-neutral-seven">
                     <use href="/assets/sprites/solid.svg#cubes"></use>
                   </svg>
-                  <p>Fundamentals</p>
+                  <p class="self-center">Fundamentals</p>
                 </div>
-                <div class="flex gap-1 justify-between items-center xs:justify-start xs:w-73">
+                <div class="flex gap-2 justify-between items-center xs:justify-start xs:w-73">
                   <svg class="icon-sm fill-current text-neutral-seven">
                     <use href="/assets/sprites/solid.svg#gear"></use>
                   </svg>
-                  <p>Systems</p>
+                  <p class="self-center">Systems</p>
                 </div>
               </div>
               <div class="flex flex-col gap-4 xs:flex-row">
-                <div class="flex gap-1 justify-between items-center xs:justify-start xs:w-73">
+                <div class="flex gap-2 justify-between items-center xs:justify-start xs:w-73">
                   <svg class="icon-sm fill-current text-neutral-seven">
                     <use href="/assets/sprites/solid.svg#display"></use>
                   </svg>
-                  <p>Graphics</p>
+                  <p class="self-center">Graphics</p>
                 </div>
-                <div class="flex gap-1 justify-between items-center xs:justify-start xs:w-73">
+                <div class="flex gap-2 justify-between items-center xs:justify-start xs:w-73">
                   <svg class="icon-sm fill-current text-neutral-seven">
                     <use href="/assets/sprites/solid.svg#user-tie"></use>
                   </svg>
-                  <p>Professional Practice</p>
+                  <p class="self-center">Professional Practice</p>
                 </div>
               </div>
               <div class="flex flex-col gap-4 xs:flex-row">
-                <div class="flex gap-1 justify-between items-center xs:justify-start xs:w-73">
+                <div class="flex gap-2 justify-between items-center xs:justify-start xs:w-73">
                   <svg class="icon-sm fill-current text-neutral-seven">
                     <use href="/assets/sprites/solid.svg#building"></use>
                   </svg>
-                  <p>Projects</p>
+                  <p class="self-center">Projects</p>
                 </div>
-                <div class="flex gap-1 justify-between items-center xs:justify-start xs:w-73">
+                <div class="flex gap-2 justify-between items-center xs:justify-start xs:w-73">
                   <svg class="icon-sm fill-current text-neutral-seven">
                     <use href="/assets/sprites/solid.svg#share-nodes"></use>
                   </svg>
-                  <p>Interior Design</p>
+                  <p class="self-center">Interior Design</p>
                 </div>
               </div>
             </div>
@@ -3907,8 +3914,8 @@
         </div>
       </div>
       <div class="card presentation-slide" id="slide-2c">
-        <div class="flex justify-center items-center">
-          <picture>
+        <div class="flex justify-center items-center" id="pie-chart-2c-container">
+          <picture id="pie-chart-1c-placeholder">
             <source srcset="assets/images/graph_2c-dk-lg.webp" type="image/webp" media="(min-width: 1000px)"
               data-theme="dark">
             <source srcset="assets/images/graph_2c-dk-md.webp" type="image/webp" media="(min-width: 400px)"
@@ -3924,6 +3931,7 @@
             <img src="assets/images/graph_2c-lt-md.png"
               alt="a monochrome green graph showing 3 slices, one for professional practice, one for project management, and one for design">
           </picture>
+          <div id="pie-chart-2c"></div>
         </div>
         <div class="flex flex-col gap-4 justify-between items-center sm:flex-col xl:grow">
           <div class="flex flex-col gap-4 max-w-100">
@@ -3933,23 +3941,23 @@
               <p class="hidden js:block">Tap a section on the graph to see more details</p>
             </div>
             <div class="flex flex-col gap-4">
-              <div class="flex gap-1 items-center">
+              <div class="flex gap-2 items-center">
                 <svg class="icon-sm fill-current text-neutral-seven">
                   <use href="/assets/sprites/solid.svg#list-check"></use>
                 </svg>
-                <p>Project Management</p>
+                <p class="self-center">Project Management</p>
               </div>
-              <div class="flex gap-1 items-center">
+              <div class="flex gap-2 items-center">
                 <svg class="icon-sm fill-current text-neutral-seven">
                   <use href="/assets/sprites/solid.svg#user-tie"></use>
                 </svg>
-                <p>Professional Practice</p>
+                <p class="self-center">Professional Practice</p>
               </div>
-              <div class="flex gap-1 items-center">
+              <div class="flex gap-2 items-center">
                 <svg class="icon-sm fill-current text-neutral-seven">
                   <use href="/assets/sprites/solid.svg#compass-drafting"></use>
                 </svg>
-                <p>Design</p>
+                <p class="self-center">Design</p>
               </div>
             </div>
           </div>
@@ -3957,8 +3965,8 @@
         </div>
       </div>
       <div class="card presentation-slide" id="slide-2d">
-        <div class="flex justify-center items-center">
-          <picture>
+        <div class="flex justify-center items-center" id="pie-chart-2d-container">
+          <picture id="pie-chart-2d-placeholder">
             <source srcset="assets/images/graph_2d-dk-lg.webp" type="image/webp" media="(min-width: 1000px)"
               data-theme="dark">
             <source srcset="assets/images/graph_2d-dk-md.webp" type="image/webp" media="(min-width: 400px)"
@@ -3974,6 +3982,7 @@
             <img src="assets/images/graph_2d-lt-md.png"
               alt="a monochrome green graph showing 4 slices, one for professional practice, one for project management, one for design, and one for overlap with interiors">
           </picture>
+          <div id="pie-chart-2d"></div>
         </div>
         <div class="flex flex-col gap-4 justify-between items-center sm:flex-col xl:grow">
           <div class="flex flex-col gap-4 max-w-100">
@@ -3983,29 +3992,29 @@
               <p class="hidden js:block">Tap a section on the graph to see more details</p>
             </div>
             <div class="flex flex-col gap-4">
-              <div class="flex gap-1 items-center">
+              <div class="flex gap-2 items-center">
                 <svg class="icon-sm fill-current text-neutral-seven">
                   <use href="/assets/sprites/solid.svg#list-check"></use>
                 </svg>
-                <p>Project Management</p>
+                <p class="self-center">Project Management</p>
               </div>
-              <div class="flex gap-1">
+              <div class="flex gap-2">
                 <svg class="icon-sm fill-current text-neutral-seven">
                   <use href="/assets/sprites/solid.svg#user-tie"></use>
                 </svg>
-                <p>Professional Practice</p>
+                <p class="self-center">Professional Practice</p>
               </div>
-              <div class="flex gap-1 items-center">
+              <div class="flex gap-2 items-center">
                 <svg class="icon-sm fill-current text-neutral-seven">
                   <use href="/assets/sprites/solid.svg#compass-drafting"></use>
                 </svg>
-                <p>Design</p>
+                <p class="self-center">Design</p>
               </div>
-              <div class="flex gap-1 items-center">
+              <div class="flex gap-2 items-center">
                 <svg class="icon-sm fill-current text-neutral-seven">
                   <use href="/assets/sprites/solid.svg#share-nodes"></use>
                 </svg>
-                <p>Interior Design</p>
+                <p class="self-center">Interior Design</p>
               </div>
             </div>
           </div>
