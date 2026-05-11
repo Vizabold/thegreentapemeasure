@@ -35,6 +35,8 @@ let selectedIndex1b = -1;
 /* Graph-2a Variables */
 const icons2a = ['\u{f1b3}', '\u{f013}', '\u{f1ad}', '\u{e163}', '\u{e3af}', '\u{f508}'];
 const series2a = [25, 22, 19, 17, 9, 8];
+const series2a2 = [20, 18, 16, 14, 7, 6];
+const linevalue2a = 'HOURS';
 const labels2a = ['fundamentals', 'systems', 'commercial', 'graphics', 'residential', 'practice'];
 const chart2a = document.getElementById('pie-chart-2a');
 const placeholder2a = document.getElementById('pie-chart-2a-placeholder');
@@ -44,6 +46,8 @@ let selectedIndex2a = -1;
 /* Graph-2b Variables */
 const icons2b = ['\u{f1ad}', '\u{f1b3}', '\u{f013}', '\u{f508}', '\u{f1e0}', '\u{e163}'];
 const series2b = [37, 23, 16, 10, 8, 6];
+const series2b2 = [45, 28, 20, 12, 10, 7];
+const linevalue2b = 'HOURS';
 const labels2b = ['projects', 'fundamentals', 'systems', 'practice', 'shared', 'graphics'];
 const chart2b = document.getElementById('pie-chart-2b');
 const placeholder2b = document.getElementById('pie-chart-2b-placeholder');
@@ -53,6 +57,8 @@ let selectedIndex2b = -1;
 /* Graph-2c Variables */
 const icons2c = ['\u{f568}', '\u{f0ae}', '\u{f508}'];
 const series2c = [78, 16, 6];
+const series2c2 = [328, 67, 25];
+const linevalue2c = 'Qs.';
 const labels2c = ['design', 'management', 'practice'];
 const chart2c = document.getElementById('pie-chart-2c');
 const placeholder2c = document.getElementById('pie-chart-2c-placeholder');
@@ -62,6 +68,8 @@ let selectedIndex2c = -1;
 /* Graph-2d Variables */
 const icons2d = ['\u{f0ae}', '\u{f568}', '\u{f1e0}', '\u{f508}'];
 const series2d = [33, 28, 27, 12];
+const series2d2 = [162, 137, 132, 59];
+const linevalue2d = 'Qs.';
 const labels2d = ['management', 'design', 'shared', 'practice'];
 const chart2d = document.getElementById('pie-chart-2d');
 const placeholder2d = document.getElementById('pie-chart-2d-placeholder');
@@ -73,6 +81,8 @@ let selectedIndex2d = -1;
 /* Graph-4a Variables */
 const icons4a = ['\u{e54f}', '\u{e3af}', '\u{f0b1}'];
 const series4a = [60, 20, 20];
+const series4a2 = [26, 9, 9];
+const linevalue4a = 'PEOPLE';
 const labels4a = ['interiors', 'architecture', 'business'];
 const chart4a = document.getElementById('pie-chart-4a');
 const placeholder4a = document.getElementById('pie-chart-4a-placeholder');
@@ -82,6 +92,8 @@ let selectedIndex4a = -1;
 /* Graph-4b Variables */
 const icons4b = ['\u{e54f}', '\u{f0b1}'];
 const series4b = [56, 44];
+const series4b2 = [9, 7];
+const linevalue4b = 'PEOPLE';
 const labels4b = ['interiors', 'business'];
 const chart4b = document.getElementById('pie-chart-4b');
 const placeholder4b = document.getElementById('pie-chart-4b-placeholder');
@@ -217,10 +229,10 @@ piechart(icons1b, series1b, series1b2, linevalue1b, labels1b, chart1b, placehold
 /* Evoke function for Graph-1e */
 /* Evoke function for Graph-1f */
 /* Evoke function for Graph-1g */
-piechart(icons2a, series2a, labels2a, chart2a, placeholder2a, colors2a, selectedIndex2a);
-piechart(icons2b, series2b, labels2b, chart2b, placeholder2b, colors2b, selectedIndex2b);
-piechart(icons2c, series2c, labels2c, chart2c, placeholder2c, colors2c, selectedIndex2c);
-piechart(icons2d, series2d, labels2d, chart2d, placeholder2d, colors2d, selectedIndex2d);
+piechart(icons2a, series2a, series2a2, linevalue2a, labels2a, chart2a, placeholder2a, colors2a, selectedIndex2a);
+piechart(icons2b, series2b, series2b2, linevalue2b, labels2b, chart2b, placeholder2b, colors2b, selectedIndex2b);
+piechart(icons2c, series2c, series2c2, linevalue2c, labels2c, chart2c, placeholder2c, colors2c, selectedIndex2c);
+piechart(icons2d, series2d, series2d2, linevalue2d, labels2d, chart2d, placeholder2d, colors2d, selectedIndex2d);
 /* Evoke function for Graph-3a */
-piechart(icons4a, series4a, labels4a, chart4a, placeholder4a, colors4a, selectedIndex4a);
-piechart(icons4b, series4b, labels4b, chart4b, placeholder4b, colors4b, selectedIndex4b);
+piechart(icons4a, series4a, series4a2, linevalue4a, labels4a, chart4a, placeholder4a, colors4a, selectedIndex4a);
+piechart(icons4b, series4b, series4b2, linevalue4b, labels4b, chart4b, placeholder4b, colors4b, selectedIndex4b);
