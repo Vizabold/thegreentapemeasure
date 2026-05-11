@@ -575,6 +575,9 @@
   .gap-35 {
     gap: calc(var(--spacing) * 35);
   }
+  .self-center {
+    align-self: center;
+  }
   .overflow-x-auto {
     overflow-x: auto;
   }

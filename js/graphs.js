@@ -7,6 +7,7 @@ var options = {
     series: [38, 21, 17, 10, 14],
     chart: {
         type: 'pie',
+        width: 483,
         id: 'pie-1a',
         events: {
             mounted: function (chartContext) {
@@ -51,7 +52,21 @@ var options = {
     },
     legend: {
         show: false
-    }
+    },
+    responsive: [
+        {
+            breakpoint: 1000,
+            options: {
+                chart: { width: 336 }
+            }
+        },
+        {
+            breakpoint: 400,
+            options: {
+                chart: { width: 236 }
+            }
+        }
+    ]
 }
 
 if (chartEl) {
