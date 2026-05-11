@@ -1,114 +1,123 @@
 /* ---------------------- Analysis 1 ------------------------- */
 
-const chartEl = document.getElementById('pie-chart-1a');
-let selectedSliceIndex = -1;
+/* Graph-1a Variables */
+const icons1a = ['', '', '', '', ''];
+const series1a = [38, 21, 17, 10, 14];
+const labels1a = ['hotel', 'assembly', 'schools', 'factory', 'hospital'];
+const chart1a = document.getElementById('pie-chart-1a');
+const placeholder1a = document.getElementById('pie-chart-1a-placeholder');
+const colors1a = ['var(--primary-one)', 'var(--primary-two)', 'var(--primary-three)', 'var(--primary-four)', 'var(--neutral-seven-light)'];
+let selectedIndex1a = -1;
 
-// FA7 Free solid Unicode: bed, masks-theater, graduation-cap, industry, hospital
-const pieIcons = ['', '', '', '', ''];
-const pieSeries = [38, 21, 17, 10, 14];
-const pieTotal = pieSeries.reduce((a, b) => a + b, 0);
+function piechart(pieIcons, pieSeries, labels, chartEl, placeholder, colors, selectedSliceIndex) {
+    function getPieLabelEl(idx) {
+        return chartEl.querySelector(`.apexcharts-datalabels[data-realindex="${idx}"] text`)
+            || [...chartEl.querySelectorAll('.apexcharts-datalabels text')][idx];
+    }
 
-function getPieLabelEl(idx) {
-    return chartEl.querySelector(`.apexcharts-datalabels[data-realindex="${idx}"] text`)
-        || [...chartEl.querySelectorAll('.apexcharts-datalabels text')][idx];
-}
+    var options = {
+        series: pieSeries,
+        labels: labels,
+        chart: {
+            type: 'pie',
+            width: 483,
+            height: 483,
+            id: chartEl,
+            events: {
+                mounted: function (chartContext) {
+                    placeholder.style.display = 'none';
+                    chartEl.style.opacity = '1';
+                },
+                dataPointSelection: function (event, chartContext, config) {
+                    const clickedIdx = config.dataPointIndex;
+                    const isNowSelected = (config.selectedDataPoints[0] || []).includes(clickedIdx);
 
-var options = {
-    series: pieSeries,
-    labels: ['hotel', 'assembly', 'schools', 'factory', 'hospital'],
-    chart: {
-        type: 'pie',
-        width: 483,
-        height: 483,
-        id: 'pie-1a',
-        events: {
-            mounted: function (chartContext) {
-                document.getElementById('pie-chart-1a-placeholder').style.display = 'none';
-                chartEl.style.opacity = '1';
+                    if (selectedSliceIndex !== -1) {
+                        const prevEl = getPieLabelEl(selectedSliceIndex);
+                        if (prevEl) {
+                            prevEl.style.fontFamily = '"Font Awesome 7 Free"';
+                            prevEl.textContent = pieIcons[selectedSliceIndex];
+                        }
+                    }
+
+                    if (isNowSelected) {
+                        const el = getPieLabelEl(clickedIdx);
+                        const pieTotal = pieSeries.reduce((a, b) => a + b, 0);
+                        if (el) {
+                            el.style.fontFamily = 'sans-serif';
+                            el.textContent = Math.round(pieSeries[clickedIdx] / pieTotal * 100) + '%';
+                        }
+                        selectedSliceIndex = clickedIdx;
+                    } else {
+                        selectedSliceIndex = -1;
+                    }
+                }
+            }
+        },
+        colors: colors,
+        stroke: {
+            show: true,
+            width: 2,
+            color: ['var(--neutral-nine)']
+        },
+        plotOptions: {
+            pie: {
+                dataLabels: {
+                    offset: -30,
+                }
+            }
+        },
+        dataLabels: {
+            enabled: true,
+            formatter: function (val, opts) {
+                return pieIcons[opts.seriesIndex];
             },
-            dataPointSelection: function (event, chartContext, config) {
-                const clickedIdx = config.dataPointIndex;
-                const isNowSelected = (config.selectedDataPoints[0] || []).includes(clickedIdx);
-
-                if (selectedSliceIndex !== -1) {
-                    const prevEl = getPieLabelEl(selectedSliceIndex);
-                    if (prevEl) {
-                        prevEl.style.fontFamily = '"Font Awesome 7 Free"';
-                        prevEl.textContent = pieIcons[selectedSliceIndex];
-                    }
-                }
-
-                if (isNowSelected) {
-                    const el = getPieLabelEl(clickedIdx);
-                    if (el) {
-                        el.style.fontFamily = 'sans-serif';
-                        el.textContent = Math.round(pieSeries[clickedIdx] / pieTotal * 100) + '%';
-                    }
-                    selectedSliceIndex = clickedIdx;
-                } else {
-                    selectedSliceIndex = -1;
-                }
+            style: {
+                fontSize: '35px',
+                fontWeight: '900',
+                fontFamily: '"Font Awesome 7 Free", sans-serif',
+                colors: ['var(--neutral-two-dark)'],
+            },
+            dropShadow: {
+                enabled: false
             }
-        }
-    },
-    colors: ['var(--primary-one)', 'var(--primary-two)', 'var(--primary-three)', 'var(--primary-four)', 'var(--neutral-seven-light)'],
-    stroke: {
-        show: true,
-        width: 2,
-        color: ['var(--neutral-nine)']
-    },
-    plotOptions: {
-        pie: {
-            dataLabels: {
-                offset: -30,
-            }
-        }
-    },
-    dataLabels: {
-        enabled: true,
-        formatter: function (val, opts) {
-            return pieIcons[opts.seriesIndex];
         },
-        style: {
-            fontSize: '35px',
-            fontWeight: '900',
-            fontFamily: '"Font Awesome 7 Free", sans-serif',
-            colors: ['var(--neutral-two-dark)'],
+        legend: {
+            show: false
         },
-        dropShadow: {
+        tooltip: {
             enabled: false
-        }
-    },
-    legend: {
-        show: false
-    },
-    tooltip: {
-        enabled: false
-    },
-    responsive: [
-        {
-            breakpoint: 1000,
-            options: {
-                chart: { width: 336, height: 336 }
-            }
         },
-        {
-            breakpoint: 400,
-            options: {
-                chart: { width: 236, height: 236 }
+        responsive: [
+            {
+                breakpoint: 1000,
+                options: {
+                    chart: { width: 336, height: 336 }
+                }
+            },
+            {
+                breakpoint: 400,
+                options: {
+                    chart: { width: 236, height: 236 }
+                }
             }
-        }
-    ],
-    states: {
-        active: {
-            filter: {
-                type: 'none'
+        ],
+        states: {
+            active: {
+                filter: {
+                    type: 'none'
+                }
             }
         }
     }
+
+    if (chartEl) {
+        var chart = new ApexCharts(chartEl, options);
+        chart.render();
+    }
 }
 
-if (chartEl) {
-    var chart = new ApexCharts(chartEl, options);
-    chart.render();
-}
+
+piechart(icons1a, series1a, labels1a, chart1a, placeholder1a, colors1a, selectedIndex1a);
+
+
