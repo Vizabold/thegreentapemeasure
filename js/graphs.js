@@ -21,7 +21,7 @@ var options = {
             }
         }
     },
-    labels: ['hotel', 'assembly', 'schools', 'factory', 'hospital'],
+    categories: ['hotel', 'assembly', 'schools', 'factory', 'hospital'],
     plotOptions: {
         pie: {
             dataLabels: {
@@ -29,17 +29,23 @@ var options = {
             }
         }
     },
-    dataLabels: {
-        enabled: true,
-        formatter: function (val, opts) {
-            if (opts.dataPointIndex === selectedSliceIndex) {
-                return val.toFixed(1) + '%';
-            }
-            const icons = ['\f236', '\f630', '\f19d', '\f275', '\e3b2'];
-            return icons[opts.dataPointIndex];
+    labels: {
+        show: true,
+        useHtml: true,
+        formatter: function (value) {
+            if (value === 'hotel') {
+                return '<i class="fa-solid fa-bed"></i>';
+            } else if (value === 'assembly') {
+                return '<i class="fa-solid fa-masks-theater"></i>';
+            } else if (value === 'schools') {
+                return '<i class="fa-solid fa-graduation-cap"></i>';
+            } else if (value === 'factory') {
+                return '<i class="fa-solid fa-industry"></i>';
+            } else if (value === 'hospital') {
+                return '<i class="fa-solid fa-house-hospital"></i>';
+            } else value;
         },
         style: {
-            fontFamily: '"Font Awesome 6 Free", "Space Grotesk", sans-serif',
             fontSize: '35px',
             fontWeight: '900',
             colors: ['var(--neutral-two-dark'],
@@ -67,7 +73,10 @@ var options = {
                 chart: { width: 236, height: 236 }
             }
         }
-    ]
+    ],
+    tooltip: {
+        enabled: false
+    }
 }
 
 if (chartEl) {
