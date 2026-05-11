@@ -9,6 +9,15 @@ const placeholder1a = document.getElementById('pie-chart-1a-placeholder');
 const colors1a = ['var(--primary-one)', 'var(--primary-two)', 'var(--primary-three)', 'var(--primary-four)', 'var(--neutral-seven-light)'];
 let selectedIndex1a = -1;
 
+/* Graph-1b Variables */
+const icons1b = ['', '', '', '', ''];
+const series1b = [52, 19, 12, 11, 6];
+const labels1b = ['assembly', 'hotel', 'schools', 'hospital', 'factory'];
+const chart1b = document.getElementById('pie-chart-1b');
+const placeholder1b = document.getElementById('pie-chart-1b-placeholder');
+const colors1b = ['var(--primary-one)', 'var(--primary-two)', 'var(--primary-three)', 'var(--primary-four)', 'var(--neutral-seven-light)'];
+let selectedIndex1b = -1;
+
 function piechart(pieIcons, pieSeries, labels, chartEl, placeholder, colors, selectedSliceIndex) {
     function getPieLabelEl(idx) {
         return chartEl.querySelector(`.apexcharts-datalabels[data-realindex="${idx}"] text`)
@@ -119,5 +128,6 @@ function piechart(pieIcons, pieSeries, labels, chartEl, placeholder, colors, sel
 
 
 piechart(icons1a, series1a, labels1a, chart1a, placeholder1a, colors1a, selectedIndex1a);
+piechart(icons1b, series1b, labels1b, chart1b, placeholder1b, colors1b, selectedIndex1b);
 
 
