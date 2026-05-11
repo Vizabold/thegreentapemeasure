@@ -3915,7 +3915,7 @@
       </div>
       <div class="card presentation-slide" id="slide-2c">
         <div class="flex justify-center items-center" id="pie-chart-2c-container">
-          <picture id="pie-chart-1c-placeholder">
+          <picture id="pie-chart-2c-placeholder">
             <source srcset="assets/images/graph_2c-dk-lg.webp" type="image/webp" media="(min-width: 1000px)"
               data-theme="dark">
             <source srcset="assets/images/graph_2c-dk-md.webp" type="image/webp" media="(min-width: 400px)"
@@ -4656,8 +4656,8 @@
   <dialog class="analysis-dialog" id="analysis-three" aria-labelledby="analysis-three-title" aria-modal="true" popover>
     <div class="presentation-slider scrollbar">
       <div class="card presentation-slide" id="slide-3a">
-        <div class="flex justify-center items-center">
-          <picture>
+        <div class="flex justify-center items-center" id="line-chart-3a-container">
+          <picture id="line-chart-3a-placeholder">
             <source srcset="assets/images/graph_3a-dk-lg.webp" type="image/webp" media="(min-width: 1000px)"
               data-theme="dark">
             <source srcset="assets/images/graph_3a-dk-md.webp" type="image/webp" media="(min-width: 400px)"
@@ -4672,6 +4672,7 @@
               data-theme="light">
             <img src="assets/images/graph_3a-lt-md.png" alt="a monochrome green line graph showing 5 lines">
           </picture>
+          <div id="line-chart-3a"></div>
         </div>
         <div class="flex flex-col gap-4 justify-between items-center sm:flex-col xl:grow">
           <div class="flex flex-col gap-4 max-w-100">
@@ -4682,31 +4683,31 @@
             </div>
             <div class="flex flex-col gap-4">
               <div class="flex flex-col gap-4 xs:flex-row">
-                <div class="flex gap-1 justify-between items-center xs:justify-start xs:w-73">
+                <div class="flex gap-2 justify-between items-center xs:justify-start xs:w-40">
                   <div class="w-9 h-1 bg-primary-one"></div>
-                  <p>Voluntary</p>
+                  <p class="self-center">Voluntary</p>
                 </div>
-                <div class="flex gap-1 justify-between items-center xs:justify-start xs:w-73">
+                <div class="flex gap-2 justify-between items-center xs:justify-start xs:w-40">
                   <div class="flex gap-2 justify-between">
                     <div class="w-1 h-1 bg-primary-one"></div>
                     <div class="w-2 h-1 bg-primary-one"></div>
                     <div class="w-1 h-1 bg-primary-one"></div>
                   </div>
-                  <p>Permitting</p>
+                  <p class="self-center">Permitting</p>
                 </div>
               </div>
               <div class="flex flex-col gap-4 xs:flex-row">
-                <div class="flex gap-1 justify-between items-center xs:justify-start xs:w-73">
+                <div class="flex gap-2 justify-between items-center xs:justify-start xs:w-40">
                   <div class="w-9 h-1 bg-neutral-seven"></div>
-                  <p>Restrictions</p>
+                  <p class="self-center">Restrictions</p>
                 </div>
-                <div class="flex gap-1 justify-between items-center xs:justify-start xs:w-73">
+                <div class="flex gap-2 justify-between items-center xs:justify-start xs:w-40">
                   <div class="flex gap-2 justify-between">
                     <div class="w-1 h-1 bg-neutral-seven"></div>
                     <div class="w-2 h-1 bg-neutral-seven"></div>
                     <div class="w-1 h-1 bg-neutral-seven"></div>
                   </div>
-                  <p>Regulation</p>
+                  <p class="self-center">Regulation</p>
                 </div>
               </div>
             </div>
@@ -5662,8 +5663,8 @@
     aria-modal="true" popover>
     <div class="presentation-slider scrollbar">
       <div class="card presentation-slide" id="slide-4a">
-        <div class="flex justify-center items-center">
-          <picture id="pie1a-placeholder">
+        <div class="flex justify-center items-center" id="pie-chart-4a-container">
+          <picture id="pie-chart-4a-placeholder">
             <source srcset="assets/images/graph_4a-dk-lg.webp" type="image/webp" media="(min-width: 1000px)"
               data-theme="dark">
             <source srcset="assets/images/graph_4a-dk-md.webp" type="image/webp" media="(min-width: 400px)"
@@ -5679,6 +5680,7 @@
             <img src="assets/images/graph_4a-lt-md.png"
               alt="a monochrome green graph showing 3 slices, one for each industry">
           </picture>
+          <div id="pie-chart-4a"></div>
         </div>
         <div class="flex flex-col gap-4 justify-between items-center sm:flex-col xl:grow">
           <div class="flex flex-col gap-4 max-w-100">
@@ -5688,23 +5690,23 @@
               <p class="hidden js:block">Tap a section on the graph to see more details</p>
             </div>
             <div class="flex flex-col gap-4">
-              <div class="flex gap-1 justify-between items-center xs:justify-start xs:w-73">
+              <div class="flex gap-2 justify-between items-center xs:justify-start">
                 <svg class="icon-sm fill-current text-neutral-seven">
                   <use href="/assets/sprites/solid.svg#person-shelter"></use>
                 </svg>
-                <p>Interior Design</p>
+                <p class="self-center">Interior Design</p>
               </div>
-              <div class="flex gap-1 justify-between items-center xs:justify-start xs:w-73">
+              <div class="flex gap-2 justify-between items-center xs:justify-start">
                 <svg class="icon-sm fill-current text-neutral-seven">
                   <use href="/assets/sprites/solid.svg#house"></use>
                 </svg>
-                <p>Architecture</p>
+                <p class="self-center">Architecture</p>
               </div>
-              <div class="flex gap-1 justify-between items-center xs:justify-start xs:w-73">
+              <div class="flex gap-2 justify-between items-center xs:justify-start">
                 <svg class="icon-sm fill-current text-neutral-seven">
                   <use href="/assets/sprites/solid.svg#briefcase"></use>
                 </svg>
-                <p>Other</p>
+                <p class="self-center">Other</p>
               </div>
             </div>
           </div>
@@ -5712,8 +5714,8 @@
         </div>
       </div>
       <div class="card presentation-slide" id="slide-4b">
-        <div class="flex justify-center items-center">
-          <picture>
+        <div class="flex justify-center items-center" id="pie-chart-4b-container">
+          <picture id="pie-chart-4b-placeholder">
             <source srcset="assets/images/graph_4b-dk-lg.webp" type="image/webp" media="(min-width: 1000px)"
               data-theme="dark">
             <source srcset="assets/images/graph_4b-dk-md.webp" type="image/webp" media="(min-width: 400px)"
@@ -5729,6 +5731,7 @@
             <img src="assets/images/graph_4a-lt-md.png"
               alt="a monochrome green graph showing 2 slices, one for interior design and one for other">
           </picture>
+          <div id="pie-chart-4b"></div>
         </div>
         <div class="flex flex-col gap-4 justify-between items-center sm:flex-col xl:grow">
           <div class="flex flex-col gap-4 max-w-100">
@@ -5738,17 +5741,17 @@
               <p class="hidden js:block">Tap a section on the graph to see more details</p>
             </div>
             <div class="flex flex-col gap-4">
-              <div class="flex gap-1 justify-between items-center xs:justify-start xs:w-73">
+              <div class="flex gap-2 justify-between items-center xs:justify-start">
                 <svg class="icon-sm fill-current text-neutral-seven">
                   <use href="/assets/sprites/solid.svg#person-shelter"></use>
                 </svg>
-                <p>Interior Design</p>
+                <p class="self-center">Interior Design</p>
               </div>
-              <div class="flex gap-1 justify-between items-center xs:justify-start xs:w-73">
+              <div class="flex gap-2 justify-between items-center xs:justify-start">
                 <svg class="icon-sm fill-current text-neutral-seven">
                   <use href="/assets/sprites/solid.svg#briefcase"></use>
                 </svg>
-                <p>Other</p>
+                <p class="self-center">Other</p>
               </div>
             </div>
           </div>

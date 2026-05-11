@@ -64,6 +64,26 @@ const placeholder2d = document.getElementById('pie-chart-2d-placeholder');
 const colors2d = ['var(--primary-one)', 'var(--primary-two)', 'var(--primary-three)', 'var(--primary-four)'];
 let selectedIndex2d = -1;
 
+/* Graph-3a Variables */
+
+/* Graph-4a Variables */
+const icons4a = ['\u{e54f}', '\u{e3af}', '\u{f0b1}'];
+const series4a = [60, 20, 20];
+const labels4a = ['interiors', 'architecture', 'business'];
+const chart4a = document.getElementById('pie-chart-4a');
+const placeholder4a = document.getElementById('pie-chart-4a-placeholder');
+const colors4a = ['var(--primary-one)', 'var(--primary-two)', 'var(--primary-three)'];
+let selectedIndex4b = -1;
+
+/* Graph-4a Variables */
+const icons4b = ['\u{e54f}', '\u{f0b1}'];
+const series4b = [56, 44];
+const labels4b = ['interiors', 'business'];
+const chart4b = document.getElementById('pie-chart-4b');
+const placeholder4b = document.getElementById('pie-chart-4b-placeholder');
+const colors4b = ['var(--primary-one)', 'var(--primary-two)'];
+let selectedIndex4b = -1;
+
 function piechart(pieIcons, pieSeries, labels, chartEl, placeholder, colors, selectedSliceIndex) {
     function getPieLabelEl(idx) {
         return chartEl.querySelector(`.apexcharts-datalabels[data-realindex="${idx}"] text`)
@@ -184,3 +204,6 @@ piechart(icons2a, series2a, labels2a, chart2a, placeholder2a, colors2a, selected
 piechart(icons2b, series2b, labels2b, chart2b, placeholder2b, colors2b, selectedIndex2b);
 piechart(icons2c, series2c, labels2c, chart2c, placeholder2c, colors2c, selectedIndex2c);
 piechart(icons2d, series2d, labels2d, chart2d, placeholder2d, colors2d, selectedIndex2d);
+/* Evoke function for Graph-3a */
+piechart(icons4a, series4a, labels4a, chart4a, placeholder4a, colors4a, selectedIndex4a);
+piechart(icons4b, series4b, labels4b, chart4b, placeholder4b, colors4b, selectedIndex4b);
