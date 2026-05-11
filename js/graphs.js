@@ -73,9 +73,9 @@ const labels4a = ['interiors', 'architecture', 'business'];
 const chart4a = document.getElementById('pie-chart-4a');
 const placeholder4a = document.getElementById('pie-chart-4a-placeholder');
 const colors4a = ['var(--primary-one)', 'var(--primary-two)', 'var(--primary-three)'];
-let selectedIndex4b = -1;
+let selectedIndex4a = -1;
 
-/* Graph-4a Variables */
+/* Graph-4b Variables */
 const icons4b = ['\u{e54f}', '\u{f0b1}'];
 const series4b = [56, 44];
 const labels4b = ['interiors', 'business'];
