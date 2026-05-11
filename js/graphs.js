@@ -3,6 +3,9 @@
 const chartEl = document.getElementById('pie-chart-1a');
 let selectedSliceIndex = -1;
 
+// FA7 Free solid Unicode: bed, masks-theater, graduation-cap, industry, hospital
+const pieIcons = ['', '', '', '', ''];
+
 var options = {
     series: [38, 21, 17, 10, 14],
     chart: {
@@ -21,7 +24,7 @@ var options = {
             }
         }
     },
-    categories: ['hotel', 'assembly', 'schools', 'factory', 'hospital'],
+    labels: ['hotel', 'assembly', 'schools', 'factory', 'hospital'],
     plotOptions: {
         pie: {
             dataLabels: {
@@ -29,26 +32,23 @@ var options = {
             }
         }
     },
-    labels: {
-        show: true,
-        useHtml: true,
-        formatter: function (value) {
-            if (value === 'hotel') {
-                return '<i class="fa-solid fa-bed"></i>';
-            } else if (value === 'assembly') {
-                return '<i class="fa-solid fa-masks-theater"></i>';
-            } else if (value === 'schools') {
-                return '<i class="fa-solid fa-graduation-cap"></i>';
-            } else if (value === 'factory') {
-                return '<i class="fa-solid fa-industry"></i>';
-            } else if (value === 'hospital') {
-                return '<i class="fa-solid fa-house-hospital"></i>';
-            } else value;
+    dataLabels: {
+        enabled: true,
+        formatter: function (val, opts) {
+            const idx = opts.seriesIndex;
+            if (idx === selectedSliceIndex) {
+                return Math.round(val) + '%';
+            }
+            return pieIcons[idx];
         },
         style: {
             fontSize: '35px',
             fontWeight: '900',
-            colors: ['var(--neutral-two-dark'],
+            fontFamily: '"Font Awesome 7 Free", sans-serif',
+            colors: ['var(--neutral-two-dark)'],
+        },
+        dropShadow: {
+            enabled: false
         }
     },
     colors: ['var(--primary-one)', 'var(--primary-two)', 'var(--primary-three)', 'var(--primary-four)', 'var(--neutral-seven-light)'],
