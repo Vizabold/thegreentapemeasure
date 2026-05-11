@@ -5,9 +5,16 @@ let selectedSliceIndex = -1;
 
 // FA7 Free solid Unicode: bed, masks-theater, graduation-cap, industry, hospital
 const pieIcons = ['', '', '', '', ''];
+const pieSeries = [38, 21, 17, 10, 14];
+const pieTotal = pieSeries.reduce((a, b) => a + b, 0);
+
+function getPieLabelEl(idx) {
+    return chartEl.querySelector(`.apexcharts-datalabels[data-realindex="${idx}"] text`)
+        || [...chartEl.querySelectorAll('.apexcharts-datalabels text')][idx];
+}
 
 var options = {
-    series: [38, 21, 17, 10, 14],
+    series: pieSeries,
     chart: {
         type: 'pie',
         width: 483,
@@ -19,8 +26,27 @@ var options = {
                 chartEl.style.opacity = '1';
             },
             dataPointSelection: function (event, chartContext, config) {
-                selectedSliceIndex = (selectedSliceIndex === config.dataPointIndex) ? -1 : config.dataPointIndex;
-                chartContext.updateOptions({});
+                const clickedIdx = config.dataPointIndex;
+                const isNowSelected = (config.selectedDataPoints[0] || []).includes(clickedIdx);
+
+                if (selectedSliceIndex !== -1) {
+                    const prevEl = getPieLabelEl(selectedSliceIndex);
+                    if (prevEl) {
+                        prevEl.style.fontFamily = '"Font Awesome 7 Free"';
+                        prevEl.textContent = pieIcons[selectedSliceIndex];
+                    }
+                }
+
+                if (isNowSelected) {
+                    const el = getPieLabelEl(clickedIdx);
+                    if (el) {
+                        el.style.fontFamily = 'sans-serif';
+                        el.textContent = Math.round(pieSeries[clickedIdx] / pieTotal * 100) + '%';
+                    }
+                    selectedSliceIndex = clickedIdx;
+                } else {
+                    selectedSliceIndex = -1;
+                }
             }
         }
     },
@@ -35,11 +61,7 @@ var options = {
     dataLabels: {
         enabled: true,
         formatter: function (val, opts) {
-            const idx = opts.seriesIndex;
-            if (idx === selectedSliceIndex) {
-                return Math.round(val) + '%';
-            }
-            return pieIcons[idx];
+            return pieIcons[opts.seriesIndex];
         },
         style: {
             fontSize: '35px',
