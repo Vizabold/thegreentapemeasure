@@ -8,6 +8,7 @@ var options = {
     chart: {
         type: 'pie',
         width: 483,
+        height: 483,
         id: 'pie-1a',
         events: {
             mounted: function (chartContext) {
@@ -57,13 +58,13 @@ var options = {
         {
             breakpoint: 1000,
             options: {
-                chart: { width: 336 }
+                chart: { width: 336, height: 336 }
             }
         },
         {
             breakpoint: 400,
             options: {
-                chart: { width: 236 }
+                chart: { width: 236, height: 236 }
             }
         }
     ]
