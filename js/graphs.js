@@ -37,6 +37,33 @@ const placeholder2a = document.getElementById('pie-chart-2a-placeholder');
 const colors2a = ['var(--primary-one)', 'var(--primary-two)', 'var(--primary-three)', 'var(--primary-four)', 'var(--neutral-seven-light)', 'var(--neutral-eight-light)'];
 let selectedIndex2a = -1;
 
+/* Graph-2b Variables */
+const icons2b = ['\u{f1ad}', '\u{f1b3}', '\u{f013}', '\u{f508}', '\u{f1e0}', '\u{e163}'];
+const series2b = [37, 23, 16, 10, 8, 6];
+const labels2b = ['projects', 'fundamentals', 'systems', 'practice', 'shared', 'graphics'];
+const chart2b = document.getElementById('pie-chart-2b');
+const placeholder2b = document.getElementById('pie-chart-2b-placeholder');
+const colors2b = ['var(--primary-one)', 'var(--primary-two)', 'var(--primary-three)', 'var(--primary-four)', 'var(--neutral-seven-light)', 'var(--neutral-eight-light)'];
+let selectedIndex2b = -1;
+
+/* Graph-2c Variables */
+const icons2c = ['\u{f568}', '\u{f0ae}', '\u{f508}'];
+const series2c = [78, 16, 6];
+const labels2c = ['design', 'management', 'practice'];
+const chart2c = document.getElementById('pie-chart-2c');
+const placeholder2c = document.getElementById('pie-chart-2c-placeholder');
+const colors2c = ['var(--primary-one)', 'var(--primary-two)', 'var(--primary-three)'];
+let selectedIndex2c = -1;
+
+/* Graph-2d Variables */
+const icons2d = ['\u{f0ae}', '\u{f568}', '\u{f1e0}', '\u{f508}'];
+const series2d = [33, 28, 27, 12];
+const labels2d = ['management', 'design', 'shared', 'practice'];
+const chart2d = document.getElementById('pie-chart-2d');
+const placeholder2d = document.getElementById('pie-chart-2d-placeholder');
+const colors2d = ['var(--primary-one)', 'var(--primary-two)', 'var(--primary-three)', 'var(--primary-four)'];
+let selectedIndex2d = -1;
+
 function piechart(pieIcons, pieSeries, labels, chartEl, placeholder, colors, selectedSliceIndex) {
     function getPieLabelEl(idx) {
         return chartEl.querySelector(`.apexcharts-datalabels[data-realindex="${idx}"] text`)
@@ -153,4 +180,7 @@ piechart(icons1b, series1b, labels1b, chart1b, placeholder1b, colors1b, selected
 /* Evoke function for Graph-1e */
 /* Evoke function for Graph-1f */
 /* Evoke function for Graph-1g */
-piechart(icons2a, series2a, labels2a, chart2a, placeholder2a, colors2a, selectedIndex1b);
+piechart(icons2a, series2a, labels2a, chart2a, placeholder2a, colors2a, selectedIndex2a);
+piechart(icons2b, series2b, labels2b, chart2b, placeholder2b, colors2b, selectedIndex2b);
+piechart(icons2c, series2c, labels2c, chart2c, placeholder2c, colors2c, selectedIndex2c);
+piechart(icons2d, series2d, labels2d, chart2d, placeholder2d, colors2d, selectedIndex2d);
