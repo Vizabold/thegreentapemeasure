@@ -15,6 +15,7 @@ function getPieLabelEl(idx) {
 
 var options = {
     series: pieSeries,
+    labels: ['hotel', 'assembly', 'schools', 'factory', 'hospital'],
     chart: {
         type: 'pie',
         width: 483,
@@ -50,7 +51,12 @@ var options = {
             }
         }
     },
-    labels: ['hotel', 'assembly', 'schools', 'factory', 'hospital'],
+    colors: ['var(--primary-one)', 'var(--primary-two)', 'var(--primary-three)', 'var(--primary-four)', 'var(--neutral-seven-light)'],
+    stroke: {
+        show: true,
+        width: 2,
+        color: ['var(--neutral-nine)']
+    },
     plotOptions: {
         pie: {
             dataLabels: {
@@ -73,14 +79,11 @@ var options = {
             enabled: false
         }
     },
-    colors: ['var(--primary-one)', 'var(--primary-two)', 'var(--primary-three)', 'var(--primary-four)', 'var(--neutral-seven-light)'],
-    stroke: {
-        show: true,
-        width: 2,
-        color: ['var(--neutral-nine)']
-    },
     legend: {
         show: false
+    },
+    tooltip: {
+        enabled: false
     },
     responsive: [
         {
@@ -96,8 +99,12 @@ var options = {
             }
         }
     ],
-    tooltip: {
-        enabled: false
+    states: {
+        active: {
+            filter: {
+                type: 'none'
+            }
+        }
     }
 }
 
