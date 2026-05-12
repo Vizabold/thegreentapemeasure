@@ -97,7 +97,7 @@ const series3a = [
 ];
 const categories3a = ['1980s', '1990s', '2000s', '2010s', '2020s'];
 const colors3a = ['var(--primary-one)', 'var(--primary-one)', 'var(--neutral-seven)', 'var(--neutral-seven)'];
-const dash3a = [0, 8, 8, 0];
+const dash3a = [0, 8, 0, 8];
 const chart3a = document.getElementById('line-chart-3a');
 const placeholder3a = document.getElementById('line-chart-3a-placeholder');
 
@@ -251,6 +251,15 @@ function lineChart(series, dash, categories, chartEl, placeholder, colors) {
             width: 392,
             height: 483,
             stacked: false,
+            animations: {
+                enabled: true,
+                easing: 'easeinout',
+                speed: 900,
+                animateGradually: {
+                    enabled: true,
+                    delay: 150
+                }
+            },
             events: {
                 mounted: function (chartContext) {
                     placeholder.style.display = 'none';
@@ -261,11 +270,18 @@ function lineChart(series, dash, categories, chartEl, placeholder, colors) {
         dataLabels: {
             enabled: false
         },
-        color: colors,
+        colors: colors,
         series: series,
         stroke: {
             width: 4,
             dashArray: dash
+        },
+        markers: {
+            size: 5,
+            strokeWidth: 0,
+            hover: {
+                size: 7
+            }
         },
         xaxis: {
             categories: categories
@@ -302,11 +318,23 @@ function lineChart(series, dash, categories, chartEl, placeholder, colors) {
         tooltip: {
             enabled: false
         }
-    }
+    };
 
-    if (chartEl) {
-        var chart = new ApexCharts(chartEl, options);
-        chart.render();
+    if (!chartEl) return;
+
+    var apexChart = new ApexCharts(chartEl, options);
+    var dialog = chartEl.closest('[popover]');
+
+    if (dialog) {
+        var rendered = false;
+        dialog.addEventListener('toggle', function (e) {
+            if (e.newState === 'open' && !rendered) {
+                rendered = true;
+                apexChart.render();
+            }
+        });
+    } else {
+        apexChart.render();
     }
 }
 
