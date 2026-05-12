@@ -245,6 +245,8 @@ function piechart(icons, series1, series2, linevalue, labels, chartEl, placehold
 }
 
 function lineChart(series, dash, categories, chartEl, placeholder, colors) {
+    var markersShown = false;
+
     var options = {
         chart: {
             type: 'line',
@@ -264,6 +266,14 @@ function lineChart(series, dash, categories, chartEl, placeholder, colors) {
                 mounted: function (chartContext) {
                     placeholder.style.display = 'none';
                     chartEl.style.opacity = '1';
+                },
+                animationEnd: function () {
+                    if (!markersShown) {
+                        markersShown = true;
+                        apexChart.updateOptions({
+                            markers: { size: 5, strokeWidth: 0, hover: { size: 7 } }
+                        }, false, true);
+                    }
                 }
             }
         },
@@ -277,14 +287,28 @@ function lineChart(series, dash, categories, chartEl, placeholder, colors) {
             dashArray: dash
         },
         markers: {
-            size: 5,
-            strokeWidth: 0,
-            hover: {
-                size: 7
-            }
+            size: 0
+        },
+        grid: {
+            borderColor: 'var(--neutral-six)'
         },
         xaxis: {
-            categories: categories
+            categories: categories,
+            axisBorder: {
+                show: true,
+                color: 'var(--neutral-six)'
+            },
+            axisTicks: {
+                show: true,
+                color: 'var(--neutral-six)'
+            },
+            labels: {
+                style: {
+                    fontFamily: 'Inter, sans-serif',
+                    fontSize: '16px',
+                    colors: 'var(--neutral-nine)'
+                }
+            }
         },
         yaxis: [
             {
