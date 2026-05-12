@@ -492,6 +492,11 @@ function lineChart(series, dash, categories, chartEl, placeholder, colors) {
 function barChart(series, categories, chartEl, placeholder, colors, groupRanges) {
     var lockedGroup = -1;
 
+    var zeroSeries = [{
+        name: 'Deaths',
+        data: series.map(function () { return 0; })
+    }];
+
     function highlightGroup(groupIdx) {
         chartEl.querySelectorAll('.apexcharts-bar-area').forEach(function (bar) {
             var j = parseInt(bar.getAttribute('j'));
@@ -547,11 +552,9 @@ function barChart(series, categories, chartEl, placeholder, colors, groupRanges)
             redrawOnParentResize: false,
             events: {
                 mounted: function (chartContext) {
-                    var container = chartEl.parentElement;
-                    container.style.display = 'grid';
-                    container.style.placeItems = 'center';
-                    placeholder.style.gridArea = '1 / 1';
-                    chartEl.style.gridArea = '1 / 1';
+                    setTimeout(function () {
+                        apexChart.updateSeries([{ data: series }]);
+                    }, 50);
                     requestAnimationFrame(function () {
                         requestAnimationFrame(function () {
                             placeholder.style.transition = 'opacity 0.4s ease';
@@ -560,14 +563,6 @@ function barChart(series, categories, chartEl, placeholder, colors, groupRanges)
                             chartEl.style.opacity = '1';
                         });
                     });
-                    placeholder.addEventListener('transitionend', function () {
-                        placeholder.style.display = 'none';
-                        container.style.display = '';
-                        container.style.placeItems = '';
-                        placeholder.style.gridArea = '';
-                        chartEl.style.gridArea = '';
-                        chartEl.style.transition = '';
-                    }, { once: true });
                     setupInteraction()
                 },
                 dataPointSelection: function (event, chartContext, config) {
@@ -589,7 +584,7 @@ function barChart(series, categories, chartEl, placeholder, colors, groupRanges)
                 }
             }
         },
-        series: [{ name: 'Deaths', data: series }],
+        series: [{ name: 'Deaths', zeroSeries }],
         colors: colors,
         plotOptions: {
             bar: {
