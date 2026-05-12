@@ -77,6 +77,29 @@ const colors2d = ['var(--primary-one)', 'var(--primary-two)', 'var(--primary-thr
 let selectedIndex2d = -1;
 
 /* Graph-3a Variables */
+const series3a = [
+    {
+        name: 'voluntary',
+        data: [0, 8, 19, 25, 29]
+    },
+    {
+        name: 'permitting',
+        data: [3, 10, 12, 13, 19]
+    },
+    {
+        name: 'restrictions',
+        data: [2, 16, 25, 27, 31]
+    },
+    {
+        name: 'regulation',
+        data: [5, 8, 6, 2, 2]
+    }
+];
+const categories3a = ['1980s', '1990s', '2000s', '2010s', '2020s'];
+const colors3a = ['var(--primary-one)', 'var(--primary-one)', 'var(--neutral-seven)', 'var(--neutral-seven)'];
+const dash3a = [0, 8, 8, 0];
+const chart3a = document.getElementById('line-chart-3a');
+const placeholder3a = document.getElementById('line-chart-3a-placeholder');
 
 /* Graph-4a Variables */
 const icons4a = ['\u{e54f}', '\u{e3af}', '\u{f0b1}'];
@@ -221,6 +244,72 @@ function piechart(icons, series1, series2, linevalue, labels, chartEl, placehold
     }
 }
 
+function lineChart(series, dash, categories, chartEl, placeholder, colors) {
+    var options = {
+        chart: {
+            type: 'line',
+            width: 392,
+            height: 483,
+            stacked: false,
+            events: {
+                mounted: function (chartContext) {
+                    placeholder.style.display = 'none';
+                    chartEl.style.opacity = '1';
+                }
+            }
+        },
+        dataLabels: {
+            enabled: false
+        },
+        color: colors,
+        series: series,
+        stroke: {
+            width: 4,
+            dashArray: dash
+        },
+        xaxis: {
+            categories: categories
+        },
+        yaxis: [
+            {
+                axisTicks: {
+                    show: true
+                },
+                axisBorder: {
+                    show: true,
+                    color: 'var(--neutral-six)'
+                },
+                labels: {
+                    style: {
+                        fontFamily: 'Inter, sans-serif',
+                        fontSize: '16px',
+                        colors: 'var(--neutral-nine)'
+                    }
+                },
+                title: {
+                    text: "States",
+                    style: {
+                        fontFamily: 'Inter, sans-serif',
+                        fontSize: '16px',
+                        color: 'var(--neutral-nine)'
+                    }
+                }
+            }
+        ],
+        legend: {
+            show: false
+        },
+        tooltip: {
+            enabled: false
+        }
+    }
+
+    if (chartEl) {
+        var chart = new ApexCharts(chartEl, options);
+        chart.render();
+    }
+}
+
 
 piechart(icons1a, series1a, series1a2, linevalue1a, labels1a, chart1a, placeholder1a, colors1a, selectedIndex1a);
 piechart(icons1b, series1b, series1b2, linevalue1b, labels1b, chart1b, placeholder1b, colors1b, selectedIndex1b);
@@ -233,6 +322,6 @@ piechart(icons2a, series2a, series2a2, linevalue2a, labels2a, chart2a, placehold
 piechart(icons2b, series2b, series2b2, linevalue2b, labels2b, chart2b, placeholder2b, colors2b, selectedIndex2b);
 piechart(icons2c, series2c, series2c2, linevalue2c, labels2c, chart2c, placeholder2c, colors2c, selectedIndex2c);
 piechart(icons2d, series2d, series2d2, linevalue2d, labels2d, chart2d, placeholder2d, colors2d, selectedIndex2d);
-/* Evoke function for Graph-3a */
+lineChart(series3a, dash3a, categories3a, chart3a, placeholder3a, colors3a);
 piechart(icons4a, series4a, series4a2, linevalue4a, labels4a, chart4a, placeholder4a, colors4a, selectedIndex4a);
 piechart(icons4b, series4b, series4b2, linevalue4b, labels4b, chart4b, placeholder4b, colors4b, selectedIndex4b);
