@@ -544,6 +544,7 @@ function barChart(series, categories, chartEl, placeholder, colors, groupRanges)
                     enabled: false
                 }
             },
+            redrawOnParentResize: false,
             events: {
                 mounted: function (chartContext) {
                     var container = chartEl.parentElement;
@@ -620,8 +621,6 @@ function barChart(series, categories, chartEl, placeholder, colors, groupRanges)
             },
             labels: {
                 rotate: -45,
-                minwidth: 40,
-                maxWidth: 40,
                 style: {
                     fontFamily: 'Inter, sans-serif',
                     fontSize: '12px',
@@ -632,6 +631,8 @@ function barChart(series, categories, chartEl, placeholder, colors, groupRanges)
         yaxis: {
             min: 0,
             max: 1200,
+            minwidth: 40,
+            maxWidth: 40,
             axisTicks: {
                 show: true,
                 color: 'var(--neutral-six)'
