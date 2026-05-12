@@ -429,7 +429,21 @@ function lineChart(series, dash, categories, chartEl, placeholder, colors) {
         },
         tooltip: {
             enabled: false
-        }
+        },
+        responsive: [
+            {
+                breakpoint: 1000,
+                options: {
+                    chart: { width: 273, height: 336 }
+                }
+            },
+            {
+                breakpoint: 400,
+                options: {
+                    chart: { width: 192, height: 236 }
+                }
+            }
+        ]
     };
 
     if (!chartEl) return;
