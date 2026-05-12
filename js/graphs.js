@@ -23,6 +23,16 @@ const colors1b = ['var(--primary-one)', 'var(--primary-two)', 'var(--primary-thr
 let selectedIndex1b = -1;
 
 /* Graph-1c Variables */
+const series1c = [946, 226, 282, 34, 1010, 247, 135, 214, 264, 112, 100, 49, 17];
+const categories1c = ['1900s', '1910s', '1920s', '1930s', '1940s', '1950s', '1960s', '1970s', '1980s', '1990s', '2000s', '2010s', '2020s'];
+const colors1c = [
+    'var(--primary-two)', 'var(--primary-two)', 'var(--primary-two)', 'var(--primary-two)',
+    'var(--primary-three)', 'var(--primary-three)', 'var(--primary-three)', 'var(--primary-three)',
+    'var(--primary-five)', 'var(--primary-five)', 'var(--primary-five)', 'var(--primary-five)', 'var(--primary-five)'
+];
+const groupRanges1c = [[0, 3], [4, 7], [8, 12]];
+const chart1c = document.getElementById('bar-chart-1c');
+const placeholder1c = document.getElementById('bar-chart-1c-placeholder');
 
 /* Graph-1d Variables */
 
@@ -464,10 +474,170 @@ function lineChart(series, dash, categories, chartEl, placeholder, colors) {
     }
 }
 
+function barChart(series, categories, chartEl, placeholder, colors, groupRanges) {
+    var lockedGroup = -1;
+
+    function highlightGroup(groupIdx) {
+        chartEl.querySelectorAll('.apexcharts-bar-area').forEach(function (bar) {
+            var j = parseInt(bar.getAttribute('j'));
+            var group = groupRanges.findIndex(function (range) { return j >= range[0] && j <= range[1]; });
+            bar.style.transition = 'opacity 0.3s ease';
+            bar.style.opacity = (groupIdx === -1 || group === groupIdx) ? '1' : '0.15';
+        });
+        var slide = chartEl.closest('.card');
+        if (!slide) return;
+        slide.querySelectorAll('[data-group-index]').forEach(function (item) {
+            var itemGroup = parseInt(item.getAttribute('data-group-index'));
+            item.style.transition = 'opacity 0.3s ease';
+            item.style.opacity = (groupIdx === -1 || itemGroup === groupIdx) ? '1' : '0.4';
+        });
+    }
+
+    function setupInteraction() {
+        var slide = chartEl.closest('.card');
+        if (!slide) return;
+
+        slide.querySelectorAll('[data-group-index]').forEach(function (details) {
+            var groupIdx = parseInt(details.getAttribute('data-group-index'));
+            details.addEventListener('toggle', function () {
+                if (details.open) {
+                    lockedGroup = groupIdx;
+                    highlightGroup(groupIdx);
+                } else {
+                    var anyOpen = Array.from(slide.querySelectorAll('[data-group-index]')).some(function (d) { return d.open; });
+                    if (!anyOpen) { lockedGroup = -1; highlightGroup(-1); }
+                }
+            });
+        });
+    }
+
+    var options = {
+        chart: {
+            type: 'bar',
+            width: 392,
+            height: 483,
+            animations: {
+                enabled: true,
+                easing: 'easeinout',
+                speed: 800,
+                animateGradually: {
+                    enabled: true,
+                    delay: 50
+                }
+            },
+            events: {
+                mounted: function (chartContext) {
+                    placeholder.style.display = 'none';
+                    chartEl.style.opacity = '1';
+                    setupInteraction();
+                },
+                dataPointSelection: function (event, chartContext, config) {
+                    var j = config.dataPointIndex;
+                    var groupIdx = groupRanges.findIndex(function (range) { return j >= range[0] && j <= range[1]; });
+                    if (groupIdx === -1) return;
+                    var slide = chartEl.closest('.card');
+                    if (!slide) return;
+                    var targetDetails = slide.querySelector('[data-group-index="' + groupIdx + '"]');
+                    if (!targetDetails) return;
+                    if (targetDetails.open) {
+                        targetDetails.open = false;
+                    } else {
+                        Array.from(slide.querySelectorAll('[data-group-index]')).forEach(function (d) {
+                            if (d !== targetDetails) d.open = false;
+                        });
+                        targetDetails.open = true;
+                    }
+                }
+            }
+        },
+        series: [{ name: 'Deaths', data: series }],
+        colors: colors,
+        plotOptions: {
+            bar: {
+                distributed: true,
+                borderRadius: 2
+            }
+        },
+        dataLabels: {
+            enabled: false
+        },
+        legend: {
+            show: false
+        },
+        tooltip: {
+            enabled: false
+        },
+        grid: {
+            borderColor: 'var(--neutral-six)'
+        },
+        xaxis: {
+            categories: categories,
+            axisBorder: {
+                show: true,
+                color: 'var(--neutral-six)'
+            },
+            axisTicks: {
+                show: true,
+                color: 'var(--neutral-six)'
+            },
+            labels: {
+                rotate: -45,
+                style: {
+                    fontFamily: 'Inter, sans-serif',
+                    fontSize: '12px',
+                    colors: 'var(--neutral-nine)'
+                }
+            }
+        },
+        yaxis: {
+            axisTicks: {
+                show: true,
+                color: 'var(--neutral-six)'
+            },
+            axisBorder: {
+                show: true,
+                color: 'var(--neutral-six)'
+            },
+            labels: {
+                style: {
+                    fontFamily: 'Inter, sans-serif',
+                    fontSize: '16px',
+                    colors: 'var(--neutral-nine)'
+                }
+            },
+            title: {
+                text: 'Deaths',
+                style: {
+                    fontFamily: 'Inter, sans-serif',
+                    fontSize: '16px',
+                    color: 'var(--neutral-nine)'
+                }
+            }
+        }
+    };
+
+    if (!chartEl) return;
+
+    var apexChart = new ApexCharts(chartEl, options);
+    var dialog = chartEl.closest('[popover]');
+
+    if (dialog) {
+        var rendered = false;
+        dialog.addEventListener('toggle', function (e) {
+            if (e.newState === 'open' && !rendered) {
+                rendered = true;
+                apexChart.render();
+            }
+        });
+    } else {
+        apexChart.render();
+    }
+}
+
 
 piechart(icons1a, series1a, series1a2, linevalue1a, labels1a, chart1a, placeholder1a, colors1a, selectedIndex1a);
 piechart(icons1b, series1b, series1b2, linevalue1b, labels1b, chart1b, placeholder1b, colors1b, selectedIndex1b);
-/* Evoke function for Graph-1c */
+barChart(series1c, categories1c, chart1c, placeholder1c, colors1c, groupRanges1c);
 /* Evoke function for Graph-1d */
 /* Evoke function for Graph-1e */
 /* Evoke function for Graph-1f */

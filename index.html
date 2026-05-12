@@ -2338,28 +2338,55 @@
               <p class="hidden js:block">Tap a section on the graph to see more details</p>
             </div>
             <div class="flex flex-col gap-4 overflow-y-auto scrollbar xl:max-h-90.75">
-              <div class="flex flex-col gap-1">
-                <p class="paragraph-md">Section 1</p>
-                <p>1900's > 946 deaths</p>
-                <p>1910's > 226 deaths</p>
-                <p>1920's > 282 deaths</p>
-                <p>1930's > 34 deaths</p>
-              </div>
-              <div class="flex flex-col gap-1">
-                <p class="paragraph-md">Section 2</p>
-                <p>1940's > 1,010 deaths</p>
-                <p>1950's > 247 deaths</p>
-                <p>1960's > 135 deaths</p>
-                <p>1970's > 214 deaths</p>
-              </div>
-              <div class="flex flex-col gap-1">
-                <p class="paragraph-md">Section 3</p>
-                <p>1980's > 264 deaths</p>
-                <p>1990's > 112 deaths</p>
-                <p>2000's > 100 deaths</p>
-                <p>2010's > 49 deaths</p>
-                <p>2020's > 17 deaths</p>
-              </div>
+              <details name="accordion" data-group-index="0">
+                <summary class="btn btn-accordion">
+                  <svg aria-hidden="true" class="icon-xs fill-primary-one">
+                    <use href="/assets/sprites/solid.svg#angle-down"></use>
+                  </svg>
+                  <p class="self-center text-neutral-seven">1900-1939</p>
+                </summary>
+                <div class="accordion-content-wrapper">
+                  <div class="flex flex-col gap-4">
+                    <p>1900's > 946 deaths</p>
+                    <p>1910's > 226 deaths</p>
+                    <p>1920's > 282 deaths</p>
+                    <p>1930's > 34 deaths</p>
+                  </div>
+                </div>
+              </details>
+              <details name="accordion" data-group-index="1">
+                <summary class="btn btn-accordion">
+                  <svg aria-hidden="true" class="icon-xs fill-primary-one">
+                    <use href="/assets/sprites/solid.svg#angle-down"></use>
+                  </svg>
+                  <p class="self-center text-neutral-seven">1940-1979</p>
+                </summary>
+                <div class="accordion-content-wrapper">
+                  <div class="flex flex-col gap-4">
+                    <p>1940's > 1,010 deaths</p>
+                    <p>1950's > 247 deaths</p>
+                    <p>1960's > 135 deaths</p>
+                    <p>1970's > 214 deaths</p>
+                  </div>
+                </div>
+              </details>
+              <details name="accordion" data-group-index="2">
+                <summary class="btn btn-accordion">
+                  <svg aria-hidden="true" class="icon-xs fill-primary-one">
+                    <use href="/assets/sprites/solid.svg#angle-down"></use>
+                  </svg>
+                  <p class="self-center text-neutral-seven">1980-2025</p>
+                </summary>
+                <div class="accordion-content-wrapper">
+                  <div class="flex flex-col gap-4">
+                    <p>1980's > 264 deaths</p>
+                    <p>1990's > 112 deaths</p>
+                    <p>2000's > 100 deaths</p>
+                    <p>2010's > 49 deaths</p>
+                    <p>2020's > 17 deaths</p>
+                  </div>
+                </div>
+              </details>
             </div>
           </div>
         </div>
