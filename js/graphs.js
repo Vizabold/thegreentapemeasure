@@ -26,10 +26,7 @@ let selectedIndex1b = -1;
 const series1c = [946, 226, 282, 34, 1010, 247, 135, 214, 264, 112, 100, 49, 17];
 const categories1c = ['1900s', '1910s', '1920s', '1930s', '1940s', '1950s', '1960s', '1970s', '1980s', '1990s', '2000s', '2010s', '2020s'];
 const colors1c = [
-    'var(--primary-two)', 'var(--primary-two)', 'var(--primary-two)', 'var(--primary-two)',
-    'var(--primary-three)', 'var(--primary-three)', 'var(--primary-three)', 'var(--primary-three)',
-    'var(--primary-five)', 'var(--primary-five)', 'var(--primary-five)', 'var(--primary-five)', 'var(--primary-five)'
-];
+    'var(--primary-two)'];
 const groupRanges1c = [[0, 3], [4, 7], [8, 12]];
 const chart1c = document.getElementById('bar-chart-1c');
 const placeholder1c = document.getElementById('bar-chart-1c-placeholder');
