@@ -531,6 +531,7 @@ function barChart(series, categories, chartEl, placeholder, colors, groupRanges)
             type: 'bar',
             width: 483,
             height: 483,
+            minHeight: 483,
             animations: {
                 enabled: true,
                 easing: 'easeinout',
@@ -657,13 +658,13 @@ function barChart(series, categories, chartEl, placeholder, colors, groupRanges)
             {
                 breakpoint: 1000,
                 options: {
-                    chart: { width: 336, height: 336 }
+                    chart: { width: 336, height: 336, minHeight: 336 }
                 }
             },
             {
                 breakpoint: 400,
                 options: {
-                    chart: { width: 236, height: 236 }
+                    chart: { width: 236, height: 236, minHeight: 236 }
                 }
             }
         ]
