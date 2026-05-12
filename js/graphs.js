@@ -357,8 +357,27 @@ function lineChart(series, dash, categories, chartEl, placeholder, colors) {
             },
             events: {
                 mounted: function (chartContext) {
-                    placeholder.style.display = 'none';
-                    chartEl.style.opacity = '1';
+                    var container = chartEl.parentElement;
+                    container.style.display = 'grid';
+                    container.style.placeItems = 'center';
+                    placeholder.style.gridArea = '1 / 1';
+                    chartEl.style.gridArea = '1 / 1';
+                    requestAnimationFrame(function () {
+                        requestAnimationFrame(function () {
+                            placeholder.style.transition = 'opacity 0.4s ease';
+                            chartEl.style.transition = 'opacity 0.4s ease';
+                            placeholder.style.opacity = '0';
+                            chartEl.style.opacity = '1';
+                        });
+                    });
+                    placeholder.addEventListener('transitionend', function () {
+                        placeholder.style.display = 'none';
+                        container.style.display = '';
+                        container.style.placeItems = '';
+                        placeholder.style.gridArea = '';
+                        chartEl.style.gridArea = '';
+                        chartEl.style.transition = '';
+                    }, { once: true });
                     setupInteraction();
                 },
                 animationEnd: function () {
@@ -455,6 +474,7 @@ function lineChart(series, dash, categories, chartEl, placeholder, colors) {
 
     if (!chartEl) return;
 
+    chartEl.style.opacity = '0';
     var apexChart = new ApexCharts(chartEl, options);
     var dialog = chartEl.closest('[popover]');
 
@@ -512,7 +532,7 @@ function barChart(series, categories, chartEl, placeholder, colors, groupRanges)
         chart: {
             type: 'bar',
             width: 483,
-            height: 329,
+            height: 483,
             animations: {
                 enabled: true,
                 easing: 'easeinout',
@@ -524,8 +544,27 @@ function barChart(series, categories, chartEl, placeholder, colors, groupRanges)
             },
             events: {
                 mounted: function (chartContext) {
-                    placeholder.style.display = 'none';
-                    chartEl.style.opacity = '1';
+                    var container = chartEl.parentElement;
+                    container.style.display = 'grid';
+                    container.style.placeItems = 'center';
+                    placeholder.style.gridArea = '1 / 1';
+                    chartEl.style.gridArea = '1 / 1';
+                    requestAnimationFrame(function () {
+                        requestAnimationFrame(function () {
+                            placeholder.style.transition = 'opacity 0.4s ease';
+                            chartEl.style.transition = 'opacity 0.4s ease';
+                            placeholder.style.opacity = '0';
+                            chartEl.style.opacity = '1';
+                        });
+                    });
+                    placeholder.addEventListener('transitionend', function () {
+                        placeholder.style.display = 'none';
+                        container.style.display = '';
+                        container.style.placeItems = '';
+                        placeholder.style.gridArea = '';
+                        chartEl.style.gridArea = '';
+                        chartEl.style.transition = '';
+                    }, { once: true });
                     setupInteraction();
                 },
                 dataPointSelection: function (event, chartContext, config) {
@@ -615,13 +654,13 @@ function barChart(series, categories, chartEl, placeholder, colors, groupRanges)
             {
                 breakpoint: 1000,
                 options: {
-                    chart: { width: 336, height: 229 }
+                    chart: { width: 336, height: 336 }
                 }
             },
             {
                 breakpoint: 400,
                 options: {
-                    chart: { width: 236, height: 159 }
+                    chart: { width: 236, height: 236 }
                 }
             }
         ]
@@ -629,6 +668,7 @@ function barChart(series, categories, chartEl, placeholder, colors, groupRanges)
 
     if (!chartEl) return;
 
+    chartEl.style.opacity = '0';
     var apexChart = new ApexCharts(chartEl, options);
     var dialog = chartEl.closest('[popover]');
 
