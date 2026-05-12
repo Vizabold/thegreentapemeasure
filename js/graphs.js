@@ -620,6 +620,8 @@ function barChart(series, categories, chartEl, placeholder, colors, groupRanges)
             },
             labels: {
                 rotate: -45,
+                minwidth: 40,
+                maxWidth: 40,
                 style: {
                     fontFamily: 'Inter, sans-serif',
                     fontSize: '12px',
