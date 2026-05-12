@@ -246,6 +246,46 @@ function piechart(icons, series1, series2, linevalue, labels, chartEl, placehold
 
 function lineChart(series, dash, categories, chartEl, placeholder, colors) {
     var markersShown = false;
+    var lockedIndex = -1;
+
+    function highlight(idx) {
+        chartEl.querySelectorAll('.apexcharts-series').forEach(function (el) {
+            el.style.transition = 'opacity 0.3s ease';
+            el.style.opacity = (idx === -1 || parseInt(el.getAttribute('data-seriesIndex')) === idx) ? '1' : '0.15';
+        });
+        var slide = chartEl.closest('.card');
+        if (!slide) return;
+        var detailsEl = slide.querySelector('.graph-details');
+        if (detailsEl) {
+            var name = idx !== -1 && series[idx] ? series[idx].name : '';
+            detailsEl.textContent = name ? name.charAt(0).toUpperCase() + name.slice(1) : '';
+        }
+        slide.querySelectorAll('[data-series-index]').forEach(function (item) {
+            var itemIdx = parseInt(item.getAttribute('data-series-index'));
+            item.setAttribute('aria-pressed', String(itemIdx === idx));
+            item.style.transition = 'opacity 0.3s ease';
+            item.style.opacity = (idx === -1 || itemIdx === idx) ? '1' : '0.4';
+        });
+    }
+
+    function setupInteraction() {
+        var slide = chartEl.closest('.card');
+        if (!slide) return;
+        slide.querySelectorAll('[data-series-index]').forEach(function (item) {
+            var idx = parseInt(item.getAttribute('data-series-index'));
+            item.addEventListener('click', function () {
+                lockedIndex = (lockedIndex === idx) ? -1 : idx;
+                highlight(lockedIndex);
+            });
+            item.addEventListener('keydown', function (e) {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    lockedIndex = (lockedIndex === idx) ? -1 : idx;
+                    highlight(lockedIndex);
+                }
+            });
+        });
+    }
 
     var options = {
         chart: {
@@ -266,6 +306,7 @@ function lineChart(series, dash, categories, chartEl, placeholder, colors) {
                 mounted: function (chartContext) {
                     placeholder.style.display = 'none';
                     chartEl.style.opacity = '1';
+                    setupInteraction();
                 },
                 animationEnd: function () {
                     if (!markersShown) {
@@ -274,6 +315,17 @@ function lineChart(series, dash, categories, chartEl, placeholder, colors) {
                             markers: { size: 5, strokeWidth: 0, hover: { size: 7 } }
                         }, false, true);
                     }
+                },
+                dataPointSelection: function (event, chartContext, config) {
+                    var idx = config.seriesIndex;
+                    lockedIndex = (lockedIndex === idx) ? -1 : idx;
+                    highlight(lockedIndex);
+                },
+                dataPointMouseEnter: function (event, chartContext, config) {
+                    if (lockedIndex === -1) highlight(config.seriesIndex);
+                },
+                dataPointMouseLeave: function (event, chartContext, config) {
+                    if (lockedIndex === -1) highlight(-1);
                 }
             }
         },
@@ -313,7 +365,8 @@ function lineChart(series, dash, categories, chartEl, placeholder, colors) {
         yaxis: [
             {
                 axisTicks: {
-                    show: true
+                    show: true,
+                    color: 'var(--neutral-six)'
                 },
                 axisBorder: {
                     show: true,
