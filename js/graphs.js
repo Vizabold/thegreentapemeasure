@@ -552,14 +552,15 @@ function barChart(series, categories, chartEl, placeholder, colors, groupRanges)
             redrawOnParentResize: false,
             events: {
                 mounted: function (chartContext) {
+                    placeholder.style.transition = 'opacity 0.4s ease';
+                    placeholder.style.opacity = '0';
                     setTimeout(function () {
-                        apexChart.updateSeries([{ data: series }], true);
+                        chartContext.updateSeries([{ data: series }], true);
                     }, 100);
                     requestAnimationFrame(function () {
                         requestAnimationFrame(function () {
-                            placeholder.style.transition = 'opacity 0.4s ease';
+                            placeholder.style.display = 'none';
                             chartEl.style.transition = 'opacity 0.4s ease';
-                            placeholder.style.opacity = '0';
                             chartEl.style.opacity = '1';
                         });
                     });
