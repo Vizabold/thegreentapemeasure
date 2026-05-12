@@ -538,6 +538,9 @@ function barChart(series, categories, chartEl, placeholder, colors, groupRanges)
                 animateGradually: {
                     enabled: true,
                     delay: 50
+                },
+                dynamicAnimation: {
+                    enabled: false
                 }
             },
             events: {
@@ -624,6 +627,8 @@ function barChart(series, categories, chartEl, placeholder, colors, groupRanges)
             }
         },
         yaxis: {
+            min: 0,
+            max: 1200,
             axisTicks: {
                 show: true,
                 color: 'var(--neutral-six)'
