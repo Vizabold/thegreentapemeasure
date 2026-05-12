@@ -361,22 +361,6 @@ function lineChart(series, dash, categories, chartEl, placeholder, colors) {
                     container.style.placeItems = 'center';
                     placeholder.style.gridArea = '1 / 1';
                     chartEl.style.gridArea = '1 / 1';
-                    requestAnimationFrame(function () {
-                        requestAnimationFrame(function () {
-                            placeholder.style.transition = 'opacity 0.4s ease';
-                            chartEl.style.transition = 'opacity 0.4s ease';
-                            placeholder.style.opacity = '0';
-                            chartEl.style.opacity = '1';
-                        });
-                    });
-                    placeholder.addEventListener('transitionend', function () {
-                        placeholder.style.display = 'none';
-                        container.style.display = '';
-                        container.style.placeItems = '';
-                        placeholder.style.gridArea = '';
-                        chartEl.style.gridArea = '';
-                        chartEl.style.transition = '';
-                    }, { once: true });
                     setupInteraction();
                 },
                 animationEnd: function () {
@@ -385,6 +369,21 @@ function lineChart(series, dash, categories, chartEl, placeholder, colors) {
                         apexChart.updateOptions({
                             markers: { size: 5, strokeWidth: 0, hover: { size: 7 } }
                         }, false, true);
+                        var container = chartEl.parentElement;
+                        requestAnimationFrame(function () {
+                            placeholder.style.transition = 'opacity 0.4s ease';
+                            chartEl.style.transition = 'opacity 0.4s ease';
+                            placeholder.style.opacity = '0';
+                            chartEl.style.opacity = '1';
+                        });
+                        placeholder.addEventListener('transitionend', function () {
+                            placeholder.style.display = 'none';
+                            container.style.display = '';
+                            container.style.placeItems = '';
+                            placeholder.style.gridArea = '';
+                            chartEl.style.gridArea = '';
+                            chartEl.style.transition = '';
+                        }, { once: true });
                     }
                 }
             }
@@ -492,6 +491,7 @@ function lineChart(series, dash, categories, chartEl, placeholder, colors) {
 
 function barChart(series, categories, chartEl, placeholder, colors, groupRanges) {
     var lockedGroup = -1;
+    var fadeDone = false;
 
     function highlightGroup(groupIdx) {
         chartEl.querySelectorAll('.apexcharts-bar-area').forEach(function (bar) {
@@ -548,13 +548,17 @@ function barChart(series, categories, chartEl, placeholder, colors, groupRanges)
                     container.style.placeItems = 'center';
                     placeholder.style.gridArea = '1 / 1';
                     chartEl.style.gridArea = '1 / 1';
+                    setupInteraction();
+                },
+                animationEnd: function () {
+                    if (fadeDone) return;
+                    fadeDone = true;
+                    var container = chartEl.parentElement;
                     requestAnimationFrame(function () {
-                        requestAnimationFrame(function () {
-                            placeholder.style.transition = 'opacity 0.4s ease';
-                            chartEl.style.transition = 'opacity 0.4s ease';
-                            placeholder.style.opacity = '0';
-                            chartEl.style.opacity = '1';
-                        });
+                        placeholder.style.transition = 'opacity 0.4s ease';
+                        chartEl.style.transition = 'opacity 0.4s ease';
+                        placeholder.style.opacity = '0';
+                        chartEl.style.opacity = '1';
                     });
                     placeholder.addEventListener('transitionend', function () {
                         placeholder.style.display = 'none';
@@ -564,7 +568,6 @@ function barChart(series, categories, chartEl, placeholder, colors, groupRanges)
                         chartEl.style.gridArea = '';
                         chartEl.style.transition = '';
                     }, { once: true });
-                    setupInteraction();
                 },
                 dataPointSelection: function (event, chartContext, config) {
                     var j = config.dataPointIndex;
