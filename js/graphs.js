@@ -632,26 +632,23 @@ function barChart(series, categories, chartEl, placeholder, colors, groupRanges)
     var apexChart = new ApexCharts(chartEl, options);
     var dialog = chartEl.closest('[popover]');
 
-    const chartObserver = new IntersectionObserver((entries) => {
-        entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-                if (dialog) {
-                    var rendered = false;
-                    dialog.addEventListener('toggle', function (e) {
-                        if (e.newState === 'open' && !rendered) {
-                            rendered = true;
-                            apexChart.render();
-                        }
-                    });
-                } else {
+    if (dialog) {
+        var rendered = false;
+        dialog.addEventListener('toggle', function (e) {
+            if (e.newState !== 'open' || rendered) return;
+            var slider = dialog.querySelector('.presentation-slider');
+            var observer = new IntersectionObserver(function (entries) {
+                if (entries[0].isIntersecting && !rendered) {
+                    rendered = true;
+                    observer.disconnect();
                     apexChart.render();
                 }
-            }
-        })
-    })
-
-    chartObserver.observe(chartEl);
-
+            }, { root: slider, threshold: 0.1 });
+            observer.observe(chartEl);
+        });
+    } else {
+        apexChart.render();
+    }
 }
 
 
