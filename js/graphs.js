@@ -511,8 +511,8 @@ function barChart(series, categories, chartEl, placeholder, colors, groupRanges)
     var options = {
         chart: {
             type: 'bar',
-            width: 392,
-            height: 483,
+            width: 483,
+            height: 329,
             animations: {
                 enabled: true,
                 easing: 'easeinout',
@@ -610,7 +610,21 @@ function barChart(series, categories, chartEl, placeholder, colors, groupRanges)
                     color: 'var(--neutral-nine)'
                 }
             }
-        }
+        },
+        responsive: [
+            {
+                breakpoint: 1000,
+                options: {
+                    chart: { width: 336, height: 229 }
+                }
+            },
+            {
+                breakpoint: 400,
+                options: {
+                    chart: { width: 236, height: 159 }
+                }
+            }
+        ]
     };
 
     if (!chartEl) return;
@@ -618,17 +632,26 @@ function barChart(series, categories, chartEl, placeholder, colors, groupRanges)
     var apexChart = new ApexCharts(chartEl, options);
     var dialog = chartEl.closest('[popover]');
 
-    if (dialog) {
-        var rendered = false;
-        dialog.addEventListener('toggle', function (e) {
-            if (e.newState === 'open' && !rendered) {
-                rendered = true;
-                apexChart.render();
+    const chartObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+                if (dialog) {
+                    var rendered = false;
+                    dialog.addEventListener('toggle', function (e) {
+                        if (e.newState === 'open' && !rendered) {
+                            rendered = true;
+                            apexChart.render();
+                        }
+                    });
+                } else {
+                    apexChart.render();
+                }
             }
-        });
-    } else {
-        apexChart.render();
-    }
+        })
+    })
+
+    chartObserver.observe(chartEl);
+
 }
 
 
