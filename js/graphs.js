@@ -556,7 +556,8 @@ function barChart(series, categories, chartEl, placeholder, colors, groupRanges)
                     placeholder.style.opacity = '0';
                     setTimeout(function () {
                         chartContext.updateSeries([{ data: series }], true);
-                    }, 100);
+                        window.dispatchEvent(new Event('resize'));
+                    }, 200);
                     requestAnimationFrame(function () {
                         requestAnimationFrame(function () {
                             placeholder.style.display = 'none';
