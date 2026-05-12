@@ -553,8 +553,8 @@ function barChart(series, categories, chartEl, placeholder, colors, groupRanges)
             events: {
                 mounted: function (chartContext) {
                     setTimeout(function () {
-                        apexChart.updateSeries([{ data: series }]);
-                    }, 50);
+                        apexChart.updateSeries([{ data: series }], true);
+                    }, 100);
                     requestAnimationFrame(function () {
                         requestAnimationFrame(function () {
                             placeholder.style.transition = 'opacity 0.4s ease';
