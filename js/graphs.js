@@ -255,17 +255,29 @@ function lineChart(series, dash, categories, chartEl, placeholder, colors) {
         });
         var slide = chartEl.closest('.card');
         if (!slide) return;
-        var detailsEl = slide.querySelector('.graph-details');
-        if (detailsEl) {
-            var name = idx !== -1 && series[idx] ? series[idx].name : '';
-            detailsEl.textContent = name ? name.charAt(0).toUpperCase() + name.slice(1) : '';
-        }
         slide.querySelectorAll('[data-series-index]').forEach(function (item) {
             var itemIdx = parseInt(item.getAttribute('data-series-index'));
             item.setAttribute('aria-pressed', String(itemIdx === idx));
             item.style.transition = 'opacity 0.3s ease';
             item.style.opacity = (idx === -1 || itemIdx === idx) ? '1' : '0.4';
         });
+    }
+
+    function getNearestSeries(mx, my) {
+        var g = apexChart.w.globals;
+        if (mx < g.translateX || mx > g.translateX + g.gridWidth ||
+            my < g.translateY || my > g.translateY + g.gridHeight) {
+            return -1;
+        }
+        var xStep = g.gridWidth / (g.dataPoints - 1);
+        var xIdx = Math.max(0, Math.min(Math.round((mx - g.translateX) / xStep), g.dataPoints - 1));
+        var nearest = -1;
+        var minDist = 30;
+        series.forEach(function (s, i) {
+            var py = g.translateY + g.gridHeight - ((s.data[xIdx] - g.minY) / (g.maxY - g.minY)) * g.gridHeight;
+            if (Math.abs(my - py) < minDist) { minDist = Math.abs(my - py); nearest = i; }
+        });
+        return nearest;
     }
 
     function setupInteraction() {
@@ -288,19 +300,37 @@ function lineChart(series, dash, categories, chartEl, placeholder, colors) {
             });
         }
 
-        chartEl.querySelectorAll('.apexcharts-series').forEach(function (seriesEl, i) {
-            seriesEl.style.cursor = 'pointer';
-            seriesEl.addEventListener('click', function () {
-                lockedIndex = (lockedIndex === i) ? -1 : i;
-                highlight(lockedIndex);
-            });
-            seriesEl.addEventListener('mouseenter', function () {
-                if (lockedIndex === -1) highlight(i);
-            });
-            seriesEl.addEventListener('mouseleave', function () {
-                if (lockedIndex === -1) highlight(-1);
-            });
+        var canvas = chartEl.querySelector('.apexcharts-canvas');
+        if (!canvas) return;
+
+        canvas.style.cursor = 'pointer';
+
+        canvas.addEventListener('mousemove', function (e) {
+            if (lockedIndex !== -1) return;
+            var rect = canvas.getBoundingClientRect();
+            highlight(getNearestSeries(e.clientX - rect.left, e.clientY - rect.top));
         });
+
+        canvas.addEventListener('click', function (e) {
+            var rect = canvas.getBoundingClientRect();
+            var idx = getNearestSeries(e.clientX - rect.left, e.clientY - rect.top);
+            if (idx === -1) return;
+            lockedIndex = (lockedIndex === idx) ? -1 : idx;
+            highlight(lockedIndex);
+        });
+
+        canvas.addEventListener('mouseleave', function () {
+            if (lockedIndex === -1) highlight(-1);
+        });
+
+        canvas.addEventListener('touchstart', function (e) {
+            var touch = e.touches[0];
+            var rect = canvas.getBoundingClientRect();
+            var idx = getNearestSeries(touch.clientX - rect.left, touch.clientY - rect.top);
+            if (idx === -1) return;
+            lockedIndex = (lockedIndex === idx) ? -1 : idx;
+            highlight(lockedIndex);
+        }, { passive: true });
     }
 
     var options = {
