@@ -249,9 +249,9 @@ function lineChart(series, dash, categories, chartEl, placeholder, colors) {
     var lockedIndex = -1;
 
     function highlight(idx) {
-        chartEl.querySelectorAll('.apexcharts-series').forEach(function (el) {
+        chartEl.querySelectorAll('.apexcharts-series').forEach(function (el, i) {
             el.style.transition = 'opacity 0.3s ease';
-            el.style.opacity = (idx === -1 || parseInt(el.getAttribute('data-seriesIndex')) === idx) ? '1' : '0.15';
+            el.style.opacity = (idx === -1 || i === idx) ? '1' : '0.15';
         });
         var slide = chartEl.closest('.card');
         if (!slide) return;
@@ -270,19 +270,35 @@ function lineChart(series, dash, categories, chartEl, placeholder, colors) {
 
     function setupInteraction() {
         var slide = chartEl.closest('.card');
-        if (!slide) return;
-        slide.querySelectorAll('[data-series-index]').forEach(function (item) {
-            var idx = parseInt(item.getAttribute('data-series-index'));
-            item.addEventListener('click', function () {
-                lockedIndex = (lockedIndex === idx) ? -1 : idx;
-                highlight(lockedIndex);
-            });
-            item.addEventListener('keydown', function (e) {
-                if (e.key === 'Enter' || e.key === ' ') {
-                    e.preventDefault();
+
+        if (slide) {
+            slide.querySelectorAll('[data-series-index]').forEach(function (item) {
+                var idx = parseInt(item.getAttribute('data-series-index'));
+                item.addEventListener('click', function () {
                     lockedIndex = (lockedIndex === idx) ? -1 : idx;
                     highlight(lockedIndex);
-                }
+                });
+                item.addEventListener('keydown', function (e) {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        lockedIndex = (lockedIndex === idx) ? -1 : idx;
+                        highlight(lockedIndex);
+                    }
+                });
+            });
+        }
+
+        chartEl.querySelectorAll('.apexcharts-series').forEach(function (seriesEl, i) {
+            seriesEl.style.cursor = 'pointer';
+            seriesEl.addEventListener('click', function () {
+                lockedIndex = (lockedIndex === i) ? -1 : i;
+                highlight(lockedIndex);
+            });
+            seriesEl.addEventListener('mouseenter', function () {
+                if (lockedIndex === -1) highlight(i);
+            });
+            seriesEl.addEventListener('mouseleave', function () {
+                if (lockedIndex === -1) highlight(-1);
             });
         });
     }
@@ -315,17 +331,6 @@ function lineChart(series, dash, categories, chartEl, placeholder, colors) {
                             markers: { size: 5, strokeWidth: 0, hover: { size: 7 } }
                         }, false, true);
                     }
-                },
-                dataPointSelection: function (event, chartContext, config) {
-                    var idx = config.seriesIndex;
-                    lockedIndex = (lockedIndex === idx) ? -1 : idx;
-                    highlight(lockedIndex);
-                },
-                dataPointMouseEnter: function (event, chartContext, config) {
-                    if (lockedIndex === -1) highlight(config.seriesIndex);
-                },
-                dataPointMouseLeave: function (event, chartContext, config) {
-                    if (lockedIndex === -1) highlight(-1);
                 }
             }
         },
