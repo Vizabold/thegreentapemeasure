@@ -351,8 +351,7 @@ function lineChart(series, dash, categories, chartEl, placeholder, colors) {
                 easing: 'easeinout',
                 speed: 900,
                 animateGradually: {
-                    enabled: true,
-                    delay: 150
+                    enabled: true
                 }
             },
             events: {
