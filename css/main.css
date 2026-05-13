@@ -291,7 +291,7 @@
 
   /* ── Accordions ── */
   .btn-accordion {
-    @apply gap-2 text-primary-one justify-start cursor-pointer;
+    @apply gap-2 text-neutral-nine justify-start cursor-pointer;
   }
 
   .btn-accordion label {
