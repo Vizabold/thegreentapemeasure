@@ -1203,6 +1203,20 @@
       }
     }
   }
+  .hover\:bg-neutral-seven {
+    &:hover {
+      @media (hover: hover) {
+        background-color: var(--color-neutral-seven);
+      }
+    }
+  }
+  .hover\:bg-primary-five {
+    &:hover {
+      @media (hover: hover) {
+        background-color: var(--color-primary-five);
+      }
+    }
+  }
   .hover\:bg-primary-four {
     &:hover {
       @media (hover: hover) {
