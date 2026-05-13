@@ -5,7 +5,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description"
-    content="Protecting public safety and elevating interior design. The Green Tape Measure advocates for recognized, regulated, and respected design careers. Learn more.">
+    content="Protecting public safety and elevating interior design. The Green Tape Measure advocates for recognized, standard-driven, and respected design careers. Learn more.">
   <title>The Green Tape Measure</title>
   <link rel="stylesheet" href="/assets/fonts/fontawesome/css/all.css">
   <link rel="stylesheet" href="dist/output.css" />
@@ -83,11 +83,12 @@
     </nav>
     <form class="relative items-center gap-2 hidden xl:flex">
       <label for="search" class="sr-only">Search</label>
-      <input type="search" name="search" class="w-[150px] xxl:w-[200px]" id="search" placeholder="search...">
-      <button type="submit" class="btn btn-icon absolute right-1 top-2" aria-label="search"></svg><svg
-          aria-hidden="true" class="w-8 h-8 fill-primary-one">
-          <use href="/assets/sprites/solid.svg#magnifying-glass"></use>
-        </svg></button>
+      <div class="flex">
+        <input type="search" name="search" class="w-[150px] xxl:w-[200px]" id="search" placeholder="search...">
+        <button type="submit" class="btn" aria-label="search"></svg><svg aria-hidden="true" class="icon-sm">
+            <use href="/assets/sprites/solid.svg#magnifying-glass"></use>
+          </svg></button>
+      </div>
     </form>
     <div class="flex gap-6 pb-1 items-center xl:items-end">
       <a class="btn btn-md btn-cta xxs:hidden xl:block" href="#takeaction">Take Action</a>
@@ -190,11 +191,10 @@
               <p class="paragraph-accent">The Mission</p>
               <h2>Measuring Advancement with <span class="text-primary-one">Facts</span>.</h2>
             </div>
-            <p class="paragraph-md">The Green Tape Measure is on a mission to champion the next generation of interior
-              designers. Through
-              data-driven advocacy, we’re expanding career paths and protecting public safety by ensuring the
-              profession
-              is recognized, regulated, and respected.</p>
+            <p class="paragraph-md">The Green Tape Measure is a volunteer-run North Carolina nonprofit corporation on a
+              mission to champion the next generation of interior designers. By providing objective data, research, and
+              educational resources to the public, we are expanding career paths and protecting public safety
+              &mdash; ensuring the profession is recognized, regulated, and respected.</p>
             <div class="flex flex-col gap-4">
               <div class="flex gap-4 items-center">
                 <div class="icon-container">
@@ -229,13 +229,13 @@
               <p class="paragraph-accent">Founding</p>
               <h2>Grounded in <span class="text-primary-one">Teaching</span>.</h2>
             </div>
-            <p class="paragraph-md">GTM was initially created in 2025 as a platform to expand the founder’s
-              professional
-              tutoring services. After encountering job security, equal pay, and leadership barriers and hearing from
-              other designers struggling with similar obstacles, she decided GTM could transform into an industry
-              resource
-              for evidence-based advocacy.</p>
-            <p class="paragraph-md">Watch the video to learn more.</p>
+            <p class="paragraph-md">The Green Tape Measure was initially conceptualized in 2025 as a platform expanding
+              professional educational services. However, after encountering systemic career, wage parity, and
+              leadership barriers &mdash; and hearing from countless designers struggling with the same obstacles
+              &mdash; our founder realized the industry needed a broader solution. Today, GTM has transformed into an
+              independent, community-driven nonprofit foundation dedicated to delivering evidence-based research and
+              advocacy for the public good.</p>
+            <p class="paragraph-md">Watch the video to learn more about our founder's experiences.</p>
           </div>
           <div class="flex flex-col gap-8 w-full xl:w-[50%]">
             <!-- replace iframe content with the embedded no-cookie version of the YouTube video -->
@@ -1827,7 +1827,7 @@
       </div>
       <div class="flex flex-col gap-4">
         <div class="flex flex-col gap-8 xl:flex-row">
-          <div class="flex gap-8 flex-col xl:w-[35%]">
+          <div class="flex gap-8 flex-col xl:w-[35%] xl:grow ">
             <div class="card gap-6 bg-neutral-four">
               <h3>Volunteer Benefits</h3>
               <div class="flex flex-col gap-4">
@@ -1927,9 +1927,9 @@
               </div>
             </div>
           </div>
-          <form class="card gap-10 bg-neutral-four xl:w-[65%] xl:grow xl:gap-0 xl:justify-between"
-            id="volunteer-interest" data-netlify="true" name="volunteer-interest" method="POST"
-            netlify-honeypot="bot-field" data-netlify-recaptcha="true">
+          <form class="card gap-10 bg-neutral-four xl:w-[65%] xl:justify-between" id="volunteer-interest"
+            data-netlify="true" name="volunteer-interest" method="POST" netlify-honeypot="bot-field"
+            action="/thank-you.html">
             <input name="bot-field" hidden />
             <h3 class="text-center">Join Scrib's Team of Investigators!</h3>
             <fieldset>
@@ -1982,7 +1982,7 @@
                     <div class="flex w-35 justify-between lg:gap-4">
                       <div class="relative flex gap-1 items-center">
                         <label for="local-yes">Yes</label>
-                        <input class="peer" id="local-yes" type="checkbox" name="local" />
+                        <input class="peer" id="local-yes" type="radio" name="local" value="yes" />
                         <svg
                           class="absolute right-2 top-1.75 icon-xs fill-current text-primary-one hidden peer-checked:block pointer-events-none"
                           aria-hidden="true">
@@ -1991,7 +1991,7 @@
                       </div>
                       <div class="relative flex gap-1 items-center">
                         <label for="local-no">No</label>
-                        <input class="peer" id="local-no" type="checkbox" name="local" />
+                        <input class="peer" id="local-no" type="radio" name="local" value="no" />
                         <svg
                           class="absolute right-2 top-1.75 icon-xs fill-current text-primary-one hidden peer-checked:block pointer-events-none"
                           aria-hidden="true">
@@ -2011,7 +2011,7 @@
                   <legend class="text-lg neutral-seven">Days</legend>
                   <div class="flex flex-col gap-8 xs:flex-row xs:gap-12 sm:flex-col sm:gap-6">
                     <div class="relative flex gap-1 w-35 justify-end">
-                      <label class="text-right" for="weekends">Weekends</label>
+                      <label class="text-right self-center" for="weekends">Weekends</label>
                       <input class="peer" id="weekends" type="checkbox" name="weekends" />
                       <svg
                         class="absolute right-2 top-1.75 icon-xs fill-current text-primary-one hidden peer-checked:block pointer-events-none"
@@ -2020,7 +2020,7 @@
                       </svg>
                     </div>
                     <div class="relative flex gap-1 w-35 justify-end">
-                      <label class="text-right" for="weekdays">Weekdays</label>
+                      <label class="text-right self-center" for="weekdays">Weekdays</label>
                       <input class="peer" id="weekdays" type="checkbox" name="weekdays" />
                       <svg
                         class="absolute right-2 top-1.75 icon-xs fill-current text-primary-one hidden peer-checked:block pointer-events-none"
@@ -2034,7 +2034,7 @@
                   <legend class="text-lg neutral-seven">Time of Day</legend>
                   <div class="flex gap-6 w-35 justify-end">
                     <div class="relative flex gap-1">
-                      <label class="text-right" for="morning">AM</label>
+                      <label class="text-right self-center" for="morning">AM</label>
                       <input class="peer" id="morning" type="checkbox" name="morning" />
                       <svg
                         class="absolute right-2 top-1.75 icon-xs fill-current text-primary-one hidden peer-checked:block pointer-events-none"
@@ -2043,7 +2043,7 @@
                       </svg>
                     </div>
                     <div class="relative flex gap-1">
-                      <label class="text-right" for="afternoon">PM</label>
+                      <label class="text-right self-center" for="afternoon">PM</label>
                       <input class="peer" id="afternoon" type="checkbox" name="afternoon" />
                       <svg
                         class="absolute right-2 top-1.75 icon-xs fill-current text-primary-one hidden peer-checked:block pointer-events-none"
@@ -2060,7 +2060,7 @@
               <div class="flex flex-col items-start justify-between gap-8 sm:flex-row sm:justify-start lg:gap-12">
                 <div class="flex flex-col gap-8 justify-end xs:flex-row xs:gap-12 sm:flex-col lg:gap-6">
                   <div class="relative flex justify-end gap-1 w-35">
-                    <label class="text-right" for="events">Events</label>
+                    <label class="text-right self-center" for="events">Events</label>
                     <input class="peer" id="events" type="checkbox" name="events" />
                     <svg
                       class="absolute right-2 top-1.75 icon-xs fill-current text-primary-one hidden peer-checked:block pointer-events-none"
@@ -2069,7 +2069,7 @@
                     </svg>
                   </div>
                   <div class="relative flex justify-end gap-1 w-35">
-                    <label class="text-right" for="research-int">Research</label>
+                    <label class="text-right self-center" for="research-int">Research</label>
                     <input class="peer" id="research-int" type="checkbox" name="research-int" />
                     <svg
                       class="absolute right-2 top-1.75 icon-xs fill-current text-primary-one hidden peer-checked:block pointer-events-none"
@@ -2080,7 +2080,7 @@
                 </div>
                 <div class="flex flex-col gap-8 justify-end xs:flex-row xs:gap-12 sm:flex-col lg:gap-6">
                   <div class="relative flex justify-end gap-1 w-35">
-                    <label class="text-right" for="fundraising">Fundraising</label>
+                    <label class="text-right self-center" for="fundraising">Fundraising</label>
                     <input class="peer" id="fundraising" type="checkbox" name="fundraising" />
                     <svg
                       class="absolute right-2 top-1.75 icon-xs fill-current text-primary-one hidden peer-checked:block pointer-events-none"
@@ -2089,7 +2089,7 @@
                     </svg>
                   </div>
                   <div class="relative flex justify-end gap-1 w-35">
-                    <label class="text-right" for="social-media">Social Media</label>
+                    <label class="text-right self-center" for="social-media">Social Media</label>
                     <input class="peer" id="social-media" type="checkbox" name="social-media" />
                     <svg
                       class="absolute right-2 top-1.75 icon-xs fill-current text-primary-one hidden peer-checked:block pointer-events-none"
@@ -2100,7 +2100,7 @@
                 </div>
                 <div class="flex flex-col gap-8 justify-end xs:flex-row xs:gap-12 sm:flex-col lg:gap-6">
                   <div class="relative flex justify-end gap-1 w-35">
-                    <label class="text-right" for="legislation">Legislation</label>
+                    <label class="text-right self-center" for="legislation">Legislation</label>
                     <input class="peer" id="legislation" type="checkbox" name="legislation" />
                     <svg
                       class="absolute right-2 top-1.75 icon-xs fill-current text-primary-one hidden peer-checked:block pointer-events-none"
@@ -2109,7 +2109,7 @@
                     </svg>
                   </div>
                   <div class="relative flex justify-end gap-1 w-35">
-                    <label class="text-right" for="web-design">Web Design</label>
+                    <label class="text-right self-center" for="web-design">Web Design</label>
                     <input class="peer" id="web-design" type="checkbox" name="web-design" />
                     <svg
                       class="absolute right-2 top-1.75 icon-xs fill-current text-primary-one hidden peer-checked:block pointer-events-none"
@@ -2120,16 +2120,46 @@
                 </div>
               </div>
             </fieldset>
-            <fieldset class="flex flex-col gap-1">
-              <legend class="text-xl text-neutral-nine">Tell us more!</legend>
-              <label for="comment">Share more about yourself</label>
-              <textarea id="comment" name="comment" minlength="25" wrap="soft" maxlength="1000" rows="5"
-                placeholder="skills, experience, questions..."></textarea>
-              <p class="text-right"></span class="textarea-count"></span>/1000</p>
+            <fieldset class="flex flex-col gap-4">
+              <legend class="text-xl text-neutral-nine">Background</legend>
+              <div class="flex flex-col gap-1">
+                <div class="flex justify-between">
+                  <label for="occupation">What is your current occupation, firm, or educational institution?</label>
+                  <p class="text-secondary-five">required</p>
+                </div>
+                <input id="occupation" type="text" name="occupation" autocomplete="organization-title" required />
+              </div>
+              <div class="flex flex-col gap-1">
+                <div class="flex justify-between">
+                  <label for="linkedin">LinkedIn Profile Link</label>
+                  <p class="text-secondary-five">required</p>
+                </div>
+                <input id="linkedin" type="url" name="linkedin" placeholder="https://www.linkedin.com/in/..."
+                  required />
+              </div>
+              <div class="flex flex-col gap-1">
+                <label for="comment">Share more about yourself</label>
+                <textarea id="comment" name="comment" minlength="25" wrap="soft" maxlength="1000" rows="5"
+                  placeholder="skills, experience, questions..."></textarea>
+                <p class="text-right"></span class="textarea-count"></span>/1000</p>
+              </div>
             </fieldset>
-            <div class="flex gap-2 justify-center lg:items-center">
-              <div class="relative">
-                <input class="peer" id="agree" type="checkbox" name="agree" />
+            <div class="flex gap-2 lg:items-center">
+              <div class="relative flex">
+                <input class="peer" id="certify" type="checkbox" name="certify" required />
+                <svg
+                  class="absolute right-2 top-1.75 icon-xs fill-current text-primary-one hidden peer-checked:block pointer-events-none"
+                  aria-hidden="true">
+                  <use href="/assets/sprites/solid.svg#check"></use>
+                </svg>
+              </div>
+              <label for="certify">I certify that I am applying to volunteer in good faith to advance the mission of
+                GTM, and I agree to maintain absolute confidentiality regarding internal organizational research,
+                strategy, and communications.</label>
+            </div>
+            <div class="flex gap-2 lg:items-center">
+              <div class="relative flex">
+                <input class="peer" id="agree" type="checkbox" name="agree" required />
                 <svg
                   class="absolute right-2 top-1.75 icon-xs fill-current text-primary-one hidden peer-checked:block pointer-events-none"
                   aria-hidden="true">
@@ -2155,24 +2185,20 @@
   </main>
 
   <footer class="flex flex-col items-center justify-between gap-6 p-4 bg-neutral-two md:flex-row">
-    <!-- update this first line so year is dyanmically updated -->
-    <p>© 2026 The Green Tape Measure</p>
+    <p class="text-sm">© <span class="text-sm text-neutral-seven" id="year">2026</span> The Green Tape Measure
+      Foundation. The Green Tape Measure is a registered assumed name of The Green Tape Measure Foundation, a North
+      Carolina nonprofit corporation.</p>
     <div class="flex gap-3 justify-center">
       <button type="button" popovertarget="disclaimer" aria-haspopup="dialog" aria-controls="disclaimer"
-        aria-expanded="false" class="link link--footer">Disclaimer</button>
-      <span> | </span>
+        aria-expanded="false" class="link link--footer text-sm">Disclaimer</button>
+      <span class="text-sm"> | </span>
       <button popovertarget="privacy" aria-haspopup="dialog" aria-controls="privacy" aria-expanded="false"
-        class="link link--footer">Privacy Policy</button>
+        class="link link--footer text-sm">Privacy Policy</button>
     </div>
     <div class="flex gap-6 justify-center">
       <a class="btn" href="https://www.linkedin.com/company/gtmeasure" aria-label="LinkedIn" target="_blank">
         <svg aria-hidden="true" class="btn-social">
           <use href="/assets/sprites/brands.svg#linkedin"></use>
-        </svg>
-      </a>
-      <a class="btn" href="https://x.com/GTMeasure" aria-label="X Twitter" target="_blank">
-        <svg aria-hidden="true" class="btn-social">
-          <use href="/assets/sprites/brands.svg#x-twitter"></use>
         </svg>
       </a>
       <a class="btn" href="https://www.instagram.com/gtmeasure" aria-label="Instagram" target="_blank">

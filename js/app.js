@@ -4,6 +4,11 @@ import('./graphs.js').catch(() => { });
 import('./presentation.js').catch(() => { });
 import('details-polyfill').catch(() => { });
 
+/*--------------- FOOTER DATE AUTO-UPDATE --------------------- */
+const year = document.getElementById('year');
+const currentYear = new Date().getFullYear();
+year.innerHTML = `${currentYear}`;
+
 /*--------------- POPOVER LEGACY SUPPORT --------------------- */
 
 if (!HTMLElement.prototype.hasOwnProperty('popover')) {

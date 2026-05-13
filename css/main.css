@@ -78,11 +78,21 @@
     @apply border-primary-one;
   }
 
-  #takeaction input[type="checkbox"] {
-    @apply appearance-none bg-neutral-six w-8 min-w-8 h-8 min-h-8 border border-neutral-three rounded-md checked:bg-neutral-six checked:border-neutral-three transition-all duration-200 cursor-pointer;
+  #takeaction input[type="checkbox"],
+  #takeaction input[type="radio"] {
+    @apply appearance-none bg-neutral-six w-8 min-w-8 h-8 min-h-8 border border-neutral-three transition-all duration-200 cursor-pointer;
   }
 
-  #takeaction input[type="checkbox"]:hover {
+  #takeaction input[type="checkbox"] {
+    @apply rounded-md checked:bg-neutral-six checked:border-neutral-three;
+  }
+
+  #takeaction input[type="radio"] {
+    @apply rounded-full checked:bg-neutral-six checked:border-neutral-three;
+  }
+
+  #takeaction input[type="checkbox"]:hover,
+  #takeaction input[type="radio"]:hover {
     @apply bg-primary-five;
   }
 
