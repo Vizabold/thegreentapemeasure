@@ -48,6 +48,7 @@
     --color-primary-one: var(--primary-one);
     --color-primary-two: var(--primary-two);
     --color-primary-three: var(--primary-three);
+    --color-primary-four: var(--primary-four);
     --color-primary-five: var(--primary-five);
     --color-secondary-one: var(--secondary-one);
     --color-secondary-three: var(--secondary-three);
@@ -1193,6 +1194,34 @@
   .peer-checked\:block {
     &:is(:where(.peer):checked ~ *) {
       display: block;
+    }
+  }
+  .hover\:bg-neutral-four {
+    &:hover {
+      @media (hover: hover) {
+        background-color: var(--color-neutral-four);
+      }
+    }
+  }
+  .hover\:bg-primary-four {
+    &:hover {
+      @media (hover: hover) {
+        background-color: var(--color-primary-four);
+      }
+    }
+  }
+  .hover\:bg-primary-three {
+    &:hover {
+      @media (hover: hover) {
+        background-color: var(--color-primary-three);
+      }
+    }
+  }
+  .hover\:bg-primary-two {
+    &:hover {
+      @media (hover: hover) {
+        background-color: var(--color-primary-two);
+      }
     }
   }
   .xxs\:block {
