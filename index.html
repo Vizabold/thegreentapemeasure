@@ -24,14 +24,6 @@
         <source srcset="assets/images/logo-lt.webp" type="image/webp" media="all" data-theme="light">
         <img src="assets/images/logo-lt.png" alt="GTM logo that resembles a green tape measure">
       </picture>
-      <form class="relative items-center gap-2 hidden xl:flex">
-        <label for="search-mobile" class="sr-only">Search</label>
-        <input type="search" name="search-mobile" class="w-[150px]]" id="search-mobile">
-        <button type="submit" class="btn btn-icon absolute right-1 top-1" aria-label="search"></svg><svg
-            aria-hidden="true" class="icon-sm fill-primary-one w-4 h-4">
-            <use href="/assets/sprites/solid.svg#magnifying-glass"></use>
-          </svg></button>
-      </form>
       <div class="flex gap-6 items-center">
         <label role="button" for="mode-toggle" class="toggle" aria-label="dark mode on"><span class="slider"><svg
               aria-hidden="true" class="toggle-moon fill-neutral-two-light w-4 h-4">
@@ -81,11 +73,13 @@
       <a class="link link--nav" href="#research">Research</a>
       <a class="link link--nav" href="#advocacy">Advocacy</a>
     </nav>
-    <form class="relative items-center gap-2 hidden xl:flex">
+    <form class="relative items-center gap-2 flex">
       <label for="search" class="sr-only">Search</label>
       <div class="flex">
-        <input type="search" name="search" class="w-[150px] xxl:w-[200px]" id="search" placeholder="search...">
-        <button type="submit" class="btn btn-primary" aria-label="search"></svg><svg aria-hidden="true" class="w-6 h-6">
+        <input type="search" name="search" class="w-[150px] xxl:w-[200px] rounded-r-none" id="search"
+          placeholder="search...">
+        <button type="submit" class="btn bg-neutral-six rounded-r-lg h-10 w-10 self-center"
+          aria-label="search"></svg><svg aria-hidden="true" class="w-6 h-6">
             <use href="/assets/sprites/solid.svg#magnifying-glass"></use>
           </svg></button>
       </div>
