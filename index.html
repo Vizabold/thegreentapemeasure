@@ -34,7 +34,7 @@
         </label>
         <button type="button" class="btn btn-icon btn-icon--rounded" aria-label="close menu"
           popovertarget="mobile-nav-menu" popovertargetaction="hide">
-          <svg class="icon-lg" aria-hidden="true">
+          <svg class="icon-xs" aria-hidden="true">
             <use href="/assets/sprites/solid.svg#x"></use>
           </svg>
         </button>
@@ -51,19 +51,20 @@
     </nav>
   </dialog>
 
-  <div id="search-overlay" class="fixed inset-0 z-50 bg-neutral-one p-6 gap-4 xl:hidden" role="dialog"
-    aria-modal="true" aria-label="Search" aria-hidden="true">
+  <div id="search-overlay" class="fixed inset-0 z-50 bg-neutral-one p-6 gap-4 xl:hidden" role="dialog" aria-modal="true"
+    aria-label="Search" aria-hidden="true">
     <div class="flex gap-2 items-center">
       <label for="search-mobile" class="sr-only">Search</label>
       <input type="search" id="search-mobile" name="search-mobile" class="flex-1" placeholder="Search the site..."
         autocomplete="off">
       <button type="button" id="search-close" class="btn btn-icon btn-icon--rounded" aria-label="Close search">
-        <svg class="icon-lg" aria-hidden="true">
+        <svg class="icon-xs" aria-hidden="true">
           <use href="/assets/sprites/solid.svg#x"></use>
         </svg>
       </button>
     </div>
-    <ul id="search-results-mobile" role="listbox" aria-label="Search results" class="flex flex-col overflow-y-auto mt-2"></ul>
+    <ul id="search-results-mobile" role="listbox" aria-label="Search results"
+      class="flex flex-col overflow-y-auto mt-2"></ul>
   </div>
 
   <header
@@ -92,8 +93,8 @@
       <label for="search" class="sr-only">Search</label>
       <div class="flex">
         <input type="search" name="search" class="w-[150px] xxl:w-[200px] rounded-r-none" id="search"
-          placeholder="search..." autocomplete="off" role="combobox" aria-expanded="false"
-          aria-haspopup="listbox" aria-autocomplete="list" aria-controls="search-results">
+          placeholder="search..." autocomplete="off" role="combobox" aria-expanded="false" aria-haspopup="listbox"
+          aria-autocomplete="list" aria-controls="search-results">
         <button type="submit" class="btn bg-neutral-six rounded-r-lg h-10 w-10 self-center hover:bg-primary-five"
           aria-label="Search">
           <svg aria-hidden="true" class="w-6 h-6">
@@ -114,7 +115,7 @@
       </label>
       <button type="button" id="search-open" class="btn btn-icon xxs:block xl:hidden" aria-label="Open search"
         aria-haspopup="dialog" aria-controls="search-overlay">
-        <svg class="icon-lg" aria-hidden="true">
+        <svg class="icon-sm" aria-hidden="true">
           <use href="/assets/sprites/solid.svg#magnifying-glass"></use>
         </svg>
       </button>
