@@ -554,6 +554,52 @@
     @apply flex-1 font-graph text-2xl font-bold text-neutral-seven opacity-50 w-[46%] lg:text-5xl;
   }
 
+  /* ─────────────────────────────────────────
+     Search Components
+  ───────────────────────────────────────── */
+
+  .search-dropdown {
+    @apply hidden absolute top-full left-0 w-72 mt-1 bg-neutral-two border border-solid border-neutral-three rounded-lg z-20 flex-col max-h-96 overflow-y-auto;
+  }
+
+  .search-dropdown.is-open {
+    @apply flex;
+  }
+
+  .search-result {
+    @apply px-4 py-3 cursor-pointer flex flex-col gap-1;
+  }
+
+  .search-result:hover,
+  .search-result:focus {
+    @apply bg-primary-five outline-none;
+  }
+
+  .search-result-title {
+    @apply font-bold text-neutral-nine;
+  }
+
+  .search-result-snippet {
+    @apply text-sm text-neutral-seven;
+  }
+
+  .search-no-results {
+    @apply px-4 py-3 italic text-neutral-seven;
+  }
+
+  mark {
+    @apply bg-primary-five text-neutral-nine not-italic;
+  }
+
+}
+
+#search-overlay {
+  display: none;
+  flex-direction: column;
+}
+
+#search-overlay.is-open {
+  display: flex;
 }
 
 :root:has(#mode-toggle:checked) {

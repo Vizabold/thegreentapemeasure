@@ -51,6 +51,21 @@
     </nav>
   </dialog>
 
+  <div id="search-overlay" class="fixed inset-0 z-50 bg-neutral-one p-6 gap-4 xl:hidden" role="dialog"
+    aria-modal="true" aria-label="Search" aria-hidden="true">
+    <div class="flex gap-2 items-center">
+      <label for="search-mobile" class="sr-only">Search</label>
+      <input type="search" id="search-mobile" name="search-mobile" class="flex-1" placeholder="Search the site..."
+        autocomplete="off">
+      <button type="button" id="search-close" class="btn btn-icon btn-icon--rounded" aria-label="Close search">
+        <svg class="icon-lg" aria-hidden="true">
+          <use href="/assets/sprites/solid.svg#x"></use>
+        </svg>
+      </button>
+    </div>
+    <ul id="search-results-mobile" role="listbox" aria-label="Search results" class="flex flex-col overflow-y-auto mt-2"></ul>
+  </div>
+
   <header
     class="fixed z-10 w-full flex p-4 justify-between bg-neutral-two animate-[moveDown_1s_ease-out_forwards] transition-transform duration-300"
     id="header">
@@ -73,16 +88,20 @@
       <a class="link link--nav" href="#research">Research</a>
       <a class="link link--nav" href="#advocacy">Advocacy</a>
     </nav>
-    <form class="relative items-center gap-2 flex">
+    <form class="relative items-center gap-2 xxs:hidden xl:flex" role="search">
       <label for="search" class="sr-only">Search</label>
       <div class="flex">
         <input type="search" name="search" class="w-[150px] xxl:w-[200px] rounded-r-none" id="search"
-          placeholder="search...">
+          placeholder="search..." autocomplete="off" role="combobox" aria-expanded="false"
+          aria-haspopup="listbox" aria-autocomplete="list" aria-controls="search-results">
         <button type="submit" class="btn bg-neutral-six rounded-r-lg h-10 w-10 self-center hover:bg-primary-five"
-          aria-label="search"></svg><svg aria-hidden="true" class="w-6 h-6">
+          aria-label="Search">
+          <svg aria-hidden="true" class="w-6 h-6">
             <use href="/assets/sprites/solid.svg#magnifying-glass"></use>
-          </svg></button>
+          </svg>
+        </button>
       </div>
+      <ul id="search-results" role="listbox" aria-label="Search results" class="search-dropdown"></ul>
     </form>
     <div class="flex gap-6 pb-1 items-center xl:items-end">
       <a class="btn btn-md btn-cta xxs:hidden xl:block" href="#takeaction">Take Action</a>
@@ -93,6 +112,12 @@
             <use href="/assets/sprites/solid.svg#sun"></use>
           </svg></span>
       </label>
+      <button type="button" id="search-open" class="btn btn-icon xxs:block xl:hidden" aria-label="Open search"
+        aria-haspopup="dialog" aria-controls="search-overlay">
+        <svg class="icon-lg" aria-hidden="true">
+          <use href="/assets/sprites/solid.svg#magnifying-glass"></use>
+        </svg>
+      </button>
       <button type="button" popovertarget="mobile-nav-menu" class="btn btn-icon xxs:block xl:hidden" id="mobile-nav-btn"
         aria-label="open menu">
         <svg class="icon-lg" aria-hidden="true" class="fill-primary-one">

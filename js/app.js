@@ -2,6 +2,7 @@ import('./quiz.js').catch(() => { });
 import('./timeline.js').catch(() => { });
 import('./graphs.js').catch(() => { });
 import('./presentation.js').catch(() => { });
+import('./search.js').catch(() => { });
 import('details-polyfill').catch(() => { });
 
 /*--------------- FOOTER DATE AUTO-UPDATE --------------------- */
