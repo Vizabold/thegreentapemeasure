@@ -463,11 +463,17 @@
   .w-76\.75 {
     width: calc(var(--spacing) * 76.75);
   }
+  .w-100 {
+    width: calc(var(--spacing) * 100);
+  }
   .w-\[10\%\] {
     width: 10%;
   }
   .w-\[150px\] {
     width: 150px;
+  }
+  .w-\[236px\] {
+    width: 236px;
   }
   .w-full {
     width: 100%;
@@ -493,6 +499,9 @@
   .max-w-750 {
     max-width: calc(var(--spacing) * 750);
   }
+  .max-w-\[345px\] {
+    max-width: 345px;
+  }
   .max-w-full {
     max-width: 100%;
   }
@@ -507,6 +516,9 @@
   }
   .min-w-75 {
     min-width: calc(var(--spacing) * 75);
+  }
+  .min-w-\[236px\] {
+    min-width: 236px;
   }
   .min-w-full {
     min-width: 100%;
@@ -1259,9 +1271,19 @@
       width: 50%;
     }
   }
+  .sm\:w-\[336px\] {
+    @media (width >= 600px) {
+      width: 336px;
+    }
+  }
   .sm\:max-w-87\.5 {
     @media (width >= 600px) {
       max-width: calc(var(--spacing) * 87.5);
+    }
+  }
+  .sm\:min-w-\[336px\] {
+    @media (width >= 600px) {
+      min-width: 336px;
     }
   }
   .sm\:flex-col {
@@ -1415,6 +1437,16 @@
       width: 65%;
     }
   }
+  .xl\:w-\[436px\] {
+    @media (width >= 1000px) {
+      width: 436px;
+    }
+  }
+  .xl\:w-\[483px\] {
+    @media (width >= 1000px) {
+      width: 483px;
+    }
+  }
   .xl\:w-full {
     @media (width >= 1000px) {
       width: 100%;
@@ -1423,6 +1455,11 @@
   .xl\:max-w-125 {
     @media (width >= 1000px) {
       max-width: calc(var(--spacing) * 125);
+    }
+  }
+  .xl\:min-w-\[483px\] {
+    @media (width >= 1000px) {
+      min-width: 483px;
     }
   }
   .xl\:grow {
