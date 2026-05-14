@@ -781,9 +781,11 @@ function barChart(series, categories, chartEl, placeholder, colors, groupRanges)
 }
 
 function pyramidChart(icons, series1, series2, linevalue, labels, chartEl, placeholder, colors, selectedIndex) {
+    if (!chartEl) return;
+
     var lockedIndex = -1;
     var suppressToggle = false;
-    var topIdx = series1.length - 1;
+    var topIdx = 0;
 
     function getChartLabelEl(idx) {
         return chartEl.querySelector('.apexcharts-datalabels[data-realindex="' + idx + '"] text')
@@ -802,13 +804,13 @@ function pyramidChart(icons, series1, series2, linevalue, labels, chartEl, place
 
         var scaleX = (parseFloat(svgEl.getAttribute('width')) || svgRect.width) / svgRect.width;
         var scaleY = (parseFloat(svgEl.getAttribute('height')) || svgRect.height) / svgRect.height;
-        var barCenterX = (barRect.left + barRect.width / 2 - svgRect.left) * scaleX;
-        var barTopY = (barRect.top - svgRect.top) * scaleY;
+        var barRightX = (barRect.right - svgRect.left) * scaleX;
+        var barCenterY = (barRect.top + barRect.height / 2 - svgRect.top) * scaleY;
 
-        labelEl.setAttribute('x', String(barCenterX));
-        labelEl.setAttribute('y', String(barTopY - 6));
-        labelEl.setAttribute('text-anchor', 'middle');
-        labelEl.setAttribute('dominant-baseline', 'auto');
+        labelEl.setAttribute('x', String(barRightX + 8));
+        labelEl.setAttribute('y', String(barCenterY));
+        labelEl.setAttribute('text-anchor', 'start');
+        labelEl.setAttribute('dominant-baseline', 'middle');
         labelEl.style.fill = 'var(--neutral-nine)';
     }
 
@@ -939,7 +941,7 @@ function pyramidChart(icons, series1, series2, linevalue, labels, chartEl, place
             bar: {
                 horizontal: true,
                 distributed: true,
-                isFunnel: true,
+                isFunnelSymmetric: true,
             },
         },
         dataLabels: {
@@ -968,7 +970,7 @@ function pyramidChart(icons, series1, series2, linevalue, labels, chartEl, place
         },
         grid: {
             show: false,
-            padding: { top: 40, bottom: 0, left: 0, right: 0 }
+            padding: { top: 10, bottom: 0, left: 0, right: 0 }
         },
         legend: { show: false },
         tooltip: { enabled: false },
@@ -986,8 +988,6 @@ function pyramidChart(icons, series1, series2, linevalue, labels, chartEl, place
             active: { filter: { type: 'none' } }
         }
     };
-
-    if (!chartEl) return;
 
     chartEl.style.opacity = '0';
     var apexChart = new ApexCharts(chartEl, options);
