@@ -785,40 +785,79 @@ function pyramidChart(icons, series1, series2, linevalue, labels, chartEl, place
 
     var lockedIndex = -1;
     var suppressToggle = false;
-    var topIdx = 0;
+    var n = series1.length;
+    var total = series1.reduce(function (a, b) { return a + b; }, 0);
+    var VW = 400, VH = 400;
+    var cx = VW / 2;
+    var sH = VH / n;
 
-    function getChartLabelEl(idx) {
-        return chartEl.querySelector('.apexcharts-datalabels[data-realindex="' + idx + '"] text')
-            || [...chartEl.querySelectorAll('.apexcharts-datalabels text')][idx];
+    function halfAt(y) { return cx * (y / VH); }
+
+    var svgNS = 'http://www.w3.org/2000/svg';
+    var svg = document.createElementNS(svgNS, 'svg');
+    svg.setAttribute('viewBox', '0 0 ' + VW + ' ' + VH);
+    svg.setAttribute('width', '483');
+    svg.setAttribute('height', '483');
+    svg.style.maxWidth = '100%';
+    svg.style.height = 'auto';
+
+    var polys = [];
+    var textEls = [];
+
+    for (var i = 0; i < n; i++) {
+        var y1 = i * sH;
+        var y2 = (i + 1) * sH;
+        var pts;
+
+        if (i === 0) {
+            pts = cx + ',' + y1 + ' ' +
+                  (cx + halfAt(y2)) + ',' + y2 + ' ' +
+                  (cx - halfAt(y2)) + ',' + y2;
+        } else {
+            pts = (cx - halfAt(y1)) + ',' + y1 + ' ' +
+                  (cx + halfAt(y1)) + ',' + y1 + ' ' +
+                  (cx + halfAt(y2)) + ',' + y2 + ' ' +
+                  (cx - halfAt(y2)) + ',' + y2;
+        }
+
+        var poly = document.createElementNS(svgNS, 'polygon');
+        poly.setAttribute('points', pts);
+        poly.style.fill = colors[i];
+        poly.style.cursor = 'pointer';
+        poly.style.transition = 'opacity 0.3s ease';
+        poly.setAttribute('tabindex', '0');
+        poly.setAttribute('role', 'button');
+        poly.setAttribute('aria-label', labels[i] + ': ' + Math.round(series1[i] / total * 100) + '%');
+        svg.appendChild(poly);
+        polys.push(poly);
+
+        var text = document.createElementNS(svgNS, 'text');
+        var lx = (i === 0) ? cx + halfAt(y2) + 8 : cx;
+        var ly = (y1 + y2) / 2;
+
+        text.setAttribute('x', String(lx));
+        text.setAttribute('y', String(ly));
+        text.setAttribute('text-anchor', i === 0 ? 'start' : 'middle');
+        text.setAttribute('dominant-baseline', 'middle');
+        text.setAttribute('font-family', '"Font Awesome 7 Free"');
+        text.setAttribute('font-size', '35');
+        text.setAttribute('font-weight', '900');
+        text.setAttribute('pointer-events', 'none');
+        text.style.fill = i === 0 ? 'var(--neutral-nine)' : 'var(--neutral-two-dark)';
+        text.textContent = icons[i];
+        svg.appendChild(text);
+        textEls.push(text);
     }
 
-    function fixApexTopLabel() {
-        var labelEl = getChartLabelEl(topIdx);
-        var topBar = chartEl.querySelector('.apexcharts-bar-area[j="' + topIdx + '"]');
-        var svgEl = chartEl.querySelector('svg');
-        if (!labelEl || !topBar || !svgEl) return;
-
-        var svgRect = svgEl.getBoundingClientRect();
-        var barRect = topBar.getBoundingClientRect();
-        if (!svgRect.width || !barRect.height) return;
-
-        var scaleX = (parseFloat(svgEl.getAttribute('width')) || svgRect.width) / svgRect.width;
-        var scaleY = (parseFloat(svgEl.getAttribute('height')) || svgRect.height) / svgRect.height;
-        var barRightX = (barRect.right - svgRect.left) * scaleX;
-        var barCenterY = (barRect.top + barRect.height / 2 - svgRect.top) * scaleY;
-
-        labelEl.setAttribute('x', String(barRightX + 8));
-        labelEl.setAttribute('y', String(barCenterY));
-        labelEl.setAttribute('text-anchor', 'start');
-        labelEl.setAttribute('dominant-baseline', 'middle');
-        labelEl.style.fill = 'var(--neutral-nine)';
-    }
+    chartEl.appendChild(svg);
+    placeholder.style.display = 'none';
 
     function highlightSection(idx) {
-        chartEl.querySelectorAll('.apexcharts-bar-area').forEach(function (bar) {
-            var j = parseInt(bar.getAttribute('j'));
-            bar.style.transition = 'opacity 0.3s ease';
-            bar.style.opacity = (idx === -1 || j === idx) ? '1' : '0.15';
+        polys.forEach(function (poly, j) {
+            poly.style.opacity = (idx === -1 || j === idx) ? '1' : '0.15';
+        });
+        textEls.forEach(function (text, j) {
+            text.style.opacity = (idx === -1 || j === idx) ? '1' : '0.15';
         });
         var slide = chartEl.closest('.card');
         if (!slide) return;
@@ -832,6 +871,70 @@ function pyramidChart(icons, series1, series2, linevalue, labels, chartEl, place
         });
     }
 
+    function restoreLabel(idx) {
+        var t = textEls[idx];
+        t.setAttribute('font-family', '"Font Awesome 7 Free"');
+        t.setAttribute('font-size', '35');
+        t.setAttribute('font-weight', '900');
+        t.textContent = icons[idx];
+        t.style.fill = idx === 0 ? 'var(--neutral-nine)' : 'var(--neutral-two-dark)';
+        t.setAttribute('text-anchor', idx === 0 ? 'start' : 'middle');
+        t.setAttribute('x', String(idx === 0 ? cx + halfAt(sH) + 8 : cx));
+    }
+
+    function handleClick(idx) {
+        var wasSelected = (lockedIndex === idx);
+
+        if (selectedIndex !== -1 && selectedIndex !== idx) {
+            restoreLabel(selectedIndex);
+        }
+
+        if (wasSelected) {
+            if (selectedIndex === idx) restoreLabel(idx);
+            selectedIndex = -1;
+            lockedIndex = -1;
+            highlightSection(-1);
+        } else {
+            selectedIndex = idx;
+            lockedIndex = idx;
+
+            var t = textEls[idx];
+            var origX = t.getAttribute('x');
+            t.setAttribute('font-family', '"Space Grotesk", sans-serif');
+            t.style.fill = idx === 0 ? 'var(--neutral-nine)' : 'var(--neutral-two-dark)';
+            t.setAttribute('text-anchor', idx === 0 ? 'start' : 'middle');
+
+            var line1 = Math.round(series1[idx] / total * 100) + '%';
+            var line2 = (series2 && linevalue) ? series2[idx] + ' ' + linevalue : null;
+
+            if (line2) {
+                t.innerHTML = '<tspan x="' + origX + '" dy="-0.4em" font-size="35">' + line1 + '</tspan>' +
+                    '<tspan x="' + origX + '" dy="1.5em" font-size="16" font-weight="700">' + line2 + '</tspan>';
+            } else {
+                t.innerHTML = '<tspan x="' + origX + '" dy="0.3em" font-size="35">' + line1 + '</tspan>';
+            }
+
+            highlightSection(idx);
+        }
+
+        var slide = chartEl.closest('.card');
+        if (slide) {
+            suppressToggle = true;
+            slide.querySelectorAll('details[data-series-index]').forEach(function (item) {
+                var itemIdx = parseInt(item.getAttribute('data-series-index'));
+                item.open = !wasSelected && itemIdx === idx;
+            });
+            setTimeout(function () { suppressToggle = false; }, 0);
+        }
+    }
+
+    polys.forEach(function (poly, i) {
+        poly.addEventListener('click', function () { handleClick(i); });
+        poly.addEventListener('keydown', function (e) {
+            if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); handleClick(i); }
+        });
+    });
+
     function setupChartInteraction() {
         var slide = chartEl.closest('.card');
         if (!slide) return;
@@ -840,170 +943,23 @@ function pyramidChart(icons, series1, series2, linevalue, labels, chartEl, place
             if (item.tagName === 'DETAILS') {
                 item.addEventListener('toggle', function () {
                     if (suppressToggle) return;
-                    if (item.open) {
-                        lockedIndex = idx;
-                        highlightSection(idx);
-                    } else {
+                    if (item.open) { lockedIndex = idx; highlightSection(idx); }
+                    else {
                         var anyOpen = Array.from(slide.querySelectorAll('details[data-series-index]'))
                             .some(function (d) { return d.open; });
                         if (!anyOpen) { lockedIndex = -1; highlightSection(-1); }
                     }
                 });
             } else {
-                item.addEventListener('click', function () {
-                    lockedIndex = (lockedIndex === idx) ? -1 : idx;
-                    highlightSection(lockedIndex);
-                });
+                item.addEventListener('click', function () { handleClick(idx); });
                 item.addEventListener('keydown', function (e) {
-                    if (e.key === 'Enter' || e.key === ' ') {
-                        e.preventDefault();
-                        lockedIndex = (lockedIndex === idx) ? -1 : idx;
-                        highlightSection(lockedIndex);
-                    }
+                    if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); handleClick(idx); }
                 });
             }
         });
     }
 
-    var options = {
-        series: [{ name: '', data: series1 }],
-        chart: {
-            type: 'bar',
-            width: 483,
-            height: 483,
-            id: chartEl,
-            events: {
-                mounted: function (chartContext) {
-                    placeholder.style.display = 'none';
-                    chartEl.style.opacity = '1';
-                    setupChartInteraction();
-                    requestAnimationFrame(fixApexTopLabel);
-                },
-                updated: function () {
-                    requestAnimationFrame(fixApexTopLabel);
-                },
-                dataPointSelection: function (event, chartContext, config) {
-                    const clickedIdx = config.dataPointIndex;
-                    const isNowSelected = (config.selectedDataPoints[0] || []).includes(clickedIdx);
-
-                    if (selectedIndex !== -1) {
-                        const prevEl = getChartLabelEl(selectedIndex);
-                        if (prevEl) {
-                            prevEl.style.fontFamily = '"Font Awesome 7 Free"';
-                            prevEl.textContent = icons[selectedIndex];
-                            if (selectedIndex === topIdx) requestAnimationFrame(fixApexTopLabel);
-                        }
-                    }
-
-                    if (isNowSelected) {
-                        const el = getChartLabelEl(clickedIdx);
-                        const chartTotal = series1.reduce((a, b) => a + b, 0);
-                        if (el) {
-                            const origX = el.getAttribute('x') || 0;
-                            el.style.fontFamily = '"Space Grotesk", sans-serif';
-                            const line1 = Math.round(series1[clickedIdx] / chartTotal * 100) + '%';
-                            let line2 = null;
-                            if (typeof series2 !== 'undefined' && series2 && typeof linevalue !== 'undefined') {
-                                line2 = series2[clickedIdx] + ' ' + linevalue;
-                            }
-                            if (line2) {
-                                el.innerHTML = `
-                                    <tspan x="${origX}" dy="-0.4em" style="font-size: 35px;">${line1}</tspan>
-                                    <tspan x="${origX}" dy="1.5em" style="font-size: 16px; font-weight: 700;">${line2}</tspan>
-                                `;
-                            } else {
-                                el.innerHTML = `<tspan x="${origX}" dy="0.3em" style="font-size: 35px;">${line1}</tspan>`;
-                            }
-                        }
-                        selectedIndex = clickedIdx;
-                    } else {
-                        selectedIndex = -1;
-                    }
-
-                    lockedIndex = isNowSelected ? clickedIdx : -1;
-                    highlightSection(lockedIndex);
-
-                    var slide = chartEl.closest('.card');
-                    if (slide) {
-                        suppressToggle = true;
-                        slide.querySelectorAll('details[data-series-index]').forEach(function (item) {
-                            var itemIdx = parseInt(item.getAttribute('data-series-index'));
-                            item.open = isNowSelected && itemIdx === clickedIdx;
-                        });
-                        setTimeout(function () { suppressToggle = false; }, 0);
-                    }
-                }
-            }
-        },
-        colors: colors,
-        stroke: { show: false },
-        plotOptions: {
-            bar: {
-                horizontal: true,
-                distributed: true,
-                isFunnelSymmetric: true,
-            },
-        },
-        dataLabels: {
-            enabled: true,
-            formatter: function (val, opts) {
-                return icons[opts.dataPointIndex];
-            },
-            style: {
-                fontSize: '35px',
-                fontWeight: '900',
-                fontFamily: '"Font Awesome 7 Free", "Space Grotesk", sans-serif',
-                colors: ['var(--neutral-two-dark)'],
-            },
-            dropShadow: { enabled: false }
-        },
-        xaxis: {
-            categories: labels,
-            labels: { show: false },
-            axisBorder: { show: false },
-            axisTicks: { show: false }
-        },
-        yaxis: {
-            labels: { show: false },
-            axisBorder: { show: false },
-            axisTicks: { show: false }
-        },
-        grid: {
-            show: false,
-            padding: { top: 10, bottom: 0, left: 0, right: 0 }
-        },
-        legend: { show: false },
-        tooltip: { enabled: false },
-        responsive: [
-            {
-                breakpoint: 1000,
-                options: { chart: { width: 336, height: 336 } }
-            },
-            {
-                breakpoint: 400,
-                options: { chart: { width: 236, height: 236 } }
-            }
-        ],
-        states: {
-            active: { filter: { type: 'none' } }
-        }
-    };
-
-    chartEl.style.opacity = '0';
-    var apexChart = new ApexCharts(chartEl, options);
-    var dialog = chartEl.closest('[popover]');
-
-    if (dialog) {
-        var rendered = false;
-        dialog.addEventListener('toggle', function (e) {
-            if (e.newState === 'open' && !rendered) {
-                rendered = true;
-                apexChart.render();
-            }
-        });
-    } else {
-        apexChart.render();
-    }
+    setupChartInteraction();
 }
 
 
