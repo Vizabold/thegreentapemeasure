@@ -151,10 +151,39 @@ let selectedIndex4b = -1;
 function piechart(icons, series1, series2, linevalue, labels, chartEl, placeholder, colors, selectedSliceIndex) {
     var lockedSliceIndex = -1;
     var suppressToggle = false;
+    var pieTotal = series1.reduce(function (a, b) { return a + b; }, 0);
 
     function getPieLabelEl(idx) {
         return chartEl.querySelector(`.apexcharts-datalabels[data-realindex="${idx}"] text`)
             || [...chartEl.querySelectorAll('.apexcharts-datalabels text')][idx];
+    }
+
+    function getCurrentFontSizes() {
+        var w = window.innerWidth;
+        if (w < 400) return { line1: '20px', line2: '14px' };
+        if (w < 1000) return { line1: '30px', line2: '16px' };
+        return { line1: '35px', line2: '16px' };
+    }
+
+    function applyPieLabel(el, idx) {
+        const sizes = getCurrentFontSizes();
+        const origX = el.getAttribute('x') || 0;
+        el.style.fontFamily = '"Space Grotesk", sans-serif';
+        const line1 = Math.round(series1[idx] / pieTotal * 100) + '%';
+        const line2 = (series2 && linevalue) ? series2[idx] + ' ' + linevalue : null;
+        if (line2) {
+            el.innerHTML = `<tspan x="${origX}" dy="-0.4em" style="font-size: ${sizes.line1};">${line1}</tspan><tspan x="${origX}" dy="1.5em" style="font-size: ${sizes.line2}; font-weight: 700;">${line2}</tspan>`;
+        } else {
+            el.innerHTML = `<tspan x="${origX}" dy="0.3em" style="font-size: ${sizes.line1};">${line1}</tspan>`;
+        }
+    }
+
+    function restorePieLabel(idx) {
+        const el = getPieLabelEl(idx);
+        if (el) {
+            el.style.fontFamily = '"Font Awesome 7 Free"';
+            el.textContent = icons[idx];
+        }
     }
 
     function highlightPie(idx) {
@@ -174,6 +203,33 @@ function piechart(icons, series1, series2, linevalue, labels, chartEl, placehold
         });
     }
 
+    function syncAccordions(idx, isOpen) {
+        var slide = chartEl.closest('.card');
+        if (!slide) return;
+        suppressToggle = true;
+        slide.querySelectorAll('details[data-series-index]').forEach(function (item) {
+            var itemIdx = parseInt(item.getAttribute('data-series-index'));
+            item.open = isOpen && itemIdx === idx;
+        });
+        setTimeout(function () { suppressToggle = false; }, 0);
+    }
+
+    function handleLegendClick(idx) {
+        const isNowSelected = (lockedSliceIndex !== idx);
+        if (selectedSliceIndex !== -1) restorePieLabel(selectedSliceIndex);
+        if (isNowSelected) {
+            const el = getPieLabelEl(idx);
+            if (el) applyPieLabel(el, idx);
+            selectedSliceIndex = idx;
+            lockedSliceIndex = idx;
+        } else {
+            selectedSliceIndex = -1;
+            lockedSliceIndex = -1;
+        }
+        highlightPie(lockedSliceIndex);
+        syncAccordions(idx, isNowSelected);
+    }
+
     function setupPieInteraction() {
         var slide = chartEl.closest('.card');
         if (!slide) return;
@@ -183,25 +239,27 @@ function piechart(icons, series1, series2, linevalue, labels, chartEl, placehold
                 item.addEventListener('toggle', function () {
                     if (suppressToggle) return;
                     if (item.open) {
+                        if (selectedSliceIndex !== -1) restorePieLabel(selectedSliceIndex);
+                        const el = getPieLabelEl(idx);
+                        if (el) applyPieLabel(el, idx);
+                        selectedSliceIndex = idx;
                         lockedSliceIndex = idx;
                         highlightPie(idx);
+                        syncAccordions(idx, true);
                     } else {
-                        var anyOpen = Array.from(slide.querySelectorAll('details[data-series-index]'))
+                        if (selectedSliceIndex === idx) {
+                            restorePieLabel(idx);
+                            selectedSliceIndex = -1;
+                        }
+                        const anyOpen = Array.from(slide.querySelectorAll('details[data-series-index]'))
                             .some(function (d) { return d.open; });
                         if (!anyOpen) { lockedSliceIndex = -1; highlightPie(-1); }
                     }
                 });
             } else {
-                item.addEventListener('click', function () {
-                    lockedSliceIndex = (lockedSliceIndex === idx) ? -1 : idx;
-                    highlightPie(lockedSliceIndex);
-                });
+                item.addEventListener('click', function () { handleLegendClick(idx); });
                 item.addEventListener('keydown', function (e) {
-                    if (e.key === 'Enter' || e.key === ' ') {
-                        e.preventDefault();
-                        lockedSliceIndex = (lockedSliceIndex === idx) ? -1 : idx;
-                        highlightPie(lockedSliceIndex);
-                    }
+                    if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); handleLegendClick(idx); }
                 });
             }
         });
@@ -225,34 +283,11 @@ function piechart(icons, series1, series2, linevalue, labels, chartEl, placehold
                     const clickedIdx = config.dataPointIndex;
                     const isNowSelected = (config.selectedDataPoints[0] || []).includes(clickedIdx);
 
-                    if (selectedSliceIndex !== -1) {
-                        const prevEl = getPieLabelEl(selectedSliceIndex);
-                        if (prevEl) {
-                            prevEl.style.fontFamily = '"Font Awesome 7 Free"';
-                            prevEl.textContent = icons[selectedSliceIndex];
-                        }
-                    }
+                    if (selectedSliceIndex !== -1) restorePieLabel(selectedSliceIndex);
 
                     if (isNowSelected) {
                         const el = getPieLabelEl(clickedIdx);
-                        const pieTotal = series1.reduce((a, b) => a + b, 0);
-                        if (el) {
-                            const origX = el.getAttribute('x') || 0;
-                            el.style.fontFamily = '"Space Grotesk", sans-serif';
-                            const line1 = Math.round(series1[clickedIdx] / pieTotal * 100) + '%';
-                            let line2 = null;
-                            if (typeof series2 !== 'undefined' && series2 && typeof linevalue !== 'undefined') {
-                                line2 = series2[clickedIdx] + ' ' + linevalue;
-                            }
-                            if (line2) {
-                                el.innerHTML = `
-                                    <tspan x="${origX}" dy="-0.4em" style="font-size: 35px;">${line1}</tspan>
-                                    <tspan x="${origX}" dy="1.5em" style="font-size: 16px; font-weight: 700;">${line2}</tspan>
-                                `;
-                            } else {
-                                el.innerHTML = `<tspan x="${origX}" dy="0.3em" style="font-size: 35px;">${line1}</tspan>`;
-                            }
-                        }
+                        if (el) applyPieLabel(el, clickedIdx);
                         selectedSliceIndex = clickedIdx;
                     } else {
                         selectedSliceIndex = -1;
@@ -260,16 +295,7 @@ function piechart(icons, series1, series2, linevalue, labels, chartEl, placehold
 
                     lockedSliceIndex = isNowSelected ? clickedIdx : -1;
                     highlightPie(lockedSliceIndex);
-
-                    var slide = chartEl.closest('.card');
-                    if (slide) {
-                        suppressToggle = true;
-                        slide.querySelectorAll('details[data-series-index]').forEach(function (item) {
-                            var itemIdx = parseInt(item.getAttribute('data-series-index'));
-                            item.open = isNowSelected && itemIdx === clickedIdx;
-                        });
-                        setTimeout(function () { suppressToggle = false; }, 0);
-                    }
+                    syncAccordions(clickedIdx, isNowSelected);
                 }
             }
         },
@@ -311,13 +337,15 @@ function piechart(icons, series1, series2, linevalue, labels, chartEl, placehold
             {
                 breakpoint: 1000,
                 options: {
-                    chart: { width: 336, height: 336 }
+                    chart: { width: 336, height: 336 },
+                    dataLabels: { style: { fontSize: '30px' } }
                 }
             },
             {
                 breakpoint: 400,
                 options: {
-                    chart: { width: 236, height: 236 }
+                    chart: { width: 236, height: 236 },
+                    dataLabels: { style: { fontSize: '20px' } }
                 }
             }
         ],
