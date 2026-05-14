@@ -36,25 +36,25 @@ const placeholder1c = document.getElementById('bar-chart-1c-placeholder');
 /* Graph-1e Variables */
 
 /* Graph-1f Variables */
-const icons1f = ['\u{f0e3}', '\u{e4d8}', '\u{f568}'];
-const series1f = [50, 48, 2];
-const series1f2 = [21, 20, 1];
+const icons1f = ['\u{f568}', '\u{e4d8}', '\u{f0e3}'];
+const series1f = [2, 48, 50];
+const series1f2 = [1, 20, 21];
 const linevalue1f = 'FIRES';
-const labels1f = ['enforcement', 'codes', 'architect'];
+const labels1f = ['architect', 'codes', 'enforcement'];
 const chart1f = document.getElementById('pyramid-chart-1f');
 const placeholder1f = document.getElementById('pyramid-chart-1f-placeholder');
-const colors1f = ['var(--primary-one)', 'var(--primary-two)', 'var(--primary-three)'];
+const colors1f = ['var(--primary-three)', 'var(--primary-two)', 'var(--primary-one)'];
 let selectedIndex1f = -1;
 
 /* Graph-1g Variables */
-const icons1g = ['\u{f0e3}', '\u{e4d8}', '\u{f568}'];
-const series1g = [67, 32, 1];
-const series1g2 = [2432, 1178, 6];
+const icons1g = ['\u{f568}', '\u{e4d8}', '\u{f0e3}'];
+const series1g = [1, 32, 67];
+const series1g2 = [6, 1178, 2432];
 const linevalue1g = 'DEATHS';
-const labels1g = ['enforcement', 'codes', 'architect'];
+const labels1g = ['architect', 'codes', 'enforcement'];
 const chart1g = document.getElementById('pyramid-chart-1g');
 const placeholder1g = document.getElementById('pyramid-chart-1g-placeholder');
-const colors1g = ['var(--primary-one)', 'var(--primary-two)', 'var(--primary-three)'];
+const colors1g = ['var(--primary-three)', 'var(--primary-two)', 'var(--primary-one)'];
 let selectedIndex1g = -1;
 
 /* Graph-2a Variables */
