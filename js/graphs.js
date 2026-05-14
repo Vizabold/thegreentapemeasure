@@ -36,8 +36,26 @@ const placeholder1c = document.getElementById('bar-chart-1c-placeholder');
 /* Graph-1e Variables */
 
 /* Graph-1f Variables */
+const icons1f = ['\u{f0e3}', '\u{e4d8}', '\u{f568}'];
+const series1f = [50, 48, 2];
+const series1f2 = [21, 20, 1];
+const linevalue1f = 'FIRES';
+const labels1f = ['enforcement', 'codes', 'architect'];
+const chart1f = document.getElementById('pyramid-chart-1f');
+const placeholder1f = document.getElementById('pyramid-chart-1f-placeholder');
+const colors1f = ['var(--primary-one)', 'var(--primary-two)', 'var(--primary-three)'];
+let selectedIndex1f = -1;
 
 /* Graph-1g Variables */
+const icons1g = ['\u{f0e3}', '\u{e4d8}', '\u{f568}'];
+const series1g = [67, 32, 1];
+const series1g2 = [2432, 1178, 6];
+const linevalue1g = 'DEATHS';
+const labels1g = ['enforcement', 'codes', 'architect'];
+const chart1g = document.getElementById('pyramid-chart-1g');
+const placeholder1g = document.getElementById('pyramid-chart-1g-placeholder');
+const colors1g = ['var(--primary-one)', 'var(--primary-two)', 'var(--primary-three)'];
+let selectedIndex1g = -1;
 
 /* Graph-2a Variables */
 const icons2a = ['\u{f1b3}', '\u{f013}', '\u{f1ad}', '\u{e163}', '\u{e3af}', '\u{f508}'];
@@ -762,14 +780,240 @@ function barChart(series, categories, chartEl, placeholder, colors, groupRanges)
     }
 }
 
+function pyramidChart(icons, series1, series2, linevalue, labels, chartEl, placeholder, colors, selectedIndex) {
+    var lockedIndex = -1;
+    var suppressToggle = false;
+    var topIdx = series1.length - 1;
+
+    function getChartLabelEl(idx) {
+        return chartEl.querySelector('.apexcharts-datalabels[data-realindex="' + idx + '"] text')
+            || [...chartEl.querySelectorAll('.apexcharts-datalabels text')][idx];
+    }
+
+    function fixApexTopLabel() {
+        var labelEl = getChartLabelEl(topIdx);
+        var topBar = chartEl.querySelector('.apexcharts-bar-area[j="' + topIdx + '"]');
+        var svgEl = chartEl.querySelector('svg');
+        if (!labelEl || !topBar || !svgEl) return;
+
+        var svgRect = svgEl.getBoundingClientRect();
+        var barRect = topBar.getBoundingClientRect();
+        if (!svgRect.width || !barRect.height) return;
+
+        var scaleX = (parseFloat(svgEl.getAttribute('width')) || svgRect.width) / svgRect.width;
+        var scaleY = (parseFloat(svgEl.getAttribute('height')) || svgRect.height) / svgRect.height;
+        var barCenterX = (barRect.left + barRect.width / 2 - svgRect.left) * scaleX;
+        var barTopY = (barRect.top - svgRect.top) * scaleY;
+
+        labelEl.setAttribute('x', String(barCenterX));
+        labelEl.setAttribute('y', String(barTopY - 6));
+        labelEl.setAttribute('text-anchor', 'middle');
+        labelEl.setAttribute('dominant-baseline', 'auto');
+        labelEl.style.fill = 'var(--neutral-nine)';
+    }
+
+    function highlightSection(idx) {
+        chartEl.querySelectorAll('.apexcharts-bar-area').forEach(function (bar) {
+            var j = parseInt(bar.getAttribute('j'));
+            bar.style.transition = 'opacity 0.3s ease';
+            bar.style.opacity = (idx === -1 || j === idx) ? '1' : '0.15';
+        });
+        var slide = chartEl.closest('.card');
+        if (!slide) return;
+        slide.querySelectorAll('[data-series-index]').forEach(function (item) {
+            var itemIdx = parseInt(item.getAttribute('data-series-index'));
+            if (item.tagName !== 'DETAILS') {
+                item.setAttribute('aria-pressed', String(idx !== -1 && itemIdx === idx));
+            }
+            item.style.transition = 'opacity 0.3s ease';
+            item.style.opacity = (idx === -1 || itemIdx === idx) ? '1' : '0.4';
+        });
+    }
+
+    function setupChartInteraction() {
+        var slide = chartEl.closest('.card');
+        if (!slide) return;
+        slide.querySelectorAll('[data-series-index]').forEach(function (item) {
+            var idx = parseInt(item.getAttribute('data-series-index'));
+            if (item.tagName === 'DETAILS') {
+                item.addEventListener('toggle', function () {
+                    if (suppressToggle) return;
+                    if (item.open) {
+                        lockedIndex = idx;
+                        highlightSection(idx);
+                    } else {
+                        var anyOpen = Array.from(slide.querySelectorAll('details[data-series-index]'))
+                            .some(function (d) { return d.open; });
+                        if (!anyOpen) { lockedIndex = -1; highlightSection(-1); }
+                    }
+                });
+            } else {
+                item.addEventListener('click', function () {
+                    lockedIndex = (lockedIndex === idx) ? -1 : idx;
+                    highlightSection(lockedIndex);
+                });
+                item.addEventListener('keydown', function (e) {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        lockedIndex = (lockedIndex === idx) ? -1 : idx;
+                        highlightSection(lockedIndex);
+                    }
+                });
+            }
+        });
+    }
+
+    var options = {
+        series: [{ name: '', data: series1 }],
+        chart: {
+            type: 'bar',
+            width: 483,
+            height: 483,
+            id: chartEl,
+            events: {
+                mounted: function (chartContext) {
+                    placeholder.style.display = 'none';
+                    chartEl.style.opacity = '1';
+                    setupChartInteraction();
+                    requestAnimationFrame(fixApexTopLabel);
+                },
+                updated: function () {
+                    requestAnimationFrame(fixApexTopLabel);
+                },
+                dataPointSelection: function (event, chartContext, config) {
+                    const clickedIdx = config.dataPointIndex;
+                    const isNowSelected = (config.selectedDataPoints[0] || []).includes(clickedIdx);
+
+                    if (selectedIndex !== -1) {
+                        const prevEl = getChartLabelEl(selectedIndex);
+                        if (prevEl) {
+                            prevEl.style.fontFamily = '"Font Awesome 7 Free"';
+                            prevEl.textContent = icons[selectedIndex];
+                            if (selectedIndex === topIdx) requestAnimationFrame(fixApexTopLabel);
+                        }
+                    }
+
+                    if (isNowSelected) {
+                        const el = getChartLabelEl(clickedIdx);
+                        const chartTotal = series1.reduce((a, b) => a + b, 0);
+                        if (el) {
+                            const origX = el.getAttribute('x') || 0;
+                            el.style.fontFamily = '"Space Grotesk", sans-serif';
+                            const line1 = Math.round(series1[clickedIdx] / chartTotal * 100) + '%';
+                            let line2 = null;
+                            if (typeof series2 !== 'undefined' && series2 && typeof linevalue !== 'undefined') {
+                                line2 = series2[clickedIdx] + ' ' + linevalue;
+                            }
+                            if (line2) {
+                                el.innerHTML = `
+                                    <tspan x="${origX}" dy="-0.4em" style="font-size: 35px;">${line1}</tspan>
+                                    <tspan x="${origX}" dy="1.5em" style="font-size: 16px; font-weight: 700;">${line2}</tspan>
+                                `;
+                            } else {
+                                el.innerHTML = `<tspan x="${origX}" dy="0.3em" style="font-size: 35px;">${line1}</tspan>`;
+                            }
+                        }
+                        selectedIndex = clickedIdx;
+                    } else {
+                        selectedIndex = -1;
+                    }
+
+                    lockedIndex = isNowSelected ? clickedIdx : -1;
+                    highlightSection(lockedIndex);
+
+                    var slide = chartEl.closest('.card');
+                    if (slide) {
+                        suppressToggle = true;
+                        slide.querySelectorAll('details[data-series-index]').forEach(function (item) {
+                            var itemIdx = parseInt(item.getAttribute('data-series-index'));
+                            item.open = isNowSelected && itemIdx === clickedIdx;
+                        });
+                        setTimeout(function () { suppressToggle = false; }, 0);
+                    }
+                }
+            }
+        },
+        colors: colors,
+        stroke: { show: false },
+        plotOptions: {
+            bar: {
+                horizontal: true,
+                distributed: true,
+                isFunnel: true,
+            },
+        },
+        dataLabels: {
+            enabled: true,
+            formatter: function (val, opts) {
+                return icons[opts.dataPointIndex];
+            },
+            style: {
+                fontSize: '35px',
+                fontWeight: '900',
+                fontFamily: '"Font Awesome 7 Free", "Space Grotesk", sans-serif',
+                colors: ['var(--neutral-two-dark)'],
+            },
+            dropShadow: { enabled: false }
+        },
+        xaxis: {
+            categories: labels,
+            labels: { show: false },
+            axisBorder: { show: false },
+            axisTicks: { show: false }
+        },
+        yaxis: {
+            labels: { show: false },
+            axisBorder: { show: false },
+            axisTicks: { show: false }
+        },
+        grid: {
+            show: false,
+            padding: { top: 40, bottom: 0, left: 0, right: 0 }
+        },
+        legend: { show: false },
+        tooltip: { enabled: false },
+        responsive: [
+            {
+                breakpoint: 1000,
+                options: { chart: { width: 336, height: 336 } }
+            },
+            {
+                breakpoint: 400,
+                options: { chart: { width: 236, height: 236 } }
+            }
+        ],
+        states: {
+            active: { filter: { type: 'none' } }
+        }
+    };
+
+    if (!chartEl) return;
+
+    chartEl.style.opacity = '0';
+    var apexChart = new ApexCharts(chartEl, options);
+    var dialog = chartEl.closest('[popover]');
+
+    if (dialog) {
+        var rendered = false;
+        dialog.addEventListener('toggle', function (e) {
+            if (e.newState === 'open' && !rendered) {
+                rendered = true;
+                apexChart.render();
+            }
+        });
+    } else {
+        apexChart.render();
+    }
+}
+
 
 piechart(icons1a, series1a, series1a2, linevalue1a, labels1a, chart1a, placeholder1a, colors1a, selectedIndex1a);
 piechart(icons1b, series1b, series1b2, linevalue1b, labels1b, chart1b, placeholder1b, colors1b, selectedIndex1b);
 barChart(series1c, categories1c, chart1c, placeholder1c, colors1c, groupRanges1c);
 /* Evoke function for Graph-1d */
 /* Evoke function for Graph-1e */
-/* Evoke function for Graph-1f */
-/* Evoke function for Graph-1g */
+pyramidChart(icons1f, series1f, series1f2, linevalue1f, labels1f, chart1f, placeholder1f, colors1f, selectedIndex1f);
+pyramidChart(icons1g, series1g, series1g2, linevalue1g, labels1g, chart1g, placeholder1g, colors1g, selectedIndex1g);
 piechart(icons2a, series2a, series2a2, linevalue2a, labels2a, chart2a, placeholder2a, colors2a, selectedIndex2a);
 piechart(icons2b, series2b, series2b2, linevalue2b, labels2b, chart2b, placeholder2b, colors2b, selectedIndex2b);
 piechart(icons2c, series2c, series2c2, linevalue2c, labels2c, chart2c, placeholder2c, colors2c, selectedIndex2c);
