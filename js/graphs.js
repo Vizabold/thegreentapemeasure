@@ -131,9 +131,62 @@ const colors4b = ['var(--primary-one)', 'var(--primary-two)'];
 let selectedIndex4b = -1;
 
 function piechart(icons, series1, series2, linevalue, labels, chartEl, placeholder, colors, selectedSliceIndex) {
+    var lockedSliceIndex = -1;
+    var suppressToggle = false;
+
     function getPieLabelEl(idx) {
         return chartEl.querySelector(`.apexcharts-datalabels[data-realindex="${idx}"] text`)
             || [...chartEl.querySelectorAll('.apexcharts-datalabels text')][idx];
+    }
+
+    function highlightPie(idx) {
+        chartEl.querySelectorAll('.apexcharts-series').forEach(function (el, i) {
+            el.style.transition = 'opacity 0.3s ease';
+            el.style.opacity = (idx === -1 || i === idx) ? '1' : '0.15';
+        });
+        var slide = chartEl.closest('.card');
+        if (!slide) return;
+        slide.querySelectorAll('[data-series-index]').forEach(function (item) {
+            var itemIdx = parseInt(item.getAttribute('data-series-index'));
+            if (item.tagName !== 'DETAILS') {
+                item.setAttribute('aria-pressed', String(idx !== -1 && itemIdx === idx));
+            }
+            item.style.transition = 'opacity 0.3s ease';
+            item.style.opacity = (idx === -1 || itemIdx === idx) ? '1' : '0.4';
+        });
+    }
+
+    function setupPieInteraction() {
+        var slide = chartEl.closest('.card');
+        if (!slide) return;
+        slide.querySelectorAll('[data-series-index]').forEach(function (item) {
+            var idx = parseInt(item.getAttribute('data-series-index'));
+            if (item.tagName === 'DETAILS') {
+                item.addEventListener('toggle', function () {
+                    if (suppressToggle) return;
+                    if (item.open) {
+                        lockedSliceIndex = idx;
+                        highlightPie(idx);
+                    } else {
+                        var anyOpen = Array.from(slide.querySelectorAll('details[data-series-index]'))
+                            .some(function (d) { return d.open; });
+                        if (!anyOpen) { lockedSliceIndex = -1; highlightPie(-1); }
+                    }
+                });
+            } else {
+                item.addEventListener('click', function () {
+                    lockedSliceIndex = (lockedSliceIndex === idx) ? -1 : idx;
+                    highlightPie(lockedSliceIndex);
+                });
+                item.addEventListener('keydown', function (e) {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        lockedSliceIndex = (lockedSliceIndex === idx) ? -1 : idx;
+                        highlightPie(lockedSliceIndex);
+                    }
+                });
+            }
+        });
     }
 
     var options = {
@@ -148,6 +201,7 @@ function piechart(icons, series1, series2, linevalue, labels, chartEl, placehold
                 mounted: function (chartContext) {
                     placeholder.style.display = 'none';
                     chartEl.style.opacity = '1';
+                    setupPieInteraction();
                 },
                 dataPointSelection: function (event, chartContext, config) {
                     const clickedIdx = config.dataPointIndex;
@@ -184,6 +238,19 @@ function piechart(icons, series1, series2, linevalue, labels, chartEl, placehold
                         selectedSliceIndex = clickedIdx;
                     } else {
                         selectedSliceIndex = -1;
+                    }
+
+                    lockedSliceIndex = isNowSelected ? clickedIdx : -1;
+                    highlightPie(lockedSliceIndex);
+
+                    var slide = chartEl.closest('.card');
+                    if (slide) {
+                        suppressToggle = true;
+                        slide.querySelectorAll('details[data-series-index]').forEach(function (item) {
+                            var itemIdx = parseInt(item.getAttribute('data-series-index'));
+                            item.open = isNowSelected && itemIdx === clickedIdx;
+                        });
+                        setTimeout(function () { suppressToggle = false; }, 0);
                     }
                 }
             }
