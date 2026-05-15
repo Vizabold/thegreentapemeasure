@@ -32,8 +32,58 @@ const chart1c = document.getElementById('bar-chart-1c');
 const placeholder1c = document.getElementById('bar-chart-1c-placeholder');
 
 /* Graph-1d Variables */
+const icons1d = [
+    /* First set of three circles that have bg-primary-two */
+    ['\u{f52b}', '\u{f5aa}', '\u{f0f3}'],
+    /* Second set of three circles that have bg-primary-three */
+    [['\u{f5aa}', '\u{f0f3}'], ['\u{f52b}', '\u{f5aa}'], ['\u{f52b}', '\u{f0f3}']],
+    /* Third circle that has bg-neutral-seven-light */
+    [['\u{f52b}', '\u{f0f3}', '\u{f5aa}']]
+];
+const series1d = [
+    /* First set of three circles that have bg-primary-two */
+    [19, 7, 7],
+    /* Second set of three circles that have bg-primary-three */
+    [26, 24, 12],
+    /* Third circle that has bg-neutral-seven-light */
+    [5]
+];
+const labels1d = ['one reason', 'two reasons', 'all three'];
+const chart1d = document.getElementById('venn-chart-1d');
+const placeholder1d = document.getElementById('venn-chart-1d-placeholder');
+const colors1d = [
+    ['var(--primary-two)', 'var(--primary-two)', 'var(--primary-two)'],
+    ['var(--primary-three)', 'var(--primary-three)', 'var(--primary-three)'],
+    ['var(--neutral-seven-light)']
+];
+let selectedIndex1d = -1;
 
 /* Graph-1e Variables */
+const icons1e = [
+    /* First set of three circles that have bg-primary-two */
+    ['\u{f52b}', '\u{f5aa}', '\u{f0f3}'],
+    /* Second set of three circles that have bg-primary-three */
+    [['\u{f52b}', '\u{f5aa}'], ['\u{f5aa}', '\u{f0f3}'], ['\u{f52b}', '\u{f0f3}']],
+    /* Third circle that has bg-neutral-seven-light */
+    [['\u{f52b}', '\u{f0f3}', '\u{f5aa}']]
+];
+const series1e = [
+    /* First set of three circles that have bg-primary-two */
+    [14, 5, 2],
+    /* Second set of three circles that have bg-primary-three */
+    [47, 19, 6],
+    /* Third circle that has bg-neutral-seven-light */
+    [7]
+];
+const labels1e = ['one reason', 'two reasons', 'all three'];
+const chart1e = document.getElementById('venn-chart-1e');
+const placeholder1e = document.getElementById('venn-chart-1e-placeholder');
+const colors1e = [
+    ['var(--primary-two)', 'var(--primary-two)', 'var(--primary-two)'],
+    ['var(--primary-three)', 'var(--primary-three)', 'var(--primary-three)'],
+    ['var(--neutral-seven-light)']
+];
+let selectedIndex1e = -1;
 
 /* Graph-1f Variables */
 const icons1f = ['\u{f568}', '\u{e4d8}', '\u{f0e3}'];
@@ -930,12 +980,16 @@ function pyramidChart(icons, series1, series2, linevalue, labels, chartEl, place
     setupChartInteraction();
 }
 
+function vennChart(icons, series1, labels, chartEl, placeholder, colors, selectedIndex) {
+
+}
+
 
 piechart(icons1a, series1a, series1a2, linevalue1a, labels1a, chart1a, placeholder1a, colors1a, selectedIndex1a);
 piechart(icons1b, series1b, series1b2, linevalue1b, labels1b, chart1b, placeholder1b, colors1b, selectedIndex1b);
 barChart(series1c, categories1c, chart1c, placeholder1c, colors1c, groupRanges1c);
-/* Evoke function for Graph-1d */
-/* Evoke function for Graph-1e */
+vennChart(icons1d, series1d, labels1d, chart1d, placeholder1d, colors1d, selectedIndex1d);
+vennChart(icons1e, series1e, labels1e, chart1e, placeholder1e, colors1e, selectedIndex1e);
 pyramidChart(icons1f, series1f, series1f2, linevalue1f, labels1f, chart1f, placeholder1f, colors1f, selectedIndex1f);
 pyramidChart(icons1g, series1g, series1g2, linevalue1g, labels1g, chart1g, placeholder1g, colors1g, selectedIndex1g);
 piechart(icons2a, series2a, series2a2, linevalue2a, labels2a, chart2a, placeholder2a, colors2a, selectedIndex2a);

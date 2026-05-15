@@ -59,6 +59,7 @@
     --color-neutral-five: var(--neutral-five);
     --color-neutral-six: var(--neutral-six);
     --color-neutral-seven: var(--neutral-seven);
+    --color-neutral-seven-light: #BECAB9;
     --color-neutral-nine: var(--neutral-nine);
     --font-base: "Inter", sans-serif;
     --font-button: "Manrope", sans-serif;
@@ -680,6 +681,9 @@
   }
   .bg-neutral-seven {
     background-color: var(--color-neutral-seven);
+  }
+  .bg-neutral-seven-light {
+    background-color: var(--color-neutral-seven-light);
   }
   .bg-neutral-six {
     background-color: var(--color-neutral-six);

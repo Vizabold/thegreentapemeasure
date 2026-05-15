@@ -2674,24 +2674,115 @@
               <p class="hidden js:block">Tap a section on the graph to see more details</p>
             </div>
             <div class="flex flex-col gap-4 overflow-y-auto scrollbar xl:max-h-90.75">
-              <div class="flex gap-2">
-                <svg class="icon-sm fill-current text-neutral-seven">
-                  <use href="/assets/sprites/solid.svg#door-open"></use>
-                </svg>
-                <p class="self-center">Unable to Exit</p>
-              </div>
-              <div class="flex gap-2">
-                <svg class="icon-sm fill-current text-neutral-seven">
-                  <use href="/assets/sprites/solid.svg#bell"></use>
-                </svg>
-                <p class="self-center">Lack of Alarms or Sprinklers</p>
-              </div>
-              <div class="flex gap-2">
-                <svg class="icon-sm fill-current text-neutral-seven">
-                  <use href="/assets/sprites/solid.svg#paint-roller"></use>
-                </svg>
-                <p class="self-center">Flammable or Toxic Materials</p>
-              </div>
+              <details name="accordion" data-series-index="0">
+                <summary class="btn btn-accordion">
+                  <svg aria-hidden="true" class="icon-xs fill-primary-one">
+                    <use href="/assets/sprites/solid.svg#angle-down"></use>
+                  </svg>
+                  <p class="self-center">One Reason</p>
+                </summary>
+                <div class="accordion-content-wrapper">
+                  <div class="flex flex-col gap-1">
+                    <div class="flex gap-2">
+                      <svg class="icon-sm fill-current text-neutral-seven">
+                        <use href="/assets/sprites/solid.svg#door-open"></use>
+                      </svg>
+                      <p class="paragraph-md self-center">Unable to Exit</p>
+                    </div>
+                    <p>8 Fires</p>
+                  </div>
+                  <div class="flex flex-col gap-1">
+                    <div class="flex gap-2">
+                      <svg class="icon-sm fill-current text-neutral-seven">
+                        <use href="/assets/sprites/solid.svg#paint-roller"></use>
+                      </svg>
+                      <p class="paragraph-md self-center">Flammable or Toxic Materials</p>
+                    </div>
+                    <p>3 Fires</p>
+                  </div>
+                  <div class="flex flex-col gap-1">
+                    <div class="flex gap-2">
+                      <svg class="icon-sm fill-current text-neutral-seven">
+                        <use href="/assets/sprites/solid.svg#bell"></use>
+                      </svg>
+                      <p class="paragraph-md self-center">Lack of Alarms or Sprinklers</p>
+                    </div>
+                    <p>3 Fires</p>
+                  </div>
+                </div>
+              </details>
+              <details name="accordion" data-series-index="0">
+                <summary class="btn btn-accordion">
+                  <svg aria-hidden="true" class="icon-xs fill-primary-one">
+                    <use href="/assets/sprites/solid.svg#angle-down"></use>
+                  </svg>
+                  <p class="self-center">Two Reasons</p>
+                </summary>
+                <div class="accordion-content-wrapper">
+                  <div class="flex flex-col gap-1">
+                    <div class="flex gap-2">
+                      <svg class="icon-sm fill-current text-neutral-seven">
+                        <use href="/assets/sprites/solid.svg#paint-roller"></use>
+                      </svg>
+                      <svg class="icon-sm fill-current text-neutral-seven">
+                        <use href="/assets/sprites/solid.svg#bell"></use>
+                      </svg>
+                      <p class="paragraph-md self-center">Flammable or Toxic Materials, Lack of Alarms or Sprinklers</p>
+                    </div>
+                    <p>11 Fires</p>
+                  </div>
+                  <div class="flex flex-col gap-1">
+                    <div class="flex gap-2">
+                      <svg class="icon-sm fill-current text-neutral-seven">
+                        <use href="/assets/sprites/solid.svg#door-open"></use>
+                      </svg>
+                      <svg class="icon-sm fill-current text-neutral-seven">
+                        <use href="/assets/sprites/solid.svg#paint-roller"></use>
+                      </svg>
+                      <p class="paragraph-md self-center">Unable to Exit, Flammable or Toxic Materials</p>
+                    </div>
+                    <p>10 Fires</p>
+                  </div>
+                  <div class="flex flex-col gap-1">
+                    <div class="flex gap-2">
+                      <svg class="icon-sm fill-current text-neutral-seven">
+                        <use href="/assets/sprites/solid.svg#door-open"></use>
+                      </svg>
+                      <svg class="icon-sm fill-current text-neutral-seven">
+                        <use href="/assets/sprites/solid.svg#bell"></use>
+                      </svg>
+                      <p class="paragraph-md self-center">Unable to Exit, Lack of Alarms or Sprinklers</p>
+                    </div>
+                    <p>5 Fires</p>
+                  </div>
+                </div>
+              </details>
+              <details name="accordion" data-series-index="0">
+                <summary class="btn btn-accordion">
+                  <svg aria-hidden="true" class="icon-xs fill-primary-one">
+                    <use href="/assets/sprites/solid.svg#angle-down"></use>
+                  </svg>
+                  <p class="self-center">Three Reasons</p>
+                </summary>
+                <div class="accordion-content-wrapper">
+                  <div class="flex flex-col gap-1">
+                    <div class="flex gap-2">
+                      <svg class="icon-sm fill-current text-neutral-seven">
+                        <use href="/assets/sprites/solid.svg#door-open"></use>
+                      </svg>
+                      <svg class="icon-sm fill-current text-neutral-seven">
+                        <use href="/assets/sprites/solid.svg#bell"></use>
+                      </svg>
+                      <svg class="icon-sm fill-current text-neutral-seven">
+                        <use href="/assets/sprites/solid.svg#paint-roller"></use>
+                      </svg>
+                      <p class="paragraph-md self-center">Unable to Exit, Lack of Alarms or Sprinklers, Flammable or
+                        Toxic Materials</p>
+                    </div>
+                    <p>2 Fires</p>
+                  </div>
+                </div>
+              </details>
             </div>
           </div>
         </div>
@@ -2724,24 +2815,115 @@
               <p class="hidden js:block">Tap a section on the graph to see more details</p>
             </div>
             <div class="flex flex-col gap-4 overflow-y-auto scrollbar xl:max-h-90.75">
-              <div class="flex gap-2">
-                <svg class="icon-sm fill-current text-neutral-seven">
-                  <use href="/assets/sprites/solid.svg#door-open"></use>
-                </svg>
-                <p class="self-center">Unable to Exit</p>
-              </div>
-              <div class="flex gap-2">
-                <svg class="icon-sm fill-current text-neutral-seven">
-                  <use href="/assets/sprites/solid.svg#bell"></use>
-                </svg>
-                <p class="self-center">Lack of Alarms or Sprinklers</p>
-              </div>
-              <div class="flex gap-2">
-                <svg class="icon-sm fill-current text-neutral-seven">
-                  <use href="/assets/sprites/solid.svg#paint-roller"></use>
-                </svg>
-                <p class="self-center">Flammable or Toxic Materials</p>
-              </div>
+              <details name="accordion" data-series-index="0">
+                <summary class="btn btn-accordion">
+                  <svg aria-hidden="true" class="icon-xs fill-primary-one">
+                    <use href="/assets/sprites/solid.svg#angle-down"></use>
+                  </svg>
+                  <p class="self-center">One Reason</p>
+                </summary>
+                <div class="accordion-content-wrapper">
+                  <div class="flex flex-col gap-1">
+                    <div class="flex gap-2">
+                      <svg class="icon-sm fill-current text-neutral-seven">
+                        <use href="/assets/sprites/solid.svg#door-open"></use>
+                      </svg>
+                      <p class="paragraph-md self-center">Unable to Exit</p>
+                    </div>
+                    <p>516 Deaths</p>
+                  </div>
+                  <div class="flex flex-col gap-1">
+                    <div class="flex gap-2">
+                      <svg class="icon-sm fill-current text-neutral-seven">
+                        <use href="/assets/sprites/solid.svg#paint-roller"></use>
+                      </svg>
+                      <p class="paragraph-md self-center">Flammable or Toxic Materials</p>
+                    </div>
+                    <p>179 Deaths</p>
+                  </div>
+                  <div class="flex flex-col gap-1">
+                    <div class="flex gap-2">
+                      <svg class="icon-sm fill-current text-neutral-seven">
+                        <use href="/assets/sprites/solid.svg#bell"></use>
+                      </svg>
+                      <p class="paragraph-md self-center">Lack of Alarms or Sprinklers</p>
+                    </div>
+                    <p>61 Deaths</p>
+                  </div>
+                </div>
+              </details>
+              <details name="accordion" data-series-index="0">
+                <summary class="btn btn-accordion">
+                  <svg aria-hidden="true" class="icon-xs fill-primary-one">
+                    <use href="/assets/sprites/solid.svg#angle-down"></use>
+                  </svg>
+                  <p class="self-center">Two Reasons</p>
+                </summary>
+                <div class="accordion-content-wrapper">
+                  <div class="flex flex-col gap-1">
+                    <div class="flex gap-2">
+                      <svg class="icon-sm fill-current text-neutral-seven">
+                        <use href="/assets/sprites/solid.svg#door-open"></use>
+                      </svg>
+                      <svg class="icon-sm fill-current text-neutral-seven">
+                        <use href="/assets/sprites/solid.svg#paint-roller"></use>
+                      </svg>
+                      <p class="paragraph-md self-center">Unable to Exit, Flammable or Toxic Materials</p>
+                    </div>
+                    <p>1,723 Deaths</p>
+                  </div>
+                  <div class="flex flex-col gap-1">
+                    <div class="flex gap-2">
+                      <svg class="icon-sm fill-current text-neutral-seven">
+                        <use href="/assets/sprites/solid.svg#paint-roller"></use>
+                      </svg>
+                      <svg class="icon-sm fill-current text-neutral-seven">
+                        <use href="/assets/sprites/solid.svg#bell"></use>
+                      </svg>
+                      <p class="paragraph-md self-center">Flammable or Toxic Materials, Lack of Alarms or Sprinklers</p>
+                    </div>
+                    <p>674 Deaths</p>
+                  </div>
+                  <div class="flex flex-col gap-1">
+                    <div class="flex gap-2">
+                      <svg class="icon-sm fill-current text-neutral-seven">
+                        <use href="/assets/sprites/solid.svg#door-open"></use>
+                      </svg>
+                      <svg class="icon-sm fill-current text-neutral-seven">
+                        <use href="/assets/sprites/solid.svg#bell"></use>
+                      </svg>
+                      <p class="paragraph-md self-center">Unable to Exit, Lack of Alarms or Sprinklers</p>
+                    </div>
+                    <p>231 Deaths</p>
+                  </div>
+                </div>
+              </details>
+              <details name="accordion" data-series-index="0">
+                <summary class="btn btn-accordion">
+                  <svg aria-hidden="true" class="icon-xs fill-primary-one">
+                    <use href="/assets/sprites/solid.svg#angle-down"></use>
+                  </svg>
+                  <p class="self-center">Three Reasons</p>
+                </summary>
+                <div class="accordion-content-wrapper">
+                  <div class="flex flex-col gap-1">
+                    <div class="flex gap-2">
+                      <svg class="icon-sm fill-current text-neutral-seven">
+                        <use href="/assets/sprites/solid.svg#door-open"></use>
+                      </svg>
+                      <svg class="icon-sm fill-current text-neutral-seven">
+                        <use href="/assets/sprites/solid.svg#bell"></use>
+                      </svg>
+                      <svg class="icon-sm fill-current text-neutral-seven">
+                        <use href="/assets/sprites/solid.svg#paint-roller"></use>
+                      </svg>
+                      <p class="paragraph-md self-center">Unable to Exit, Lack of Alarms or Sprinklers, Flammable or
+                        Toxic Materials</p>
+                    </div>
+                    <p>252 Deaths</p>
+                  </div>
+                </div>
+              </details>
             </div>
           </div>
         </div>
