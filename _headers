@@ -1,6 +1,6 @@
 /*
   Cross-Origin-Opener-Policy: same-origin
-  Content-Security-Policy: default-src 'self'; frame-ancestors 'none'; object-src 'none'; base-uri 'self'; img-src 'self' data:; font-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'self' https://cdn.jsdelivr.net https://gtm-analytics.netlify.app; connect-src 'self' https://cdn.jsdelivr.net https://gtm-analytics.netlify.app; media-src 'self'; upgrade-insecure-requests; report-uri /.netlify/functions/csp-report
+  Content-Security-Policy: default-src 'self'; frame-ancestors 'none'; object-src 'none'; base-uri 'self'; img-src 'self' data:; font-src 'self'; style-src 'self'; script-src 'self' https://gtm-analytics.netlify.app; connect-src 'self' https://gtm-analytics.netlify.app; media-src 'self'; upgrade-insecure-requests; report-uri /.netlify/functions/csp-report
   Cache-Control: no-cache
 
 /assets/fonts/*

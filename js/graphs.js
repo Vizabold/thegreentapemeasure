@@ -199,41 +199,83 @@ const colors4b = ['var(--primary-one)', 'var(--primary-two)'];
 let selectedIndex4b = -1;
 
 function piechart(icons, series1, series2, linevalue, labels, chartEl, placeholder, colors, selectedSliceIndex) {
+    if (!chartEl) return;
+
+    var svgNS = 'http://www.w3.org/2000/svg';
+    var VW = 500, VH = 500;
+    var cx = 250, cy = 250, outerR = 210, labelR = 130;
     var lockedSliceIndex = -1;
     var suppressToggle = false;
+    var n = series1.length;
     var pieTotal = series1.reduce(function (a, b) { return a + b; }, 0);
 
-    function getPieLabelEl(idx) {
-        return chartEl.querySelector(`.apexcharts-datalabels[data-realindex="${idx}"] text`)
-            || [...chartEl.querySelectorAll('.apexcharts-datalabels text')][idx];
+    var startAngles = [], endAngles = [], midAngles = [];
+    var cur = -Math.PI / 2;
+    for (var i = 0; i < n; i++) {
+        var sweep = (series1[i] / pieTotal) * 2 * Math.PI;
+        startAngles.push(cur);
+        endAngles.push(cur + sweep);
+        midAngles.push(cur + sweep / 2);
+        cur += sweep;
     }
 
-    function getCurrentFontSizes() {
-        var w = window.innerWidth;
-        if (w < 400) return { line1: '20px', line2: '14px' };
-        if (w < 1000) return { line1: '30px', line2: '16px' };
-        return { line1: '35px', line2: '16px' };
+    function slicePath(i) {
+        var sa = startAngles[i], ea = endAngles[i], sw = ea - sa;
+        var x1 = cx + outerR * Math.cos(sa), y1 = cy + outerR * Math.sin(sa);
+        var ea2 = sw >= 2 * Math.PI - 0.001 ? ea - 0.001 : ea;
+        var x2 = cx + outerR * Math.cos(ea2), y2 = cy + outerR * Math.sin(ea2);
+        return 'M ' + cx + ' ' + cy + ' L ' + x1.toFixed(2) + ' ' + y1.toFixed(2) +
+            ' A ' + outerR + ' ' + outerR + ' 0 ' + (sw > Math.PI ? 1 : 0) + ' 1 ' + x2.toFixed(2) + ' ' + y2.toFixed(2) + ' Z';
     }
 
-    function applyPieLabel(el, idx) {
-        const sizes = getCurrentFontSizes();
-        const origX = el.getAttribute('x') || 0;
-        el.style.fontFamily = '"Space Grotesk", sans-serif';
-        const line1 = Math.round(series1[idx] / pieTotal * 100) + '%';
-        el.innerHTML = `<tspan x="${origX}" dy="0.3em" style="font-size: ${sizes.line1};">${line1}</tspan>`;
+    var svg = document.createElementNS(svgNS, 'svg');
+    svg.setAttribute('viewBox', '0 0 ' + VW + ' ' + VH);
+    svg.setAttribute('width', '483');
+    svg.setAttribute('height', '483');
+    svg.style.maxWidth = '100%';
+    svg.style.height = 'auto';
+
+    var sliceEls = [], textEls = [];
+
+    for (var i = 0; i < n; i++) {
+        var path = document.createElementNS(svgNS, 'path');
+        path.setAttribute('d', slicePath(i));
+        path.style.fill = colors[i];
+        path.style.stroke = 'var(--neutral-nine)';
+        path.style.strokeWidth = '2';
+        path.style.cursor = 'pointer';
+        path.style.transition = 'opacity 0.3s ease';
+        path.setAttribute('tabindex', '0');
+        path.setAttribute('role', 'button');
+        path.setAttribute('aria-label', labels[i] + ': ' + Math.round(series1[i] / pieTotal * 100) + '%');
+        svg.appendChild(path);
+        sliceEls.push(path);
+
+        var lx = (cx + labelR * Math.cos(midAngles[i])).toFixed(2);
+        var ly = (cy + labelR * Math.sin(midAngles[i])).toFixed(2);
+        var t = document.createElementNS(svgNS, 'text');
+        t.setAttribute('x', lx);
+        t.setAttribute('y', ly);
+        t.setAttribute('text-anchor', 'middle');
+        t.setAttribute('dominant-baseline', 'central');
+        t.setAttribute('font-family', '"Font Awesome 7 Free"');
+        t.setAttribute('font-size', '35');
+        t.setAttribute('font-weight', '900');
+        t.setAttribute('pointer-events', 'none');
+        t.style.fill = 'var(--neutral-two-dark)';
+        t.textContent = icons[i];
+        svg.appendChild(t);
+        textEls.push(t);
     }
 
-    function restorePieLabel(idx) {
-        const el = getPieLabelEl(idx);
-        if (el) {
-            el.style.fontFamily = '"Font Awesome 7 Free"';
-            el.textContent = icons[idx];
-        }
-    }
+    chartEl.appendChild(svg);
+    placeholder.style.display = 'none';
 
     function highlightPie(idx) {
-        chartEl.querySelectorAll('.apexcharts-series').forEach(function (el, i) {
-            el.style.transition = 'opacity 0.3s ease';
+        sliceEls.forEach(function (el, i) {
+            el.style.opacity = (idx === -1 || i === idx) ? '1' : '0.15';
+        });
+        textEls.forEach(function (el, i) {
             el.style.opacity = (idx === -1 || i === idx) ? '1' : '0.15';
         });
         var slide = chartEl.closest('.card');
@@ -248,394 +290,384 @@ function piechart(icons, series1, series2, linevalue, labels, chartEl, placehold
         });
     }
 
+    function restoreLabel(idx) {
+        var t = textEls[idx];
+        t.setAttribute('font-family', '"Font Awesome 7 Free"');
+        t.setAttribute('font-size', '35');
+        t.setAttribute('font-weight', '900');
+        t.textContent = icons[idx];
+        t.style.fill = 'var(--neutral-two-dark)';
+    }
+
+    function applyLabel(idx) {
+        var t = textEls[idx];
+        var lx = t.getAttribute('x');
+        t.setAttribute('font-family', '"Space Grotesk", sans-serif');
+        t.setAttribute('font-weight', '700');
+        var line1 = Math.round(series1[idx] / pieTotal * 100) + '%';
+        var line2 = (series2 && linevalue) ? series2[idx] + ' ' + linevalue : null;
+        if (line2) {
+            t.innerHTML = '<tspan x="' + lx + '" dy="-0.4em" font-size="35">' + line1 + '</tspan>' +
+                '<tspan x="' + lx + '" dy="1.5em" font-size="16" font-weight="700">' + line2 + '</tspan>';
+        } else {
+            t.innerHTML = '<tspan x="' + lx + '" dy="0.3em" font-size="35">' + line1 + '</tspan>';
+        }
+    }
+
     function syncAccordions(idx, isOpen) {
         var slide = chartEl.closest('.card');
         if (!slide) return;
         suppressToggle = true;
         slide.querySelectorAll('details[data-series-index]').forEach(function (item) {
-            var itemIdx = parseInt(item.getAttribute('data-series-index'));
-            item.open = isOpen && itemIdx === idx;
+            item.open = isOpen && parseInt(item.getAttribute('data-series-index')) === idx;
         });
         setTimeout(function () { suppressToggle = false; }, 0);
     }
 
-    function handleLegendClick(idx) {
-        const isNowSelected = (lockedSliceIndex !== idx);
-        if (selectedSliceIndex !== -1) restorePieLabel(selectedSliceIndex);
-        if (isNowSelected) {
-            const el = getPieLabelEl(idx);
-            if (el) applyPieLabel(el, idx);
-            selectedSliceIndex = idx;
-            lockedSliceIndex = idx;
-        } else {
-            selectedSliceIndex = -1;
+    function handleClick(idx) {
+        var wasSelected = lockedSliceIndex === idx;
+        if (lockedSliceIndex !== -1) restoreLabel(lockedSliceIndex);
+        if (wasSelected) {
             lockedSliceIndex = -1;
+            selectedSliceIndex = -1;
+            highlightPie(-1);
+            syncAccordions(idx, false);
+        } else {
+            lockedSliceIndex = idx;
+            selectedSliceIndex = idx;
+            applyLabel(idx);
+            highlightPie(idx);
+            syncAccordions(idx, true);
         }
-        highlightPie(lockedSliceIndex);
-        syncAccordions(idx, isNowSelected);
     }
 
-    function setupPieInteraction() {
-        var slide = chartEl.closest('.card');
-        if (!slide) return;
-        slide.querySelectorAll('[data-series-index]').forEach(function (item) {
-            var idx = parseInt(item.getAttribute('data-series-index'));
-            if (item.tagName === 'DETAILS') {
-                item.addEventListener('toggle', function () {
-                    if (suppressToggle) return;
-                    if (item.open) {
-                        if (selectedSliceIndex !== -1) restorePieLabel(selectedSliceIndex);
-                        const el = getPieLabelEl(idx);
-                        if (el) applyPieLabel(el, idx);
-                        selectedSliceIndex = idx;
-                        lockedSliceIndex = idx;
-                        highlightPie(idx);
-                        syncAccordions(idx, true);
-                    } else {
-                        if (selectedSliceIndex === idx) {
-                            restorePieLabel(idx);
-                            selectedSliceIndex = -1;
-                        }
-                        const anyOpen = Array.from(slide.querySelectorAll('details[data-series-index]'))
-                            .some(function (d) { return d.open; });
-                        if (!anyOpen) { lockedSliceIndex = -1; highlightPie(-1); }
-                    }
-                });
-            } else {
-                item.addEventListener('click', function () { handleLegendClick(idx); });
-                item.addEventListener('keydown', function (e) {
-                    if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); handleLegendClick(idx); }
-                });
-            }
+    sliceEls.forEach(function (el, i) {
+        el.addEventListener('click', function () { handleClick(i); });
+        el.addEventListener('keydown', function (e) {
+            if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); handleClick(i); }
         });
-    }
+    });
 
-    var options = {
-        series: series1,
-        labels: labels,
-        chart: {
-            type: 'pie',
-            width: 483,
-            height: 483,
-            id: chartEl,
-            events: {
-                mounted: function (chartContext) {
-                    placeholder.style.display = 'none';
-                    chartEl.style.opacity = '1';
-                    setupPieInteraction();
-                },
-                dataPointSelection: function (event, chartContext, config) {
-                    const clickedIdx = config.dataPointIndex;
-                    const isNowSelected = (config.selectedDataPoints[0] || []).includes(clickedIdx);
-
-                    if (selectedSliceIndex !== -1) restorePieLabel(selectedSliceIndex);
-
-                    if (isNowSelected) {
-                        const el = getPieLabelEl(clickedIdx);
-                        if (el) applyPieLabel(el, clickedIdx);
-                        selectedSliceIndex = clickedIdx;
-                    } else {
+    var slide = chartEl.closest('.card');
+    if (!slide) return;
+    slide.querySelectorAll('[data-series-index]').forEach(function (item) {
+        var idx = parseInt(item.getAttribute('data-series-index'));
+        if (item.tagName === 'DETAILS') {
+            item.addEventListener('toggle', function () {
+                if (suppressToggle) return;
+                if (item.open) {
+                    if (lockedSliceIndex !== -1) restoreLabel(lockedSliceIndex);
+                    lockedSliceIndex = idx;
+                    selectedSliceIndex = idx;
+                    applyLabel(idx);
+                    highlightPie(idx);
+                    syncAccordions(idx, true);
+                } else {
+                    var anyOpen = Array.from(slide.querySelectorAll('details[data-series-index]'))
+                        .some(function (d) { return d.open; });
+                    if (!anyOpen) {
+                        if (lockedSliceIndex !== -1) restoreLabel(lockedSliceIndex);
+                        lockedSliceIndex = -1;
                         selectedSliceIndex = -1;
+                        highlightPie(-1);
                     }
-
-                    lockedSliceIndex = isNowSelected ? clickedIdx : -1;
-                    highlightPie(lockedSliceIndex);
-                    syncAccordions(clickedIdx, isNowSelected);
                 }
-            }
-        },
-        colors: colors,
-        stroke: {
-            show: true,
-            width: 2,
-            color: ['var(--neutral-nine)']
-        },
-        plotOptions: {
-            pie: {
-                dataLabels: {
-                    offset: -30,
-                }
-            }
-        },
-        dataLabels: {
-            enabled: true,
-            formatter: function (val, opts) {
-                return icons[opts.seriesIndex];
-            },
-            style: {
-                fontSize: '35px',
-                fontWeight: '900',
-                fontFamily: '"Font Awesome 7 Free", "Space Grotesk", sans-serif',
-                colors: ['var(--neutral-two-dark)'],
-            },
-            dropShadow: {
-                enabled: false
-            }
-        },
-        legend: {
-            show: false
-        },
-        tooltip: {
-            enabled: false
-        },
-        responsive: [
-            {
-                breakpoint: 1000,
-                options: {
-                    chart: { width: 336, height: 336 },
-                    dataLabels: { style: { fontSize: '30px' } }
-                }
-            },
-            {
-                breakpoint: 400,
-                options: {
-                    chart: { width: 236, height: 236 },
-                    dataLabels: { style: { fontSize: '20px' } }
-                }
-            }
-        ],
-        states: {
-            active: {
-                filter: {
-                    type: 'none'
-                }
-            }
+            });
+        } else {
+            item.addEventListener('click', function () { handleClick(idx); });
+            item.addEventListener('keydown', function (e) {
+                if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); handleClick(idx); }
+            });
         }
-    }
-
-    if (chartEl) {
-        var chart = new ApexCharts(chartEl, options);
-        chart.render();
-    }
+    });
 }
 
 function lineChart(series, dash, categories, chartEl, placeholder, colors) {
-    var markersShown = false;
+    if (!chartEl) return;
+
+    var svgNS = 'http://www.w3.org/2000/svg';
+    var VW = 500, VH = 500;
+    var ml = 60, mr = 15, mt = 15, mb = 42;
+    var cX = ml, cY = mt, cW = VW - ml - mr, cH = VH - mt - mb;
+    var yMin = 0, yMax = 35;
     var lockedIndex = -1;
+    var nCats = categories.length;
+
+    var pts = series.map(function (s) {
+        return s.data.map(function (v, xi) {
+            return {
+                x: cX + (xi / (nCats - 1)) * cW,
+                y: cY + cH - ((v - yMin) / (yMax - yMin)) * cH
+            };
+        });
+    });
+
+    function makeD(points) {
+        return points.map(function (p, i) {
+            return (i === 0 ? 'M' : 'L') + p.x.toFixed(1) + ' ' + p.y.toFixed(1);
+        }).join(' ');
+    }
+
+    var svg = document.createElementNS(svgNS, 'svg');
+    svg.setAttribute('viewBox', '0 0 ' + VW + ' ' + VH);
+    svg.setAttribute('width', '483');
+    svg.setAttribute('height', '483');
+    svg.style.maxWidth = '100%';
+    svg.style.height = 'auto';
+    svg.style.cursor = 'pointer';
+
+    var gridColor = 'var(--neutral-six)';
+
+    function gridLine(x1, y1, x2, y2) {
+        var el = document.createElementNS(svgNS, 'line');
+        el.setAttribute('x1', x1); el.setAttribute('y1', y1);
+        el.setAttribute('x2', x2); el.setAttribute('y2', y2);
+        el.style.stroke = gridColor;
+        el.style.strokeWidth = '1';
+        el.setAttribute('pointer-events', 'none');
+        return el;
+    }
+
+    [0, 5, 10, 15, 20, 25, 30, 35].forEach(function (v) {
+        var y = cY + cH - ((v - yMin) / (yMax - yMin)) * cH;
+        svg.appendChild(gridLine(cX, y, cX + cW, y));
+        var t = document.createElementNS(svgNS, 'text');
+        t.setAttribute('x', cX - 6);
+        t.setAttribute('y', y);
+        t.setAttribute('text-anchor', 'end');
+        t.setAttribute('dominant-baseline', 'middle');
+        t.setAttribute('font-family', 'Inter, sans-serif');
+        t.setAttribute('font-size', '15');
+        t.setAttribute('fill', 'var(--neutral-nine)');
+        t.setAttribute('pointer-events', 'none');
+        t.textContent = v;
+        svg.appendChild(t);
+    });
+
+    var yMid = cY + cH / 2;
+    var yTitle = document.createElementNS(svgNS, 'text');
+    yTitle.setAttribute('x', 14);
+    yTitle.setAttribute('y', yMid);
+    yTitle.setAttribute('text-anchor', 'middle');
+    yTitle.setAttribute('dominant-baseline', 'middle');
+    yTitle.setAttribute('font-family', 'Inter, sans-serif');
+    yTitle.setAttribute('font-size', '15');
+    yTitle.setAttribute('fill', 'var(--neutral-nine)');
+    yTitle.setAttribute('transform', 'rotate(-90 14 ' + yMid + ')');
+    yTitle.setAttribute('pointer-events', 'none');
+    yTitle.textContent = 'States';
+    svg.appendChild(yTitle);
+
+    svg.appendChild(gridLine(cX, cY, cX, cY + cH));
+    svg.appendChild(gridLine(cX, cY + cH, cX + cW, cY + cH));
+
+    categories.forEach(function (cat, xi) {
+        var x = cX + (xi / (nCats - 1)) * cW;
+        svg.appendChild(gridLine(x, cY + cH, x, cY + cH + 5));
+        var t = document.createElementNS(svgNS, 'text');
+        t.setAttribute('x', x);
+        t.setAttribute('y', cY + cH + 20);
+        t.setAttribute('text-anchor', xi === 0 ? 'start' : xi === nCats - 1 ? 'end' : 'middle');
+        t.setAttribute('font-family', 'Inter, sans-serif');
+        t.setAttribute('font-size', '14');
+        t.setAttribute('fill', 'var(--neutral-nine)');
+        t.setAttribute('pointer-events', 'none');
+        t.textContent = cat;
+        svg.appendChild(t);
+    });
+
+    var lineEls = [], markerGroups = [];
 
     function highlight(idx) {
-        chartEl.querySelectorAll('.apexcharts-series').forEach(function (el, i) {
-            el.style.transition = 'opacity 0.3s ease';
+        lineEls.forEach(function (el, i) {
             el.style.opacity = (idx === -1 || i === idx) ? '1' : '0.15';
+        });
+        markerGroups.forEach(function (g, i) {
+            g.style.opacity = (idx === -1 || i === idx) ? '1' : '0.15';
         });
         var slide = chartEl.closest('.card');
         if (!slide) return;
         slide.querySelectorAll('[data-series-index]').forEach(function (item) {
             var itemIdx = parseInt(item.getAttribute('data-series-index'));
-            item.setAttribute('aria-pressed', String(itemIdx === idx));
+            item.setAttribute('aria-pressed', String(idx !== -1 && itemIdx === idx));
             item.style.transition = 'opacity 0.3s ease';
             item.style.opacity = (idx === -1 || itemIdx === idx) ? '1' : '0.4';
         });
     }
 
-    function getNearestSeries(mx, my) {
-        var g = apexChart.w.globals;
-        if (mx < g.translateX || mx > g.translateX + g.gridWidth ||
-            my < g.translateY || my > g.translateY + g.gridHeight) {
-            return -1;
-        }
-        var xStep = g.gridWidth / (g.dataPoints - 1);
-        var xIdx = Math.max(0, Math.min(Math.round((mx - g.translateX) / xStep), g.dataPoints - 1));
-        var nearest = -1;
-        var minDist = 30;
-        series.forEach(function (s, i) {
-            var py = g.translateY + g.gridHeight - ((s.data[xIdx] - g.minY) / (g.maxY - g.minY)) * g.gridHeight;
-            if (Math.abs(my - py) < minDist) { minDist = Math.abs(my - py); nearest = i; }
+    series.forEach(function (s, si) {
+        var color = colors[si];
+        var dashVal = dash[si];
+        var d = makeD(pts[si]);
+
+        var path = document.createElementNS(svgNS, 'path');
+        path.setAttribute('d', d);
+        path.style.fill = 'none';
+        path.style.stroke = color;
+        path.style.strokeWidth = '4';
+        if (dashVal) path.style.strokeDasharray = dashVal + ' ' + dashVal;
+        path.style.transition = 'opacity 0.3s ease';
+        path.setAttribute('pointer-events', 'none');
+        svg.appendChild(path);
+        lineEls.push(path);
+
+        var mg = document.createElementNS(svgNS, 'g');
+        mg.style.transition = 'opacity 0.3s ease';
+        mg.setAttribute('pointer-events', 'none');
+        pts[si].forEach(function (p) {
+            var c = document.createElementNS(svgNS, 'circle');
+            c.setAttribute('cx', p.x);
+            c.setAttribute('cy', p.y);
+            c.setAttribute('r', '5');
+            c.style.fill = color;
+            mg.appendChild(c);
         });
-        return nearest;
-    }
+        svg.appendChild(mg);
+        markerGroups.push(mg);
 
-    function setupInteraction() {
-        var slide = chartEl.closest('.card');
-
-        if (slide) {
-            slide.querySelectorAll('[data-series-index]').forEach(function (item) {
-                var idx = parseInt(item.getAttribute('data-series-index'));
-                item.addEventListener('click', function () {
-                    lockedIndex = (lockedIndex === idx) ? -1 : idx;
-                    highlight(lockedIndex);
-                });
-                item.addEventListener('keydown', function (e) {
-                    if (e.key === 'Enter' || e.key === ' ') {
-                        e.preventDefault();
-                        lockedIndex = (lockedIndex === idx) ? -1 : idx;
-                        highlight(lockedIndex);
-                    }
-                });
-            });
-        }
-
-        var canvas = chartEl.querySelector('.apexcharts-canvas');
-        if (!canvas) return;
-
-        canvas.style.cursor = 'pointer';
-
-        canvas.addEventListener('mousemove', function (e) {
-            if (lockedIndex !== -1) return;
-            var rect = canvas.getBoundingClientRect();
-            highlight(getNearestSeries(e.clientX - rect.left, e.clientY - rect.top));
-        });
-
-        canvas.addEventListener('click', function (e) {
-            var rect = canvas.getBoundingClientRect();
-            var idx = getNearestSeries(e.clientX - rect.left, e.clientY - rect.top);
-            if (idx === -1) return;
-            lockedIndex = (lockedIndex === idx) ? -1 : idx;
+        var hit = document.createElementNS(svgNS, 'path');
+        hit.setAttribute('d', d);
+        hit.style.fill = 'none';
+        hit.style.stroke = 'transparent';
+        hit.style.strokeWidth = '20';
+        hit.setAttribute('tabindex', '0');
+        hit.setAttribute('role', 'button');
+        hit.setAttribute('aria-label', s.name);
+        hit.addEventListener('mouseenter', function () { if (lockedIndex === -1) highlight(si); });
+        hit.addEventListener('mouseleave', function () { if (lockedIndex === -1) highlight(-1); });
+        hit.addEventListener('click', function () {
+            lockedIndex = (lockedIndex === si) ? -1 : si;
             highlight(lockedIndex);
         });
-
-        canvas.addEventListener('mouseleave', function () {
-            if (lockedIndex === -1) highlight(-1);
+        hit.addEventListener('keydown', function (e) {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                lockedIndex = (lockedIndex === si) ? -1 : si;
+                highlight(lockedIndex);
+            }
         });
-
-        canvas.addEventListener('touchstart', function (e) {
-            var touch = e.touches[0];
-            var rect = canvas.getBoundingClientRect();
-            var idx = getNearestSeries(touch.clientX - rect.left, touch.clientY - rect.top);
-            if (idx === -1) return;
-            lockedIndex = (lockedIndex === idx) ? -1 : idx;
+        hit.addEventListener('touchstart', function () {
+            lockedIndex = (lockedIndex === si) ? -1 : si;
             highlight(lockedIndex);
         }, { passive: true });
-    }
+        svg.appendChild(hit);
+    });
 
-    var options = {
-        chart: {
-            type: 'line',
-            width: 483,
-            height: 483,
-            stacked: false,
-            animations: { enabled: false },
-            events: {
-                mounted: function (chartContext) {
-                    placeholder.style.display = 'none';
-                    chartEl.style.opacity = '1';
-                    setupInteraction();
-                }
-            }
-        },
-        dataLabels: {
-            enabled: false
-        },
-        colors: colors,
-        series: series,
-        stroke: {
-            width: 4,
-            dashArray: dash
-        },
-        markers: {
-            size: 5,
-            strokeWidth: 0,
-            hover: {
-                size: 7
-            }
-        },
-        grid: {
-            borderColor: 'var(--neutral-six)'
-        },
-        xaxis: {
-            categories: categories,
-            axisBorder: {
-                show: true,
-                color: 'var(--neutral-six)'
-            },
-            axisTicks: {
-                show: true,
-                color: 'var(--neutral-six)'
-            },
-            labels: {
-                style: {
-                    fontFamily: 'Inter, sans-serif',
-                    fontSize: '16px',
-                    colors: 'var(--neutral-nine)'
-                }
-            }
-        },
-        yaxis: [
-            {
-                axisTicks: {
-                    show: true,
-                    color: 'var(--neutral-six)'
-                },
-                axisBorder: {
-                    show: true,
-                    color: 'var(--neutral-six)'
-                },
-                labels: {
-                    style: {
-                        fontFamily: 'Inter, sans-serif',
-                        fontSize: '16px',
-                        colors: 'var(--neutral-nine)'
-                    }
-                },
-                title: {
-                    text: "States",
-                    style: {
-                        fontFamily: 'Inter, sans-serif',
-                        fontSize: '16px',
-                        color: 'var(--neutral-nine)'
-                    }
-                }
-            }
-        ],
-        legend: {
-            show: false
-        },
-        tooltip: {
-            enabled: false
-        },
-        responsive: [
-            {
-                breakpoint: 1000,
-                options: {
-                    chart: { width: 336, height: 336 },
-                    yaxis: { labels: { style: { fontFamily: 'Inter, sans-serif', fontSize: '12px', colors: 'var(--neutral-nine)' } } }
-                }
-            },
-            {
-                breakpoint: 400,
-                options: {
-                    chart: { width: 236, height: 236 },
-                    yaxis: { labels: { style: { fontFamily: 'Inter, sans-serif', fontSize: '10px', colors: 'var(--neutral-nine)' } } },
-                    markers: { size: 2 },
-                    xaxis: { labels: { style: { fontFamily: 'Inter, sans-serif', fontSize: '10px', colors: 'var(--neutral-nine)' } } }
-                }
-            }
-        ]
-    };
+    chartEl.appendChild(svg);
+    placeholder.style.display = 'none';
 
-    if (!chartEl) return;
-
-    chartEl.style.opacity = '0';
-    var apexChart = new ApexCharts(chartEl, options);
-    var dialog = chartEl.closest('[popover]');
-
-    if (dialog) {
-        var rendered = false;
-        dialog.addEventListener('toggle', function (e) {
-            if (e.newState === 'open' && !rendered) {
-                rendered = true;
-                apexChart.render();
+    var slide = chartEl.closest('.card');
+    if (!slide) return;
+    slide.querySelectorAll('[data-series-index]').forEach(function (item) {
+        var idx = parseInt(item.getAttribute('data-series-index'));
+        item.addEventListener('click', function () {
+            lockedIndex = (lockedIndex === idx) ? -1 : idx;
+            highlight(lockedIndex);
+        });
+        item.addEventListener('keydown', function (e) {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                lockedIndex = (lockedIndex === idx) ? -1 : idx;
+                highlight(lockedIndex);
             }
         });
-    } else {
-        apexChart.render();
-    }
+    });
 }
 
 function barChart(series, categories, chartEl, placeholder, colors, groupRanges) {
-    var lockedGroup = -1;
+    if (!chartEl) return;
 
-    var zeroSeries = [{
-        name: 'Deaths',
-        data: series.map(function () { return 0; })
-    }];
+    var svgNS = 'http://www.w3.org/2000/svg';
+    var VW = 500, VH = 500;
+    var ml = 48, mr = 8, mt = 8, mb = 8;
+    var cX = ml, cY = mt, cW = VW - ml - mr, cH = VH - mt - mb;
+    var maxVal = 1200;
+    var lockedGroup = -1;
+    var n = series.length;
+    var barGap = 3, groupGap = 14;
+    var barW = (cW - (n - 1) * barGap - (groupRanges.length - 1) * groupGap) / n;
+
+    function valY(v) { return cY + cH - (v / maxVal) * cH; }
+
+    var barXs = [];
+    var cx = cX;
+    for (var i = 0; i < n; i++) {
+        barXs.push(cx);
+        if (i < n - 1) {
+            cx += barW + barGap;
+            var curGi = groupRanges.findIndex(function (r) { return i >= r[0] && i <= r[1]; });
+            var nxtGi = groupRanges.findIndex(function (r) { return (i + 1) >= r[0] && (i + 1) <= r[1]; });
+            if (curGi !== nxtGi) cx += groupGap;
+        }
+    }
+
+    var svg = document.createElementNS(svgNS, 'svg');
+    svg.setAttribute('viewBox', '0 0 ' + VW + ' ' + VH);
+    svg.setAttribute('width', '483');
+    svg.setAttribute('height', '483');
+    svg.style.maxWidth = '100%';
+    svg.style.height = 'auto';
+
+    function makeLine(x1, y1, x2, y2) {
+        var el = document.createElementNS(svgNS, 'line');
+        el.setAttribute('x1', x1); el.setAttribute('y1', y1);
+        el.setAttribute('x2', x2); el.setAttribute('y2', y2);
+        el.style.stroke = 'var(--neutral-six)';
+        el.style.strokeWidth = '1';
+        el.setAttribute('pointer-events', 'none');
+        return el;
+    }
+
+    [0, 200, 400, 600, 800, 1000, 1200].forEach(function (v) {
+        var y = valY(v);
+        svg.appendChild(makeLine(cX, y, cX + cW, y));
+        var t = document.createElementNS(svgNS, 'text');
+        t.setAttribute('x', cX - 6);
+        t.setAttribute('y', y);
+        t.setAttribute('text-anchor', 'end');
+        t.setAttribute('dominant-baseline', 'middle');
+        t.setAttribute('font-family', 'Inter, sans-serif');
+        t.setAttribute('font-size', '15');
+        t.setAttribute('fill', 'var(--neutral-nine)');
+        t.setAttribute('pointer-events', 'none');
+        t.textContent = v;
+        svg.appendChild(t);
+    });
+
+    svg.appendChild(makeLine(cX, cY, cX, cY + cH));
+
+    groupRanges.forEach(function (range, gi) {
+        if (gi < groupRanges.length - 1) {
+            var sepX = (barXs[range[1]] + barW + barXs[range[1] + 1]) / 2;
+            svg.appendChild(makeLine(sepX, cY, sepX, cY + cH));
+        }
+    });
+
+    var barEls = [];
+    series.forEach(function (val, idx) {
+        var gi = groupRanges.findIndex(function (r) { return idx >= r[0] && idx <= r[1]; });
+        var rect = document.createElementNS(svgNS, 'rect');
+        rect.setAttribute('x', barXs[idx]);
+        rect.setAttribute('y', valY(val));
+        rect.setAttribute('width', barW);
+        rect.setAttribute('height', (val / maxVal) * cH);
+        rect.setAttribute('rx', '2');
+        rect.style.fill = colors[0];
+        rect.style.cursor = 'pointer';
+        rect.style.transition = 'opacity 0.3s ease';
+        rect.setAttribute('tabindex', '0');
+        rect.setAttribute('role', 'button');
+        rect.setAttribute('aria-label', categories[idx] + ': ' + val + ' deaths');
+        svg.appendChild(rect);
+        barEls.push({ el: rect, gi: gi });
+    });
+
+    chartEl.appendChild(svg);
+    placeholder.style.display = 'none';
 
     function highlightGroup(groupIdx) {
-        chartEl.querySelectorAll('.apexcharts-bar-area').forEach(function (bar) {
-            var j = parseInt(bar.getAttribute('j'));
-            var group = groupRanges.findIndex(function (range) { return j >= range[0] && j <= range[1]; });
-            bar.style.transition = 'opacity 0.3s ease';
-            bar.style.opacity = (groupIdx === -1 || group === groupIdx) ? '1' : '0.15';
+        barEls.forEach(function (b) {
+            b.el.style.opacity = (groupIdx === -1 || b.gi === groupIdx) ? '1' : '0.15';
         });
         var slide = chartEl.closest('.card');
         if (!slide) return;
@@ -646,156 +678,38 @@ function barChart(series, categories, chartEl, placeholder, colors, groupRanges)
         });
     }
 
-    function setupInteraction() {
+    function handleBarClick(gi) {
+        var wasSelected = lockedGroup === gi;
+        lockedGroup = wasSelected ? -1 : gi;
+        highlightGroup(lockedGroup);
         var slide = chartEl.closest('.card');
         if (!slide) return;
-
-        slide.querySelectorAll('[data-group-index]').forEach(function (details) {
-            var groupIdx = parseInt(details.getAttribute('data-group-index'));
-            details.addEventListener('toggle', function () {
-                if (details.open) {
-                    lockedGroup = groupIdx;
-                    highlightGroup(groupIdx);
-                } else {
-                    var anyOpen = Array.from(slide.querySelectorAll('[data-group-index]')).some(function (d) { return d.open; });
-                    if (!anyOpen) { lockedGroup = -1; highlightGroup(-1); }
-                }
-            });
+        Array.from(slide.querySelectorAll('[data-group-index]')).forEach(function (d) {
+            d.open = !wasSelected && parseInt(d.getAttribute('data-group-index')) === gi;
         });
     }
 
-    var options = {
-        chart: {
-            type: 'bar',
-            width: 483,
-            height: '100%',
-            animations: { enabled: false },
-            redrawOnParentResize: false,
-            events: {
-                mounted: function (chartContext) {
-                    placeholder.style.transition = 'opacity 0.4s ease';
-                    placeholder.style.opacity = '0';
-                    setTimeout(function () {
-                        chartContext.updateSeries([{ data: series }], true);
-                        window.dispatchEvent(new Event('resize'));
-                    }, 200);
-                    requestAnimationFrame(function () {
-                        requestAnimationFrame(function () {
-                            placeholder.style.display = 'none';
-                            chartEl.style.transition = 'opacity 0.4s ease';
-                            chartEl.style.opacity = '1';
-                        });
-                    });
-                    setupInteraction()
-                },
-                dataPointSelection: function (event, chartContext, config) {
-                    var j = config.dataPointIndex;
-                    var groupIdx = groupRanges.findIndex(function (range) { return j >= range[0] && j <= range[1]; });
-                    if (groupIdx === -1) return;
-                    var slide = chartEl.closest('.card');
-                    if (!slide) return;
-                    var targetDetails = slide.querySelector('[data-group-index="' + groupIdx + '"]');
-                    if (!targetDetails) return;
-                    if (targetDetails.open) {
-                        targetDetails.open = false;
-                    } else {
-                        Array.from(slide.querySelectorAll('[data-group-index]')).forEach(function (d) {
-                            if (d !== targetDetails) d.open = false;
-                        });
-                        targetDetails.open = true;
-                    }
-                }
-            }
-        },
-        series: [{ name: 'Deaths', zeroSeries }],
-        colors: colors,
-        plotOptions: {
-            bar: {
-                distributed: true,
-                borderRadius: 2
-            }
-        },
-        dataLabels: {
-            enabled: false
-        },
-        legend: {
-            show: false
-        },
-        tooltip: {
-            enabled: false
-        },
-        grid: {
-            borderColor: 'var(--neutral-six)'
-        },
-        xaxis: {
-            categories: categories,
-            axisBorder: {
-                show: true,
-                color: 'var(--neutral-six)'
-            },
-            axisTicks: {
-                show: false
-            },
-            labels: {
-                show: false
-            }
-        },
-        yaxis: {
-            min: 0,
-            max: 1200,
-            minwidth: 40,
-            maxWidth: 40,
-            axisTicks: {
-                show: true,
-                color: 'var(--neutral-six)'
-            },
-            axisBorder: {
-                show: true,
-                color: 'var(--neutral-six)'
-            },
-            labels: {
-                style: {
-                    fontFamily: 'Inter, sans-serif',
-                    fontSize: '16px',
-                    colors: 'var(--neutral-nine)'
-                }
-            }
-        },
-        responsive: [
-            {
-                breakpoint: 1000,
-                options: {
-                    chart: { width: 336 },
-                    yaxis: { labels: { style: { fontFamily: 'Inter, sans-serif', fontSize: '12px', colors: 'var(--neutral-nine)' } } }
-                }
-            },
-            {
-                breakpoint: 400,
-                options: {
-                    chart: { width: 236 },
-                    yaxis: { labels: { style: { fontFamily: 'Inter, sans-serif', fontSize: '10px', colors: 'var(--neutral-nine)' } } }
-                }
-            }
-        ]
-    };
+    barEls.forEach(function (b) {
+        b.el.addEventListener('click', function () { handleBarClick(b.gi); });
+        b.el.addEventListener('keydown', function (e) {
+            if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); handleBarClick(b.gi); }
+        });
+    });
 
-    if (!chartEl) return;
-
-    chartEl.style.opacity = '0';
-    var apexChart = new ApexCharts(chartEl, options);
-    var dialog = chartEl.closest('[popover]');
-
-    if (dialog) {
-        var rendered = false;
-        dialog.addEventListener('toggle', function (e) {
-            if (e.newState === 'open' && !rendered) {
-                rendered = true;
-                apexChart.render();
+    var slide = chartEl.closest('.card');
+    if (!slide) return;
+    slide.querySelectorAll('[data-group-index]').forEach(function (details) {
+        var gi = parseInt(details.getAttribute('data-group-index'));
+        details.addEventListener('toggle', function () {
+            if (details.open) {
+                lockedGroup = gi;
+                highlightGroup(gi);
+            } else {
+                var anyOpen = Array.from(slide.querySelectorAll('[data-group-index]')).some(function (d) { return d.open; });
+                if (!anyOpen) { lockedGroup = -1; highlightGroup(-1); }
             }
         });
-    } else {
-        apexChart.render();
-    }
+    });
 }
 
 function pyramidChart(icons, series1, series2, linevalue, labels, chartEl, placeholder, colors, selectedIndex) {
