@@ -763,16 +763,10 @@ function barChart(series, categories, chartEl, placeholder, colors, groupRanges)
     if (dialog) {
         var rendered = false;
         dialog.addEventListener('toggle', function (e) {
-            if (e.newState !== 'open' || rendered) return;
-            var slider = dialog.querySelector('.presentation-slider');
-            var observer = new IntersectionObserver(function (entries) {
-                if (entries[0].isIntersecting && !rendered) {
-                    rendered = true;
-                    observer.disconnect();
-                    apexChart.render();
-                }
-            }, { root: slider, threshold: 0.1 });
-            observer.observe(chartEl);
+            if (e.newState === 'open' && !rendered) {
+                rendered = true;
+                apexChart.render();
+            }
         });
     } else {
         apexChart.render();
@@ -810,13 +804,13 @@ function pyramidChart(icons, series1, series2, linevalue, labels, chartEl, place
 
         if (i === 0) {
             pts = cx + ',' + y1 + ' ' +
-                  (cx + halfAt(y2)) + ',' + y2 + ' ' +
-                  (cx - halfAt(y2)) + ',' + y2;
+                (cx + halfAt(y2)) + ',' + y2 + ' ' +
+                (cx - halfAt(y2)) + ',' + y2;
         } else {
             pts = (cx - halfAt(y1)) + ',' + y1 + ' ' +
-                  (cx + halfAt(y1)) + ',' + y1 + ' ' +
-                  (cx + halfAt(y2)) + ',' + y2 + ' ' +
-                  (cx - halfAt(y2)) + ',' + y2;
+                (cx + halfAt(y1)) + ',' + y1 + ' ' +
+                (cx + halfAt(y2)) + ',' + y2 + ' ' +
+                (cx - halfAt(y2)) + ',' + y2;
         }
 
         var poly = document.createElementNS(svgNS, 'polygon');
