@@ -454,14 +454,7 @@ function lineChart(series, dash, categories, chartEl, placeholder, colors) {
             width: 392,
             height: 483,
             stacked: false,
-            animations: {
-                enabled: true,
-                easing: 'easeinout',
-                speed: 900,
-                animateGradually: {
-                    enabled: true
-                }
-            },
+            animations: { enabled: false },
             events: {
                 mounted: function (chartContext) {
                     var container = chartEl.parentElement;
