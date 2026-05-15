@@ -545,7 +545,9 @@ function lineChart(series, dash, categories, chartEl, placeholder, colors) {
                 breakpoint: 400,
                 options: {
                     chart: { width: 236, height: 236 },
-                    yaxis: { labels: { style: { fontFamily: 'Inter, sans-serif', fontSize: '10px', colors: 'var(--neutral-nine)' } } }
+                    yaxis: { labels: { style: { fontFamily: 'Inter, sans-serif', fontSize: '10px', colors: 'var(--neutral-nine)' } } },
+                    markers: { size: 2 },
+                    xaxis: { labels: { style: { fontFamily: 'Inter, sans-serif', fontSize: '10px', colors: 'var(--neutral-nine)' } } }
                 }
             }
         ]
