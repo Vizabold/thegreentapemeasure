@@ -452,7 +452,7 @@ function lineChart(series, dash, categories, chartEl, placeholder, colors) {
         chart: {
             type: 'line',
             width: 483,
-            height: '100%',
+            height: 483,
             stacked: false,
             animations: { enabled: false },
             events: {
@@ -537,14 +537,14 @@ function lineChart(series, dash, categories, chartEl, placeholder, colors) {
             {
                 breakpoint: 1000,
                 options: {
-                    chart: { width: 336 },
+                    chart: { width: 336, height: 336 },
                     yaxis: { labels: { style: { fontFamily: 'Inter, sans-serif', fontSize: '12px', colors: 'var(--neutral-nine)' } } }
                 }
             },
             {
                 breakpoint: 400,
                 options: {
-                    chart: { width: 236 },
+                    chart: { width: 236, height: 236 },
                     yaxis: { labels: { style: { fontFamily: 'Inter, sans-serif', fontSize: '10px', colors: 'var(--neutral-nine)' } } }
                 }
             }
