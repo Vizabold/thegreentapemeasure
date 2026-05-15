@@ -981,7 +981,232 @@ function pyramidChart(icons, series1, series2, linevalue, labels, chartEl, place
 }
 
 function vennChart(icons, series1, labels, chartEl, placeholder, colors, selectedIndex) {
+    if (!chartEl) return;
 
+    var svgNS = 'http://www.w3.org/2000/svg';
+    var VW = 480, VH = 480;
+
+    /* Fixed positions [groupIdx][circleIdx]:
+       Group 0 (one-reason): A=top-left, B=bottom, C=top-right
+       Group 1 (two-reason): [0]=BC mid-right, [1]=AB mid-left, [2]=AC top-center
+       Group 2 (three-reason): center */
+    var positions = [
+        [{ cx: 130, cy: 155 }, { cx: 240, cy: 370 }, { cx: 350, cy: 155 }],
+        [{ cx: 340, cy: 285 }, { cx: 140, cy: 285 }, { cx: 240, cy: 95 }],
+        [{ cx: 240, cy: 225 }]
+    ];
+
+    var allVals = series1.reduce(function (a, g) { return a.concat(g); }, []);
+    var kScale = 65 / Math.sqrt(Math.max.apply(null, allVals));
+    var minR = 18;
+
+    function getR(v) { return Math.max(minR, Math.sqrt(v) * kScale); }
+
+    var circleData = [];
+    series1.forEach(function (group, gi) {
+        group.forEach(function (value, ci) {
+            circleData.push({
+                gi: gi, ci: ci,
+                cx: positions[gi][ci].cx,
+                cy: positions[gi][ci].cy,
+                r: getR(value),
+                color: colors[gi][ci] !== undefined ? colors[gi][ci] : colors[gi][0],
+                iconArr: gi === 0 ? [icons[gi][ci]] : icons[gi][ci],
+                value: value
+            });
+        });
+    });
+
+    var svg = document.createElementNS(svgNS, 'svg');
+    svg.setAttribute('viewBox', '0 0 ' + VW + ' ' + VH);
+    svg.setAttribute('width', '483');
+    svg.setAttribute('height', '483');
+    svg.style.maxWidth = '100%';
+    svg.style.height = 'auto';
+
+    var lockedGroup = -1;
+    var suppressToggle = false;
+    var groupEls = [];
+
+    function setIconAttr(t, x, y, fontSize) {
+        t.setAttribute('x', x);
+        t.setAttribute('y', y);
+        t.setAttribute('text-anchor', 'middle');
+        t.setAttribute('dominant-baseline', 'central');
+        t.setAttribute('font-family', '"Font Awesome 7 Free"');
+        t.setAttribute('font-size', fontSize);
+        t.setAttribute('font-weight', '900');
+        t.setAttribute('pointer-events', 'none');
+        t.style.fill = 'var(--neutral-two-dark)';
+    }
+
+    function drawIconsInto(parent, iconArr, cx, cy, r) {
+        var n = iconArr.length;
+        var fs = n === 1 ? Math.min(35, r * 0.7) : n === 2 ? Math.min(24, r * 0.42) : Math.min(16, r * 0.32);
+        if (n === 1) {
+            var t = document.createElementNS(svgNS, 'text');
+            setIconAttr(t, cx, cy, fs);
+            t.textContent = iconArr[0];
+            parent.appendChild(t);
+        } else if (n === 2) {
+            var gap = r * 0.25;
+            [cx - gap, cx + gap].forEach(function (x, i) {
+                var t = document.createElementNS(svgNS, 'text');
+                setIconAttr(t, x, cy, fs);
+                t.textContent = iconArr[i];
+                parent.appendChild(t);
+            });
+        } else {
+            [{ x: cx, y: cy - r * 0.28 }, { x: cx - r * 0.24, y: cy + r * 0.18 }, { x: cx + r * 0.24, y: cy + r * 0.18 }]
+                .forEach(function (p, i) {
+                    var t = document.createElementNS(svgNS, 'text');
+                    setIconAttr(t, p.x, p.y, fs);
+                    t.textContent = iconArr[i];
+                    parent.appendChild(t);
+                });
+        }
+    }
+
+    function clearTexts(g) {
+        Array.from(g.querySelectorAll('text')).forEach(function (t) { t.parentNode.removeChild(t); });
+    }
+
+    function showPercent(g, d) {
+        clearTexts(g);
+        var t = document.createElementNS(svgNS, 'text');
+        t.setAttribute('x', d.cx);
+        t.setAttribute('y', d.cy);
+        t.setAttribute('text-anchor', 'middle');
+        t.setAttribute('dominant-baseline', 'central');
+        t.setAttribute('font-family', '"Space Grotesk", sans-serif');
+        t.setAttribute('font-size', Math.max(12, Math.min(32, d.r * 0.65)));
+        t.setAttribute('font-weight', '700');
+        t.setAttribute('pointer-events', 'none');
+        t.style.fill = 'var(--neutral-two-dark)';
+        t.textContent = d.value + '%';
+        g.appendChild(t);
+    }
+
+    function restoreIcons(g, d) {
+        clearTexts(g);
+        drawIconsInto(g, d.iconArr, d.cx, d.cy, d.r);
+    }
+
+    function highlightGroup(gi) {
+        circleData.forEach(function (d, idx) {
+            groupEls[idx].style.transition = 'opacity 0.3s ease';
+            groupEls[idx].style.opacity = (gi === -1 || d.gi === gi) ? '1' : '0.15';
+        });
+        var slide = chartEl.closest('.card');
+        if (!slide) return;
+        slide.querySelectorAll('[data-series-index]').forEach(function (item) {
+            var itemGi = parseInt(item.getAttribute('data-series-index'));
+            if (item.tagName !== 'DETAILS') {
+                item.setAttribute('aria-pressed', String(gi !== -1 && itemGi === gi));
+            }
+            item.style.transition = 'opacity 0.3s ease';
+            item.style.opacity = (gi === -1 || itemGi === gi) ? '1' : '0.4';
+        });
+    }
+
+    function syncAccordions(gi, isOpen) {
+        var slide = chartEl.closest('.card');
+        if (!slide) return;
+        suppressToggle = true;
+        slide.querySelectorAll('details[data-series-index]').forEach(function (item) {
+            item.open = isOpen && parseInt(item.getAttribute('data-series-index')) === gi;
+        });
+        setTimeout(function () { suppressToggle = false; }, 0);
+    }
+
+    function handleClick(gi) {
+        var wasSelected = lockedGroup === gi;
+        if (lockedGroup !== -1) {
+            circleData.forEach(function (d, idx) {
+                if (d.gi === lockedGroup) restoreIcons(groupEls[idx], d);
+            });
+        }
+        if (wasSelected) {
+            lockedGroup = -1;
+            highlightGroup(-1);
+            syncAccordions(gi, false);
+        } else {
+            lockedGroup = gi;
+            circleData.forEach(function (d, idx) {
+                if (d.gi === gi) {
+                    showPercent(groupEls[idx], d);
+                    svg.appendChild(groupEls[idx]);
+                }
+            });
+            highlightGroup(gi);
+            syncAccordions(gi, true);
+        }
+    }
+
+    circleData.forEach(function (d, idx) {
+        var g = document.createElementNS(svgNS, 'g');
+        g.style.cursor = 'pointer';
+        g.setAttribute('tabindex', '0');
+        g.setAttribute('role', 'button');
+        g.setAttribute('aria-label', labels[d.gi] + ': ' + d.value + '%');
+
+        var circ = document.createElementNS(svgNS, 'circle');
+        circ.setAttribute('cx', d.cx);
+        circ.setAttribute('cy', d.cy);
+        circ.setAttribute('r', d.r);
+        circ.style.fill = d.color;
+        g.appendChild(circ);
+
+        drawIconsInto(g, d.iconArr, d.cx, d.cy, d.r);
+
+        g.addEventListener('click', function () { handleClick(d.gi); });
+        g.addEventListener('keydown', function (e) {
+            if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); handleClick(d.gi); }
+        });
+
+        svg.appendChild(g);
+        groupEls.push(g);
+    });
+
+    chartEl.appendChild(svg);
+    placeholder.style.display = 'none';
+
+    var slide = chartEl.closest('.card');
+    if (!slide) return;
+    slide.querySelectorAll('details[data-series-index]').forEach(function (item) {
+        var gi = parseInt(item.getAttribute('data-series-index'));
+        item.addEventListener('toggle', function () {
+            if (suppressToggle) return;
+            if (item.open) {
+                if (lockedGroup !== -1 && lockedGroup !== gi) {
+                    circleData.forEach(function (d, idx) {
+                        if (d.gi === lockedGroup) restoreIcons(groupEls[idx], d);
+                    });
+                }
+                lockedGroup = gi;
+                circleData.forEach(function (d, idx) {
+                    if (d.gi === gi) {
+                        showPercent(groupEls[idx], d);
+                        svg.appendChild(groupEls[idx]);
+                    }
+                });
+                highlightGroup(gi);
+                syncAccordions(gi, true);
+            } else {
+                var anyOpen = Array.from(slide.querySelectorAll('details[data-series-index]'))
+                    .some(function (dd) { return dd.open; });
+                if (!anyOpen) {
+                    if (lockedGroup !== -1) {
+                        circleData.forEach(function (d, idx) {
+                            if (d.gi === lockedGroup) restoreIcons(groupEls[idx], d);
+                        });
+                        lockedGroup = -1;
+                    }
+                    highlightGroup(-1);
+                }
+            }
+        });
+    });
 }
 
 
