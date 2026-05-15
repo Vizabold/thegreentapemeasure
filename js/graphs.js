@@ -451,41 +451,15 @@ function lineChart(series, dash, categories, chartEl, placeholder, colors) {
     var options = {
         chart: {
             type: 'line',
-            width: 392,
-            height: 483,
+            width: 483,
+            height: '100%',
             stacked: false,
             animations: { enabled: false },
             events: {
                 mounted: function (chartContext) {
-                    var container = chartEl.parentElement;
-                    container.style.display = 'grid';
-                    container.style.placeItems = 'center';
-                    placeholder.style.gridArea = '1 / 1';
-                    chartEl.style.gridArea = '1 / 1';
+                    placeholder.style.display = 'none';
+                    chartEl.style.opacity = '1';
                     setupInteraction();
-                },
-                animationEnd: function () {
-                    if (!markersShown) {
-                        markersShown = true;
-                        apexChart.updateOptions({
-                            markers: { size: 5, strokeWidth: 0, hover: { size: 7 } }
-                        }, false, true);
-                        var container = chartEl.parentElement;
-                        requestAnimationFrame(function () {
-                            placeholder.style.transition = 'opacity 0.4s ease';
-                            chartEl.style.transition = 'opacity 0.4s ease';
-                            placeholder.style.opacity = '0';
-                            chartEl.style.opacity = '1';
-                        });
-                        placeholder.addEventListener('transitionend', function () {
-                            placeholder.style.display = 'none';
-                            container.style.display = '';
-                            container.style.placeItems = '';
-                            placeholder.style.gridArea = '';
-                            chartEl.style.gridArea = '';
-                            chartEl.style.transition = '';
-                        }, { once: true });
-                    }
                 }
             }
         },
@@ -499,7 +473,11 @@ function lineChart(series, dash, categories, chartEl, placeholder, colors) {
             dashArray: dash
         },
         markers: {
-            size: 0
+            size: 5,
+            strokeWidth: 0,
+            hover: {
+                size: 7
+            }
         },
         grid: {
             borderColor: 'var(--neutral-six)'
@@ -559,13 +537,15 @@ function lineChart(series, dash, categories, chartEl, placeholder, colors) {
             {
                 breakpoint: 1000,
                 options: {
-                    chart: { width: 273, height: 336 }
+                    chart: { width: 336 },
+                    yaxis: { labels: { style: { fontFamily: 'Inter, sans-serif', fontSize: '12px', colors: 'var(--neutral-nine)' } } }
                 }
             },
             {
                 breakpoint: 400,
                 options: {
-                    chart: { width: 192, height: 236 }
+                    chart: { width: 236 },
+                    yaxis: { labels: { style: { fontFamily: 'Inter, sans-serif', fontSize: '10px', colors: 'var(--neutral-nine)' } } }
                 }
             }
         ]
