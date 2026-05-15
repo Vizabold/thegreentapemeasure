@@ -721,16 +721,10 @@ function barChart(series, categories, chartEl, placeholder, colors, groupRanges)
                 color: 'var(--neutral-six)'
             },
             axisTicks: {
-                show: true,
-                color: 'var(--neutral-six)'
+                show: false
             },
             labels: {
-                rotate: -45,
-                style: {
-                    fontFamily: 'Inter, sans-serif',
-                    fontSize: '12px',
-                    colors: 'var(--neutral-nine)'
-                }
+                show: false
             }
         },
         yaxis: {
@@ -752,27 +746,21 @@ function barChart(series, categories, chartEl, placeholder, colors, groupRanges)
                     fontSize: '16px',
                     colors: 'var(--neutral-nine)'
                 }
-            },
-            title: {
-                text: 'Deaths',
-                style: {
-                    fontFamily: 'Inter, sans-serif',
-                    fontSize: '16px',
-                    color: 'var(--neutral-nine)'
-                }
             }
         },
         responsive: [
             {
                 breakpoint: 1000,
                 options: {
-                    chart: { width: 336, height: 336, minHeight: 336 }
+                    chart: { width: 336, height: 336, minHeight: 336 },
+                    yaxis: { labels: { style: { fontSize: '12px' } } }
                 }
             },
             {
                 breakpoint: 400,
                 options: {
-                    chart: { width: 236, height: 236, minHeight: 236 }
+                    chart: { width: 236, height: 236, minHeight: 236 },
+                    yaxis: { labels: { style: { fontSize: '10px' } } }
                 }
             }
         ]
