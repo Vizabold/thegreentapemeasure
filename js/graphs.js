@@ -643,20 +643,8 @@ function barChart(series, categories, chartEl, placeholder, colors, groupRanges)
         chart: {
             type: 'bar',
             width: 483,
-            height: 483,
-            minHeight: 483,
-            animations: {
-                enabled: true,
-                easing: 'easeinout',
-                speed: 800,
-                animateGradually: {
-                    enabled: true,
-                    delay: 50
-                },
-                dynamicAnimation: {
-                    enabled: false
-                }
-            },
+            height: '100%',
+            animations: { enabled: false },
             redrawOnParentResize: false,
             events: {
                 mounted: function (chartContext) {
@@ -752,15 +740,15 @@ function barChart(series, categories, chartEl, placeholder, colors, groupRanges)
             {
                 breakpoint: 1000,
                 options: {
-                    chart: { width: 336, height: 336, minHeight: 336 },
-                    yaxis: { labels: { style: { fontSize: '12px' } } }
+                    chart: { width: 336 },
+                    yaxis: { labels: { style: { fontFamily: 'Inter, sans-serif', fontSize: '12px', colors: 'var(--neutral-nine)' } } }
                 }
             },
             {
                 breakpoint: 400,
                 options: {
-                    chart: { width: 236, height: 236, minHeight: 236 },
-                    yaxis: { labels: { style: { fontSize: '10px' } } }
+                    chart: { width: 236 },
+                    yaxis: { labels: { style: { fontFamily: 'Inter, sans-serif', fontSize: '10px', colors: 'var(--neutral-nine)' } } }
                 }
             }
         ]
