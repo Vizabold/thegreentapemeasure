@@ -170,12 +170,7 @@ function piechart(icons, series1, series2, linevalue, labels, chartEl, placehold
         const origX = el.getAttribute('x') || 0;
         el.style.fontFamily = '"Space Grotesk", sans-serif';
         const line1 = Math.round(series1[idx] / pieTotal * 100) + '%';
-        const line2 = (series2 && linevalue) ? series2[idx] + ' ' + linevalue : null;
-        if (line2) {
-            el.innerHTML = `<tspan x="${origX}" dy="-0.4em" style="font-size: ${sizes.line1};">${line1}</tspan><tspan x="${origX}" dy="1.5em" style="font-size: ${sizes.line2}; font-weight: 700;">${line2}</tspan>`;
-        } else {
-            el.innerHTML = `<tspan x="${origX}" dy="0.3em" style="font-size: ${sizes.line1};">${line1}</tspan>`;
-        }
+        el.innerHTML = `<tspan x="${origX}" dy="0.3em" style="font-size: ${sizes.line1};">${line1}</tspan>`;
     }
 
     function restorePieLabel(idx) {
