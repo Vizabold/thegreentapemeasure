@@ -16,8 +16,8 @@
     "tailwindcss": "^4.2.4"
   },
   "scripts": {
-    "start": "eleventy --serve & npx @tailwindcss/cli -i css/main.css -o _site/css/output.css --watch",
-    "build": "eleventy && npx @tailwindcss/cli -i css/main.css -o _site/css/output.css --minify"
+    "start": "npx @11ty/eleventy --serve & npx @tailwindcss/cli -i css/main.css -o _site/css/output.css --watch",
+    "build": "npx @11ty/eleventy && npx @tailwindcss/cli -i css/main.css -o _site/css/output.css --minify"
   },
   "repository": {
     "type": "git",
