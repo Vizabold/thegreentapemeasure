@@ -53,8 +53,8 @@ const colors1d = [
     ['var(--neutral-seven-light)']
 ];
 const positions1d = [
-    [{ cx: 100, cy: 155 }, { cx: 240, cy: 320 }, { cx: 325, cy: 175 }],
-    [{ cx: 367, cy: 367 }, { cx: 116, cy: 367 }, { cx: 240, cy: 80 }],
+    [{ cx: 116, cy: 155 }, { cx: 240, cy: 330 }, { cx: 340, cy: 175 }],
+    [{ cx: 367, cy: 350 }, { cx: 116, cy: 367 }, { cx: 240, cy: 80 }],
     [{ cx: 240, cy: 225 }]
 ];
 const scaleFactor1d = 120;
@@ -90,7 +90,7 @@ const positions1e = [
     [{ cx: 350, cy: 325 }, { cx: 140, cy: 315 }, { cx: 240, cy: 145 }],
     [{ cx: 240, cy: 225 }]
 ]
-const scaleFactor1e = 130;
+const scaleFactor1e = 140;
 let selectedIndex1e = -1;
 
 /* Graph-1f Variables */
