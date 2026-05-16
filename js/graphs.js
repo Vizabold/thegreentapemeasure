@@ -54,7 +54,7 @@ const colors1d = [
 ];
 const positions1d = [
     [{ cx: 116, cy: 155 }, { cx: 240, cy: 330 }, { cx: 340, cy: 175 }],
-    [{ cx: 367, cy: 350 }, { cx: 130, cy: 375 }, { cx: 240, cy: 80 }],
+    [{ cx: 367, cy: 350 }, { cx: 130, cy: 375 }, { cx: 240, cy: 90 }],
     [{ cx: 245, cy: 225 }]
 ];
 const scaleFactor1d = 120;
@@ -86,8 +86,8 @@ const colors1e = [
     ['var(--neutral-seven-light)']
 ];
 const positions1e = [
-    [{ cx: 150, cy: 85 }, { cx: 200, cy: 270 }, { cx: 325, cy: 160 }],
-    [{ cx: 338, cy: 338 }, { cx: 100, cy: 225 }, { cx: 280, cy: 90 }],
+    [{ cx: 120, cy: 125 }, { cx: 200, cy: 270 }, { cx: 300, cy: 125 }],
+    [{ cx: 144, cy: 338 }, { cx: 300, cy: 225 }, { cx: 240, cy: 65 }],
     [{ cx: 240, cy: 175 }]
 ]
 const scaleFactor1e = 150;
