@@ -856,23 +856,17 @@ function pyramidChart(icons, series1, labels, chartEl, placeholder, colors, sele
 
 function vennChart(icons, series1, labels, chartEl, placeholder, colors, selectedIndex) {
     if (!chartEl) return;
-
     var svgNS = 'http://www.w3.org/2000/svg';
     var VW = 480, VH = 480;
-
-    /* Fixed positions [groupIdx][circleIdx]:
-       Group 0 (one-reason): A=top-left, B=bottom, C=top-right
-       Group 1 (two-reason): [0]=BC mid-right, [1]=AB mid-left, [2]=AC top-center
-       Group 2 (three-reason): center */
     var positions = [
-        [{ cx: 130, cy: 155 }, { cx: 240, cy: 370 }, { cx: 350, cy: 155 }],
-        [{ cx: 340, cy: 285 }, { cx: 140, cy: 285 }, { cx: 240, cy: 95 }],
+        [{ cx: 130, cy: 155 }, { cx: 240, cy: 300 }, { cx: 325, cy: 155 }],
+        [{ cx: 340, cy: 285 }, { cx: 140, cy: 285 }, { cx: 240, cy: 125 }],
         [{ cx: 240, cy: 225 }]
     ];
 
     var allVals = series1.reduce(function (a, g) { return a.concat(g); }, []);
-    var kScale = 90 / Math.sqrt(Math.max.apply(null, allVals));
-    var minR = 18;
+    var kScale = 140 / Math.sqrt(Math.max.apply(null, allVals));
+    var minR = 35;
 
     function getR(v) { return Math.max(minR, Math.sqrt(v) * kScale); }
 
@@ -880,7 +874,8 @@ function vennChart(icons, series1, labels, chartEl, placeholder, colors, selecte
     series1.forEach(function (group, gi) {
         group.forEach(function (value, ci) {
             circleData.push({
-                gi: gi, ci: ci,
+                gi: gi,
+                ci: ci,
                 cx: positions[gi][ci].cx,
                 cy: positions[gi][ci].cy,
                 r: getR(value),
@@ -898,7 +893,7 @@ function vennChart(icons, series1, labels, chartEl, placeholder, colors, selecte
     svg.style.maxWidth = '100%';
     svg.style.height = 'auto';
 
-    var lockedGroup = -1;
+    var lockedGroup = '-1';
     var suppressToggle = false;
     var groupEls = [];
 
@@ -916,14 +911,14 @@ function vennChart(icons, series1, labels, chartEl, placeholder, colors, selecte
 
     function drawIconsInto(parent, iconArr, cx, cy, r) {
         var n = iconArr.length;
-        var fs = n === 1 ? Math.min(35, r * 0.7) : n === 2 ? Math.min(24, r * 0.42) : Math.min(16, r * 0.32);
+        var fs = n === 1 ? 30 : n === 2 ? 22 : 16;
         if (n === 1) {
             var t = document.createElementNS(svgNS, 'text');
             setIconAttr(t, cx, cy, fs);
             t.textContent = iconArr[0];
             parent.appendChild(t);
         } else if (n === 2) {
-            var gap = r * 0.25;
+            var gap = 8;
             [cx - gap, cx + gap].forEach(function (x, i) {
                 var t = document.createElementNS(svgNS, 'text');
                 setIconAttr(t, x, cy, fs);
@@ -931,7 +926,7 @@ function vennChart(icons, series1, labels, chartEl, placeholder, colors, selecte
                 parent.appendChild(t);
             });
         } else {
-            [{ x: cx, y: cy - r * 0.28 }, { x: cx - r * 0.24, y: cy + r * 0.18 }, { x: cx + r * 0.24, y: cy + r * 0.18 }]
+            [{ x: cx, y: cy - 14 }, { x: cx - 14, y: cy + 12 }, { x: cx + 14, y: cy + 12 }]
                 .forEach(function (p, i) {
                     var t = document.createElementNS(svgNS, 'text');
                     setIconAttr(t, p.x, p.y, fs);
@@ -953,7 +948,7 @@ function vennChart(icons, series1, labels, chartEl, placeholder, colors, selecte
         t.setAttribute('text-anchor', 'middle');
         t.setAttribute('dominant-baseline', 'central');
         t.setAttribute('font-family', '"Space Grotesk", sans-serif');
-        t.setAttribute('font-size', Math.max(12, Math.min(32, d.r * 0.65)));
+        t.setAttribute('font-size', "24px");
         t.setAttribute('font-weight', '700');
         t.setAttribute('pointer-events', 'none');
         t.style.fill = 'var(--neutral-two-dark)';
@@ -969,17 +964,17 @@ function vennChart(icons, series1, labels, chartEl, placeholder, colors, selecte
     function highlightGroup(gi) {
         circleData.forEach(function (d, idx) {
             groupEls[idx].style.transition = 'opacity 0.3s ease';
-            groupEls[idx].style.opacity = (gi === -1 || d.gi === gi) ? '1' : '0.15';
+            groupEls[idx].style.opacity = (gi === -1 || gi === "-1" || d.gi === gi) ? '1' : '0.15';
         });
         var slide = chartEl.closest('.card');
         if (!slide) return;
         slide.querySelectorAll('[data-series-index]').forEach(function (item) {
             var itemGi = parseInt(item.getAttribute('data-series-index'));
             if (item.tagName !== 'DETAILS') {
-                item.setAttribute('aria-pressed', String(gi !== -1 && itemGi === gi));
+                item.setAttribute('aria-pressed', String(gi !== -1 && gi !== "-1" && itemGi === gi));
             }
             item.style.transition = 'opacity 0.3s ease';
-            item.style.opacity = (gi === -1 || itemGi === gi) ? '1' : '0.4';
+            item.style.opacity = (gi === -1 || gi === "-1" || itemGi === gi) ? '1' : '0.4';
         });
     }
 
@@ -1001,7 +996,7 @@ function vennChart(icons, series1, labels, chartEl, placeholder, colors, selecte
             });
         }
         if (wasSelected) {
-            lockedGroup = -1;
+            lockedGroup = '-1';
             highlightGroup(-1);
             syncAccordions(gi, false);
         } else {
@@ -1047,12 +1042,13 @@ function vennChart(icons, series1, labels, chartEl, placeholder, colors, selecte
 
     var slide = chartEl.closest('.card');
     if (!slide) return;
+
     slide.querySelectorAll('details[data-series-index]').forEach(function (item) {
         var gi = parseInt(item.getAttribute('data-series-index'));
         item.addEventListener('toggle', function () {
             if (suppressToggle) return;
             if (item.open) {
-                if (lockedGroup !== -1 && lockedGroup !== gi) {
+                if (lockedGroup !== '-1' && lockedGroup !== gi) {
                     circleData.forEach(function (d, idx) {
                         if (d.gi === lockedGroup) restoreIcons(groupEls[idx], d);
                     });
@@ -1070,11 +1066,11 @@ function vennChart(icons, series1, labels, chartEl, placeholder, colors, selecte
                 var anyOpen = Array.from(slide.querySelectorAll('details[data-series-index]'))
                     .some(function (dd) { return dd.open; });
                 if (!anyOpen) {
-                    if (lockedGroup !== -1) {
+                    if (lockedGroup !== '-1') {
                         circleData.forEach(function (d, idx) {
                             if (d.gi === lockedGroup) restoreIcons(groupEls[idx], d);
                         });
-                        lockedGroup = -1;
+                        lockedGroup = '-1';
                     }
                     highlightGroup(-1);
                 }
