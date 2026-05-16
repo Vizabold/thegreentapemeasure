@@ -1119,8 +1119,8 @@ function vennChart(icons, series1, labels, chartEl, placeholder, colors, selecte
 piechart(icons1a, series1a, labels1a, chart1a, placeholder1a, colors1a, selectedIndex1a);
 piechart(icons1b, series1b, labels1b, chart1b, placeholder1b, colors1b, selectedIndex1b);
 barChart(series1c, categories1c, chart1c, placeholder1c, colors1c, groupRanges1c);
-vennChart(icons1d, series1d, labels1d, chart1d, placeholder1d, colors1d, selectedIndex1d);
-vennChart(icons1e, series1e, labels1e, chart1e, placeholder1e, colors1e, selectedIndex1e);
+vennChart(icons1d, series1d, labels1d, chart1d, placeholder1d, colors1d, selectedIndex1d, positions1d);
+vennChart(icons1e, series1e, labels1e, chart1e, placeholder1e, colors1e, selectedIndex1e, positions1e);
 pyramidChart(icons1f, series1f, labels1f, chart1f, placeholder1f, colors1f, selectedIndex1f);
 pyramidChart(icons1g, series1g, labels1g, chart1g, placeholder1g, colors1g, selectedIndex1g);
 piechart(icons2a, series2a, labels2a, chart2a, placeholder2a, colors2a, selectedIndex2a);
