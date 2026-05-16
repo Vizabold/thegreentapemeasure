@@ -888,10 +888,10 @@ function vennChart(icons, series1, labels, chartEl, placeholder, colors, selecte
                 cy: positions[gi][ci].cy,
                 r: getR(value),
                 color: colors[gi][ci] !== undefined ? colors[gi][ci] : colors[gi][0],
-                strokeColor: 'var(--neutral-nine)',
-                strokeWidth: '2',
                 iconArr: gi === 0 ? [icons[gi][ci]] : icons[gi][ci],
-                value: value
+                value: value,
+                stroke: 'var(--neutral-nine)',
+                strokeWidth: '2'
             });
         });
     });
@@ -1052,6 +1052,8 @@ function vennChart(icons, series1, labels, chartEl, placeholder, colors, selecte
         circ.setAttribute('cy', d.cy);
         circ.setAttribute('r', d.r);
         circ.style.fill = d.color;
+        circ.setAttribute('stroke', d.stroke);
+        circ.setAttribute('stroke-width', d.strokeWidth);
         g.appendChild(circ);
 
         drawIconsInto(g, d.iconArr, d.cx, d.cy, d.r);
