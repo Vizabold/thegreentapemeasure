@@ -55,7 +55,7 @@ const colors1d = [
 const positions1d = [
     [{ cx: 116, cy: 155 }, { cx: 240, cy: 330 }, { cx: 340, cy: 175 }],
     [{ cx: 367, cy: 350 }, { cx: 116, cy: 367 }, { cx: 240, cy: 80 }],
-    [{ cx: 240, cy: 225 }]
+    [{ cx: 245, cy: 225 }]
 ];
 const scaleFactor1d = 120;
 let selectedIndex1d = -1;
@@ -86,9 +86,9 @@ const colors1e = [
     ['var(--neutral-seven-light)']
 ];
 const positions1e = [
-    [{ cx: 155, cy: 190 }, { cx: 240, cy: 300 }, { cx: 300, cy: 200 }],
-    [{ cx: 350, cy: 325 }, { cx: 140, cy: 315 }, { cx: 240, cy: 145 }],
-    [{ cx: 240, cy: 225 }]
+    [{ cx: 86, cy: 150 }, { cx: 216, cy: 250 }, { cx: 260, cy: 100 }],
+    [{ cx: 347, cy: 347 }, { cx: 86, cy: 347 }, { cx: 216, cy: 50 }],
+    [{ cx: 216, cy: 175 }]
 ]
 const scaleFactor1e = 140;
 let selectedIndex1e = -1;
