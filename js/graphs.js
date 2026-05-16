@@ -87,7 +87,7 @@ const colors1e = [
 ];
 const positions1e = [
     [{ cx: 150, cy: 85 }, { cx: 200, cy: 270 }, { cx: 325, cy: 160 }],
-    [{ cx: 338, cy: 338 }, { cx: 100, cy: 225 }, { cx: 280, cy: 100 }],
+    [{ cx: 338, cy: 338 }, { cx: 100, cy: 225 }, { cx: 280, cy: 80 }],
     [{ cx: 240, cy: 175 }]
 ]
 const scaleFactor1e = 150;
@@ -888,6 +888,8 @@ function vennChart(icons, series1, labels, chartEl, placeholder, colors, selecte
                 cy: positions[gi][ci].cy,
                 r: getR(value),
                 color: colors[gi][ci] !== undefined ? colors[gi][ci] : colors[gi][0],
+                strokeColor: 'var(--neutral-nine)',
+                strokeWidth: '2',
                 iconArr: gi === 0 ? [icons[gi][ci]] : icons[gi][ci],
                 value: value
             });
