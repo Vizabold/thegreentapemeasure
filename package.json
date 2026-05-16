@@ -17,7 +17,7 @@
   },
   "scripts": {
     "start": "npx @11ty/eleventy --serve & npx @tailwindcss/cli -i css/main.css -o _site/css/output.css --watch",
-    "build": "npx --package=@11ty/eleventy eleventy && npx @tailwindcss/cli -i css/main.css -o _site/css/output.css --minify"
+    "build": "./node_modules/.bin/eleventy && npx @tailwindcss/cli -i css/main.css -o _site/css/output.css --minify"
   },
   "repository": {
     "type": "git",
