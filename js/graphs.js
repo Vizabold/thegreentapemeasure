@@ -893,10 +893,11 @@ function vennChart(icons, series1, labels, chartEl, placeholder, colors, selecte
     });
 
     var svg = document.createElementNS(svgNS, 'svg');
-    svg.setAttribute('viewBox', '0 0 483 483');
-    svg.style.width = '100%';
-    svg.style.height = '100%';
-    svg.setAttribute("preserveAspectRatio", "xMidYMid meet");
+    svg.setAttribute('viewBox', '0 0 ' + VW + ' ' + VH);
+    svg.setAttribute('width', '483');
+    svg.setAttribute('height', '483');
+    svg.style.maxWidth = '100%';
+    svg.style.height = 'auto';
 
     var layerBottom = document.createElementNS(svgNS, 'g');
     var layerMiddle = document.createElementNS(svgNS, 'g');
