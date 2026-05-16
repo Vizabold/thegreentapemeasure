@@ -599,7 +599,7 @@
   }
 
   svg g[data-active="true"] {
-    @apply z-2;
+    @apply z-10;
   }
 
 }

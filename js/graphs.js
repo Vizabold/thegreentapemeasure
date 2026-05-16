@@ -872,7 +872,6 @@ function vennChart(icons, series1, labels, chartEl, placeholder, colors, selecte
 
     var circleData = [];
 
-    // Restored safe forward loop to prevent index matching crashes
     series1.forEach(function (group, gi) {
         group.forEach(function (value, ci) {
             circleData.push({
@@ -894,6 +893,14 @@ function vennChart(icons, series1, labels, chartEl, placeholder, colors, selecte
     svg.setAttribute('height', '483');
     svg.style.maxWidth = '100%';
     svg.style.height = 'auto';
+
+    var layerBottom = document.createElementNS(svgNS, 'g');
+    var layerMiddle = document.createElementNS(svgNS, 'g');
+    var layerTop = document.createElementNS(svgNS, 'g');
+
+    svg.appendChild(layerBottom);
+    svg.appendChild(layerMiddle);
+    svg.appendChild(layerTop);
 
     var lockedGroup = "-1";
     var suppressToggle = false;
@@ -1051,18 +1058,19 @@ function vennChart(icons, series1, labels, chartEl, placeholder, colors, selecte
             }
         });
 
-        // FIXES THE LAYER STACK ORDER: Inserts newer elements at the top of the DOM stack (index 0 last)
-        if (svg.firstChild) {
-            svg.insertBefore(g, svg.firstChild);
+        if (d.gi === 0) {
+            layerTop.appendChild(g);
+        } else if (d.gi === 1) {
+            layerMiddle.appendChild(g);
         } else {
-            svg.appendChild(g);
+            layerBottom.appendChild(g);
         }
 
         groupEls.push(g);
     });
 
     chartEl.appendChild(svg);
-    placeholder.style.display = 'none'; // Re-enabled placeholder replacement safely
+    placeholder.style.display = 'none';
 
     var slide = chartEl.closest('.card');
     if (!slide) return;
