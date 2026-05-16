@@ -912,7 +912,7 @@ function vennChart(icons, series1, labels, chartEl, placeholder, colors, selecte
         t.setAttribute('text-anchor', 'middle');
         t.setAttribute('dominant-baseline', 'central');
         t.setAttribute('font-family', '"Font Awesome 7 Free"');
-        t.setAttribute('font-size', '35');
+        t.setAttribute('font-size', '24');
         t.setAttribute('font-weight', '900');
         t.setAttribute('pointer-events', 'none');
         t.style.fill = 'var(--neutral-two-dark)';
@@ -959,7 +959,7 @@ function vennChart(icons, series1, labels, chartEl, placeholder, colors, selecte
         t.setAttribute('text-anchor', 'middle');
         t.setAttribute('dominant-baseline', 'central');
         t.setAttribute('font-family', '"Space Grotesk", sans-serif');
-        t.setAttribute('font-size', "20px");
+        t.setAttribute('font-size', "35px");
         t.setAttribute('font-weight', '700');
         t.setAttribute('pointer-events', 'none');
         t.style.fill = 'var(--neutral-two-dark)';
