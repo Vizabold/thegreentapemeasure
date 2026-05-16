@@ -85,7 +85,7 @@ const colors1e = [
     ['var(--neutral-seven-light)']
 ];
 const positions1e = [
-    [{ cx: 150, cy: 190 }, { cx: 240, cy: 300 }, { cx: 300, cy: 200 }],
+    [{ cx: 155, cy: 190 }, { cx: 240, cy: 300 }, { cx: 300, cy: 200 }],
     [{ cx: 350, cy: 325 }, { cx: 140, cy: 315 }, { cx: 240, cy: 145 }],
     [{ cx: 240, cy: 225 }]
 ]
@@ -867,7 +867,6 @@ function pyramidChart(icons, series1, labels, chartEl, placeholder, colors, sele
 function vennChart(icons, series1, labels, chartEl, placeholder, colors, selectedIndex, seriesPositions) {
     if (!chartEl) return;
     var svgNS = 'http://www.w3.org/2000/svg';
-    var VW = 480, VH = 480;
     var positions = seriesPositions;
 
     var allVals = series1.reduce(function (a, g) { return a.concat(g); }, []);
@@ -894,11 +893,10 @@ function vennChart(icons, series1, labels, chartEl, placeholder, colors, selecte
     });
 
     var svg = document.createElementNS(svgNS, 'svg');
-    svg.setAttribute('viewBox', '0 0 ' + VW + ' ' + VH);
-    svg.setAttribute('width', '483');
-    svg.setAttribute('height', '483');
-    svg.style.maxWidth = '100%';
-    svg.style.height = 'auto';
+    svg.setAttribute('viewBox', '0 0 483 483');
+    svg.style.width = '100%';
+    svg.style.height = '100%';
+    svg.setAttribute("preserveAspectRatio", "xMidYMid meet");
 
     var layerBottom = document.createElementNS(svgNS, 'g');
     var layerMiddle = document.createElementNS(svgNS, 'g');
