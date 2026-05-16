@@ -594,6 +594,14 @@
     @apply bg-primary-five text-neutral-nine not-italic;
   }
 
+  svg g {
+    @apply isolate;
+  }
+
+  svg g[data-active="true"] {
+    @apply z-2;
+  }
+
 }
 
 #search-overlay {

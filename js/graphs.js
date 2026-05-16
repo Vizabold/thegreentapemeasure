@@ -859,9 +859,9 @@ function vennChart(icons, series1, labels, chartEl, placeholder, colors, selecte
     var svgNS = 'http://w3.org';
     var VW = 480, VH = 480;
     var positions = [
-        [{ cx: 130, cy: 155 }, { cx: 240, cy: 300 }, { cx: 325, cy: 155 }], // Top layer
-        [{ cx: 340, cy: 285 }, { cx: 140, cy: 285 }, { cx: 240, cy: 125 }], // Middle layer
-        [{ cx: 240, cy: 225 }]                                              // Bottom layer
+        [{ cx: 130, cy: 155 }, { cx: 240, cy: 300 }, { cx: 325, cy: 155 }], // Index 0 (Top layer)
+        [{ cx: 340, cy: 285 }, { cx: 140, cy: 285 }, { cx: 240, cy: 125 }], // Index 1 (Middle layer)
+        [{ cx: 240, cy: 225 }]                                              // Index 2 (Bottom layer)
     ];
 
     var allVals = series1.reduce(function (a, g) { return a.concat(g); }, []);
@@ -872,8 +872,8 @@ function vennChart(icons, series1, labels, chartEl, placeholder, colors, selecte
 
     var circleData = [];
 
-    for (var gi = series1.length - 1; gi >= 0; gi--) {
-        var group = series1[gi];
+    // Restored safe forward loop to prevent index matching crashes
+    series1.forEach(function (group, gi) {
         group.forEach(function (value, ci) {
             circleData.push({
                 gi: gi,
@@ -881,12 +881,12 @@ function vennChart(icons, series1, labels, chartEl, placeholder, colors, selecte
                 cx: positions[gi][ci].cx,
                 cy: positions[gi][ci].cy,
                 r: getR(value),
-                color: colors[gi][ci] !== undefined ? colors[gi][ci] : colors[gi],
+                color: (colors[gi] && colors[gi][ci] !== undefined) ? colors[gi][ci] : (colors[gi] !== undefined ? colors[gi] : '#ccc'),
                 iconArr: gi === 0 ? [icons[gi][ci]] : icons[gi][ci],
                 value: value
             });
         });
-    }
+    });
 
     var svg = document.createElementNS(svgNS, 'svg');
     svg.setAttribute('viewBox', '0 0 ' + VW + ' ' + VH);
@@ -897,7 +897,7 @@ function vennChart(icons, series1, labels, chartEl, placeholder, colors, selecte
 
     var lockedGroup = "-1";
     var suppressToggle = false;
-    var groupEls = {};
+    var groupEls = [];
 
     function setIconAttr(t, x, y, fontSize) {
         t.setAttribute('x', x);
@@ -967,18 +967,14 @@ function vennChart(icons, series1, labels, chartEl, placeholder, colors, selecte
     }
 
     function highlightGroup(gi) {
-        circleData.forEach(function (d) {
-            var key = d.gi + '-' + d.ci;
-            var el = groupEls[key];
-            if (!el) return;
-
-            el.style.transition = 'opacity 0.3s ease';
-            el.style.opacity = (gi === -1 || gi === "-1" || d.gi === gi) ? '1' : '0.15';
+        circleData.forEach(function (d, idx) {
+            groupEls[idx].style.transition = 'opacity 0.3s ease';
+            groupEls[idx].style.opacity = (gi === -1 || gi === "-1" || d.gi === gi) ? '1' : '0.15';
 
             if (gi !== "-1" && d.gi === gi) {
-                el.setAttribute('data-active', 'true');
+                groupEls[idx].setAttribute('data-active', 'true');
             } else {
-                el.removeAttribute('data-active');
+                groupEls[idx].removeAttribute('data-active');
             }
         });
 
@@ -1009,8 +1005,8 @@ function vennChart(icons, series1, labels, chartEl, placeholder, colors, selecte
     function handleClick(gi) {
         var wasSelected = lockedGroup === gi;
         if (lockedGroup !== "-1") {
-            circleData.forEach(function (d) {
-                if (d.gi === lockedGroup) restoreIcons(groupEls[d.gi + '-' + d.ci], d);
+            circleData.forEach(function (d, idx) {
+                if (d.gi === lockedGroup) restoreIcons(groupEls[idx], d);
             });
         }
         if (wasSelected) {
@@ -1019,9 +1015,9 @@ function vennChart(icons, series1, labels, chartEl, placeholder, colors, selecte
             syncAccordions(gi, false);
         } else {
             lockedGroup = gi;
-            circleData.forEach(function (d) {
+            circleData.forEach(function (d, idx) {
                 if (d.gi === gi) {
-                    showPercent(groupEls[d.gi + '-' + d.ci], d);
+                    showPercent(groupEls[idx], d);
                 }
             });
             highlightGroup(gi);
@@ -1029,7 +1025,7 @@ function vennChart(icons, series1, labels, chartEl, placeholder, colors, selecte
         }
     }
 
-    circleData.forEach(function (d) {
+    circleData.forEach(function (d, idx) {
         var g = document.createElementNS(svgNS, 'g');
         g.style.cursor = 'pointer';
         g.setAttribute('tabindex', '0');
@@ -1054,12 +1050,19 @@ function vennChart(icons, series1, labels, chartEl, placeholder, colors, selecte
                 handleClick(d.gi);
             }
         });
-        svg.appendChild(g);
-        groupEls[d.gi + '-' + d.ci] = g;
+
+        // FIXES THE LAYER STACK ORDER: Inserts newer elements at the top of the DOM stack (index 0 last)
+        if (svg.firstChild) {
+            svg.insertBefore(g, svg.firstChild);
+        } else {
+            svg.appendChild(g);
+        }
+
+        groupEls.push(g);
     });
 
     chartEl.appendChild(svg);
-    placeholder.style.display = 'none';
+    placeholder.style.display = 'none'; // Re-enabled placeholder replacement safely
 
     var slide = chartEl.closest('.card');
     if (!slide) return;
@@ -1070,14 +1073,14 @@ function vennChart(icons, series1, labels, chartEl, placeholder, colors, selecte
             if (suppressToggle) return;
             if (item.open) {
                 if (lockedGroup !== "-1" && lockedGroup !== gi) {
-                    circleData.forEach(function (d) {
-                        if (d.gi === lockedGroup) restoreIcons(groupEls[d.gi + '-' + d.ci], d);
+                    circleData.forEach(function (d, idx) {
+                        if (d.gi === lockedGroup) restoreIcons(groupEls[idx], d);
                     });
                 }
                 lockedGroup = gi;
-                circleData.forEach(function (d) {
+                circleData.forEach(function (d, idx) {
                     if (d.gi === gi) {
-                        showPercent(groupEls[d.gi + '-' + d.ci], d);
+                        showPercent(groupEls[idx], d);
                     }
                 });
                 highlightGroup(gi);
@@ -1087,8 +1090,8 @@ function vennChart(icons, series1, labels, chartEl, placeholder, colors, selecte
                     .some(function (dd) { return dd.open; });
                 if (!anyOpen) {
                     if (lockedGroup !== "-1") {
-                        circleData.forEach(function (d) {
-                            if (d.gi === lockedGroup) restoreIcons(groupEls[d.gi + '-' + d.ci], d);
+                        circleData.forEach(function (d, idx) {
+                            if (d.gi === lockedGroup) restoreIcons(groupEls[idx], d);
                         });
                         lockedGroup = "-1";
                     }
