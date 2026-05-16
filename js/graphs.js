@@ -90,7 +90,7 @@ const positions1e = [
     [{ cx: 347, cy: 315 }, { cx: 100, cy: 310 }, { cx: 216, cy: 50 }],
     [{ cx: 216, cy: 175 }]
 ]
-const scaleFactor1e = 140;
+const scaleFactor1e = 145;
 let selectedIndex1e = -1;
 
 /* Graph-1f Variables */
