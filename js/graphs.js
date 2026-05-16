@@ -52,6 +52,11 @@ const colors1d = [
     ['var(--primary-three)', 'var(--primary-three)', 'var(--primary-three)'],
     ['var(--neutral-seven-light)']
 ];
+const positions1d = [
+    [{ cx: 120, cy: 155 }, { cx: 240, cy: 320 }, { cx: 325, cy: 175 }],
+    [{ cx: 350, cy: 325 }, { cx: 130, cy: 325 }, { cx: 240, cy: 110 }],
+    [{ cx: 240, cy: 225 }]
+];
 let selectedIndex1d = -1;
 
 /* Graph-1e Variables */
@@ -79,6 +84,11 @@ const colors1e = [
     ['var(--primary-three)', 'var(--primary-three)', 'var(--primary-three)'],
     ['var(--neutral-seven-light)']
 ];
+const positions1e = [
+    [{ cx: 150, cy: 175 }, { cx: 240, cy: 300 }, { cx: 300, cy: 200 }],
+    [{ cx: 350, cy: 325 }, { cx: 140, cy: 315 }, { cx: 240, cy: 130 }],
+    [{ cx: 240, cy: 225 }]
+]
 let selectedIndex1e = -1;
 
 /* Graph-1f Variables */
@@ -854,15 +864,11 @@ function pyramidChart(icons, series1, labels, chartEl, placeholder, colors, sele
     setupChartInteraction();
 }
 
-function vennChart(icons, series1, labels, chartEl, placeholder, colors, selectedIndex) {
+function vennChart(icons, series1, labels, chartEl, placeholder, colors, selectedIndex, seriesPositions) {
     if (!chartEl) return;
     var svgNS = 'http://www.w3.org/2000/svg';
     var VW = 480, VH = 480;
-    var positions = [
-        [{ cx: 120, cy: 155 }, { cx: 240, cy: 320 }, { cx: 325, cy: 175 }],
-        [{ cx: 350, cy: 325 }, { cx: 130, cy: 325 }, { cx: 240, cy: 110 }],
-        [{ cx: 240, cy: 225 }]
-    ];
+    var positions = seriesPositions;
 
     var allVals = series1.reduce(function (a, g) { return a.concat(g); }, []);
     var kScale = 110 / Math.sqrt(Math.max.apply(null, allVals));
