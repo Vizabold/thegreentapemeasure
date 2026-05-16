@@ -859,8 +859,8 @@ function vennChart(icons, series1, labels, chartEl, placeholder, colors, selecte
     var svgNS = 'http://www.w3.org/2000/svg';
     var VW = 480, VH = 480;
     var positions = [
-        [{ cx: 130, cy: 155 }, { cx: 240, cy: 300 }, { cx: 325, cy: 155 }],
-        [{ cx: 340, cy: 285 }, { cx: 140, cy: 285 }, { cx: 240, cy: 125 }],
+        [{ cx: 115, cy: 135 }, { cx: 240, cy: 320 }, { cx: 340, cy: 135 }],
+        [{ cx: 340, cy: 315 }, { cx: 140, cy: 315 }, { cx: 240, cy: 105 }],
         [{ cx: 240, cy: 225 }]
     ];
 
