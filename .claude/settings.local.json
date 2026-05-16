@@ -2,7 +2,9 @@
   "permissions": {
     "allow": [
       "mcp__figma-desktop__get_screenshot",
-      "mcp__figma-desktop__get_design_context"
+      "mcp__figma-desktop__get_design_context",
+      "Bash(git -C D:/Documents/GTM/Website-new log --oneline -5)",
+      "Bash(git -C D:/Documents/GTM/Website-new diff HEAD~1 HEAD --name-only)"
     ]
   }
 }
