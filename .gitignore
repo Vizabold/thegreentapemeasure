@@ -14,7 +14,6 @@ secrets.txt        # Personal notes or passwords
 
 # Dependencies
 node_modules/      # Installed packages
-package-lock.json  # Dependency lockfile
 
 # Logs and temporary files
 *.log              # Error and debug logs
