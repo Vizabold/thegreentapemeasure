@@ -865,8 +865,8 @@ function vennChart(icons, series1, labels, chartEl, placeholder, colors, selecte
     ];
 
     var allVals = series1.reduce(function (a, g) { return a.concat(g); }, []);
-    var kScale = 140 / Math.sqrt(Math.max.apply(null, allVals));
-    var minR = 35;
+    var kScale = 110 / Math.sqrt(Math.max.apply(null, allVals));
+    var minR = 25;
 
     function getR(v) { return Math.max(minR, Math.sqrt(v) * kScale); }
 
@@ -963,8 +963,13 @@ function vennChart(icons, series1, labels, chartEl, placeholder, colors, selecte
 
     function highlightGroup(gi) {
         circleData.forEach(function (d, idx) {
-            groupEls[idx].style.transition = 'opacity 0.3s ease';
+            groupEls[idx].style.transition = 'opacity 0.3s ease, z-index 0.1s step-end';
             groupEls[idx].style.opacity = (gi === -1 || gi === "-1" || d.gi === gi) ? '1' : '0.15';
+            if (gi !== "-1" && d.gi === gi) {
+                groupEls[idx].style.zIndex = "10";
+            } else {
+                groupEls[idx].style.zIndex = "auto";
+            }
         });
         var slide = chartEl.closest('.card');
         if (!slide) return;
@@ -1004,7 +1009,6 @@ function vennChart(icons, series1, labels, chartEl, placeholder, colors, selecte
             circleData.forEach(function (d, idx) {
                 if (d.gi === gi) {
                     showPercent(groupEls[idx], d);
-                    svg.appendChild(groupEls[idx]);
                 }
             });
             highlightGroup(gi);
@@ -1057,7 +1061,6 @@ function vennChart(icons, series1, labels, chartEl, placeholder, colors, selecte
                 circleData.forEach(function (d, idx) {
                     if (d.gi === gi) {
                         showPercent(groupEls[idx], d);
-                        svg.appendChild(groupEls[idx]);
                     }
                 });
                 highlightGroup(gi);
