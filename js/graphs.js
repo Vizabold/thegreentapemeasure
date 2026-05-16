@@ -856,12 +856,12 @@ function pyramidChart(icons, series1, labels, chartEl, placeholder, colors, sele
 
 function vennChart(icons, series1, labels, chartEl, placeholder, colors, selectedIndex) {
     if (!chartEl) return;
-    var svgNS = 'http://www.w3.org/2000/svg';
+    var svgNS = 'http://w3.org';
     var VW = 480, VH = 480;
     var positions = [
-        [{ cx: 130, cy: 155 }, { cx: 240, cy: 300 }, { cx: 325, cy: 155 }],
-        [{ cx: 340, cy: 285 }, { cx: 140, cy: 285 }, { cx: 240, cy: 125 }],
-        [{ cx: 240, cy: 225 }]
+        [{ cx: 130, cy: 155 }, { cx: 240, cy: 300 }, { cx: 325, cy: 155 }], // Top layer
+        [{ cx: 340, cy: 285 }, { cx: 140, cy: 285 }, { cx: 240, cy: 125 }], // Middle layer
+        [{ cx: 240, cy: 225 }]                                              // Bottom layer
     ];
 
     var allVals = series1.reduce(function (a, g) { return a.concat(g); }, []);
@@ -871,7 +871,9 @@ function vennChart(icons, series1, labels, chartEl, placeholder, colors, selecte
     function getR(v) { return Math.max(minR, Math.sqrt(v) * kScale); }
 
     var circleData = [];
-    series1.forEach(function (group, gi) {
+
+    for (var gi = series1.length - 1; gi >= 0; gi--) {
+        var group = series1[gi];
         group.forEach(function (value, ci) {
             circleData.push({
                 gi: gi,
@@ -879,12 +881,12 @@ function vennChart(icons, series1, labels, chartEl, placeholder, colors, selecte
                 cx: positions[gi][ci].cx,
                 cy: positions[gi][ci].cy,
                 r: getR(value),
-                color: colors[gi][ci] !== undefined ? colors[gi][ci] : colors[gi][0],
+                color: colors[gi][ci] !== undefined ? colors[gi][ci] : colors[gi],
                 iconArr: gi === 0 ? [icons[gi][ci]] : icons[gi][ci],
                 value: value
             });
         });
-    });
+    }
 
     var svg = document.createElementNS(svgNS, 'svg');
     svg.setAttribute('viewBox', '0 0 ' + VW + ' ' + VH);
@@ -893,9 +895,9 @@ function vennChart(icons, series1, labels, chartEl, placeholder, colors, selecte
     svg.style.maxWidth = '100%';
     svg.style.height = 'auto';
 
-    var lockedGroup = '-1';
+    var lockedGroup = "-1";
     var suppressToggle = false;
-    var groupEls = [];
+    var groupEls = {};
 
     function setIconAttr(t, x, y, fontSize) {
         t.setAttribute('x', x);
@@ -911,14 +913,15 @@ function vennChart(icons, series1, labels, chartEl, placeholder, colors, selecte
 
     function drawIconsInto(parent, iconArr, cx, cy, r) {
         var n = iconArr.length;
-        var fs = n === 1 ? 30 : n === 2 ? 22 : 16;
+        var fs = n === 1 ? 26 : n === 2 ? 18 : 14;
+
         if (n === 1) {
             var t = document.createElementNS(svgNS, 'text');
             setIconAttr(t, cx, cy, fs);
-            t.textContent = iconArr[0];
+            t.textContent = iconArr;
             parent.appendChild(t);
         } else if (n === 2) {
-            var gap = 8;
+            var gap = 14;
             [cx - gap, cx + gap].forEach(function (x, i) {
                 var t = document.createElementNS(svgNS, 'text');
                 setIconAttr(t, x, cy, fs);
@@ -926,7 +929,7 @@ function vennChart(icons, series1, labels, chartEl, placeholder, colors, selecte
                 parent.appendChild(t);
             });
         } else {
-            [{ x: cx, y: cy - 14 }, { x: cx - 14, y: cy + 12 }, { x: cx + 14, y: cy + 12 }]
+            [{ x: cx, y: cy - 11 }, { x: cx - 11, y: cy + 10 }, { x: cx + 11, y: cy + 10 }]
                 .forEach(function (p, i) {
                     var t = document.createElementNS(svgNS, 'text');
                     setIconAttr(t, p.x, p.y, fs);
@@ -937,7 +940,9 @@ function vennChart(icons, series1, labels, chartEl, placeholder, colors, selecte
     }
 
     function clearTexts(g) {
-        Array.from(g.querySelectorAll('text')).forEach(function (t) { t.parentNode.removeChild(t); });
+        Array.from(g.querySelectorAll('text')).forEach(function (t) {
+            t.parentNode.removeChild(t);
+        });
     }
 
     function showPercent(g, d) {
@@ -948,7 +953,7 @@ function vennChart(icons, series1, labels, chartEl, placeholder, colors, selecte
         t.setAttribute('text-anchor', 'middle');
         t.setAttribute('dominant-baseline', 'central');
         t.setAttribute('font-family', '"Space Grotesk", sans-serif');
-        t.setAttribute('font-size', "24px");
+        t.setAttribute('font-size', "20px");
         t.setAttribute('font-weight', '700');
         t.setAttribute('pointer-events', 'none');
         t.style.fill = 'var(--neutral-two-dark)';
@@ -962,15 +967,21 @@ function vennChart(icons, series1, labels, chartEl, placeholder, colors, selecte
     }
 
     function highlightGroup(gi) {
-        circleData.forEach(function (d, idx) {
-            groupEls[idx].style.transition = 'opacity 0.3s ease, z-index 0.1s step-end';
-            groupEls[idx].style.opacity = (gi === -1 || gi === "-1" || d.gi === gi) ? '1' : '0.15';
+        circleData.forEach(function (d) {
+            var key = d.gi + '-' + d.ci;
+            var el = groupEls[key];
+            if (!el) return;
+
+            el.style.transition = 'opacity 0.3s ease';
+            el.style.opacity = (gi === -1 || gi === "-1" || d.gi === gi) ? '1' : '0.15';
+
             if (gi !== "-1" && d.gi === gi) {
-                groupEls[idx].style.zIndex = "10";
+                el.setAttribute('data-active', 'true');
             } else {
-                groupEls[idx].style.zIndex = "auto";
+                el.removeAttribute('data-active');
             }
         });
+
         var slide = chartEl.closest('.card');
         if (!slide) return;
         slide.querySelectorAll('[data-series-index]').forEach(function (item) {
@@ -990,25 +1001,27 @@ function vennChart(icons, series1, labels, chartEl, placeholder, colors, selecte
         slide.querySelectorAll('details[data-series-index]').forEach(function (item) {
             item.open = isOpen && parseInt(item.getAttribute('data-series-index')) === gi;
         });
-        setTimeout(function () { suppressToggle = false; }, 0);
+        setTimeout(function () {
+            suppressToggle = false;
+        }, 0);
     }
 
     function handleClick(gi) {
         var wasSelected = lockedGroup === gi;
-        if (lockedGroup !== -1) {
-            circleData.forEach(function (d, idx) {
-                if (d.gi === lockedGroup) restoreIcons(groupEls[idx], d);
+        if (lockedGroup !== "-1") {
+            circleData.forEach(function (d) {
+                if (d.gi === lockedGroup) restoreIcons(groupEls[d.gi + '-' + d.ci], d);
             });
         }
         if (wasSelected) {
-            lockedGroup = '-1';
+            lockedGroup = "-1";
             highlightGroup(-1);
             syncAccordions(gi, false);
         } else {
             lockedGroup = gi;
-            circleData.forEach(function (d, idx) {
+            circleData.forEach(function (d) {
                 if (d.gi === gi) {
-                    showPercent(groupEls[idx], d);
+                    showPercent(groupEls[d.gi + '-' + d.ci], d);
                 }
             });
             highlightGroup(gi);
@@ -1016,7 +1029,7 @@ function vennChart(icons, series1, labels, chartEl, placeholder, colors, selecte
         }
     }
 
-    circleData.forEach(function (d, idx) {
+    circleData.forEach(function (d) {
         var g = document.createElementNS(svgNS, 'g');
         g.style.cursor = 'pointer';
         g.setAttribute('tabindex', '0');
@@ -1032,13 +1045,17 @@ function vennChart(icons, series1, labels, chartEl, placeholder, colors, selecte
 
         drawIconsInto(g, d.iconArr, d.cx, d.cy, d.r);
 
-        g.addEventListener('click', function () { handleClick(d.gi); });
-        g.addEventListener('keydown', function (e) {
-            if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); handleClick(d.gi); }
+        g.addEventListener('click', function () {
+            handleClick(d.gi);
         });
-
+        g.addEventListener('keydown', function (e) {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                handleClick(d.gi);
+            }
+        });
         svg.appendChild(g);
-        groupEls.push(g);
+        groupEls[d.gi + '-' + d.ci] = g;
     });
 
     chartEl.appendChild(svg);
@@ -1052,15 +1069,15 @@ function vennChart(icons, series1, labels, chartEl, placeholder, colors, selecte
         item.addEventListener('toggle', function () {
             if (suppressToggle) return;
             if (item.open) {
-                if (lockedGroup !== '-1' && lockedGroup !== gi) {
-                    circleData.forEach(function (d, idx) {
-                        if (d.gi === lockedGroup) restoreIcons(groupEls[idx], d);
+                if (lockedGroup !== "-1" && lockedGroup !== gi) {
+                    circleData.forEach(function (d) {
+                        if (d.gi === lockedGroup) restoreIcons(groupEls[d.gi + '-' + d.ci], d);
                     });
                 }
                 lockedGroup = gi;
-                circleData.forEach(function (d, idx) {
+                circleData.forEach(function (d) {
                     if (d.gi === gi) {
-                        showPercent(groupEls[idx], d);
+                        showPercent(groupEls[d.gi + '-' + d.ci], d);
                     }
                 });
                 highlightGroup(gi);
@@ -1069,11 +1086,11 @@ function vennChart(icons, series1, labels, chartEl, placeholder, colors, selecte
                 var anyOpen = Array.from(slide.querySelectorAll('details[data-series-index]'))
                     .some(function (dd) { return dd.open; });
                 if (!anyOpen) {
-                    if (lockedGroup !== '-1') {
-                        circleData.forEach(function (d, idx) {
-                            if (d.gi === lockedGroup) restoreIcons(groupEls[idx], d);
+                    if (lockedGroup !== "-1") {
+                        circleData.forEach(function (d) {
+                            if (d.gi === lockedGroup) restoreIcons(groupEls[d.gi + '-' + d.ci], d);
                         });
-                        lockedGroup = '-1';
+                        lockedGroup = "-1";
                     }
                     highlightGroup(-1);
                 }
