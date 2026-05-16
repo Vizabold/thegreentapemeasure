@@ -856,12 +856,12 @@ function pyramidChart(icons, series1, labels, chartEl, placeholder, colors, sele
 
 function vennChart(icons, series1, labels, chartEl, placeholder, colors, selectedIndex) {
     if (!chartEl) return;
-    var svgNS = 'http://w3.org';
+    var svgNS = 'http://www.w3.org/2000/svg';
     var VW = 480, VH = 480;
     var positions = [
-        [{ cx: 130, cy: 155 }, { cx: 240, cy: 300 }, { cx: 325, cy: 155 }], // Index 0 (Top layer)
-        [{ cx: 340, cy: 285 }, { cx: 140, cy: 285 }, { cx: 240, cy: 125 }], // Index 1 (Middle layer)
-        [{ cx: 240, cy: 225 }]                                              // Index 2 (Bottom layer)
+        [{ cx: 130, cy: 155 }, { cx: 240, cy: 300 }, { cx: 325, cy: 155 }],
+        [{ cx: 340, cy: 285 }, { cx: 140, cy: 285 }, { cx: 240, cy: 125 }],
+        [{ cx: 240, cy: 225 }]
     ];
 
     var allVals = series1.reduce(function (a, g) { return a.concat(g); }, []);
@@ -880,7 +880,7 @@ function vennChart(icons, series1, labels, chartEl, placeholder, colors, selecte
                 cx: positions[gi][ci].cx,
                 cy: positions[gi][ci].cy,
                 r: getR(value),
-                color: (colors[gi] && colors[gi][ci] !== undefined) ? colors[gi][ci] : (colors[gi] !== undefined ? colors[gi] : '#ccc'),
+                color: colors[gi][ci] !== undefined ? colors[gi][ci] : colors[gi][0],
                 iconArr: gi === 0 ? [icons[gi][ci]] : icons[gi][ci],
                 value: value
             });
@@ -925,7 +925,7 @@ function vennChart(icons, series1, labels, chartEl, placeholder, colors, selecte
         if (n === 1) {
             var t = document.createElementNS(svgNS, 'text');
             setIconAttr(t, cx, cy, fs);
-            t.textContent = iconArr;
+            t.textContent = iconArr[0];
             parent.appendChild(t);
         } else if (n === 2) {
             var gap = 14;
