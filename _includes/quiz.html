@@ -1,0 +1,259 @@
+<section class="items-center" id="quiz">
+    <a href="#main-nav-link" class="sr-only">Return to nav</a>
+    <div class="flex flex-col gap-8 xxl:w-304">
+        <div class="flex flex-col text-center gap-1">
+            <p class="paragraph-accent">Knowledge Check</p>
+            <h2><span class="text-primary-one">Design Roles IQ</h2>
+            <p class="paragraph-md">Test your industry knowledge. Drag the job title to its corresponding
+                definition.</p>
+            <p class="text-secondary-five" id="quiz-js-note">Heads up! To participate in the quiz, you must have
+                JavaScript enabled in your browser.
+            </p>
+        </div>
+        <div class="flex flex-col gap-8 lg:flex-row">
+            <div class="flex flex-col gap-8 lg:w-[50%]">
+                <div class="flex gap-8 flex-col" id="instructions">
+                    <div class="card border-l border-solid border-primary-one bg-neutral-four">
+                        <div class="flex gap-4 items-center">
+                            <div class="quiz-instruction">
+                                <p class="text-3xl text-neutral-two-dark">1</p>
+                            </div>
+                            <p class="paragraph-lg">Drag job titles from the right panel.</p>
+                        </div>
+                    </div>
+                    <div class="card border-l border-solid border-primary-one bg-neutral-four">
+                        <div class="flex gap-4 items-center">
+                            <div class="quiz-instruction">
+                                <p class="text-3xl text-neutral-two-dark">2</p>
+                            </div>
+                            <p class="paragraph-lg">Drop them into the matching definition boxes.</p>
+                        </div>
+                    </div>
+                    <div class="card border-l border-solid border-primary-one bg-neutral-four">
+                        <div class="flex gap-4 items-center">
+                            <div class="quiz-instruction">
+                                <p class="text-3xl text-neutral-two-dark">3</p>
+                            </div>
+                            <p class="paragraph-lg"><span class="text-primary-one">Green = correct</span>,<span
+                                    class="text-secondary-five"> Red = try again!</span></p>
+                            <button type="button" class="btn btn-md btn-cta" id="ready-btn">Ready?</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="card gap-6 bg-neutral-four" id="draggables">
+                    <div class="flex flex-col gap-6 sm:flex-row lg:flex-col">
+                        <button type="button" class="btn btn-draggable sm:w-[50%] lg:w-full"
+                            aria-labelledby="quiz-btn-label-ia">
+                            <div class="flex items-center"><svg aria-hidden="true" class="icon-sm fill-neutral-nine">
+                                    <use href="/assets/sprites/solid.svg#user"></use>
+                                </svg><span class="font-button" id="quiz-btn-label-ia">interior architect</span></div>
+                            <svg aria-hidden="true" class="icon-sm fill-neutral-nine">
+                                <use href="/assets/sprites/solid.svg#grip-vertical"></use>
+                            </svg>
+                        </button>
+                        <button type="button" class="btn btn-draggable sm:w-[50%] lg:w-full"
+                            aria-labelledby="quiz-btn-label-id">
+                            <div class="flex items-center"><svg aria-hidden="true" class="icon-sm fill-neutral-nine">
+                                    <use href="/assets/sprites/solid.svg#user"></use>
+                                </svg><span class="font-button" id="quiz-btn-label-id">interior designer</span></div>
+                            <svg aria-hidden="true" class="icon-sm fill-neutral-nine">
+                                <use href="/assets/sprites/solid.svg#grip-vertical"></use>
+                            </svg>
+                        </button>
+                    </div>
+                    <div class="flex flex-col gap-6 sm:flex-row lg:flex-col">
+                        <button type="button" class="btn btn-draggable sm:w-[50%] lg:w-full"
+                            aria-labelledby="quiz-btn-label-arch">
+                            <div class="flex items-center"><svg aria-hidden="true" class="icon-sm fill-neutral-nine">
+                                    <use href="/assets/sprites/solid.svg#user"></use>
+                                </svg><span class="font-button" id="quiz-btn-label-arch">architect</span></div>
+                            <svg aria-hidden="true" class="icon-sm fill-neutral-nine">
+                                <use href="/assets/sprites/solid.svg#grip-vertical"></use>
+                            </svg>
+                        </button>
+                        <button type="button" class="btn btn-draggable sm:w-[50%] lg:w-full"
+                            aria-labelledby="quiz-btn-label-idec">
+                            <div class="flex items-center"><svg aria-hidden="true" class="icon-sm fill-neutral-nine">
+                                    <use href="/assets/sprites/solid.svg#user"></use>
+                                </svg><span class="font-button" id="quiz-btn-label-idec">interior decorator</span></div>
+                            <svg aria-hidden="true" class="icon-sm fill-neutral-nine">
+                                <use href="/assets/sprites/solid.svg#grip-vertical"></use>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="flex flex-col gap-8 lg:w-[50%]" id="dropzones">
+                <div class="flex flex-col gap-6 sm:flex-row lg:flex-col">
+                    <div class="card bg-neutral-four justify-between sm:w-[50%] lg:w-full xxl:h-57.5"
+                        data-answer="interior architect">
+                        <div class="quiz-status hidden">
+                            <div class="flex gap-1">
+                                <svg aria-hidden="true" class="icon-xs text-primary-one">
+                                    <use href="/assets/sprites/solid.svg#check"></use>
+                                </svg>
+                                <p class="text-primary-one">Correct!</p>
+                            </div>
+                            <div class="flex gap-1">
+                                <svg aria-hidden="true" class="icon-xs text-secondary-five">
+                                    <use href="/assets/sprites/solid.svg#xmark"></use>
+                                </svg>
+                                <p class="text-secondary-five">Try again!</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center justify-center gap-4">
+                            <p class="text-center">A licensed architect who practices interior design.</p>
+                            <svg aria-hidden="true" class="w-9 h-9 fill-neutral-seven">
+                                <use href="/assets/sprites/brands.svg#id-card"></use>
+                            </svg>
+                            <svg aria-hidden="true" class="w-9 h-9 fill-neutral-seven">
+                                <use href="/assets/sprites/brands.svg#palette"></use>
+                            </svg>
+                        </div>
+                        <button type="button" class="btn btn-lg btn-dropzone">place job title here</button>
+                    </div>
+                    <div class="card bg-neutral-four justify-between sm:w-[50%] lg:w-full xxl:h-57.5"
+                        data-answer="interior designer">
+                        <div class="quiz-status hidden">
+                            <div class="flex gap-1">
+                                <svg aria-hidden="true" class="icon-xs text-primary-one">
+                                    <use href="/assets/sprites/solid.svg#check"></use>
+                                </svg>
+                                <p class="text-primary-one">Correct!</p>
+                            </div>
+                            <div class="flex gap-1">
+                                <svg aria-hidden="true" class="icon-xs text-secondary-five">
+                                    <use href="/assets/sprites/solid.svg#xmark"></use>
+                                </svg>
+                                <p class="text-secondary-five">Try again!</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center justify-center gap-4">
+                            <p class="text-center">Designs interiors that are safe and functional.</p>
+                            <svg aria-hidden="true" class="w-9 h-9 fill-neutral-seven">
+                                <use href="/assets/sprites/brands.svg#palette"></use>
+                            </svg>
+                            <svg aria-hidden="true" class="w-9 h-9 fill-neutral-seven">
+                                <use href="/assets/sprites/brands.svg#lock"></use>
+                            </svg>
+                            <svg aria-hidden="true" class="w-9 h-9 fill-neutral-seven">
+                                <use href="/assets/sprites/brands.svg#gears"></use>
+                            </svg>
+                        </div>
+                        <button type="button" class="btn btn-lg btn-dropzone">place job title here</button>
+                    </div>
+                </div>
+                <div class="flex flex-col gap-6 sm:flex-row lg:flex-col">
+                    <div class="card bg-neutral-four justify-between sm:w-[50%] lg:w-full xxl:h-57.5"
+                        data-answer="architect">
+                        <div class="quiz-status hidden">
+                            <div class="flex gap-1">
+                                <svg aria-hidden="true" class="icon-xs text-primary-one">
+                                    <use href="/assets/sprites/solid.svg#check"></use>
+                                </svg>
+                                <p class="text-primary-one">Correct!</p>
+                            </div>
+                            <div class="flex gap-1">
+                                <svg aria-hidden="true" class="icon-xs text-secondary-five">
+                                    <use href="/assets/sprites/solid.svg#xmark"></use>
+                                </svg>
+                                <p class="text-secondary-five">Try again!</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center justify-center gap-4">
+                            <p class="text-center">Designs buildings. Requires a license.</p>
+                            <svg aria-hidden="true" class="w-9 h-9 fill-neutral-seven">
+                                <use href="/assets/sprites/brands.svg#palette"></use>
+                            </svg>
+                            <svg aria-hidden="true" class="w-9 h-9 fill-neutral-seven">
+                                <use href="/assets/sprites/brands.svg#building"></use>
+                            </svg>
+                            <svg aria-hidden="true" class="w-9 h-9 fill-neutral-seven">
+                                <use href="/assets/sprites/brands.svg#id-card"></use>
+                            </svg>
+                        </div>
+                        <button type="button" class="btn btn-lg btn-dropzone">place job title here</button>
+                    </div>
+                    <div class="card bg-neutral-four justify-between sm:w-[50%] lg:w-full xxl:h-57.5"
+                        data-answer="interior decorator">
+                        <div class="quiz-status hidden">
+                            <div class="flex gap-1">
+                                <svg aria-hidden="true" class="icon-xs text-primary-one">
+                                    <use href="/assets/sprites/solid.svg#check"></use>
+                                </svg>
+                                <p class="text-primary-one">Correct!</p>
+                            </div>
+                            <div class="flex gap-1">
+                                <svg aria-hidden="true" class="icon-xs text-secondary-five">
+                                    <use href="/assets/sprites/solid.svg#xmark"></use>
+                                </svg>
+                                <p class="text-secondary-five">Try again!</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center justify-center gap-4">
+                            <p class="text-center">Furnishes a space with fashionable or attractive items.</p>
+                            <svg aria-hidden="true" class="w-9 h-9 fill-neutral-seven">
+                                <use href="/assets/sprites/brands.svg#chair"></use>
+                            </svg>
+                            <svg aria-hidden="true" class="w-9 h-9 fill-neutral-seven">
+                                <use href="/assets/sprites/brands.svg#sofa"></use>
+                            </svg>
+                        </div>
+                        <button type="button" class="btn btn-lg btn-dropzone">place job title here</button>
+                    </div>
+                </div>
+                <div class="flex flex-col gap-6">
+                    <button type="button" class="btn btn-lg btn-secondary" id="reset-quiz-btn">Reset Quiz</button>
+                    <details name="accordion" class="w-76.75 xs:w-full min-w-full">
+                        <summary class="btn btn-accordion"><svg aria-hidden="true" class="icon-xs fill-primary-one">
+                                <use href="/assets/sprites/solid.svg#angle-down"></use>
+                            </svg>See our sources</label></summary>
+                        <div class="accordion-content-wrapper">
+                            <div class="flex flex-col pl-11 gap-4">
+                                <p class="wrap-break-word">BLS. <a class="link link--inline-neutral"
+                                        href="https://www.bls.gov/ooh/architecture-and-engineering/architects.html"
+                                        target="_blank">Outlook
+                                        Handbook: Architects</a>. U.S. Bureau of Labor Statistics (2025). Available at:
+                                    https://www.bls.gov/ooh/architecture-and-engineering/architects.html (Accessed 27
+                                    September
+                                    2025).
+                                </p>
+                                <p class="wrap-break-word">BLS. <a class="link link--inline-neutral"
+                                        href="https://www.bls.gov/ooh/arts-and-design/interior-designers.html"
+                                        target="_blank">Occupational
+                                        Outlook Handbook: Interior Designers</a>. U.S. Bureau of Labor Statistics
+                                    (2025). Available
+                                    at:
+                                    https://www.bls.gov/ooh/arts-and-design/interior-designers.html (Accessed 27
+                                    September 2025).
+                                </p>
+                                <p class="wrap-break-word">CCIDC. <a class="link link--inline-neutral"
+                                        href="https://ccidc.org/using-the-title-interior-architect-is-illegal"
+                                        target="_blank">Why
+                                        is
+                                        it
+                                        Illegal to Use the Title "Interior Architect"</a>. CCIDC (2025). Available at:
+                                    https://ccidc.org/using-the-title-interior-architect-is-illegal (Accessed 27
+                                    September 2025).
+                                </p>
+                                <p class="wrap-break-word">CIDQ. <a class="link link--inline-neutral"
+                                        href="https://www.cidq.org/why-ncidq-certification-matters" target="_blank">The
+                                        Professional
+                                        Difference Between "Interior Designer" and "Interior
+                                        Decorator"</a>.
+                                    Council for Interior Design Qualification (2025). Available at:
+                                    https://www.cidq.org/why-ncidq-certification-matters (Accessed 27 September 2025).
+                                </p>
+                                <p class="wrap-break-word">NCARB. <a class="link link--inline-neutral"
+                                        href="https://www.ncarb.org/become-architect/why-architecture"
+                                        target="_blank">Why
+                                        Architecture</a>. NCARB (2025). Available at:
+                                    https://www.ncarb.org/become-architect/why-architecture (Accessed 27 September
+                                    2025).</p>
+                            </div>
+                        </div>
+                    </details>
+                </div>
+            </div>
+        </div>
+</section>

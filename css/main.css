@@ -1,5 +1,8 @@
 @import "tailwindcss";
 @import "./tokens.css";
+@source "../_includes/**/*.html";
+@source "../index.html";
+@source not "../_site/**/*";
 @variant js (&:where(.js *));
 
 @plugin "tailwind-scrollbar" {
