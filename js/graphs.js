@@ -86,8 +86,8 @@ const colors1e = [
     ['var(--neutral-seven-light)']
 ];
 const positions1e = [
-    [{ cx: 86, cy: 150 }, { cx: 216, cy: 250 }, { cx: 260, cy: 100 }],
-    [{ cx: 347, cy: 347 }, { cx: 86, cy: 347 }, { cx: 216, cy: 50 }],
+    [{ cx: 100, cy: 125 }, { cx: 216, cy: 275 }, { cx: 280, cy: 125 }],
+    [{ cx: 347, cy: 315 }, { cx: 100, cy: 310 }, { cx: 216, cy: 50 }],
     [{ cx: 216, cy: 175 }]
 ]
 const scaleFactor1e = 140;
