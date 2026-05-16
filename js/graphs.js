@@ -859,7 +859,7 @@ function vennChart(icons, series1, labels, chartEl, placeholder, colors, selecte
     var svgNS = 'http://www.w3.org/2000/svg';
     var VW = 480, VH = 480;
     var positions = [
-        [{ cx: 120, cy: 155 }, { cx: 240, cy: 320 }, { cx: 325, cy: 165 }],
+        [{ cx: 120, cy: 155 }, { cx: 240, cy: 320 }, { cx: 325, cy: 175 }],
         [{ cx: 350, cy: 325 }, { cx: 130, cy: 325 }, { cx: 240, cy: 110 }],
         [{ cx: 240, cy: 225 }]
     ];
@@ -912,7 +912,7 @@ function vennChart(icons, series1, labels, chartEl, placeholder, colors, selecte
         t.setAttribute('text-anchor', 'middle');
         t.setAttribute('dominant-baseline', 'central');
         t.setAttribute('font-family', '"Font Awesome 7 Free"');
-        t.setAttribute('font-size', fontSize);
+        t.setAttribute('font-size', '35');
         t.setAttribute('font-weight', '900');
         t.setAttribute('pointer-events', 'none');
         t.style.fill = 'var(--neutral-two-dark)';
@@ -920,18 +920,17 @@ function vennChart(icons, series1, labels, chartEl, placeholder, colors, selecte
 
     function drawIconsInto(parent, iconArr, cx, cy, r) {
         var n = iconArr.length;
-        var fs = n === 1 ? 26 : n === 2 ? 18 : 14;
 
         if (n === 1) {
             var t = document.createElementNS(svgNS, 'text');
-            setIconAttr(t, cx, cy, fs);
+            setIconAttr(t, cx, cy);
             t.textContent = iconArr[0];
             parent.appendChild(t);
         } else if (n === 2) {
             var gap = 14;
             [cx - gap, cx + gap].forEach(function (x, i) {
                 var t = document.createElementNS(svgNS, 'text');
-                setIconAttr(t, x, cy, fs);
+                setIconAttr(t, x, cy);
                 t.textContent = iconArr[i];
                 parent.appendChild(t);
             });
@@ -939,7 +938,7 @@ function vennChart(icons, series1, labels, chartEl, placeholder, colors, selecte
             [{ x: cx, y: cy - 11 }, { x: cx - 11, y: cy + 10 }, { x: cx + 11, y: cy + 10 }]
                 .forEach(function (p, i) {
                     var t = document.createElementNS(svgNS, 'text');
-                    setIconAttr(t, p.x, p.y, fs);
+                    setIconAttr(t, p.x, p.y);
                     t.textContent = iconArr[i];
                     parent.appendChild(t);
                 });
