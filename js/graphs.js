@@ -3,8 +3,6 @@
 /* Graph-1a Variables */
 const icons1a = ['', '', '', '\u{e3b2}', ''];
 const series1a = [38, 21, 17, 14, 10];
-const series1a2 = [16, 9, 7, 6, 4];
-const linevalue1a = 'FIRES';
 const labels1a = ['hotel', 'assembly', 'schools', 'hospital', 'factory'];
 const chart1a = document.getElementById('pie-chart-1a');
 const placeholder1a = document.getElementById('pie-chart-1a-placeholder');
@@ -14,8 +12,6 @@ let selectedIndex1a = -1;
 /* Graph-1b Variables */
 const icons1b = ['', '', '', '', ''];
 const series1b = [52, 19, 12, 11, 6];
-const series1b2 = [1872, 692, 442, 404, 226];
-const linevalue1b = 'DEATHS';
 const labels1b = ['assembly', 'hotel', 'schools', 'hospital', 'factory'];
 const chart1b = document.getElementById('pie-chart-1b');
 const placeholder1b = document.getElementById('pie-chart-1b-placeholder');
@@ -88,8 +84,6 @@ let selectedIndex1e = -1;
 /* Graph-1f Variables */
 const icons1f = ['\u{f568}', '\u{e4d8}', '\u{f0e3}'];
 const series1f = [2, 48, 50];
-const series1f2 = [1, 20, 21];
-const linevalue1f = 'FIRES';
 const labels1f = ['architect', 'codes', 'enforcement'];
 const chart1f = document.getElementById('pyramid-chart-1f');
 const placeholder1f = document.getElementById('pyramid-chart-1f-placeholder');
@@ -99,8 +93,6 @@ let selectedIndex1f = -1;
 /* Graph-1g Variables */
 const icons1g = ['\u{f568}', '\u{e4d8}', '\u{f0e3}'];
 const series1g = [1, 32, 67];
-const series1g2 = [6, 1178, 2432];
-const linevalue1g = 'DEATHS';
 const labels1g = ['architect', 'codes', 'enforcement'];
 const chart1g = document.getElementById('pyramid-chart-1g');
 const placeholder1g = document.getElementById('pyramid-chart-1g-placeholder');
@@ -110,8 +102,6 @@ let selectedIndex1g = -1;
 /* Graph-2a Variables */
 const icons2a = ['\u{f1b3}', '\u{f013}', '\u{f1ad}', '\u{e163}', '\u{e3af}', '\u{f508}'];
 const series2a = [25, 22, 19, 17, 9, 8];
-const series2a2 = [20, 18, 16, 14, 7, 6];
-const linevalue2a = 'HOURS';
 const labels2a = ['fundamentals', 'systems', 'commercial', 'graphics', 'residential', 'practice'];
 const chart2a = document.getElementById('pie-chart-2a');
 const placeholder2a = document.getElementById('pie-chart-2a-placeholder');
@@ -121,8 +111,6 @@ let selectedIndex2a = -1;
 /* Graph-2b Variables */
 const icons2b = ['\u{f1ad}', '\u{f1b3}', '\u{f013}', '\u{f508}', '\u{f1e0}', '\u{e163}'];
 const series2b = [37, 23, 16, 10, 8, 6];
-const series2b2 = [45, 28, 20, 12, 10, 7];
-const linevalue2b = 'HOURS';
 const labels2b = ['projects', 'fundamentals', 'systems', 'practice', 'shared', 'graphics'];
 const chart2b = document.getElementById('pie-chart-2b');
 const placeholder2b = document.getElementById('pie-chart-2b-placeholder');
@@ -132,8 +120,6 @@ let selectedIndex2b = -1;
 /* Graph-2c Variables */
 const icons2c = ['\u{f568}', '\u{f0ae}', '\u{f508}'];
 const series2c = [78, 16, 6];
-const series2c2 = [328, 67, 25];
-const linevalue2c = 'Qs.';
 const labels2c = ['design', 'management', 'practice'];
 const chart2c = document.getElementById('pie-chart-2c');
 const placeholder2c = document.getElementById('pie-chart-2c-placeholder');
@@ -143,8 +129,6 @@ let selectedIndex2c = -1;
 /* Graph-2d Variables */
 const icons2d = ['\u{f0ae}', '\u{f568}', '\u{f1e0}', '\u{f508}'];
 const series2d = [33, 28, 27, 12];
-const series2d2 = [162, 137, 132, 59];
-const linevalue2d = 'Qs.';
 const labels2d = ['management', 'design', 'shared', 'practice'];
 const chart2d = document.getElementById('pie-chart-2d');
 const placeholder2d = document.getElementById('pie-chart-2d-placeholder');
@@ -179,8 +163,6 @@ const placeholder3a = document.getElementById('line-chart-3a-placeholder');
 /* Graph-4a Variables */
 const icons4a = ['\u{e54f}', '\u{e3af}', '\u{f0b1}'];
 const series4a = [60, 20, 20];
-const series4a2 = [26, 9, 9];
-const linevalue4a = 'PEOPLE';
 const labels4a = ['interiors', 'architecture', 'business'];
 const chart4a = document.getElementById('pie-chart-4a');
 const placeholder4a = document.getElementById('pie-chart-4a-placeholder');
@@ -190,15 +172,13 @@ let selectedIndex4a = -1;
 /* Graph-4b Variables */
 const icons4b = ['\u{e54f}', '\u{f0b1}'];
 const series4b = [56, 44];
-const series4b2 = [9, 7];
-const linevalue4b = 'PEOPLE';
 const labels4b = ['interiors', 'business'];
 const chart4b = document.getElementById('pie-chart-4b');
 const placeholder4b = document.getElementById('pie-chart-4b-placeholder');
 const colors4b = ['var(--primary-one)', 'var(--primary-two)'];
 let selectedIndex4b = -1;
 
-function piechart(icons, series1, series2, linevalue, labels, chartEl, placeholder, colors, selectedSliceIndex) {
+function piechart(icons, series1, labels, chartEl, placeholder, colors, selectedSliceIndex) {
     if (!chartEl) return;
 
     var svgNS = 'http://www.w3.org/2000/svg';
@@ -305,13 +285,7 @@ function piechart(icons, series1, series2, linevalue, labels, chartEl, placehold
         t.setAttribute('font-family', '"Space Grotesk", sans-serif');
         t.setAttribute('font-weight', '700');
         var line1 = Math.round(series1[idx] / pieTotal * 100) + '%';
-        var line2 = (series2 && linevalue) ? series2[idx] + ' ' + linevalue : null;
-        if (line2) {
-            t.innerHTML = '<tspan x="' + lx + '" dy="-0.4em" font-size="35">' + line1 + '</tspan>' +
-                '<tspan x="' + lx + '" dy="1.5em" font-size="16" font-weight="700">' + line2 + '</tspan>';
-        } else {
-            t.innerHTML = '<tspan x="' + lx + '" dy="0.3em" font-size="35">' + line1 + '</tspan>';
-        }
+        t.innerHTML = '<tspan x="' + lx + '" dy="0.3em" font-size="35">' + line1 + '</tspan>';
     }
 
     function syncAccordions(idx, isOpen) {
@@ -712,7 +686,7 @@ function barChart(series, categories, chartEl, placeholder, colors, groupRanges)
     });
 }
 
-function pyramidChart(icons, series1, series2, linevalue, labels, chartEl, placeholder, colors, selectedIndex) {
+function pyramidChart(icons, series1, labels, chartEl, placeholder, colors, selectedIndex) {
     if (!chartEl) return;
 
     var lockedIndex = -1;
@@ -741,16 +715,10 @@ function pyramidChart(icons, series1, series2, linevalue, labels, chartEl, place
         var y2 = (i + 1) * sH;
         var pts;
 
-        if (i === 0) {
-            pts = cx + ',' + y1 + ' ' +
-                (cx + halfAt(y2)) + ',' + y2 + ' ' +
-                (cx - halfAt(y2)) + ',' + y2;
-        } else {
-            pts = (cx - halfAt(y1)) + ',' + y1 + ' ' +
-                (cx + halfAt(y1)) + ',' + y1 + ' ' +
-                (cx + halfAt(y2)) + ',' + y2 + ' ' +
-                (cx - halfAt(y2)) + ',' + y2;
-        }
+        pts = (cx - halfAt(y1)) + ',' + y1 + ' ' +
+            (cx + halfAt(y1)) + ',' + y1 + ' ' +
+            (cx + halfAt(y2)) + ',' + y2 + ' ' +
+            (cx - halfAt(y2)) + ',' + y2;
 
         var poly = document.createElementNS(svgNS, 'polygon');
         poly.setAttribute('points', pts);
@@ -837,15 +805,7 @@ function pyramidChart(icons, series1, series2, linevalue, labels, chartEl, place
             t.setAttribute('text-anchor', idx === 0 ? 'start' : 'middle');
 
             var line1 = Math.round(series1[idx] / total * 100) + '%';
-            var line2 = (series2 && linevalue) ? series2[idx] + ' ' + linevalue : null;
-
-            if (line2) {
-                t.innerHTML = '<tspan x="' + origX + '" dy="-0.4em" font-size="35">' + line1 + '</tspan>' +
-                    '<tspan x="' + origX + '" dy="1.5em" font-size="16" font-weight="700">' + line2 + '</tspan>';
-            } else {
-                t.innerHTML = '<tspan x="' + origX + '" dy="0.3em" font-size="35">' + line1 + '</tspan>';
-            }
-
+            t.innerHTML = '<tspan x="' + origX + '" dy="0.3em" font-size="35">' + line1 + '</tspan>';
             highlightSection(idx);
         }
 
@@ -1124,17 +1084,17 @@ function vennChart(icons, series1, labels, chartEl, placeholder, colors, selecte
 }
 
 
-piechart(icons1a, series1a, series1a2, linevalue1a, labels1a, chart1a, placeholder1a, colors1a, selectedIndex1a);
-piechart(icons1b, series1b, series1b2, linevalue1b, labels1b, chart1b, placeholder1b, colors1b, selectedIndex1b);
+piechart(icons1a, series1a, labels1a, chart1a, placeholder1a, colors1a, selectedIndex1a);
+piechart(icons1b, series1b, labels1b, chart1b, placeholder1b, colors1b, selectedIndex1b);
 barChart(series1c, categories1c, chart1c, placeholder1c, colors1c, groupRanges1c);
 vennChart(icons1d, series1d, labels1d, chart1d, placeholder1d, colors1d, selectedIndex1d);
 vennChart(icons1e, series1e, labels1e, chart1e, placeholder1e, colors1e, selectedIndex1e);
-pyramidChart(icons1f, series1f, series1f2, linevalue1f, labels1f, chart1f, placeholder1f, colors1f, selectedIndex1f);
-pyramidChart(icons1g, series1g, series1g2, linevalue1g, labels1g, chart1g, placeholder1g, colors1g, selectedIndex1g);
-piechart(icons2a, series2a, series2a2, linevalue2a, labels2a, chart2a, placeholder2a, colors2a, selectedIndex2a);
-piechart(icons2b, series2b, series2b2, linevalue2b, labels2b, chart2b, placeholder2b, colors2b, selectedIndex2b);
-piechart(icons2c, series2c, series2c2, linevalue2c, labels2c, chart2c, placeholder2c, colors2c, selectedIndex2c);
-piechart(icons2d, series2d, series2d2, linevalue2d, labels2d, chart2d, placeholder2d, colors2d, selectedIndex2d);
+pyramidChart(icons1f, series1f, labels1f, chart1f, placeholder1f, colors1f, selectedIndex1f);
+pyramidChart(icons1g, series1g, labels1g, chart1g, placeholder1g, colors1g, selectedIndex1g);
+piechart(icons2a, series2a, labels2a, chart2a, placeholder2a, colors2a, selectedIndex2a);
+piechart(icons2b, series2b, labels2b, chart2b, placeholder2b, colors2b, selectedIndex2b);
+piechart(icons2c, series2c, labels2c, chart2c, placeholder2c, colors2c, selectedIndex2c);
+piechart(icons2d, series2d, labels2d, chart2d, placeholder2d, colors2d, selectedIndex2d);
 lineChart(series3a, dash3a, categories3a, chart3a, placeholder3a, colors3a);
-piechart(icons4a, series4a, series4a2, linevalue4a, labels4a, chart4a, placeholder4a, colors4a, selectedIndex4a);
-piechart(icons4b, series4b, series4b2, linevalue4b, labels4b, chart4b, placeholder4b, colors4b, selectedIndex4b);
+piechart(icons4a, series4a, labels4a, chart4a, placeholder4a, colors4a, selectedIndex4a);
+piechart(icons4b, series4b, labels4b, chart4b, placeholder4b, colors4b, selectedIndex4b);
