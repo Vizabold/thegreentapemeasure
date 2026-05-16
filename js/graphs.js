@@ -870,7 +870,7 @@ function vennChart(icons, series1, labels, chartEl, placeholder, colors, selecte
     var positions = seriesPositions;
     var VW = 500, VH = 500;
     var allVals = series1.reduce(function (a, g) { return a.concat(g); }, []);
-    var kScale = 110 / Math.sqrt(Math.max.apply(null, allVals));
+    var kScale = 120 / Math.sqrt(Math.max.apply(null, allVals));
     var minR = 25;
 
     function getR(v) { return Math.max(minR, Math.sqrt(v) * kScale); }
