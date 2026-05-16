@@ -53,10 +53,11 @@ const colors1d = [
     ['var(--neutral-seven-light)']
 ];
 const positions1d = [
-    [{ cx: 120, cy: 155 }, { cx: 240, cy: 320 }, { cx: 325, cy: 175 }],
-    [{ cx: 350, cy: 325 }, { cx: 130, cy: 325 }, { cx: 240, cy: 110 }],
+    [{ cx: 100, cy: 155 }, { cx: 240, cy: 320 }, { cx: 325, cy: 175 }],
+    [{ cx: 367, cy: 367 }, { cx: 116, cy: 367 }, { cx: 240, cy: 80 }],
     [{ cx: 240, cy: 225 }]
 ];
+const scaleFactor1d = 120;
 let selectedIndex1d = -1;
 
 /* Graph-1e Variables */
@@ -89,6 +90,7 @@ const positions1e = [
     [{ cx: 350, cy: 325 }, { cx: 140, cy: 315 }, { cx: 240, cy: 145 }],
     [{ cx: 240, cy: 225 }]
 ]
+const scaleFactor1e = 130;
 let selectedIndex1e = -1;
 
 /* Graph-1f Variables */
@@ -864,13 +866,13 @@ function pyramidChart(icons, series1, labels, chartEl, placeholder, colors, sele
     setupChartInteraction();
 }
 
-function vennChart(icons, series1, labels, chartEl, placeholder, colors, selectedIndex, seriesPositions) {
+function vennChart(icons, series1, labels, chartEl, placeholder, colors, selectedIndex, seriesPositions, scaleFactor) {
     if (!chartEl) return;
     var svgNS = 'http://www.w3.org/2000/svg';
     var positions = seriesPositions;
     var VW = 500, VH = 500;
     var allVals = series1.reduce(function (a, g) { return a.concat(g); }, []);
-    var kScale = 120 / Math.sqrt(Math.max.apply(null, allVals));
+    var kScale = scaleFactor / Math.sqrt(Math.max.apply(null, allVals));
     var minR = 25;
 
     function getR(v) { return Math.max(minR, Math.sqrt(v) * kScale); }
@@ -1118,8 +1120,8 @@ function vennChart(icons, series1, labels, chartEl, placeholder, colors, selecte
 piechart(icons1a, series1a, labels1a, chart1a, placeholder1a, colors1a, selectedIndex1a);
 piechart(icons1b, series1b, labels1b, chart1b, placeholder1b, colors1b, selectedIndex1b);
 barChart(series1c, categories1c, chart1c, placeholder1c, colors1c, groupRanges1c);
-vennChart(icons1d, series1d, labels1d, chart1d, placeholder1d, colors1d, selectedIndex1d, positions1d);
-vennChart(icons1e, series1e, labels1e, chart1e, placeholder1e, colors1e, selectedIndex1e, positions1e);
+vennChart(icons1d, series1d, labels1d, chart1d, placeholder1d, colors1d, selectedIndex1d, positions1d, scaleFactor1d);
+vennChart(icons1e, series1e, labels1e, chart1e, placeholder1e, colors1e, selectedIndex1e, positions1e, scaleFactor1e);
 pyramidChart(icons1f, series1f, labels1f, chart1f, placeholder1f, colors1f, selectedIndex1f);
 pyramidChart(icons1g, series1g, labels1g, chart1g, placeholder1g, colors1g, selectedIndex1g);
 piechart(icons2a, series2a, labels2a, chart2a, placeholder2a, colors2a, selectedIndex2a);
