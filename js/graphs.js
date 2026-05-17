@@ -231,6 +231,9 @@ function renderChart(type, series, labels, chartEl, placeholder, colors, selecte
 
     /* Bar Chart Variables */
     const barXs = [];
+    const maxVal = 1200;
+    const barGap = 3, groupGap = 14;
+    let barW;
     if (type === 'bar') {
         if (chartEl.id === 'bar-chart-1c') {
             groupRanges = [[0, 3], [4, 7], [8, 12]];
@@ -238,11 +241,7 @@ function renderChart(type, series, labels, chartEl, placeholder, colors, selecte
         }
         const ml = 48, mr = 8, mt = 8, mb = 8;
         cX = ml, cY = mt, cW = VW - ml - mr, cH = VH - mt - mb;
-    }
-    const maxVal = 1200;
-    const barGap = 3, groupGap = 14;
-    const barW = (cW - (n - 1) * barGap - (groupRanges.length - 1) * groupGap) / n;
-    if (type === 'bar') {
+        barW = (cW - (n - 1) * barGap - (groupRanges.length - 1) * groupGap) / n;
         for (var i = 0; i < n; i++) {
             barXs.push(cX);
             if (i < n - 1) {
@@ -403,8 +402,8 @@ function renderChart(type, series, labels, chartEl, placeholder, colors, selecte
     function highlight(idx) {
         els.forEach(function (el, i) {
             if (type === 'venn') {
-                groupEls[i].style.opacity = (idx === -1 || idx === "-1" || el.idx === idx) ? '1' : '0.15';
-                if (idx !== "-1" && el.idx === idx) {
+                groupEls[i].style.opacity = (idx === -1 || idx === "-1" || el.gi === idx) ? '1' : '0.15';
+                if (idx !== "-1" && el.gi === idx) {
                     groupEls[i].setAttribute('data-active', 'true');
                 } else {
                     groupEls[i].removeAttribute('data-active');
@@ -443,7 +442,7 @@ function renderChart(type, series, labels, chartEl, placeholder, colors, selecte
         t.style.fill = 'var(--neutral-two-dark)';
         if (type === 'pyramid') {
             t.setAttribute('text-anchor', 'middle');
-            t.setAttribute('x', cx);
+            t.setAttribute('x', cX);
         }
     }
 
@@ -539,7 +538,7 @@ function renderChart(type, series, labels, chartEl, placeholder, colors, selecte
         const wasSelected = lockedIndex === idx;
         if (type === 'venn' && lockedIndex !== -1) {
             els.forEach(function (el, i) {
-                if (el.idx === lockedIndex) restoreIcons(groupEls[i], el);
+                if (el.gi === lockedIndex) restoreIcons(groupEls[i], el);
             });
         }
         if (type === 'pie' || type === 'pyramid') {
@@ -555,7 +554,7 @@ function renderChart(type, series, labels, chartEl, placeholder, colors, selecte
             selectedIndex = idx;
             if (type === 'venn') {
                 els.forEach(function (el, i) {
-                    if (el.idx === idx) {
+                    if (el.gi === idx) {
                         showPercent(groupEls[i], el);
                     }
                 });
@@ -830,7 +829,7 @@ function renderChart(type, series, labels, chartEl, placeholder, colors, selecte
                 if (lockedIndex !== -1 && (type === 'pie' || type === 'pyramid')) restoreLabel(lockedIndex);
                 if (type === 'venn' && (lockedIndex !== "-1" && lockedIndex !== idx)) {
                     els.forEach(function (el, i) {
-                        if (el.idx === lockedIndex) restoreIcons(groupEls[i], el);
+                        if (el.gi === lockedIndex) restoreIcons(groupEls[i], el);
                     });
                 }
                 lockedIndex = idx;
@@ -838,7 +837,7 @@ function renderChart(type, series, labels, chartEl, placeholder, colors, selecte
                 if (type === 'pie' || type === 'pyramid') applyLabel(idx);
                 if (type === 'venn') {
                     els.forEach(function (el, i) {
-                        if (el.idx === idx) {
+                        if (el.gi === idx) {
                             showPercent(groupEls[i], el);
                         }
                     });
@@ -852,7 +851,7 @@ function renderChart(type, series, labels, chartEl, placeholder, colors, selecte
                     if (lockedIndex !== -1 && type === 'pie') restoreLabel(lockedIndex);
                     if (lockedIndex !== -1 && type === 'venn') {
                         els.forEach(function (el, i) {
-                            if (el.idx === lockedIndex) restoreIcons(groupEls[i], el);
+                            if (el.gi === lockedIndex) restoreIcons(groupEls[i], el);
                         });
                     }
                     lockedIndex = -1;
