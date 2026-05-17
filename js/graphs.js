@@ -1,5 +1,3 @@
-/* ---------------------- Analysis 1 ------------------------- */
-
 /* Graph-1a Variables */
 const type1a = 'pie';
 const series1a = [38, 21, 17, 14, 10];
@@ -866,6 +864,20 @@ function renderChart(type, series, labels, chartEl, placeholder, colors, selecte
     });
 }
 
+renderChart(type1a, series1a, labels1a, chart1a, placeholder1a, colors1a, selectedIndex1a);
+renderChart(type1b, series1b, labels1b, chart1b, placeholder1b, colors1b, selectedIndex1b);
+renderChart(type1c, series1c, labels1c, chart1c, placeholder1c, colors1c, selectedIndex1c);
+renderChart(type1d, series1d, labels1d, chart1d, placeholder1d, colors1d, selectedIndex1d);
+renderChart(type1e, series1e, labels1e, chart1e, placeholder1e, colors1e, selectedIndex1e);
+renderChart(type1f, series1f, labels1f, chart1f, placeholder1f, colors1f, selectedIndex1f);
+renderChart(type1f, series1g, labels1g, chart1g, placeholder1g, colors1g, selectedIndex1g);
+renderChart(type2a, series2a, labels2a, chart2a, placeholder2a, colors2a, selectedIndex2a);
+renderChart(type2a, series2b, labels2b, chart2b, placeholder2b, colors2b, selectedIndex2b);
+renderChart(type2c, series2c, labels2c, chart2c, placeholder2c, colors2c, selectedIndex2c);
+renderChart(type2d, series2d, labels2d, chart2d, placeholder2d, colors2d, selectedIndex2d);
+renderChart(type3a, series3a, labels3a, chart3a, placeholder3a, colors3a, selectedIndex3a);
+renderChart(type4a, series4a, labels4a, chart4a, placeholder4a, colors4a, selectedIndex4a);
+renderChart(type4b, series4b, labels4b, chart4b, placeholder4b, colors4b, selectedIndex4b);
 
 
 /*
@@ -1822,17 +1834,3 @@ function vennChart(icons, series1, labels, chartEl, placeholder, colors, selecte
 */
 
 
-renderChart(type1a, series1a, labels1a, chart1a, placeholder1a, colors1a, selectedIndex1a);
-renderChart(type1b, series1b, labels1b, chart1b, placeholder1b, colors1b, selectedIndex1b);
-renderChart(type1c, series1c, labels1c, chart1c, placeholder1c, colors1c, selectedIndex1c);
-renderChart(type1d, series1d, labels1d, chart1d, placeholder1d, colors1d, selectedIndex1d);
-renderChart(type1e, series1e, labels1e, chart1e, placeholder1e, colors1e, selectedIndex1e);
-renderChart(type1f, series1f, labels1f, chart1f, placeholder1f, colors1f, selectedIndex1f);
-renderChart(type1f, series1g, labels1g, chart1g, placeholder1g, colors1g, selectedIndex1g);
-renderChart(type2a, series2a, labels2a, chart2a, placeholder2a, colors2a, selectedIndex2a);
-renderChart(type2a, series2b, labels2b, chart2b, placeholder2b, colors2b, selectedIndex2b);
-renderChart(type2c, series2c, labels2c, chart2c, placeholder2c, colors2c, selectedIndex2c);
-renderChart(type2d, series2d, labels2d, chart2d, placeholder2d, colors2d, selectedIndex2d);
-renderChart(type3a, series3a, labels3a, chart3a, placeholder3a, colors3a, selectedIndex3a);
-renderChart(type4a, series4a, labels4a, chart4a, placeholder4a, colors4a, selectedIndex4a);
-renderChart(type4b, series4b, labels4b, chart4b, placeholder4b, colors4b, selectedIndex4b);
