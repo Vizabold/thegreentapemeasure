@@ -219,7 +219,7 @@ function renderChart(type, series, labels, chartEl, placeholder, colors, selecte
     }
     const outerR = 210, labelR = 130;
     const startAngles = [], endAngles = [], midAngles = [];
-    const cur = -Math.PI / 2;
+    let cur = -Math.PI / 2;
     for (var i = 0; i < n; i++) {
         const sweep = (series[i] / total) * 2 * Math.PI;
         startAngles.push(cur);
@@ -242,7 +242,7 @@ function renderChart(type, series, labels, chartEl, placeholder, colors, selecte
     const barGap = 3, groupGap = 14;
     const barW = (cW - (n - 1) * barGap - (groupRanges.length - 1) * groupGap) / n;
     if (type === 'bar') {
-        for (const i = 0; i < n; i++) {
+        for (var i = 0; i < n; i++) {
             barXs.push(cX);
             if (i < n - 1) {
                 cX += barW + barGap;
@@ -303,6 +303,7 @@ function renderChart(type, series, labels, chartEl, placeholder, colors, selecte
     /* Line Chart Variables */
     const yMin = 0, yMax = 35;
     const nCats = labels.length;
+    const dash = [0, 8, 0, 8];
     const markerGroups = [];
     if (type === 'line') {
         range = [0, 5, 10, 15, 20, 25, 30, 35];
@@ -323,15 +324,15 @@ function renderChart(type, series, labels, chartEl, placeholder, colors, selecte
     /* Create pie slices */
     function slicePath(i) {
         const sa = startAngles[i], ea = endAngles[i], sw = ea - sa;
-        const x1 = cx + outerR * Math.cos(sa), y1 = cy + outerR * Math.sin(sa);
+        const x1 = cX + outerR * Math.cos(sa), y1 = cY + outerR * Math.sin(sa);
         const ea2 = sw >= 2 * Math.PI - 0.001 ? ea - 0.001 : ea;
-        const x2 = cx + outerR * Math.cos(ea2), y2 = cy + outerR * Math.sin(ea2);
-        return 'M ' + cx + ' ' + cy + ' L ' + x1.toFixed(2) + ' ' + y1.toFixed(2) +
+        const x2 = cX + outerR * Math.cos(ea2), y2 = cY + outerR * Math.sin(ea2);
+        return 'M ' + cX + ' ' + cY + ' L ' + x1.toFixed(2) + ' ' + y1.toFixed(2) +
             ' A ' + outerR + ' ' + outerR + ' 0 ' + (sw > Math.PI ? 1 : 0) + ' 1 ' + x2.toFixed(2) + ' ' + y2.toFixed(2) + ' Z';
     }
 
     /* Determine points for each pyramid section */
-    function halfAt(y) { return cx * (y / VH); }
+    function halfAt(y) { return cX * (y / VH); }
 
     /* Add points to a line chart */
     function makeD(points) {
@@ -506,7 +507,7 @@ function renderChart(type, series, labels, chartEl, placeholder, colors, selecte
         s.style.transition = 'opacity 0.3s ease';
         s.setAttribute('tabindex', '0');
         s.setAttribute('role', 'button');
-        s.setAttribute('aria-label', labels[i] + ': ' + Math.round(series1[i] / total * 100) + '%');
+        s.setAttribute('aria-label', labels[i] + ': ' + Math.round(series[i] / total * 100) + '%');
         svg.appendChild(s);
         els.push(s);
     }
