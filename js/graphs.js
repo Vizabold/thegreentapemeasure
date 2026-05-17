@@ -540,6 +540,7 @@ function lineChart(series, dash, categories, chartEl, placeholder, colors) {
     });
 
     chartEl.appendChild(svg);
+    if (chartEl.parentElement) chartEl.parentElement.style.minWidth = '0';
     placeholder.style.display = 'none';
 
     var slide = chartEl.closest('.card');
@@ -762,6 +763,7 @@ function pyramidChart(icons, series1, labels, chartEl, placeholder, colors, sele
     }
 
     chartEl.appendChild(svg);
+    if (chartEl.parentElement) chartEl.parentElement.style.minWidth = '0';
     placeholder.style.display = 'none';
 
     function highlightSection(idx) {
@@ -847,11 +849,27 @@ function pyramidChart(icons, series1, labels, chartEl, placeholder, colors, sele
             if (item.tagName === 'DETAILS') {
                 item.addEventListener('toggle', function () {
                     if (suppressToggle) return;
-                    if (item.open) { lockedIndex = idx; highlightSection(idx); }
-                    else {
+                    if (item.open) {
+                        if (lockedIndex !== -1) restoreLabel(lockedIndex);
+                        lockedIndex = idx;
+                        selectedIndex = idx;
+                        var t = textEls[idx];
+                        var origX = t.getAttribute('x');
+                        t.setAttribute('font-family', '"Space Grotesk", sans-serif');
+                        t.style.fill = 'var(--neutral-two-dark)';
+                        t.setAttribute('text-anchor', 'middle');
+                        var line1 = Math.round(series1[idx] / total * 100) + '%';
+                        t.innerHTML = '<tspan x="' + origX + '" dy="0.3em" font-size="35">' + line1 + '</tspan>';
+                        highlightSection(idx);
+                    } else {
                         var anyOpen = Array.from(slide.querySelectorAll('details[data-series-index]'))
                             .some(function (d) { return d.open; });
-                        if (!anyOpen) { lockedIndex = -1; highlightSection(-1); }
+                        if (!anyOpen) {
+                            if (lockedIndex !== -1) restoreLabel(lockedIndex);
+                            lockedIndex = -1;
+                            selectedIndex = -1;
+                            highlightSection(-1);
+                        }
                     }
                 });
             } else {
@@ -1080,6 +1098,7 @@ function vennChart(icons, series1, labels, chartEl, placeholder, colors, selecte
     });
 
     chartEl.appendChild(svg);
+    if (chartEl.parentElement) chartEl.parentElement.style.minWidth = '0';
     placeholder.style.display = 'none';
 
     var slide = chartEl.closest('.card');
