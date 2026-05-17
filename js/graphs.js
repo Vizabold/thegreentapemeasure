@@ -131,8 +131,7 @@ const labels3a = ['1980s', '1990s', '2000s', '2010s', '2020s'];
 const chart3a = document.getElementById('line-chart-3a');
 const placeholder3a = document.getElementById('line-chart-3a-placeholder');
 const colors3a = ['var(--primary-one)', 'var(--primary-one)', 'var(--neutral-seven)', 'var(--neutral-seven)'];
-const range3a = [0, 5, 10, 15, 20, 25, 30, 35];
-const dash3a = [0, 8, 0, 8];
+let selectedIndex3a = -1;
 
 /* Graph-4a Variables */
 const type4a = 'pie';
@@ -306,6 +305,7 @@ function renderChart(type, series, labels, chartEl, placeholder, colors, selecte
     const nCats = labels.length;
     const markerGroups = [];
     if (type === 'line') {
+        range = [0, 5, 10, 15, 20, 25, 30, 35];
         const ml = 60, mr = 15, mt = 15, mb = 42;
         cX = ml, cY = mt, cW = VW - ml - mr, cH = VH - mt - mb;
         pts = series.map(function (s) {
@@ -1818,17 +1818,17 @@ function vennChart(icons, series1, labels, chartEl, placeholder, colors, selecte
 */
 
 
-piechart(icons1a, series1a, labels1a, chart1a, placeholder1a, colors1a, selectedIndex1a);
-piechart(icons1b, series1b, labels1b, chart1b, placeholder1b, colors1b, selectedIndex1b);
-barChart(series1c, categories1c, chart1c, placeholder1c, colors1c, groupRanges1c);
-vennChart(icons1d, series1d, labels1d, chart1d, placeholder1d, colors1d, selectedIndex1d, positions1d, scaleFactor1d);
-vennChart(icons1e, series1e, labels1e, chart1e, placeholder1e, colors1e, selectedIndex1e, positions1e, scaleFactor1e);
-pyramidChart(icons1f, series1f, labels1f, chart1f, placeholder1f, colors1f, selectedIndex1f);
-pyramidChart(icons1g, series1g, labels1g, chart1g, placeholder1g, colors1g, selectedIndex1g);
-piechart(icons2a, series2a, labels2a, chart2a, placeholder2a, colors2a, selectedIndex2a);
-piechart(icons2b, series2b, labels2b, chart2b, placeholder2b, colors2b, selectedIndex2b);
-piechart(icons2c, series2c, labels2c, chart2c, placeholder2c, colors2c, selectedIndex2c);
-piechart(icons2d, series2d, labels2d, chart2d, placeholder2d, colors2d, selectedIndex2d);
-lineChart(series3a, dash3a, categories3a, chart3a, placeholder3a, colors3a);
-piechart(icons4a, series4a, labels4a, chart4a, placeholder4a, colors4a, selectedIndex4a);
-piechart(icons4b, series4b, labels4b, chart4b, placeholder4b, colors4b, selectedIndex4b);
+piechart(type1a, series1a, labels1a, chart1a, placeholder1a, colors1a, selectedIndex1a);
+piechart(type1b, series1b, labels1b, chart1b, placeholder1b, colors1b, selectedIndex1b);
+barChart(type1c, series1c, labels1c, chart1c, placeholder1c, colors1c, selectedIndex1c);
+vennChart(type1d, series1d, labels1d, chart1d, placeholder1d, colors1d, selectedIndex1d);
+vennChart(type1e, series1e, labels1e, chart1e, placeholder1e, colors1e, selectedIndex1e);
+pyramidChart(type1f, series1f, labels1f, chart1f, placeholder1f, colors1f, selectedIndex1f);
+pyramidChart(type1f, series1g, labels1g, chart1g, placeholder1g, colors1g, selectedIndex1g);
+piechart(type2a, series2a, labels2a, chart2a, placeholder2a, colors2a, selectedIndex2a);
+piechart(type2a, series2b, labels2b, chart2b, placeholder2b, colors2b, selectedIndex2b);
+piechart(type2c, series2c, labels2c, chart2c, placeholder2c, colors2c, selectedIndex2c);
+piechart(type2d, series2d, labels2d, chart2d, placeholder2d, colors2d, selectedIndex2d);
+lineChart(type3a, series3a, labels3a, chart3a, placeholder3a, colors3a, selectedIndex3a);
+piechart(type4a, series4a, labels4a, chart4a, placeholder4a, colors4a, selectedIndex4a);
+piechart(type4b, series4b, labels4b, chart4b, placeholder4b, colors4b, selectedIndex4b);
