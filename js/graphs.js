@@ -10,7 +10,7 @@ const colors1a = ['var(--primary-one)', 'var(--primary-two)', 'var(--primary-thr
 let selectedIndex1a = -1;
 
 /* Graph-1b Variables */
-const icons1b = ['', '', '', '', ''];
+const icons1b = ['', '', '', '\u{e3b2}', ''];
 const series1b = [52, 19, 12, 11, 6];
 const labels1b = ['assembly', 'hotel', 'schools', 'hospital', 'factory'];
 const chart1b = document.getElementById('pie-chart-1b');
@@ -88,7 +88,7 @@ const colors1e = [
 const positions1e = [
     [{ cx: 120, cy: 115 }, { cx: 290, cy: 250 }, { cx: 300, cy: 115 }],
     [{ cx: 155, cy: 338 }, { cx: 390, cy: 200 }, { cx: 240, cy: 65 }],
-    [{ cx: 240, cy: 150 }]
+    [{ cx: 240, cy: 160 }]
 ]
 const scaleFactor1e = 150;
 let selectedIndex1e = -1;
@@ -744,18 +744,18 @@ function pyramidChart(icons, series1, labels, chartEl, placeholder, colors, sele
         polys.push(poly);
 
         var text = document.createElementNS(svgNS, 'text');
-        var lx = (i === 0) ? cx + halfAt(y2) + 8 : cx;
+        var lx = cx;
         var ly = (y1 + y2) / 2;
 
         text.setAttribute('x', String(lx));
         text.setAttribute('y', String(ly));
-        text.setAttribute('text-anchor', i === 0 ? 'start' : 'middle');
+        text.setAttribute('text-anchor', 'middle');
         text.setAttribute('dominant-baseline', 'middle');
         text.setAttribute('font-family', '"Font Awesome 7 Free"');
         text.setAttribute('font-size', '35');
         text.setAttribute('font-weight', '900');
         text.setAttribute('pointer-events', 'none');
-        text.style.fill = i === 0 ? 'var(--neutral-nine)' : 'var(--neutral-two-dark)';
+        text.style.fill = 'var(--neutral-two-dark)';
         text.textContent = icons[i];
         svg.appendChild(text);
         textEls.push(text);
@@ -789,9 +789,9 @@ function pyramidChart(icons, series1, labels, chartEl, placeholder, colors, sele
         t.setAttribute('font-size', '35');
         t.setAttribute('font-weight', '900');
         t.textContent = icons[idx];
-        t.style.fill = idx === 0 ? 'var(--neutral-nine)' : 'var(--neutral-two-dark)';
-        t.setAttribute('text-anchor', idx === 0 ? 'start' : 'middle');
-        t.setAttribute('x', String(idx === 0 ? cx + halfAt(sH) + 8 : cx));
+        t.style.fill = 'var(--neutral-two-dark)';
+        t.setAttribute('text-anchor', 'middle');
+        t.setAttribute('x', cx);
     }
 
     function handleClick(idx) {
@@ -813,8 +813,8 @@ function pyramidChart(icons, series1, labels, chartEl, placeholder, colors, sele
             var t = textEls[idx];
             var origX = t.getAttribute('x');
             t.setAttribute('font-family', '"Space Grotesk", sans-serif');
-            t.style.fill = idx === 0 ? 'var(--neutral-nine)' : 'var(--neutral-two-dark)';
-            t.setAttribute('text-anchor', idx === 0 ? 'start' : 'middle');
+            t.style.fill = 'var(--neutral-two-dark)';
+            t.setAttribute('text-anchor', 'middle');
 
             var line1 = Math.round(series1[idx] / total * 100) + '%';
             t.innerHTML = '<tspan x="' + origX + '" dy="0.3em" font-size="35">' + line1 + '</tspan>';
