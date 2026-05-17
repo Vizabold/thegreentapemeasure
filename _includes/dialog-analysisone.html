@@ -809,80 +809,78 @@
                 </picture>
                 <div id="pyramid-chart-1g"></div>
             </div>
-            <div class="flex flex-col gap-4 justify-between items-center sm:flex-col xl:grow">
-                <div class="flex flex-col gap-4 w-full lg:w-66 xl:w-89.25">
-                    <div class="flex flex-col gap-1">
-                        <h3>Three Excuses</h3>
-                        <h4>What was Blamed for the Deaths</h4>
-                        <p class="hidden js:block">Tap the graph or legend to see more details</p>
-                    </div>
-                    <div class="flex flex-col gap-4 overflow-y-auto scrollbar lg:max-h-45 xl:max-h-86.75">
-                        <details name="accordion" data-series-index="2">
-                            <summary class="btn btn-accordion">
-                                <svg aria-hidden="true" class="icon-xs fill-primary-one">
-                                    <use href="/assets/sprites/solid.svg#angle-down"></use>
+            <div class="flex flex-col gap-4 xl:grow">
+                <div class="flex flex-col gap-1">
+                    <h3>Three Excuses</h3>
+                    <h4>What was Blamed for the Deaths</h4>
+                    <p class="hidden js:block">Tap the graph or legend to see more details</p>
+                </div>
+                <div class="legend">
+                    <details name="accordion" data-series-index="2">
+                        <summary class="btn btn-accordion">
+                            <svg aria-hidden="true" class="icon-xs fill-primary-one">
+                                <use href="/assets/sprites/solid.svg#angle-down"></use>
+                            </svg>
+                            <div class="flex gap-2 justify-between items-center xs:justify-start">
+                                <svg class="icon-sm fill-current text-neutral-seven">
+                                    <use href="/assets/sprites/solid.svg#gavel"></use>
                                 </svg>
-                                <div class="flex gap-2 justify-between items-center xs:justify-start">
-                                    <svg class="icon-sm fill-current text-neutral-seven">
-                                        <use href="/assets/sprites/solid.svg#gavel"></use>
-                                    </svg>
-                                    <p class="self-center text-neutral-seven">Enforcement</p>
-                                </div>
-                            </summary>
-                            <div class="accordion-content-wrapper">
-                                <div class="flex flex-col gap-1 ml-6">
-                                    <p class="paragraph-md">2,432 Deaths</p>
-                                    <p class="wrap-break-word">City missed or overlooked code violations in
-                                        buildings.
-                                    </p>
-                                </div>
+                                <p class="self-center text-neutral-seven">Enforcement</p>
                             </div>
-                        </details>
-                        <details name="accordion" data-series-index="1">
-                            <summary class="btn btn-accordion">
-                                <svg aria-hidden="true" class="icon-xs fill-primary-one">
-                                    <use href="/assets/sprites/solid.svg#angle-down"></use>
+                        </summary>
+                        <div class="accordion-content-wrapper">
+                            <div class="flex flex-col gap-1 ml-6">
+                                <p class="paragraph-md">2,432 Deaths</p>
+                                <p class="wrap-break-word">City missed or overlooked code violations in
+                                    buildings.
+                                </p>
+                            </div>
+                        </div>
+                    </details>
+                    <details name="accordion" data-series-index="1">
+                        <summary class="btn btn-accordion">
+                            <svg aria-hidden="true" class="icon-xs fill-primary-one">
+                                <use href="/assets/sprites/solid.svg#angle-down"></use>
+                            </svg>
+                            <div class="flex gap-2 justify-between items-center xs:justify-start">
+                                <svg class="icon-sm fill-current text-neutral-seven">
+                                    <use href="/assets/sprites/solid.svg#building-shield"></use>
                                 </svg>
-                                <div class="flex gap-2 justify-between items-center xs:justify-start">
-                                    <svg class="icon-sm fill-current text-neutral-seven">
-                                        <use href="/assets/sprites/solid.svg#building-shield"></use>
-                                    </svg>
-                                    <p class="self-center text-neutral-seven">Building Codes</p>
-                                </div>
-                            </summary>
-                            <div class="accordion-content-wrapper">
-                                <div class="flex flex-col gap-1 ml-6">
-                                    <p class="paragraph-md">1,178 Deaths</p>
-                                    <p class="wrap-break-word">Building allowed to use outdated building codes or
-                                        the
-                                        codes
-                                        themselves
-                                        needed improvement.</p>
-                                </div>
+                                <p class="self-center text-neutral-seven">Building Codes</p>
                             </div>
-                        </details>
-                        <details name="accordion" data-series-index="0">
-                            <summary class="btn btn-accordion">
-                                <svg aria-hidden="true" class="icon-xs fill-primary-one">
-                                    <use href="/assets/sprites/solid.svg#angle-down"></use>
+                        </summary>
+                        <div class="accordion-content-wrapper">
+                            <div class="flex flex-col gap-1 ml-6">
+                                <p class="paragraph-md">1,178 Deaths</p>
+                                <p class="wrap-break-word">Building allowed to use outdated building codes or
+                                    the
+                                    codes
+                                    themselves
+                                    needed improvement.</p>
+                            </div>
+                        </div>
+                    </details>
+                    <details name="accordion" data-series-index="0">
+                        <summary class="btn btn-accordion">
+                            <svg aria-hidden="true" class="icon-xs fill-primary-one">
+                                <use href="/assets/sprites/solid.svg#angle-down"></use>
+                            </svg>
+                            <div class="flex gap-2 justify-between items-center xs:justify-start">
+                                <svg class="icon-sm fill-current text-neutral-seven">
+                                    <use href="/assets/sprites/solid.svg#compass-drafting"></use>
                                 </svg>
-                                <div class="flex gap-2 justify-between items-center xs:justify-start">
-                                    <svg class="icon-sm fill-current text-neutral-seven">
-                                        <use href="/assets/sprites/solid.svg#compass-drafting"></use>
-                                    </svg>
-                                    <p class="self-center text-neutral-seven">Architect</p>
-                                </div>
-                            </summary>
-                            <div class="accordion-content-wrapper">
-                                <div class="flex flex-col gap-1 ml-6">
-                                    <p class="paragraph-md">6 Deaths</p>
-                                    <p class="wrap-break-word">NOTE: Everyone involved in the project AND lack of
-                                        enforcement were blamed.
-                                    </p>
-                                </div>
+                                <p class="self-center text-neutral-seven">Architect</p>
                             </div>
-                        </details>
-                    </div>
+                        </summary>
+                        <div class="accordion-content-wrapper">
+                            <div class="flex flex-col gap-1 ml-6">
+                                <p class="paragraph-md">6 Deaths</p>
+                                <p class="wrap-break-word">NOTE: Everyone involved in the project AND lack of
+                                    enforcement were blamed.
+                                </p>
+                            </div>
+                        </div>
+                    </details>
                 </div>
             </div>
         </div>

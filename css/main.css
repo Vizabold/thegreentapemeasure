@@ -512,6 +512,10 @@
     @apply lg:mr-[calc((100vw-700px)/2)] xl:mr-[calc((100vw-936px)/2)];
   }
 
+  .legend {
+    @apply flex flex-col gap-4 overflow-y-auto scrollbar w-full lg:w-66 lg:max-h-45 xl:w-89.25 xl:max-h-86.75;
+  }
+
   #analysis-three-states label {
     @apply text-primary-one;
   }
