@@ -1,0 +1,19 @@
+{
+    "name": "The Green Tape Measure",
+    "short_name": "GTM",
+    "icons": [
+        {
+            "src": "/assets/images/icon-192.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "src": "/assets/images/icon-512.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+    ],
+    "theme_color": "#ACBAA5",
+    "background_color": "#56BB58",
+    "display": "standalone"
+}
