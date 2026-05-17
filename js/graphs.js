@@ -153,7 +153,10 @@ let selectedIndex4b = -1;
 
 
 function renderChart(type, series, labels, chartEl, placeholder, colors, selectedIndex) {
-    if (!chartEl) return;
+    if (!chartEl) {
+        console.log('chart did not render');
+        return;
+    }
 
     const svgNS = 'http://www.w3.org/2000/svg';
     const VW = 500, VH = 500;
