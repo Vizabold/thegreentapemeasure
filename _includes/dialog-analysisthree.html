@@ -19,93 +19,83 @@
                 </picture>
                 <div id="line-chart-3a"></div>
             </div>
-            <div class="flex flex-col gap-4 justify-between items-center sm:flex-col xl:grow">
-                <div class="flex flex-col gap-4 max-w-100">
-                    <div class="flex flex-col gap-1">
-                        <h3 id="analysis-three-title">Interior Design Title Legislation</h3>
-                        <h4>States per Decade, 1980s to today</h4>
-                        <p class="hidden js:block">Tap a line on the graph to see more details</p>
-                    </div>
-                    <div class="flex flex-col gap-4 overflow-y-auto scrollbar xl:max-h-90.75">
-                        <details name="accordion" class="max-w-80">
-                            <summary class="btn btn-accordion" data-series-index="0" role="button" tabindex="0"
-                                aria-pressed="false">
-                                <svg aria-hidden="true" class="icon-xs fill-primary-one">
-                                    <use href="/assets/sprites/solid.svg#angle-down"></use>
-                                </svg>
-                                <div
-                                    class="flex gap-2 justify-between items-center xs:justify-start xs:w-40 cursor-pointer">
-                                    <div class="w-9 h-1 bg-primary-one"></div>
-                                    <p class="self-center">Voluntary</p>
+            <div class="flex flex-col gap-4 xl:grow">
+                <div class="flex flex-col gap-1">
+                    <h3 id="analysis-three-title">Interior Design Title Legislation</h3>
+                    <h4>States per Decade, 1980s to today</h4>
+                    <p class="hidden js:block">Tap a line on the graph to see more details</p>
+                </div>
+                <div class="legend">
+                    <details name="accordion" data-series-index="0">
+                        <summary class="btn btn-accordion">
+                            <svg aria-hidden="true" class="icon-xs fill-primary-one">
+                                <use href="/assets/sprites/solid.svg#angle-down"></use>
+                            </svg>
+                            <div class="flex gap-2 justify-between items-center xs:justify-start xs:w-40">
+                                <div class="w-9 h-1 bg-primary-one"></div>
+                                <p class="self-center">Voluntary</p>
+                            </div>
+                        </summary>
+                        <div class="accordion-content-wrapper">
+                            <p class="wrap-break-word ml-6">No regulation of the title interior designer.</p>
+                        </div>
+                    </details>
+                    <details name="accordion" data-series-index="1">
+                        <summary class="btn btn-accordion">
+                            <svg aria-hidden="true" class="icon-xs fill-primary-one">
+                                <use href="/assets/sprites/solid.svg#angle-down"></use>
+                            </svg>
+                            <div class="flex gap-2 justify-between items-center xs:justify-start xs:w-40">
+                                <div class="flex gap-2 justify-between">
+                                    <div class="w-1 h-1 bg-primary-one"></div>
+                                    <div class="w-2 h-1 bg-primary-one"></div>
+                                    <div class="w-1 h-1 bg-primary-one"></div>
                                 </div>
-                            </summary>
-                            <div class="accordion-content-wrapper">
-                                <p class="wrap-break-word ml-6">No regulation of the title interior designer.</p>
+                                <p class="self-center">Permitting</p>
                             </div>
-                        </details>
-                        <details name="accordion" class="max-w-80">
-                            <summary class="btn btn-accordion" data-series-index="1" role="button" tabindex="0"
-                                aria-pressed="false">
-                                <svg aria-hidden="true" class="icon-xs fill-primary-one">
-                                    <use href="/assets/sprites/solid.svg#angle-down"></use>
-                                </svg>
-                                <div
-                                    class="flex gap-2 justify-between items-center xs:justify-start xs:w-40 cursor-pointer">
-                                    <div class="flex gap-2 justify-between">
-                                        <div class="w-1 h-1 bg-primary-one"></div>
-                                        <div class="w-2 h-1 bg-primary-one"></div>
-                                        <div class="w-1 h-1 bg-primary-one"></div>
-                                    </div>
-                                    <p class="self-center">Permitting</p>
+                        </summary>
+                        <div class="accordion-content-wrapper">
+                            <p class="wrap-break-word ml-6">Legislation that states interior designers can stamp,
+                                sign, and submit
+                                their drawings for permit.
+                            </p>
+                        </div>
+                    </details>
+                    <details name="accordion" data-series-index="2">
+                        <summary class="btn btn-accordion">
+                            <svg aria-hidden="true" class="icon-xs fill-primary-one">
+                                <use href="/assets/sprites/solid.svg#angle-down"></use>
+                            </svg>
+                            <div class="flex gap-2 justify-between items-center xs:justify-start xs:w-40">
+                                <div class="w-9 h-1 bg-neutral-seven"></div>
+                                <p class="self-center">Restrictions</p>
+                        </summary>
+                        <div class="accordion-content-wrapper">
+                            <p class="wrap-break-word ml-6">Varies by state but may include: no egress changes,
+                                architect
+                                oversight,
+                                square footages limits, certain occupancies, and types of non-loadbearing
+                                construction</p>
+                        </div>
+                    </details>
+                    <details name="accordion" data-series-index="3">
+                        <summary class="btn btn-accordion">
+                            <svg aria-hidden="true" class="icon-xs fill-primary-one">
+                                <use href="/assets/sprites/solid.svg#angle-down"></use>
+                            </svg>
+                            <div class="flex gap-2 justify-between items-center xs:justify-start xs:w-40">
+                                <div class="flex gap-2 justify-between">
+                                    <div class="w-1 h-1 bg-neutral-seven"></div>
+                                    <div class="w-2 h-1 bg-neutral-seven"></div>
+                                    <div class="w-1 h-1 bg-neutral-seven"></div>
                                 </div>
-                            </summary>
-                            <div class="accordion-content-wrapper">
-                                <p class="wrap-break-word ml-6">Legislation that states interior designers can stamp,
-                                    sign, and submit
-                                    their drawings for permit.
-                                </p>
+                                <p class="self-center">Regulation</p>
                             </div>
-                        </details>
-                        <details name="accordion" class="max-w-80">
-                            <summary class="btn btn-accordion" data-series-index="2" role="button" tabindex="0"
-                                aria-pressed="false">
-                                <svg aria-hidden="true" class="icon-xs fill-primary-one">
-                                    <use href="/assets/sprites/solid.svg#angle-down"></use>
-                                </svg>
-                                <div
-                                    class="flex gap-2 justify-between items-center xs:justify-start xs:w-40 cursor-pointer">
-                                    <div class="w-9 h-1 bg-neutral-seven"></div>
-                                    <p class="self-center">Restrictions</p>
-                            </summary>
-                            <div class="accordion-content-wrapper">
-                                <p class="wrap-break-word ml-6">Varies by state but may include: no egress changes,
-                                    architect
-                                    oversight,
-                                    square footages limits, certain occupancies, and types of non-loadbearing
-                                    construction</p>
-                            </div>
-                        </details>
-                        <details name="accordion" class="max-w-80">
-                            <summary class="btn btn-accordion" data-series-index="3" role="button" tabindex="0"
-                                aria-pressed="false">
-                                <svg aria-hidden="true" class="icon-xs fill-primary-one">
-                                    <use href="/assets/sprites/solid.svg#angle-down"></use>
-                                </svg>
-                                <div
-                                    class="flex gap-2 justify-between items-center xs:justify-start xs:w-40 cursor-pointer">
-                                    <div class="flex gap-2 justify-between">
-                                        <div class="w-1 h-1 bg-neutral-seven"></div>
-                                        <div class="w-2 h-1 bg-neutral-seven"></div>
-                                        <div class="w-1 h-1 bg-neutral-seven"></div>
-                                    </div>
-                                    <p class="self-center">Regulation</p>
-                                </div>
-                            </summary>
-                            <div class="accordion-content-wrapper">
-                                <p class="wrap-break-word ml-6">Regulation of the title Interior Designer.</p>
-                            </div>
-                        </details>
-                    </div>
+                        </summary>
+                        <div class="accordion-content-wrapper">
+                            <p class="wrap-break-word ml-6">Regulation of the title Interior Designer.</p>
+                        </div>
+                    </details>
                 </div>
             </div>
         </div>
