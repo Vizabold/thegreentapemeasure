@@ -86,9 +86,9 @@ const colors1e = [
     ['var(--neutral-seven-light)']
 ];
 const positions1e = [
-    [{ cx: 120, cy: 125 }, { cx: 290, cy: 270 }, { cx: 300, cy: 125 }],
+    [{ cx: 120, cy: 115 }, { cx: 290, cy: 250 }, { cx: 300, cy: 115 }],
     [{ cx: 155, cy: 338 }, { cx: 390, cy: 200 }, { cx: 240, cy: 65 }],
-    [{ cx: 240, cy: 175 }]
+    [{ cx: 240, cy: 150 }]
 ]
 const scaleFactor1e = 150;
 let selectedIndex1e = -1;
