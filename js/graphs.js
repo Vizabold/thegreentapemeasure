@@ -242,13 +242,14 @@ function renderChart(type, series, labels, chartEl, placeholder, colors, selecte
         const ml = 48, mr = 8, mt = 8, mb = 8;
         cX = ml, cY = mt, cW = VW - ml - mr, cH = VH - mt - mb;
         barW = (cW - (n - 1) * barGap - (groupRanges.length - 1) * groupGap) / n;
+        let runX = cX;
         for (var i = 0; i < n; i++) {
-            barXs.push(cX);
+            barXs.push(runX);
             if (i < n - 1) {
-                cX += barW + barGap;
+                runX += barW + barGap;
                 const curGi = groupRanges.findIndex(function (r) { return i >= r[0] && i <= r[1]; });
                 const nxtGi = groupRanges.findIndex(function (r) { return (i + 1) >= r[0] && (i + 1) <= r[1]; });
-                if (curGi !== nxtGi) cX += groupGap;
+                if (curGi !== nxtGi) runX += groupGap;
             }
         }
     }
@@ -426,12 +427,20 @@ function renderChart(type, series, labels, chartEl, placeholder, colors, selecte
         }
         const slide = chartEl.closest('.card');
         if (!slide) return;
-        slide.querySelectorAll('[data-series-index]').forEach(function (item) {
-            const itemIdx = parseInt(item.getAttribute('data-series-index'));
-            item.setAttribute('aria-pressed', String(idx !== -1 && itemIdx === idx));
-            item.style.transition = 'opacity 0.3s ease';
-            item.style.opacity = (idx === -1 || itemIdx === idx) ? '1' : '0.4';
-        });
+        if (type === 'bar') {
+            slide.querySelectorAll('[data-group-index]').forEach(function (item) {
+                const itemGi = parseInt(item.getAttribute('data-group-index'));
+                item.style.transition = 'opacity 0.3s ease';
+                item.style.opacity = (idx === -1 || itemGi === idx) ? '1' : '0.4';
+            });
+        } else {
+            slide.querySelectorAll('[data-series-index]').forEach(function (item) {
+                const itemIdx = parseInt(item.getAttribute('data-series-index'));
+                item.setAttribute('aria-pressed', String(idx !== -1 && itemIdx === idx));
+                item.style.transition = 'opacity 0.3s ease';
+                item.style.opacity = (idx === -1 || itemIdx === idx) ? '1' : '0.4';
+            });
+        }
     }
 
     /* Restore Icons */
@@ -456,6 +465,7 @@ function renderChart(type, series, labels, chartEl, placeholder, colors, selecte
     }
 
     function restoreIcons(g, d) {
+        clearTexts(g);
         drawIconsInto(g, d.iconArr, d.cx, d.cy, d.r);
     }
 
@@ -581,9 +591,6 @@ function renderChart(type, series, labels, chartEl, placeholder, colors, selecte
                 handleClick(i);
             }
         });
-        el.addEventListener('touchstart', function () {
-            handleClick(i);
-        }, { passive: true });
     }
 
     /*------------------------- Attributes ----------------------------*/
@@ -822,6 +829,25 @@ function renderChart(type, series, labels, chartEl, placeholder, colors, selecte
 
     const slide = chartEl.closest('.card');
     if (!slide) return;
+
+    if (type === 'bar') {
+        slide.querySelectorAll('[data-group-index]').forEach(function (item) {
+            const gi = parseInt(item.getAttribute('data-group-index'));
+            item.addEventListener('toggle', function () {
+                if (item.open) {
+                    lockedIndex = gi;
+                    highlight(gi);
+                } else {
+                    const anyOpen = Array.from(slide.querySelectorAll('[data-group-index]'))
+                        .some(function (d) { return d.open; });
+                    if (!anyOpen) {
+                        lockedIndex = -1;
+                        highlight(-1);
+                    }
+                }
+            });
+        });
+    }
 
     slide.querySelectorAll('[data-series-index]').forEach(function (item) {
         const idx = parseInt(item.getAttribute('data-series-index'));
