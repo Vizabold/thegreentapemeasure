@@ -408,6 +408,8 @@ function renderChart(type, series, labels, chartEl, placeholder, colors, selecte
                 } else {
                     groupEls[i].removeAttribute('data-active');
                 }
+            } else if (type === 'bar') {
+                el.el.style.opacity = (groupIdx === -1 || b.gi === groupIdx) ? '1' : '0.15';
             } else {
                 el.style.opacity = (idx === -1 || i === idx) ? '1' : '0.15';
             }
