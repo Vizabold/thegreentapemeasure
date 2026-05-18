@@ -472,12 +472,12 @@ function renderChart(type, series, labels, chartEl, placeholder, colors, selecte
     }
 
     /* Add text attributes */
-    function addTextAttr(t, el) {
+    function addTextAttr(t, el, isIcon = false) {
         t.setAttribute('text-anchor', 'middle');
         t.setAttribute('dominant-baseline', 'central');
-        t.setAttribute('font-family', '"Space Grotesk", sans-serif');
-        t.setAttribute('font-size', "35px");
-        t.setAttribute('font-weight', '900');
+        t.setAttribute('font-family', isIcon ? '"Font Awesome 7 Free"' : '"Space Grotesk", sans-serif');
+        t.setAttribute('font-size', '35');
+        t.setAttribute('font-weight', isIcon ? '900' : '700');
         t.setAttribute('pointer-events', 'none');
         t.style.fill = 'var(--neutral-two-dark)';
         if (type === 'venn') {
@@ -681,7 +681,7 @@ function renderChart(type, series, labels, chartEl, placeholder, colors, selecte
             t.setAttribute('x', String(lx));
             t.setAttribute('y', String(ly));
             t.textContent = icons[i];
-            addTextAttr(t);
+            addTextAttr(t, null, true);
         }
 
     }
@@ -798,7 +798,7 @@ function renderChart(type, series, labels, chartEl, placeholder, colors, selecte
             t.setAttribute('x', lx);
             t.setAttribute('y', ly);
             t.textContent = icons[i];
-            addTextAttr(t);
+            addTextAttr(t, null, true);
         }
     }
 
