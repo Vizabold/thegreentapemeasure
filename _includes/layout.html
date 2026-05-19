@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html class="scroll-smooth overflow-x-hidden" lang="en" data-theme="dark">
 
 <head>
   <meta charset="UTF-8" />
@@ -16,12 +16,13 @@
   <script src="js/detect.js"></script>
 </head>
 
-<body>
+<body
+  class="w-screen min-w-full text-base font-base font-normal [interpolate-size:allow-keywords] bg-neutral-three text-neutral-seven transition-colors duration-300 ease-in-out">
   <input type="checkbox" id="mode-toggle" class="peer hidden">
 
   <a href="#main-content" class="skip-link">Skip to main content</a>
 
-  <dialog id="mobile-nav-menu" popover>
+  <dialog class="[:not(:popover-open)]:hidden" id="mobile-nav-menu" popover>
     <div class="flex px-4 pt-8 pb-2 justify-between items-end bg-neutral-one">
       <picture class="mb-1">
         <source srcset="assets/images/logo-dk.webp" type="image/webp" media="all" data-theme="dark">
@@ -36,8 +37,8 @@
               <use href="/assets/sprites/solid.svg#sun"></use>
             </svg></span>
         </label>
-        <button type="button" class="btn btn-icon btn-icon--rounded" aria-label="close menu"
-          popovertarget="mobile-nav-menu" popovertargetaction="hide">
+        <button type="button" class="btn btn-icon btn-icon-lg" aria-label="close menu" popovertarget="mobile-nav-menu"
+          popovertargetaction="hide">
           <svg class="icon-xs" aria-hidden="true">
             <use href="/assets/sprites/solid.svg#x"></use>
           </svg>
@@ -51,17 +52,18 @@
       <a class="link link--nav-mobile" href="#timeline">Timeline</a>
       <a class="link link--nav-mobile" href="#research">Research</a>
       <a class="link link--nav-mobile" href="#advocacy">Advocacy</a>
-      <a class="link link--nav-mobile link--nav-mobile-takeaction" href="#takeaction">Take Action</a>
+      <a class="link link--nav-mobile bg-neutral-two text-secondary-one active:bg-neutral-four active:text-secondary-one"
+        href="#takeaction">Take Action</a>
     </nav>
   </dialog>
 
-  <div id="search-overlay" class="fixed inset-0 z-50 bg-neutral-one p-6 gap-4 xl:hidden" role="dialog" aria-modal="true"
-    aria-label="Search" aria-hidden="true">
+  <div class="fixed flex-col inset-0 z-50 bg-neutral-one p-6 gap-4 xl:hidden" id="search-overlay" role="dialog"
+    aria-modal="true" aria-label="Search" aria-hidden="true">
     <div class="flex gap-2 items-center">
       <label for="search-mobile" class="sr-only">Search</label>
       <input type="search" id="search-mobile" name="search-mobile" class="flex-1" placeholder="Search the site..."
         autocomplete="off">
-      <button type="button" id="search-close" class="btn btn-icon btn-icon--rounded" aria-label="Close search">
+      <button type="button" id="search-close" class="btn btn-icon btn-icon-lg" aria-label="Close search">
         <svg class="icon-xs" aria-hidden="true">
           <use href="/assets/sprites/solid.svg#x"></use>
         </svg>
@@ -72,7 +74,7 @@
   </div>
 
   <header
-    class="fixed z-10 w-full flex p-4 justify-between bg-neutral-two animate-[moveDown_1s_ease-out_forwards] transition-transform duration-300"
+    class="fixed z-10 w-full flex p-4 justify-between bg-neutral-two animate-moveDown transition-transform duration-300"
     id="header">
     <div class="flex gap-4 items-end">
       <a href="#">
@@ -106,7 +108,9 @@
           </svg>
         </button>
       </div>
-      <ul id="search-results" role="listbox" aria-label="Search results" class="search-dropdown"></ul>
+      <ul id="search-results" role="listbox" aria-label="Search results"
+        class="hidden absolute top-full left-0 w-72 mt-1 bg-neutral-two border border-solid border-neutral-three rounded-lg z-20 flex-col max-h-96 overflow-y-auto">
+      </ul>
     </form>
     <div class="flex gap-6 pb-1 items-center xl:items-end">
       <a class="btn btn-md btn-cta xxs:hidden xl:block" href="#takeaction">Take Action</a>
@@ -144,19 +148,21 @@
       Carolina nonprofit corporation.</p>
     <div class="flex gap-3 justify-center">
       <button type="button" popovertarget="disclaimer" aria-haspopup="dialog" aria-controls="disclaimer"
-        aria-expanded="false" class="link link--footer text-sm">Disclaimer</button>
+        aria-expanded="false" class="link link--inline text-neutral-seven text-sm">Disclaimer</button>
       <span class="text-sm"> | </span>
       <button popovertarget="privacy" aria-haspopup="dialog" aria-controls="privacy" aria-expanded="false"
-        class="link link--footer text-sm">Privacy Policy</button>
+        class="link link--inline text-neutral-seven text-sm">Privacy Policy</button>
     </div>
     <div class="flex gap-6 justify-center md:mr-6">
-      <a class="btn" href="https://www.linkedin.com/company/gtmeasure" aria-label="LinkedIn" target="_blank">
-        <svg aria-hidden="true" class="btn-social">
+      <a class="btn btn-icon btn-icon-sm" href="https://www.linkedin.com/company/gtmeasure" aria-label="LinkedIn"
+        target="_blank">
+        <svg class="icon-sm" aria-hidden="true">
           <use href="/assets/sprites/brands.svg#linkedin"></use>
         </svg>
       </a>
-      <a class="btn" href="https://www.instagram.com/gtmeasure" aria-label="Instagram" target="_blank">
-        <svg aria-hidden="true" class="btn-social">
+      <a class="btn btn-icon btn-icon-sm" href="https://www.instagram.com/gtmeasure" aria-label="Instagram"
+        target="_blank">
+        <svg class="icon-sm" aria-hidden="true">
           <use href="/assets/sprites/brands.svg#instagram"></use>
         </svg>
       </a>

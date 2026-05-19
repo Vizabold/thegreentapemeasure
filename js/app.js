@@ -37,7 +37,7 @@ const observer = new IntersectionObserver((entries) => {
       if (isMobileBtnShown.display !== 'none') {
         mobileNavLinks.forEach(link => {
           if (entry.target.id === 'takeaction') {
-            mobileNavLinks[5].classList.toggle("link--nav-mobile-takeaction-active");
+            mobileNavLinks[5].classList.toggle("link--nav-mobile-active-alt");
           } else {
             mobileNavLinks.forEach(link => {
               link.classList.toggle("link--nav-mobile-active",

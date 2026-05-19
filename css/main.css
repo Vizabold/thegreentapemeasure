@@ -5,19 +5,9 @@
 @source not "../_site/**/*";
 @variant js (&:where(.js *));
 
-@plugin "tailwind-scrollbar" {
-  nocompatible: true;
-}
-
 @layer base, components, utilities;
 
 @layer base {
-
-  html,
-  body {
-    @apply m-0 p-0 box-border w-screen min-w-full scroll-smooth text-base font-base font-normal [interpolate-size:allow-keywords] bg-neutral-three text-neutral-seven overflow-x-hidden transition-colors duration-300 ease-in-out;
-  }
-
   :focus-visible {
     @apply outline-offset-3 outline-primary-one outline-2;
   }
@@ -36,7 +26,11 @@
   }
 
   details[open]::details-content {
-    @apply block-auto opacity-100;
+    @apply block-auto opacity-100 animate-slideDown;
+  }
+
+  dialog {
+    @apply fixed top-0 left-0 m-0 w-full h-full min-w-screen min-h-screen bg-neutral-three opacity-0 hidden p-8 gap-12 -translate-x-full backdrop:bg-neutral-one backdrop:opacity-70 backdrop:backdrop-blur-sm transition-all duration-1000 ease-in-out [&:popover-open]:translate-x-0 open:flex flex-col [&:popover-open]:opacity-100 transition-discrete;
   }
 
   h2,
@@ -46,7 +40,7 @@
   }
 
   h2 {
-    @apply text-4xl font-bold;
+    @apply font-bold text-4xl xs:text-5xl;
   }
 
   h3 {
@@ -63,17 +57,12 @@
     @apply p-2 bg-neutral-six text-neutral-nine border border-solid border-neutral-three rounded-lg cursor-pointer;
   }
 
-  select {
-    @apply bg-neutral-five;
-  }
-
   input:hover,
-  textarea:hover,
-  select:hover {
-    @apply bg-primary-five;
-  }
-
-  option:hover {
+  input[type="checkbox"]:hover,
+  input[type="radio"]:hover,
+  option:hover,
+  select:hover,
+  textarea:hover {
     @apply bg-primary-five;
   }
 
@@ -81,22 +70,21 @@
     @apply border-primary-one;
   }
 
-  #takeaction input[type="checkbox"],
-  #takeaction input[type="radio"] {
-    @apply appearance-none bg-neutral-six w-8 min-w-8 h-8 min-h-8 border border-neutral-three transition-all duration-200 cursor-pointer;
+  input[type="checkbox"],
+  input[type="radio"] {
+    @apply appearance-none bg-neutral-six w-8 min-w-8 h-8 min-h-8 border border-neutral-three transition-all duration-200 cursor-pointer checked:bg-neutral-six checked:border-neutral-three;
   }
 
-  #takeaction input[type="checkbox"] {
-    @apply rounded-md checked:bg-neutral-six checked:border-neutral-three;
+  input[type="checkbox"] {
+    @apply rounded-md;
   }
 
-  #takeaction input[type="radio"] {
-    @apply rounded-full checked:bg-neutral-six checked:border-neutral-three;
+  input[type="radio"] {
+    @apply rounded-full;
   }
 
-  #takeaction input[type="checkbox"]:hover,
-  #takeaction input[type="radio"]:hover {
-    @apply bg-primary-five;
+  mark {
+    @apply bg-primary-five text-neutral-nine not-italic;
   }
 
   .paragraph-accent {
@@ -112,19 +100,15 @@
   }
 
   section {
-    @apply js:opacity-0 flex flex-col gap-8 px-4 py-12 lg:px-8;
+    @apply flex flex-col gap-8 px-4 py-12 js:opacity-0 lg:px-8;
   }
 
-  .scroll-appear {
-    @apply opacity-100 transition-opacity duration-500 ease-in-out;
+  select {
+    @apply bg-neutral-five;
   }
 
-  .skip-link {
-    @apply absolute -top-10 left-0 bg-neutral-one text-neutral-seven px-2 py-4 z-1000 rounded-sm;
-  }
-
-  .skip-link:focus {
-    @apply top-0;
+  svg {
+    @apply h-auto max-h-full fill-current text-primary-one;
   }
 
 }
@@ -132,15 +116,51 @@
 @layer components {
 
   /* ─────────────────────────────────────────
-     Button Components
+     Buttons
   ───────────────────────────────────────── */
-
-  /* ── Base ── */
   .btn {
     @apply flex justify-center gap-2 font-button font-bold items-center transition-colors duration-300 ease-out;
   }
 
-  /* ── Sizes ── */
+  /* ── Purpose ── */
+
+  .btn-accordion {
+    @apply gap-2 text-neutral-nine justify-start cursor-pointer hover:active:text-primary-two;
+  }
+
+  .btn-cta {
+    @apply bg-secondary-three text-neutral-two hover:active:bg-secondary-one active:inset-shadow-sm;
+  }
+
+  .btn-draggable {
+    @apply bg-primary-five justify-between text-neutral-nine rounded-xl p-4 shadow-xs hover:active:bg-primary-three hover:cursor-grab active:cursor-grabbing;
+  }
+
+  .btn-dropzone {
+    @apply text-neutral-seven rounded-xl p-8 border border-dashed border-neutral-seven hover:bg-neutral-six;
+  }
+
+  .btn-dropzone--placed {
+    @apply p-4 border-0 text-neutral-two-dark justify-between shadow-xs enabled:cursor-grab enabled:active:cursor-grabbing;
+  }
+
+  .btn-dropzone--placed svg {
+    @apply fill-neutral-two-dark;
+  }
+
+  .btn-icon {
+    @apply text-primary-one hover:active:fill-current hover:active:text-primary-two;
+  }
+
+  .btn-primary {
+    @apply bg-primary-one text-neutral-two hover:active:bg-primary-two active:inset-shadow-sm;
+  }
+
+  .btn-secondary {
+    @apply bg-neutral-five text-secondary-one hover:active:bg-neutral-six active:inset-shadow-sm;
+  }
+
+  /* ── Size ── */
   .btn-lg {
     @apply px-8 py-4 rounded-full text-lg;
   }
@@ -149,51 +169,28 @@
     @apply px-6 py-2 rounded-full;
   }
 
-  /* ── Primary ── */
-  .btn-primary {
-    @apply bg-primary-one text-neutral-two;
+  .btn-icon-lg {
+    @apply w-12 min-w-12 h-12 min-h-12 bg-neutral-two rounded-full border-[0.5px] border-solid border-primary-one hover:bg-neutral-six;
   }
 
-  .btn-primary:hover {
-    @apply bg-primary-two;
+  .btn-icon-sm {
+    @apply w-8.75 min-w-8.75 h-8.75 min-h-8.75 fill-neutral-seven;
   }
 
-  .btn-primary:active {
-    @apply bg-primary-two inset-shadow-sm;
+  /* ─────────────────────────────────────────
+     Cards
+  ───────────────────────────────────────── */
+  .card {
+    @apply flex flex-col gap-2 p-4 rounded-xl xl:p-8;
   }
 
-  /* ── Secondary ── */
-  .btn-secondary {
-    @apply bg-neutral-five text-secondary-one;
+  .card-current {
+    @apply outline-2 outline-offset-2 outline-primary-one;
   }
 
-  .btn-secondary:hover {
-    @apply bg-neutral-six;
-  }
-
-  .btn-secondary:active {
-    @apply bg-neutral-five inset-shadow-sm;
-  }
-
-  /* ── CTA ── */
-  .btn-cta {
-    @apply bg-secondary-three text-neutral-two;
-  }
-
-  .btn-cta:hover {
-    @apply bg-secondary-one;
-  }
-
-  .btn-cta:active {
-    @apply bg-secondary-one inset-shadow-sm;
-  }
-
-  /* ── SVGs ── */
-
-  svg {
-    @apply h-auto max-h-full;
-  }
-
+  /* ─────────────────────────────────────────
+     Icons
+  ───────────────────────────────────────── */
   .icon-lg {
     @apply w-12 min-w-12 h-12 min-h-12;
   }
@@ -206,207 +203,138 @@
     @apply w-4 min-w-4 h-4 min-h-4;
   }
 
-  .btn-icon:hover,
-  .btn-icon:active {
-    @apply fill-current text-primary-two;
+  .icon-container {
+    @apply w-12 h-12 min-w-12 flex justify-center items-center rounded-lg bg-neutral-six;
   }
 
-  .btn-icon--rounded {
-    @apply w-12 min-w-12 h-12 min-h-12 rounded-full border-[0.5px] border-solid border-primary-one bg-neutral-two;
+  .icon-container svg {
+    @apply w-5 h-5;
   }
 
-  .btn-icon--rounded svg {
-    @apply fill-current text-primary-one;
-  }
-
-  .btn-icon--rounded:hover {
-    @apply bg-neutral-six;
-  }
-
-  .btn-icon--rounded-sm {
-    @apply w-9 min-w-9 h-9 min-h-9 rounded-full border-[0.5px] border-solid border-primary-one bg-neutral-four;
-  }
-
-  .btn-icon--rounded-sm svg {
-    @apply fill-current text-primary-one;
-  }
-
-  .btn-icon--rounded-sm:hover {
-    @apply bg-neutral-six;
-  }
-
-  .btn-social {
-    @apply w-8.75 min-w-8.75 h-8.75 min-h-8.75 fill-neutral-seven;
-  }
-
-  .btn-social:hover,
-  .btn-social:active {
-    @apply fill-current text-primary-one;
-  }
-
-  /* ── Draggable ── */
-  .btn-draggable {
-    @apply bg-primary-five justify-between text-neutral-nine rounded-xl p-4 shadow-xs;
-  }
-
-  .btn-draggable:hover {
-    @apply bg-primary-three cursor-grab;
-  }
-
-  .btn-draggable:active {
-    @apply bg-primary-three cursor-grabbing;
-  }
-
-  /* ── Dropzone ── */
-  .btn-dropzone {
-    @apply text-neutral-seven rounded-xl p-8 border border-dashed border-neutral-seven;
-  }
-
-  .btn-dropzone:hover {
-    @apply bg-neutral-six;
-  }
-
-  /* ── Quiz status indicator (correct / incorrect) ── */
-  .quiz-status {
-    @apply justify-center gap-4;
-  }
-
-  .quiz-status svg {
-    @apply fill-current;
-  }
-
-  /* ── Dropzone placed state — overrides btn-dropzone defaults ── */
-  .btn-dropzone--placed {
-    @apply p-4 border-0 text-neutral-two-dark justify-between shadow-xs;
-  }
-
-  .btn-dropzone--placed svg {
-    @apply fill-neutral-two-dark;
-  }
-
-  .btn-dropzone--placed:not(:disabled) {
-    @apply cursor-grab;
-  }
-
-  .btn-dropzone--placed:not(:disabled):active {
-    @apply cursor-grabbing;
-  }
-
-  /* ── Accordions ── */
-  .btn-accordion {
-    @apply gap-2 text-neutral-nine justify-start cursor-pointer;
-  }
-
-  .btn-accordion label {
-    @apply flex items-center gap-2
-  }
-
-  #timeline .btn-accordion {
-    @apply justify-end;
-  }
-
-  .btn-accordion:hover,
-  .btn-accordiion:active {
-    @apply text-primary-two;
-  }
-
-  .legacy-toggle {
-    @apply hidden;
-  }
-
-  .legacy-label {
-    @apply cursor-[inherit] pointer-events-none;
-  }
-
-  details.accordion[open] .accordion-content-wrapper {
-    @apply animate-[slideDown_0.3s_ease-out];
+  .quiz-instruction {
+    @apply w-16 min-w-16 h-16 rounded-full flex justify-center items-center bg-primary-one;
   }
 
   /* ─────────────────────────────────────────
-     Link Components
+     Links
   ───────────────────────────────────────── */
-
-  /* ── Base ── */
   .link {
     @apply transition-all duration-300 ease-out;
   }
 
-  .link:hover {
-    @apply text-primary-two;
+  .link--inline {
+    @apply text-primary-one underline hover:active:text-primary-two visited:text-neutral-seven;
   }
 
-  .link:active {
-    @apply text-primary-one outline-none border-none;
+  .link--nav,
+  .link--nav-mobile {
+    @apply font-nav font-bold text-neutral-nine justify-center;
   }
 
-  /* ── Desktop Nav ── */
   .link--nav {
-    @apply inline-flex justify-center font-nav font-bold text-neutral-nine border-b-3 border-solid border-transparent;
+    @apply inline-flex border-b-3 border-solid border-transparent hover:text-primary-two active:text-primary-one;
   }
 
   .link--nav-active {
     @apply text-primary-one border-primary-one;
   }
 
-  /* ── Mobile Nav ── */
   .link--nav-mobile {
-    @apply flex flex-1 justify-center items-center w-full px-4 py-8 font-nav font-bold text-neutral-nine text-xl border-t-[0.5px] border-neutral-four border-solid;
-  }
-
-  .link--nav-mobile:active {
-    @apply bg-neutral-four text-neutral-nine;
+    @apply flex flex-1 items-center w-full px-4 py-8 text-xl border-t-[0.5px] border-neutral-four border-solid active:bg-neutral-four active:text-neutral-nine;
   }
 
   .link--nav-mobile-active {
     @apply bg-primary-one text-neutral-two-dark;
   }
 
-  /* ── Nav Mobile TakeAction ── */
-  .link--nav-mobile-takeaction {
-    @apply bg-neutral-two text-secondary-one;
-  }
-
-  .link--nav-mobile-takeaction:active {
-    @apply bg-neutral-four text-secondary-one;
-  }
-
-  .link--nav-mobile-takeaction-active {
+  .link--nav-mobile-active-alt {
     @apply bg-secondary-three text-neutral-two-dark;
   }
 
-  /* ── Inline ── */
-  .link--inline {
-    @apply text-primary-one;
+  .skip-link {
+    @apply absolute -top-10 left-0 bg-neutral-one text-neutral-seven px-2 py-4 z-1000 rounded-sm;
   }
 
-  .link--inline-neutral {
-    @apply text-neutral-seven underline;
+  .skip-link:focus {
+    @apply top-0;
   }
-
-  .link--inline:hover,
-  .link--inline:active {
-    @apply text-primary-two;
-  }
-
-  .link--inline:visited {
-    @apply text-neutral-seven;
-  }
-
-  /* ── Footer ── */
-  .link--footer {
-    @apply text-neutral-seven underline;
-  }
-
-  .link--footer:hover,
-  .link--footer:active {
-    @apply text-primary-two;
-  }
-
 
   /* ─────────────────────────────────────────
-     Toggle Components
+     Search
   ───────────────────────────────────────── */
+  .search-dropdown.is-open {
+    @apply flex;
+  }
 
+  .search-no-results {
+    @apply px-4 py-3 italic text-neutral-seven;
+  }
+
+  #search-overlay.is-open {
+    @apply flex;
+  }
+
+  .search-result {
+    @apply px-4 py-3 cursor-pointer flex flex-col gap-1 hover:focus:bg-primary-five hover:focus:outline-none;
+  }
+
+  .search-result-title {
+    @apply font-bold text-neutral-nine;
+  }
+
+  .search-result-snippet {
+    @apply text-sm text-neutral-seven;
+  }
+
+  /* ─────────────────────────────────────────
+     Slides
+  ───────────────────────────────────────── */
+  .legend {
+    @apply flex flex-col gap-4 overflow-y-auto scrollbar w-full lg:w-66 lg:max-h-45 xl:w-89.25 xl:max-h-86.75;
+  }
+
+  .presentation-slider {
+    @apply flex grow items-center overflow-x-auto snap-x snap-mandatory scroll-smooth gap-15;
+  }
+
+  .presentation-slide {
+    @apply min-w-full gap-4 bg-neutral-four snap-center lg:flex-row lg:min-w-175 lg:h-92 xl:gap-8 xl:min-w-234 xl:h-128.75 first-of-type:lg:ml-[calc((100vw-700px)/2)] first-of-type:xl:ml-[calc((100vw-936px)/2)] last-of-type:lg:mr-[calc((100vw-700px)/2)] last-of-type:xl:mr-[calc((100vw-936px)/2)];
+  }
+
+  .slide-current {
+    @apply outline-2 outline-offset-2 outline-primary-one;
+  }
+
+  svg g {
+    @apply isolate;
+  }
+
+  svg g[data-active="true"] {
+    @apply z-10;
+  }
+
+  /* ─────────────────────────────────────────
+     Timeline
+  ───────────────────────────────────────── */
+  .timeline-event {
+    @apply justify-center items-center relative z-1 w-full sm:gap-4 lg:gap-8;
+  }
+
+  .timeline-event-descript {
+    @apply flex flex-col flex-1 gap-1 items-end w-[46%] lg:gap-4;
+  }
+
+  .timeline-marker {
+    @apply w-6 min-w-6 h-6 min-h-6 bg-primary-one border-4 border-solid border-neutral-one rounded-full;
+  }
+
+  .timeline-date {
+    @apply flex-1 font-graph text-2xl font-bold text-neutral-seven opacity-50 w-[46%] lg:text-5xl;
+  }
+
+  /* ─────────────────────────────────────────
+     Toggles
+  ───────────────────────────────────────── */
   .toggle {
     @apply relative w-16.25 h-8.75 border border-solid border-primary-three rounded-full cursor-pointer;
   }
@@ -430,191 +358,20 @@
   body:has(#mode-toggle:checked) .toggle-sun {
     @apply block;
   }
-
-  /* ─────────────────────────────────────────
-     Dialog Components
-  ───────────────────────────────────────── */
-
-  dialog {
-
-    @apply fixed top-0 left-0 m-0 w-full h-full min-w-screen min-h-screen opacity-0 hidden -translate-x-full backdrop:bg-neutral-one backdrop:opacity-70 backdrop:backdrop-blur-sm transition-all duration-1000 ease-in-out [&:popover-open]:translate-x-0 open:flex flex-col [&:popover-open]:opacity-100 transition-discrete;
-  }
-
-  /* ─────────────────────────────────────────
-     Card Components
-  ───────────────────────────────────────── */
-
-  .card {
-    @apply flex flex-col gap-2 p-4 rounded-xl;
-  }
-
 }
 
 @layer utilities {
-
-  .apexcharts-datalabel svg {
-    width: 36px !important;
-    height: 36px !important;
-    display: inline-block;
-  }
-
-  .apexcharts-pie-series path {
-    cursor: pointer;
-  }
-
-  .icon-container {
-    @apply w-12 h-12 min-w-12 flex justify-center items-center rounded-lg bg-neutral-six;
-  }
-
-  .icon-container svg {
-    @apply w-5 h-5 fill-current;
-  }
-
-  .icon-container svg use:not([href*="fire"]) {
-    @apply text-primary-one;
-  }
-
-  #hero-btn-one svg {
-    @apply transition-transform duration-75 ease-in-out;
-  }
-
-  #hero-btn-one:hover svg {
-    @apply translate-x-1;
-  }
-
-  #quiz-js-note {
-    @apply block js:hidden;
-  }
-
-  .quiz-instruction {
-    @apply w-16 min-w-16 h-16 rounded-full flex justify-center items-center bg-primary-one;
-  }
-
-  .analysis-dialog {
-    @apply flex flex-col w-screen min-w-full h-screen min-h-full bg-neutral-three overflow-y-hidden;
-  }
-
-  .presentation-slider {
-    @apply flex grow items-center overflow-x-auto snap-x snap-mandatory scroll-smooth gap-15;
-  }
-
-  .presentation-slider .presentation-slide:first-of-type {
-    @apply lg:ml-[calc((100vw-700px)/2)] xl:ml-[calc((100vw-936px)/2)];
-  }
-
-  #analysis-one .presentation-slider .presentation-slide:last-of-type,
-  #analysis-two .presentation-slider .presentation-slide:last-of-type {
-    @apply flex-col lg:mr-[calc((100vw-700px)/2)] xl:mr-[calc((100vw-936px)/2)];
-  }
-
-  #analysis-three .presentation-slider .presentation-slide:last-of-type,
-  #analysis-four .presentation-slider .presentation-slide:last-of-type {
-    @apply lg:mr-[calc((100vw-700px)/2)] xl:mr-[calc((100vw-936px)/2)];
-  }
-
-  .legend {
-    @apply flex flex-col gap-4 overflow-y-auto scrollbar w-full lg:w-66 lg:max-h-45 xl:w-89.25 xl:max-h-86.75;
-  }
-
-  #analysis-three-states label {
-    @apply text-primary-one;
-  }
-
-  .presentation-slide {
-    @apply min-w-full gap-4 bg-neutral-four snap-center lg:flex-row lg:min-w-175 lg:h-92 xl:gap-8 xl:min-w-234 xl:h-128.75;
-  }
-
-  .presentation-slide p {
-    @apply text-neutral-seven;
-  }
-
-  .slide-current,
-  .card-current {
-    @apply outline-2 outline-offset-2 outline-primary-one;
+  .scroll-appear {
+    @apply opacity-100 transition-opacity duration-500 ease-in-out;
   }
 
   .scrollbar {
     @apply scrollbar-thin scrollbar-thumb-neutral-six scrollbar-track-transparent scrollbar-thumb-rounded-full;
   }
 
-  .no-scrollbar::-webkit-scrollbar {
-    @apply hidden;
-  }
-
   .no-scrollbar {
     @apply: ms-overflow-style-none scrollbar-width-none [&::-webkit-scrollbar]:hidden;
   }
-
-  .timeline-event {
-    @apply justify-center items-center relative z-1 w-full sm:gap-4 lg:gap-8;
-  }
-
-  .timeline-event-descript {
-    @apply flex flex-col flex-1 gap-1 items-end w-[46%] lg:gap-4;
-  }
-
-  .timeline-marker {
-    @apply w-6 min-w-6 h-6 min-h-6 bg-primary-one border-4 border-solid border-neutral-one rounded-full;
-  }
-
-  .timeline-date {
-    @apply flex-1 font-graph text-2xl font-bold text-neutral-seven opacity-50 w-[46%] lg:text-5xl;
-  }
-
-  /* ─────────────────────────────────────────
-     Search Components
-  ───────────────────────────────────────── */
-
-  .search-dropdown {
-    @apply hidden absolute top-full left-0 w-72 mt-1 bg-neutral-two border border-solid border-neutral-three rounded-lg z-20 flex-col max-h-96 overflow-y-auto;
-  }
-
-  .search-dropdown.is-open {
-    @apply flex;
-  }
-
-  .search-result {
-    @apply px-4 py-3 cursor-pointer flex flex-col gap-1;
-  }
-
-  .search-result:hover,
-  .search-result:focus {
-    @apply bg-primary-five outline-none;
-  }
-
-  .search-result-title {
-    @apply font-bold text-neutral-nine;
-  }
-
-  .search-result-snippet {
-    @apply text-sm text-neutral-seven;
-  }
-
-  .search-no-results {
-    @apply px-4 py-3 italic text-neutral-seven;
-  }
-
-  mark {
-    @apply bg-primary-five text-neutral-nine not-italic;
-  }
-
-  svg g {
-    @apply isolate;
-  }
-
-  svg g[data-active="true"] {
-    @apply z-10;
-  }
-
-}
-
-#search-overlay {
-  display: none;
-  flex-direction: column;
-}
-
-#search-overlay.is-open {
-  display: flex;
 }
 
 :root:has(#mode-toggle:checked) {

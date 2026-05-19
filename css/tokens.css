@@ -36,13 +36,79 @@
       --font-graph: "Space Grotesk", sans-serif;
 
       /* breakpoints */
-      --breakpoint-xxs: 300px;
-      --breakpoint-xs: 400px;
-      --breakpoint-sm: 600px;
-      --breakpoint-md: 700px;
-      --breakpoint-lg: 850px;
-      --breakpoint-xl: 1000px;
-      --breakpoint-xxl: 1280px;
+      --breakpoint-xxs: 18.75rem;
+      --breakpoint-xs: 25rem;
+      --breakpoint-sm: 37.5rem;
+      --breakpoint-md: 43.75rem;
+      --breakpoint-lg: 53.125rem;
+      --breakpoint-xl: 62.5rem;
+      --breakpoint-xxl: 80rem;
+
+      /* animations */
+      --animate-slideInDown: slideDown 0.3s ease-out forwards;
+      --animate-slideInLeft: slideInLeft 1.25s ease-out forwards;
+      --animate-slideInRight: slideInRight 1.25s ease-out forwards;
+      --animate-moveDown: moveDown 1s ease-out forwards;
+      --animate-appear: appear 1s ease-out forwards;
+      --animate-appearAlt: appear 2.5s ease-out backwards;
+
+      @keyframes slideDown {
+          from {
+              opacity: 0;
+              transform: translateY(-10px);
+          }
+
+          to {
+              opacity: 1;
+              transform: translateY(0);
+          }
+      }
+
+      @keyframes slideInLeft {
+          from {
+              opacity: 0;
+              transform: translateX(-100%);
+          }
+
+          to {
+              opacity: 1;
+              transform: translateX(0);
+          }
+      }
+
+      @keyframes slideInRight {
+          from {
+              opacity: 0;
+              transform: translateX(100%);
+          }
+
+          to {
+              opacity: 1;
+              transform: translateX(0);
+          }
+      }
+
+      @keyframes moveDown {
+          0% {
+              opacity: 0;
+              transform: translateY(-100%);
+          }
+
+          100% {
+              opacity: 1;
+              transform: translateY(0%);
+          }
+      }
+
+      @keyframes appear {
+          0% {
+              opacity: 0;
+          }
+
+          100% {
+              opacity: 1;
+          }
+      }
   }
 
   :root {
@@ -72,7 +138,6 @@
      Fonts
   ───────────────────────────────────────── */
 
-  /* inter-regular - latin */
   @font-face {
       font-display: swap;
       font-family: 'Inter';
@@ -82,7 +147,6 @@
           url('../assets/fonts/inter-v20-latin-regular.ttf') format('truetype');
   }
 
-  /* inter-italic - latin */
   @font-face {
       font-display: swap;
       font-family: 'Inter';
@@ -92,7 +156,6 @@
           url('../assets/fonts/inter-v20-latin-italic.ttf') format('truetype');
   }
 
-  /* inter-700 - latin */
   @font-face {
       font-display: swap;
       font-family: 'Inter';
@@ -102,7 +165,6 @@
           url('../assets/fonts/inter-v20-latin-700.ttf') format('truetype');
   }
 
-  /* inter-700italic - latin */
   @font-face {
       font-display: swap;
       font-family: 'Inter';
@@ -113,7 +175,6 @@
   }
 
 
-  /* manrope-regular - latin */
   @font-face {
       font-display: swap;
       font-family: 'Manrope';
@@ -123,7 +184,6 @@
           url('../assets/fonts/manrope-v20-latin-regular.ttf') format('truetype');
   }
 
-  /* manrope-700 - latin */
   @font-face {
       font-display: swap;
       font-family: 'Manrope';
@@ -133,7 +193,6 @@
           url('../assets/fonts/manrope-v20-latin-700.ttf') format('truetype');
   }
 
-  /* space-grotesk-regular - latin */
   @font-face {
       font-display: swap;
       font-family: 'Space Grotesk';
@@ -143,7 +202,6 @@
           url('../assets/fonts/space-grotesk-v22-latin-regular.ttf') format('truetype');
   }
 
-  /* space-grotesk-700 - latin */
   @font-face {
       font-display: swap;
       font-family: 'Space Grotesk';
@@ -191,69 +249,6 @@
       }
   }
 
-
-  /* ─────────────────────────────────────────
-     Animations
-  ───────────────────────────────────────── */
-
-  @keyframes slideDown {
-      from {
-          opacity: 0;
-          transform: translateY(-10px);
-      }
-
-      to {
-          opacity: 1;
-          transform: translateY(0);
-      }
-  }
-
-  @keyframes slideInLeft {
-      from {
-          opacity: 0;
-          transform: translateX(-100%);
-      }
-
-      to {
-          opacity: 1;
-          transform: translateX(0);
-      }
-  }
-
-  @keyframes slideInRight {
-      from {
-          opacity: 0;
-          transform: translateX(100%);
-      }
-
-      to {
-          opacity: 1;
-          transform: translateX(0);
-      }
-  }
-
-  @keyframes moveDown {
-      0% {
-          opacity: 0;
-          transform: translateY(-100%);
-      }
-
-      100% {
-          opacity: 1;
-          transform: translateY(0%);
-      }
-  }
-
-  @keyframes appear {
-      0% {
-          opacity: 0;
-      }
-
-      100% {
-          opacity: 1;
-      }
-  }
-
   /* ─────────────────────────────────────────
      Starting States
   ───────────────────────────────────────── */
@@ -265,28 +260,8 @@
       }
   }
 
-  /* ─────────────────────────────────────────
-     Legacy Supports
-  ───────────────────────────────────────── */
 
-  /* dialogs */
-  @supports (commandfor: "privacy") {
-      .fallback-label {
-          @apply hidden;
-      }
-  }
-
-  @supports (commandfor: "disclaimer") {
-      .fallback-label {
-          @apply hidden;
-      }
-  }
-
-  #mobile-nav-menu:not(:popover-open) {
-      display: none;
-  }
-
-  /* accordions */
+  /* accordions on legacy browsers */
   @media all and (-ms-high-contrast:none),
   (-ms-high-contrast: active) {
 
@@ -298,41 +273,4 @@
           @apply block;
       }
 
-      details summary label {
-          @apply pointer-events-auto block w-full;
-      }
-
-      .accordion-content {
-          @apply hidden;
-      }
-
-      .legacy-toggle:checked~details .accordion-content {
-          @apply flex max-h-[1000px] opacity-100;
-      }
-
-      .legacy-label {
-          @apply block cursor-pointer w-full pointer-events-auto;
-      }
-
-  }
-
-  /* ─────────────────────────────────────────
-     Breakpoints (when variables cannot be used)
-  ───────────────────────────────────────── */
-  @media screen and (min-width: 400px) {
-      h2 {
-          @apply text-5xl;
-      }
-  }
-
-  @media screen and (min-width: 850px) {
-      section {
-          @apply px-8;
-      }
-  }
-
-  @media screen and (min-width: 1000px) {
-      .card {
-          @apply p-8;
-      }
   }
