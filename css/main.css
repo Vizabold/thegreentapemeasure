@@ -374,7 +374,7 @@
   }
 
   .scrollbar {
-    @apply scrollbar-thin scrollbar-thumb-neutral-six scrollbar-track-transparent scrollbar-thumb-rounded-full;
+    @apply scrollbar-thumb-neutral-six scrollbar-track-transparent scrollbar-thumb-rounded-full;
   }
 
   .no-scrollbar {
