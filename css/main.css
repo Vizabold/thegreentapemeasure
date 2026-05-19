@@ -360,18 +360,34 @@
   }
 }
 
-@layer utilities {
-  .scroll-appear {
-    @apply opacity-100 transition-opacity duration-500 ease-in-out;
+@utility scrollbar {
+  @apply scrollbar-thin scrollbar-thumb-neutral-six scrollbar-track-transparent;
+
+  &::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
   }
 
-  .scrollbar {
-    @apply scrollbar-thin scrollbar-thumb-neutral-six scrollbar-track-transparent scrollbar-thumb-rounded-full;
+  &::-webkit-scrollbar-track {
+    background: transparent;
   }
 
-  .no-scrollbar {
-    @apply: ms-overflow-style-none scrollbar-width-none [&::-webkit-scrollbar]:hidden;
+  &::-webkit-scrollbar-thumb {
+    background: var(--color-neutral-six);
+    border-radius: 9999px;
   }
+
+  &::-webkit-scrollbar-thumb:hover {
+    background: var(--color-neutral-five);
+  }
+}
+
+@utility scroll-appear {
+  @apply opacity-100 transition-opacity duration-500 ease-in-out;
+}
+
+@utility no-scrollbar {
+  @apply: ms-overflow-style-none scrollbar-width-none [&::-webkit-scrollbar]:hidden;
 }
 
 :root:has(#mode-toggle:checked) {
