@@ -290,7 +290,7 @@
      Slides
   ───────────────────────────────────────── */
   .legend {
-    @apply flex flex-col gap-4 overflow-y-auto scrollbar w-full lg:w-66 lg:max-h-45 xl:w-89.25 xl:max-h-86.75;
+    @apply flex flex-col gap-4 overflow-y-auto w-full lg:w-66 lg:max-h-45 xl:w-89.25 xl:max-h-86.75;
   }
 
   .presentation-slider {
