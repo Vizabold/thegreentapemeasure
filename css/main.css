@@ -365,6 +365,14 @@
     @apply opacity-100 transition-opacity duration-500 ease-in-out;
   }
 
+  .scrollbar-thin {
+    scrollbar-width: thin;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar {
+    width: 6px;
+  }
+
   .scrollbar {
     @apply scrollbar-thin scrollbar-thumb-neutral-six scrollbar-track-transparent scrollbar-thumb-rounded-full;
   }
