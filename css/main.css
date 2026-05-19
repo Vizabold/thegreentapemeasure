@@ -26,7 +26,7 @@
   }
 
   details[open]::details-content {
-    @apply block-auto opacity-100 animate-slideDown;
+    @apply block-auto opacity-100 animate-slideInDown;
   }
 
   dialog {
