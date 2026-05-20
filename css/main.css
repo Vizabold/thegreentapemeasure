@@ -125,15 +125,15 @@
   /* ── Purpose ── */
 
   .btn-accordion {
-    @apply gap-2 text-neutral-nine justify-start cursor-pointer hover:active:text-primary-two;
+    @apply gap-2 text-neutral-nine justify-start cursor-pointer hover:text-primary-two active:text-primary-two;
   }
 
   .btn-cta {
-    @apply bg-secondary-three text-neutral-two hover:active:bg-secondary-one active:inset-shadow-sm;
+    @apply bg-secondary-three text-neutral-two hover:bg-secondary-oneactive:bg-secondary-one active:inset-shadow-sm;
   }
 
   .btn-draggable {
-    @apply bg-primary-five justify-between text-neutral-nine rounded-xl p-4 shadow-xs hover:active:bg-primary-three hover:cursor-grab active:cursor-grabbing;
+    @apply bg-primary-five justify-between text-neutral-nine rounded-xl p-4 shadow-xs hover:bg-primary-three hover:cursor-grab active:bg-primary-three active:cursor-grabbing;
   }
 
   .btn-dropzone {
@@ -149,15 +149,15 @@
   }
 
   .btn-icon {
-    @apply text-primary-one hover:active:fill-current hover:active:text-primary-two;
+    @apply text-primary-one hover:text-primary-two active:text-primary-two;
   }
 
   .btn-primary {
-    @apply bg-primary-one text-neutral-two hover:active:bg-primary-two active:inset-shadow-sm;
+    @apply bg-primary-one text-neutral-two hover:bg-primary-two active:bg-primary-two active:inset-shadow-sm;
   }
 
   .btn-secondary {
-    @apply bg-neutral-five text-secondary-one hover:active:bg-neutral-six active:inset-shadow-sm;
+    @apply bg-neutral-five text-secondary-one hover:bg-neutral-six active:bg-neutral-six active:inset-shadow-sm;
   }
 
   /* ── Size ── */
@@ -223,7 +223,7 @@
   }
 
   .link--inline {
-    @apply text-primary-one underline hover:active:text-primary-two visited:text-neutral-seven;
+    @apply text-primary-one underline hover:text-primary-two active:text-primary-two visited:text-neutral-seven;
   }
 
   .link--nav,
