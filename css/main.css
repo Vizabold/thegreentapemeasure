@@ -157,7 +157,7 @@
   }
 
   .btn-secondary {
-    @apply bg-neutral-two text-primary-one border-2 border-solid border-primary-three hover:bg-neutral-six active:bg-neutral-six active:inset-shadow-sm;
+    @apply bg-neutral-two text-primary-one border-2 border-solid border-primary-three hover:bg-neutral-four active:bg-neutral-four active:inset-shadow-sm;
   }
 
   /* ── Size ── */
