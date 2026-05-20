@@ -348,7 +348,7 @@
   }
 
   body:has(#mode-toggle:checked) .slider {
-    @apply translate-x-6.25;
+    @apply translate-x-6.5;
   }
 
   body:has(#mode-toggle:checked) .toggle-moon {
