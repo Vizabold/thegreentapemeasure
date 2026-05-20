@@ -129,7 +129,7 @@
   }
 
   .btn-cta {
-    @apply bg-secondary-three text-neutral-two hover:bg-secondary-oneactive:bg-secondary-one active:inset-shadow-sm;
+    @apply bg-secondary-three text-neutral-two hover:bg-secondary-one active:bg-secondary-one active:inset-shadow-sm;
   }
 
   .btn-draggable {
