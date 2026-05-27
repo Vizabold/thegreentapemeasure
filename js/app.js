@@ -146,19 +146,21 @@ function handleSectionBtns(container) {
   const prevBtn = container.firstElementChild;
   const nextBtn = container.lastElementChild;
   const cards = container.nextElementSibling.querySelectorAll('.card');
+  const openBtns = container.querySelectorAll('.open-analysis-btn');
   let current = 0;
   cards[current].classList.add('card-current');
 
   function goToCard(index) {
     cards[current].classList.remove('card-current');
-    current = index;
-    cards[current].classList.add('card-current');
-
-    cards[current].scrollIntoView({
-      behavior: 'smooth',
-      block: 'nearest',
-      inline: 'start'
-    })
+    setTimeout(() => {
+      cards[index].scrollIntoView({
+        behavior: 'smooth',
+        block: 'nearest',
+        inline: 'start'
+      })
+      cards[index].classList.add('card-current');
+      current = index;
+    }, 301)
   }
 
   prevBtn.addEventListener('click', () => {
@@ -169,6 +171,12 @@ function handleSectionBtns(container) {
   nextBtn.addEventListener('click', () => {
     let next = current === cards.length - 1 ? 0 : current + 1;
     goToCard(next);
+  })
+
+  openBtns.forEach((btn, i) => {
+    btn.addEventListener('click', () => {
+      goToCard(i);
+    })
   })
 
 }

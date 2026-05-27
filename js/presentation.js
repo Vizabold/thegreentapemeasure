@@ -14,16 +14,30 @@ document.querySelectorAll('dialog.analysis-dialog').forEach(dialog => {
   const slider = dialog.querySelector('.presentation-slider');
   let current = 0;
   if (!slides.length || !prevBtn || !nextBtn) return;
-  slides[current].classList.add('slide-current');
+
+  function removeActiveSlide() {
+    slides.forEach(slide => {
+      if (slide.classList.contains('slide-current')) {
+        slide.classList.remove('slide-current');
+      }
+    })
+  }
+
+  const slideObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        removeActiveSlide();
+        setTimeout(() => {
+          entry.target.classList.add('slide-current');
+        }, 301)
+      }
+    })
+  })
 
   function goTo(index) {
-    slides[current].classList.remove('slide-current');
-
     current = index;
 
-    slides[current].classList.add('slide-current');
-
-    slides[current].scrollIntoView({
+    slides[index].scrollIntoView({
       behavior: 'smooth',
       block: 'nearest',
       inline: 'center'

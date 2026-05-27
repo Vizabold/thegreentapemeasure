@@ -181,7 +181,7 @@
      Cards
   ───────────────────────────────────────── */
   .card {
-    @apply flex flex-col gap-2 p-4 rounded-xl xl:p-8;
+    @apply flex flex-col gap-2 p-4 rounded-xl transition-all duration-300 ease-in-out xl:p-8;
   }
 
   .card-current {
@@ -219,7 +219,7 @@
      Links
   ───────────────────────────────────────── */
   .link {
-    @apply transition-all duration-300 ease-out;
+    @apply transition-all duration-300 ease-out active:border-0;
   }
 
   .link--inline {
@@ -298,10 +298,10 @@
   }
 
   .presentation-slide {
-    @apply min-w-full self-start gap-4 bg-neutral-four snap-center lg:self-center lg:flex-row lg:min-w-175 lg:h-92 xl:gap-8 xl:min-w-234 xl:h-128.75 first-of-type:lg:ml-[calc((100vw-700px)/2)] first-of-type:xl:ml-[calc((100vw-936px)/2)] last-of-type:lg:mr-[calc((100vw-700px)/2)] last-of-type:xl:mr-[calc((100vw-936px)/2)];
+    @apply min-w-full self-start gap-4 bg-neutral-four snap-center transition-all duration-300 ease-in-out lg:self-center lg:flex-row lg:min-w-175 lg:h-92 xl:gap-8 xl:min-w-234 xl:h-128.75 first-of-type:lg:ml-[calc((100vw-700px)/2)] first-of-type:xl:ml-[calc((100vw-936px)/2)] last-of-type:lg:mr-[calc((100vw-700px)/2)] last-of-type:xl:mr-[calc((100vw-936px)/2)];
   }
 
-  .presentation-slide:first-child svg {
+  .presentation-slide div:first-of-type svg {
     @apply text-neutral-two-dark;
   }
 
@@ -391,7 +391,7 @@
 }
 
 @utility no-scrollbar {
-  @apply: ms-overflow-style-none scrollbar-width-none [&::-webkit-scrollbar]:hidden;
+  @apply ms-overflow-style-none scrollbar-width-none [&::-webkit-scrollbar]:hidden;
 }
 
 :root:has(#mode-toggle:checked) {
