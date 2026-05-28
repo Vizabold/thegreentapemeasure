@@ -12,7 +12,7 @@ year.innerHTML = `${currentYear}`;
 
 /*--------------- FOOTER FADE IN/OUT --------------------- */
 const footerSentinel = document.getElementById('footer-scroll-sentinel');
-const footer = document.getElementById('main-footer');
+const footer = document.querySelector('footer');
 
 const footerObserver = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
