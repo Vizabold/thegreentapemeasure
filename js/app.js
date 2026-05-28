@@ -11,25 +11,43 @@ const currentYear = new Date().getFullYear();
 year.innerHTML = `${currentYear}`;
 
 /*--------------- FOOTER FADE IN/OUT --------------------- */
-const footerSentinel = document.getElementById("footer-scroll-sentinel");
 const footer = document.getElementById("main-footer");
+const bottomOffset = 50;
 
-const footerObserver = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      footer.classList.remove("opacity-0", "pointer-events-none");
-      footer.classList.add("opacity-100");
-    } else {
-      footer.classList.remove("opacity-100");
-      footer.classList.add("opacity-0", "pointer-events-none");
-    }
-  });
-}, {
-  root: null,
-  threshold: 0.1
-});
+const updateFooter = () => {
+  let pageHeight = Math.max(
+    html.clientHeight,
+    html.scrollHeight,
+    html.offsetHeight
+  )
 
-footerObserver.observe(footerSentinel);
+  const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+  const viewportHeight = window.innerHeight;
+  const distanceToBottom = pageHeight - (scrollTop + viewportHeight);
+
+  if (distanceToBottom <= bottomOffset) {
+    footer.classList.remove("opacity-0", "pointer-events-none");
+    footer.classList.add("opacity-100");
+  }
+  else {
+    footer.classList.remove("opacity-100");
+    footer.classList.add("opacity-0", "pointer-events-none");
+  }
+}
+
+updateFooter();
+
+window.addEventListener('scroll', updateFooter);
+
+window.addEventListener('resize', () => {
+  pageHeight = Math.max(
+    html.clientHeight,
+    html.scrollHeight,
+    html.offsetHeight
+  );
+  updateFooter();
+})
+
 
 /*--------------- POPOVER LEGACY SUPPORT --------------------- */
 
