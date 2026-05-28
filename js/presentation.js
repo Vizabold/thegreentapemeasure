@@ -35,6 +35,9 @@ document.querySelectorAll('dialog.analysis-dialog').forEach(dialog => {
   })
 
   function goTo(index) {
+    prevBtn.disabled = true;
+    nextBtn.disabled = true;
+    skipBtn.disabled = true;
     current = index;
 
     slides[index].scrollIntoView({
@@ -55,6 +58,11 @@ document.querySelectorAll('dialog.analysis-dialog').forEach(dialog => {
 
     if (skipBtn) skipBtn.classList.toggle('invisible', current === slides.length - 1);
 
+    setTimeout(() => {
+      prevBtn.disabled = false;
+      nextBtn.disabled = false;
+      skipBtn.disabled = false;
+    }, 751)
   }
 
   prevBtn.addEventListener('click', () => {

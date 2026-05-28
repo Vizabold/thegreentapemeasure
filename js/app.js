@@ -10,6 +10,27 @@ const year = document.getElementById('year');
 const currentYear = new Date().getFullYear();
 year.innerHTML = `${currentYear}`;
 
+/*--------------- FOOTER FADE IN/OUT --------------------- */
+const footerSentinel = document.getElementById("footer-scroll-sentinel");
+const footer = document.getElementById("main-footer");
+
+const footerObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      footer.classList.remove("opacity-0", "pointer-events-none");
+      footer.classList.add("opacity-100");
+    } else {
+      footer.classList.remove("opacity-100");
+      footer.classList.add("opacity-0", "pointer-events-none");
+    }
+  });
+}, {
+  root: null,
+  threshold: 0.1
+});
+
+footerObserver.observe(footerSentinel);
+
 /*--------------- POPOVER LEGACY SUPPORT --------------------- */
 
 if (!HTMLElement.prototype.hasOwnProperty('popover')) {
@@ -151,6 +172,8 @@ function handleSectionBtns(container) {
   cards[current].classList.add('card-current');
 
   function goToCard(index) {
+    prevBtn.disabled = true;
+    nextBtn.disabled = true;
     cards[current].classList.remove('card-current');
     setTimeout(() => {
       cards[index].scrollIntoView({
@@ -160,6 +183,8 @@ function handleSectionBtns(container) {
       })
       cards[index].classList.add('card-current');
       current = index;
+      prevBtn.disabled = false;
+      nextBtn.disabled = false;
     }, 301)
   }
 
@@ -193,6 +218,30 @@ function checkScroll() {
 window.addEventListener('resize', checkScroll);
 checkScroll();
 
+/*--------------- BILL DETAILS CONTAINER --------------------- */
+
+const detailsContainer = document.getElementById('state-bill-details');
+const accordions = document.querySelectorAll('.accordion-content-wrapper');
+const detailsController = new AbortController();
+
+accordions.forEach(accordion => {
+  const stateBtns = accordion.querySelectorAll('label');
+  stateBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      detailsContainer.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      }, { signal: detailsController.signal })
+    })
+  })
+});
+
+document.getElementById('analysis-three').addEventListener('close', () => {
+  detailsController.abort();
+  console.log('analysis two closed, event listeners removed');
+});
+
+
 /*--------------- FORMS --------------------- */
 
 const takeAction = document.getElementById('takeaction');
@@ -204,65 +253,16 @@ comment.oninput = () => {
 
 /*--------------- DIALOG FOCUS TRAP & SCROLL LOCK --------------------- */
 
-(function () {
-  const FOCUSABLE = 'a[href], button:not([disabled]), input:not([disabled]), textarea:not([disabled]), select:not([disabled]), details > summary, [tabindex]:not([tabindex="-1"])';
-  const hasNativePopover = HTMLElement.prototype.hasOwnProperty('popover');
+document.querySelectorAll('button[popovertarget]').forEach(button => {
+  const dialogId = button.getAttribute('popovertarget');
+  const dialog = document.getElementById(dialogId);
+  const closeBtn = dialog.querySelector('.btn-close-dialog');
 
-  function setupDialog(dialogEl) {
-    let priorFocus = null;
-    let removeKeyTrap = null;
-
-    function onOpen() {
-      priorFocus = document.activeElement;
-      const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
-      document.documentElement.style.overflowY = 'hidden';
-      document.body.style.paddingRight = scrollbarWidth ? `${scrollbarWidth}px` : '';
-      requestAnimationFrame(() => {
-        const nodes = Array.from(dialogEl.querySelectorAll(FOCUSABLE));
-        if (nodes.length) nodes[0].focus();
-      });
-
-      function onKeydown(e) {
-        if (e.key === 'Escape' && !hasNativePopover) {
-          dialogEl.removeAttribute('open');
-          return;
-        }
-        if (e.key !== 'Tab') return;
-        const nodes = Array.from(dialogEl.querySelectorAll(FOCUSABLE));
-        if (!nodes.length) return;
-        const first = nodes[0];
-        const last = nodes[nodes.length - 1];
-        if (e.shiftKey && document.activeElement === first) {
-          e.preventDefault();
-          last.focus();
-        } else if (!e.shiftKey && document.activeElement === last) {
-          e.preventDefault();
-          first.focus();
-        }
-      }
-
-      dialogEl.addEventListener('keydown', onKeydown);
-      removeKeyTrap = () => dialogEl.removeEventListener('keydown', onKeydown);
-    }
-
-    function onClose() {
-      document.documentElement.style.overflowY = '';
-      document.body.style.paddingRight = '';
-      if (removeKeyTrap) { removeKeyTrap(); removeKeyTrap = null; }
-      if (priorFocus) { priorFocus.focus(); priorFocus = null; }
-    }
-
-    if (hasNativePopover) {
-      dialogEl.addEventListener('toggle', (e) => (e.newState === 'open' ? onOpen() : onClose()));
-    } else {
-      new MutationObserver(() =>
-        (dialogEl.hasAttribute('open') ? onOpen() : onClose())
-      ).observe(dialogEl, { attributes: true, attributeFilter: ['open'] });
-    }
-  }
-
-  ['disclaimer', 'privacy', 'analysis-one', 'analysis-two', 'analysis-three', 'analysis-four'].forEach(id => {
-    const el = document.getElementById(id);
-    if (el) setupDialog(el);
-  });
-}());
+  if (dialog && dialog.tagName === 'DIALOG') {
+    button.addEventListener('click', (e) => {
+      e.preventDefault();
+      dialog.showModal();
+      closeBtn.addEventListener('click', () => dialog.close(), { once: true });
+    });
+  };
+});

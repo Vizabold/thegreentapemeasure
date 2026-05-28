@@ -1,3 +1,5 @@
+const analysisOneController = new AbortController();
+
 /* Graph-1a Variables */
 const type1a = 'pie';
 const series1a = [38, 21, 17, 14, 10];
@@ -572,17 +574,17 @@ function renderChart(type, series, labels, chartEl, placeholder, colors, selecte
     }
 
     function addlisteners(el, i) {
-        el.addEventListener('mouseenter', function () { if (lockedIndex === -1) highlight(i); });
-        el.addEventListener('mouseleave', function () { if (lockedIndex === -1) highlight(-1); });
+        el.addEventListener('mouseenter', function () { if (lockedIndex === -1) highlight(i); }, { signal: analysisOneController.signal });
+        el.addEventListener('mouseleave', function () { if (lockedIndex === -1) highlight(-1); }, { signal: analysisOneController.signal });
         el.addEventListener('click', function () {
             handleClick(i);
-        });
+        }, { signal: analysisOneController.signal });
         el.addEventListener('keydown', function (e) {
             if (e.key === 'Enter' || e.key === ' ') {
                 e.preventDefault();
                 handleClick(i);
             }
-        });
+        }, { signal: analysisOneController.signal });
     }
 
     /*------------------------- Attributes ----------------------------*/
@@ -843,7 +845,7 @@ function renderChart(type, series, labels, chartEl, placeholder, colors, selecte
                     highlight(-1);
                 }
             }
-        });
+        }, { signal: analysisOneController.signal });
     });
 }
 
@@ -861,3 +863,8 @@ renderChart(type2d, series2d, labels2d, chart2d, placeholder2d, colors2d, select
 renderChart(type3a, series3a, labels3a, chart3a, placeholder3a, colors3a, selectedIndex3a);
 renderChart(type4a, series4a, labels4a, chart4a, placeholder4a, colors4a, selectedIndex4a);
 renderChart(type4b, series4b, labels4b, chart4b, placeholder4b, colors4b, selectedIndex4b);
+
+document.getElementById('analysis-one').addEventListener('close', () => {
+    analysisOneController.abort();
+    console.log('analysis one closed, event listeners removed');
+});

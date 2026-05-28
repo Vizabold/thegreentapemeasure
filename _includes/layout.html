@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<html class="scroll-smooth overflow-x-hidden transition-colors duration-300 ease-in-out" lang="en" data-theme="dark">
+<html
+  class="scroll-smooth overflow-x-hidden transition-colors duration-300 ease-in-out has(dialog:open):overflow-hidden"
+  lang="en" data-theme="dark">
 
 <head>
   <meta charset="UTF-8" />
@@ -144,7 +146,10 @@
     {{ content }}
   </main>
 
-  <footer class="flex flex-col-reverse items-center justify-between gap-6 p-4 bg-neutral-two md:flex-row">
+  <div id="footer-scroll-sentinel" class="h-px w-full"></div>
+
+  <footer
+    class="flex flex-col-reverse items-center justify-between gap-6 p-4 bg-neutral-two opacity-100 transition-opacity duration-500 ease-in-out md:flex-row">
     <p class="text-sm text-center">© <span class="text-sm text-neutral-seven" id="year">2026</span> The Green Tape
       Measure
       Foundation. The Green Tape Measure is a registered assumed name of The Green Tape Measure Foundation, a North
@@ -158,16 +163,20 @@
         class="link link--inline text-neutral-seven hover:text-primary-two text-sm">Privacy Policy</button>
     </div>
     <div class="flex gap-6 justify-center md:mr-6">
-      <a class="btn btn-icon btn-icon-sm" href="https://www.linkedin.com/company/gtmeasure" aria-label="LinkedIn"
+      <a class="btn btn-icon text-neutral-seven" href="https://www.linkedin.com/company/gtmeasure" aria-label="LinkedIn"
         target="_blank">
         <svg class="icon-sm" aria-hidden="true">
           <use href="/assets/sprites/brands.svg#linkedin"></use>
         </svg>
       </a>
-      <a class="btn btn-icon btn-icon-sm" href="https://www.instagram.com/gtmeasure" aria-label="Instagram"
-        target="_blank">
-        <svg class="icon-sm" aria-hidden="true">
+      <a class="btn btn-icon" href="https://www.instagram.com/gtmeasure" aria-label="Instagram" target="_blank">
+        <svg class="icon-sm text-neutral-seven" aria-hidden="true">
           <use href="/assets/sprites/brands.svg#instagram"></use>
+        </svg>
+      </a>
+      <a class="btn btn-icon" href="https://www.youtube.com/gtmeasure" aria-label="YouTube" target="_blank">
+        <svg class="icon-sm text-neutral-seven" aria-hidden="true">
+          <use href="/assets/sprites/brands.svg#youtube"></use>
         </svg>
       </a>
     </div>

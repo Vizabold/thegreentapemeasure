@@ -174,7 +174,7 @@
   }
 
   .btn-icon-sm {
-    @apply w-8.75 min-w-8.75 h-8.75 min-h-8.75 fill-neutral-seven;
+    @apply w-8.75 min-w-8.75 h-8.75 min-h-8.75 text-neutral-seven;
   }
 
   /* ─────────────────────────────────────────
