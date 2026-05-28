@@ -223,7 +223,16 @@
   }
 
   .link--inline {
-    @apply w-max inline-block text-primary-one underline hover:text-primary-two active:text-primary-two visited:text-neutral-seven;
+    @apply w-max inline-block text-primary-one underline;
+  }
+
+  .link--inline:hover,
+  .link--inline:active {
+    color: var(--primary-two);
+  }
+
+  .link--inline:visited {
+    color: var(--neutral-seven);
   }
 
   .link--nav,
