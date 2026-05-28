@@ -13,7 +13,7 @@
   }
 
   :focus:not(:focus-visible) {
-    @apply outline-0;
+    @apply outline-none;
   }
 
   button,
@@ -219,7 +219,7 @@
      Links
   ───────────────────────────────────────── */
   .link {
-    @apply transition-all duration-300 ease-out focus-visible:outline-none;
+    @apply transition-all duration-300 ease-out;
   }
 
   .link--inline {
