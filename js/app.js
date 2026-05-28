@@ -12,6 +12,7 @@ year.innerHTML = `${currentYear}`;
 
 /*--------------- FOOTER FADE IN/OUT --------------------- */
 const footer = document.getElementById("main-footer");
+const html = document.documentElement;
 const bottomOffset = 50;
 
 const updateFooter = () => {
