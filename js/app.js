@@ -16,14 +16,12 @@ const footer = document.getElementById('main-footer');
 
 const footerObserver = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
-    if (entry.isIntersecting && footer.classList.contains('opacity-0')) {
+    if (entry.isIntersecting) {
       footer.classList.remove('opacity-0', 'pointer-events-none');
       footer.classList.add('opacity-100');
     } else {
-      if (footer.classList.contains('opacity-100')) {
-        footer.classList.remove('opacity-100');
-        footer.classList.add('opacity-0', 'pointer-events-none');
-      }
+      footer.classList.remove('opacity-100');
+      footer.classList.add('opacity-0', 'pointer-events-none');
     }
   });
 }, {
