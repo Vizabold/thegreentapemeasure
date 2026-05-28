@@ -30,7 +30,7 @@
   }
 
   dialog {
-    @apply fixed flex-col top-0 left-0 m-0 w-full h-full min-w-screen min-h-screen text-inherit bg-neutral-three p-8 gap-12 opacity-0 hidden "-translate-x-full" backdrop:bg-neutral-one backdrop:opacity-70 backdrop:backdrop-blur-sm transition-all duration-1000 ease-in-out transition-discrete [&:popover-open]:translate-x-0 open:translate-x-0 [&:popover-open]:flex open:flex [&:popover-open]:opacity-100 open:opacity-100 starting:opacity-0 starting:"-translate-x-full";
+    @apply fixed flex-col top-0 left-0 m-0 w-full h-full min-w-screen min-h-screen text-inherit bg-neutral-three p-8 gap-12 opacity-0 hidden -translate-x-full backdrop:bg-neutral-one backdrop:opacity-70 backdrop:backdrop-blur-sm transition-all duration-1000 ease-in-out transition-discrete [&:popover-open]:translate-x-0 open:translate-x-0 [&:popover-open]:flex open:flex [&:popover-open]:opacity-100 open:opacity-100 starting:opacity-0 starting:"-translate-x-full";
   }
 
   h2,
