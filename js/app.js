@@ -17,11 +17,11 @@ const footer = document.querySelector('footer');
 const footerObserver = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
-      footer.classList.remove('opacity-0', 'pointer-events-none');
-      footer.classList.add('opacity-100');
+      footer.classList.remove('js:opacity-0', 'js:pointer-events-none');
+      footer.classList.add('js:opacity-100');
     } else {
-      footer.classList.remove('opacity-100');
-      footer.classList.add('opacity-0', 'pointer-events-none');
+      footer.classList.remove('js:opacity-100');
+      footer.classList.add('js:opacity-0', 'js:pointer-events-none');
     }
   });
 }, {
