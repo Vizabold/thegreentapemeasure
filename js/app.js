@@ -182,6 +182,7 @@ function handleSectionBtns(container) {
     prevBtn.disabled = true;
     nextBtn.disabled = true;
     cards[current].classList.remove('card-current');
+    cards[current].removeAttribute('tabindex');
 
     setTimeout(() => {
       cards[index].scrollIntoView({
@@ -190,6 +191,9 @@ function handleSectionBtns(container) {
         inline: 'start'
       })
       cards[index].classList.add('card-current');
+      cards[index].setAttribute('tabindex', '-1');
+      cards[index].focus();
+
       current = index;
       prevBtn.disabled = false;
       nextBtn.disabled = false;
