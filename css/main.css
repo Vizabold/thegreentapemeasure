@@ -309,6 +309,10 @@
     @apply text-neutral-two-dark;
   }
 
+  #analysis-four .presentation-slider .presentation-slide div:first-of-type svg {
+    @apply text-neutral-two-dark;
+  }
+
   .slide-current {
     @apply outline-2 outline-offset-2 outline-primary-one;
   }
