@@ -223,7 +223,7 @@
   }
 
   .link--inline {
-    @apply inline-block text-neutral-seven underline hover:text-primary-two wrap-break-word active:text-primary-two visited:text-neutral-seven;
+    @apply inline-block text-neutral-seven underline hover:text-primary-two wrap-anywhere active:text-primary-two visited:text-neutral-seven;
   }
 
   .link--inline-green {
