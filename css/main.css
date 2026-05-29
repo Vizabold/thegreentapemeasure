@@ -181,7 +181,7 @@
      Cards
   ───────────────────────────────────────── */
   .card {
-    @apply flex flex-col gap-2 p-4 rounded-xl transition-all duration-300 ease-in-out xl:p-8;
+    @apply flex flex-col gap-2 p-4 rounded-xl transition-all duration-300 ease-in-out scroll-ml-4 xl:p-8;
   }
 
   .card-current {
