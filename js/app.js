@@ -172,12 +172,12 @@ function handleSectionBtns(container) {
   let current = 0;
   cards[current].classList.add('card-current');
 
-  cards.parentElement.querySelectorAll('.card button').forEach(btn => {
-    openBtns.push(btn);
-  })
+  cards.forEach(card => {
+    const cardBtns = card.querySelectorAll('button');
+    const cardLinks = card.querySelectorAll('a');
 
-  cards.parentElement.querySelectorAll('.card a').forEach(link => {
-    openLinks.push(link);
+    if (cardBtns) openBtns.push(cardBtns);
+    if (cardLinks) openLinks.push(cardLinks);
   })
 
   function goToCard(index) {
@@ -213,8 +213,8 @@ function handleSectionBtns(container) {
     })
   })
 
-  openLinks.forEach((btn, i) => {
-    btn.addEventListener('click', () => {
+  openLinks.forEach((link, i) => {
+    link.addEventListener('click', () => {
       goToCard(i);
     })
   })
