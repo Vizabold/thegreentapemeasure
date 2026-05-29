@@ -167,9 +167,18 @@ function handleSectionBtns(container) {
   const prevBtn = container.firstElementChild;
   const nextBtn = container.lastElementChild;
   const cards = container.nextElementSibling.querySelectorAll('.card');
-  const openBtns = container.querySelectorAll('.open-analysis-btn');
+  const openBtns = [];
+  const openLinks = [];
   let current = 0;
   cards[current].classList.add('card-current');
+
+  cards.parentElement.querySelectorAll('.card button').forEach(btn => {
+    openBtns.push(btn);
+  })
+
+  cards.parentElement.querySelectorAll('.card a').forEach(link => {
+    openLinks.push(link);
+  })
 
   function goToCard(index) {
     prevBtn.disabled = true;
@@ -204,6 +213,11 @@ function handleSectionBtns(container) {
     })
   })
 
+  openLinks.forEach((btn, i) => {
+    btn.addEventListener('click', () => {
+      goToCard(i);
+    })
+  })
 }
 
 function checkScroll() {
