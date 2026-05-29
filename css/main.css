@@ -185,7 +185,7 @@
   }
 
   .card-current {
-    @apply outline-2 outline-offset-2 outline-primary-one ml-4;
+    @apply outline-2 outline-offset-2 outline-primary-one;
   }
 
   /* ─────────────────────────────────────────
