@@ -166,24 +166,23 @@ const researchBtns = researchCards.previousElementSibling;
 function handleSectionBtns(container) {
   const prevBtn = container.firstElementChild;
   const nextBtn = container.lastElementChild;
-  const cards = container.nextElementSibling.querySelectorAll('.card');
-  const openBtns = [];
-  const openLinks = [];
+  const cardContainer = container.nextElementSibling;
+  const cards = Array.from(cardContainer.querySelectorAll('.card'));
   let current = 0;
+
   cards[current].classList.add('card-current');
 
-  cards.forEach(card => {
-    const cardBtns = card.querySelectorAll('button');
-    const cardLinks = card.querySelectorAll('a');
-
-    if (cardBtns) openBtns.push(cardBtns);
-    if (cardLinks) openLinks.push(cardLinks);
-  })
+  if (!cardContainer.hasAttribute('tabindex')) {
+    cardContainer.setAttribute('tabindex', '0');
+  }
 
   function goToCard(index) {
+    if (index === current) return;
+
     prevBtn.disabled = true;
     nextBtn.disabled = true;
     cards[current].classList.remove('card-current');
+
     setTimeout(() => {
       cards[index].scrollIntoView({
         behavior: 'smooth',
@@ -197,6 +196,31 @@ function handleSectionBtns(container) {
     }, 301)
   }
 
+  cardContainer.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowLeft') {
+      e.preventDefault();
+      let prev = current === 0 ? cards.length - 1 : current - 1;
+      goToCard(prev);
+    } else if (e.key === 'ArrowRight') {
+      e.preventDefault();
+      let next = current === cards.length - 1 ? 0 : current + 1;
+      goToCard(next);
+    }
+  });
+
+  cardContainer.addEventListener('click', (e) => {
+    const targetEl = e.target.closest('button, a');
+    if (!targetEl) return;
+
+    const card = targetEl.closest('.card');
+    if (!card) return;
+
+    const cardIndex = cards.indexOf(card);
+    if (cardIndex !== -1) {
+      goToCard(cardIndex);
+    }
+  })
+
   prevBtn.addEventListener('click', () => {
     let prev = current === 0 ? cards.length - 1 : current - 1;
     goToCard(prev);
@@ -205,18 +229,6 @@ function handleSectionBtns(container) {
   nextBtn.addEventListener('click', () => {
     let next = current === cards.length - 1 ? 0 : current + 1;
     goToCard(next);
-  })
-
-  openBtns.forEach((btn, i) => {
-    btn.addEventListener('click', () => {
-      goToCard(i);
-    })
-  })
-
-  openLinks.forEach((link, i) => {
-    link.addEventListener('click', () => {
-      goToCard(i);
-    })
   })
 }
 
