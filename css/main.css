@@ -223,11 +223,11 @@
   }
 
   .link--inline {
-    @apply w-max inline-block text-neutral-seven underline hover:text-primary-two wrap-break-word active:text-primary-two visited:text-neutral-seven;
+    @apply inline-block text-neutral-seven underline hover:text-primary-two wrap-break-word active:text-primary-two visited:text-neutral-seven;
   }
 
   .link--inline-green {
-    @apply w-max inline-block text-primary-one underline hover:text-primary-two active:text-primary-two visited:text-neutral-seven;
+    @apply inline-block text-primary-one underline hover:text-primary-two active:text-primary-two visited:text-neutral-seven;
   }
 
   .link--nav,

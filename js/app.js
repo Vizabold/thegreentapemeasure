@@ -238,7 +238,6 @@ accordions.forEach(accordion => {
 
 document.getElementById('analysis-three').addEventListener('close', () => {
   detailsController.abort();
-  console.log('analysis two closed, event listeners removed');
 });
 
 

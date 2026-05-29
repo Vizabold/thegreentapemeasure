@@ -866,5 +866,4 @@ renderChart(type4b, series4b, labels4b, chart4b, placeholder4b, colors4b, select
 
 document.getElementById('analysis-one').addEventListener('close', () => {
     analysisOneController.abort();
-    console.log('analysis one closed, event listeners removed');
 });
