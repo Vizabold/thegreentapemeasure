@@ -5,6 +5,8 @@ import('./presentation.js').catch(() => { });
 import('./search.js').catch(() => { });
 import('details-polyfill').catch(() => { });
 
+const liveRegion = document.getElementById('live-region');
+
 /*--------------- FOOTER DATE AUTO-UPDATE --------------------- */
 const year = document.getElementById('year');
 const currentYear = new Date().getFullYear();
@@ -163,14 +165,21 @@ const researchCards = document.getElementById('research-cards');
 const advocacyBtns = advocacyCards.previousElementSibling;
 const researchBtns = researchCards.previousElementSibling;
 
-function handleSectionBtns(container) {
+function setupSlider(container) {
   const prevBtn = container.firstElementChild;
   const nextBtn = container.lastElementChild;
   const cardContainer = container.nextElementSibling;
   const cards = Array.from(cardContainer.querySelectorAll('.card'));
   let current = 0;
 
+  cards.forEach((card, i) => {
+    card.setAttribute('role', 'group');
+    card.setAttribute('aria-roledescription', 'slide');
+    card.setAttribute('aria-label', `Card ${i + 1} of ${cards.length}`);
+  });
+
   cards[current].classList.add('card-current');
+  cards[current].setAttribute('aria-current', 'true');
 
   if (!cardContainer.hasAttribute('tabindex')) {
     cardContainer.setAttribute('tabindex', '0');
@@ -181,8 +190,10 @@ function handleSectionBtns(container) {
 
     prevBtn.disabled = true;
     nextBtn.disabled = true;
+
     cards[current].classList.remove('card-current');
     cards[current].removeAttribute('tabindex');
+    cards[current].removeAttribute('aria-current');
 
     setTimeout(() => {
       cards[index].scrollIntoView({
@@ -191,8 +202,14 @@ function handleSectionBtns(container) {
         inline: 'start'
       })
       cards[index].classList.add('card-current');
+
+      cards[index].setAttribute('aria-current', 'true');
       cards[index].setAttribute('tabindex', '-1');
       cards[index].focus();
+
+      if (liveRegion) {
+        liveRegion.textContent = `Item ${index + 1} of ${cards.length}`;
+      }
 
       current = index;
       prevBtn.disabled = false;
@@ -236,13 +253,14 @@ function handleSectionBtns(container) {
   })
 }
 
+setupSlider(advocacyBtns);
+setupSlider(researchBtns);
+
 function checkScroll() {
   const advocacyScroll = advocacyCards.scrollWidth > advocacyCards.clientWidth;
   const researchScroll = researchCards.scrollWidth > researchCards.clientWidth;
   advocacyBtns.classList.toggle('hidden', !advocacyScroll);
   researchBtns.classList.toggle('hidden', !researchScroll);
-  if (!advocacyBtns.classList.contains('hidden')) { handleSectionBtns(advocacyBtns) };
-  if (!researchBtns.classList.contains('hidden')) { handleSectionBtns(researchBtns) };
 }
 
 window.addEventListener('resize', checkScroll);
