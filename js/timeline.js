@@ -58,7 +58,7 @@ if (prevBtn && nextBtn && timelineSection) {
 
     setTimeout(() => {
       setButtonsDisabled(false);
-      if (delta = 1) {
+      if (delta === 1) {
         nextBtn.scrollIntoView({
           behavior: 'smooth',
           block: 'nearest',
