@@ -329,7 +329,7 @@
      Timeline
   ───────────────────────────────────────── */
   .timeline-event {
-    @apply justify-center items-center relative z-1 w-full sm:gap-4 lg:gap-8;
+    @apply flex justify-center items-center relative z-1 w-full sm:gap-4 lg:gap-8;
   }
 
   .timeline-event-descript {
