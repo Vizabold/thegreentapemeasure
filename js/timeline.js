@@ -29,7 +29,7 @@ if (prevBtn && nextBtn && timelineSection) {
       const show = i >= currentIndex && i < currentIndex + count;
       ev.classList.toggle('hidden', !show);
       ev.classList.toggle('flex', show);
-      if (show) events.classList.add('animate-fadeIn');
+      if (show) ev.classList.add('animate-fadeIn');
     });
 
     if (announce && liveRegion) {
