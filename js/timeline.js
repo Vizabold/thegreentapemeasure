@@ -1,6 +1,7 @@
 const prevBtn = document.getElementById('timeline-prev-btn');
 const nextBtn = document.getElementById('timeline-next-btn');
 const timelineSection = document.getElementById('timeline');
+const timelineContainer = document.getElementById('timeline-container');
 const liveRegion = document.getElementById('live-region');
 
 if (prevBtn && nextBtn && timelineSection) {
@@ -58,6 +59,12 @@ if (prevBtn && nextBtn && timelineSection) {
 
     setTimeout(() => {
       setButtonsDisabled(false);
+      if (delta = 1) {
+        timelineContainer.scrollTo({
+          bottom: 0,
+          behavior: 'smooth'
+        });
+      }
     }, 300);
   }
 
