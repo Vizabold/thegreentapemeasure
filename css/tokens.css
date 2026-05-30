@@ -51,7 +51,7 @@
       --animate-moveDown: moveDown 1s ease-out forwards;
       --animate-appear: appear 1s ease-out forwards;
       --animate-appearAlt: appear 2.5s ease-out backwards;
-      --animate-fade-in: fade-in 300ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+      --animate-fadeIn: fadeIn 300ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
 
       @keyframes slideDown {
           from {
@@ -111,7 +111,7 @@
           }
       }
 
-      @keyframes fade-in {
+      @keyframes fadeIn {
           0% {
               opacity: 0;
               transform: translateY(8px);
