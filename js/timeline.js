@@ -61,7 +61,7 @@ if (prevBtn && nextBtn && timelineSection) {
       if (delta = 1) {
         events[currentIndex].scrollIntoView({
           behavior: 'smooth',
-          block: 'end',
+          block: 'nearest',
           inline: 'nearest'
         });
       }
