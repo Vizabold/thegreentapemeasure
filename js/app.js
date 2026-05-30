@@ -41,6 +41,26 @@ if (!HTMLElement.prototype.hasOwnProperty('popover')) {
   });
 }
 
+/*--------------- DIALOG FOCUS TRAP & SCROLL LOCK --------------------- */
+
+document.querySelectorAll('button[popovertarget]').forEach(button => {
+  const dialogId = button.getAttribute('popovertarget');
+  const dialog = document.getElementById(dialogId);
+  const closeBtn = dialog.querySelector('.btn-close-dialog');
+
+  if (dialog && dialog.tagName === 'DIALOG') {
+    button.addEventListener('click', (e) => {
+      e.preventDefault();
+      dialog.showModal();
+    });
+
+    if (closeBtn) {
+      closeBtn.addEventListener('click', () => dialog.closest());
+    }
+  };
+});
+
+
 /*--------------- SCROLLING & NAV FUNCTIONS --------------------- */
 
 const sections = document.querySelectorAll('section');
@@ -266,30 +286,7 @@ function checkScroll() {
 window.addEventListener('resize', checkScroll);
 checkScroll();
 
-/*--------------- BILL DETAILS CONTAINER --------------------- */
-
-const detailsContainer = document.getElementById('state-bill-details');
-const accordions = document.querySelectorAll('.accordion-content-wrapper');
-const detailsController = new AbortController();
-
-accordions.forEach(accordion => {
-  const stateBtns = accordion.querySelectorAll('label');
-  stateBtns.forEach(btn => {
-    btn.addEventListener('click', () => {
-      detailsContainer.scrollTo({
-        top: 0,
-        behavior: 'smooth'
-      }, { signal: detailsController.signal })
-    })
-  })
-});
-
-document.getElementById('analysis-three').addEventListener('close', () => {
-  detailsController.abort();
-});
-
-
-/*--------------- FORMS --------------------- */
+/*------------------------------ FORMS --------------------------------- */
 
 const takeAction = document.getElementById('takeaction');
 const comment = takeAction.querySelector('textarea');
@@ -298,18 +295,3 @@ comment.oninput = () => {
   count.textContent = this.value.length;
 }
 
-/*--------------- DIALOG FOCUS TRAP & SCROLL LOCK --------------------- */
-
-document.querySelectorAll('button[popovertarget]').forEach(button => {
-  const dialogId = button.getAttribute('popovertarget');
-  const dialog = document.getElementById(dialogId);
-  const closeBtn = dialog.querySelector('.btn-close-dialog');
-
-  if (dialog && dialog.tagName === 'DIALOG') {
-    button.addEventListener('click', (e) => {
-      e.preventDefault();
-      dialog.showModal();
-      closeBtn.addEventListener('click', () => dialog.close(), { once: true });
-    });
-  };
-});

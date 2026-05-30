@@ -1,4 +1,4 @@
-<dialog class="overflow-y-hidden analyis-dialog" id="analysis-three" aria-labelledby="analysis-three-title"
+<dialog class="overflow-y-hidden analysis-dialog" id="analysis-three" aria-labelledby="analysis-three-title"
     aria-modal="true" popover>
     <div class="presentation-slider scrollbar">
         <div class="card presentation-slide" id="slide-3a">
@@ -1165,18 +1165,23 @@
         </div>
     </div>
     <div class="flex flex-col items-center justify-between p-4 gap-4 sm:flex-row">
-        <button type="button" class="link link--inline skip-to-sources-btn text-left">Skip to State Lookup</button>
-        <div class="flex gap-2">
+        <p class="paragraph-md text-primary-one block js:hidden">See the last slide for State Lookup.</p>
+        <button type="button" class="link link--inline skip-to-sources-btn text-left hidden js:flex">Skip to State
+            Lookup</button>
+        <div class="gap-2 hidden js:flex">
             <div class="w-6 h-3 rounded-full bg-primary-one slide-dot"></div>
             <div class="w-3 h-3 rounded-full bg-primary-three slide-dot"></div>
         </div>
+        <p class="block js:hidden">Scroll or swipe across to see the slides.</p>
         <div class="flex gap-4 justify-center">
-            <button type="button" class="btn btn-icon btn-icon-lg analysis-prev-btn" aria-label="previous slide">
+            <button type="button" class="btn btn-icon btn-icon-lg analysis-prev-btn hidden js:flex"
+                aria-label="previous slide">
                 <svg class="icon-xs" aria-hidden="true">
                     <use href="/assets/sprites/solid.svg#angle-left"></use>
                 </svg>
             </button>
-            <button type="button" class="btn btn-icon btn-icon-lg analysis-next-btn" aria-label="next slide">
+            <button type="button" class="btn btn-icon btn-icon-lg analysis-next-btn hidden js:flex"
+                aria-label="next slide">
                 <svg class="icon-xs" aria-hidden="true">
                     <use href="/assets/sprites/solid.svg#angle-right"></use>
                 </svg>
