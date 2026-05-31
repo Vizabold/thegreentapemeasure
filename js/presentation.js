@@ -63,6 +63,8 @@ function setupSlides(dialog) {
     }, 350);
   }
 
+  slideContainer.scrollTo({ left: 0, behavior: 'auto' });
+
   slides.forEach((slide, i) => {
     slide.setAttribute('role', 'group');
     slide.setAttribute('aria-roledescription', 'slide');
