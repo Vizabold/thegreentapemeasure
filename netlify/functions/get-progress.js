@@ -1,31 +1,79 @@
-export const handler = async (event) => {
+const https = require('https');
+
+exports.handler = async (event) => {
     const CAMPAIGN_ID = "help-launch-gtm";
     const API_KEY = process.env.GIVEBUTTER_API_KEY;
 
-    try {
-        const response = await fetch(`https://givebutter.com{CAMPAIGN_ID.trim()}`, {
-            method: "GET",
-            headers: {
-                "Authorization": API_KEY.startsWith("Bearer ") ? API_KEY : `Bearer ${API_KEY}`,
-                "Accept": "application/json"
-            }
-        });
-
-        if (!response.ok) {
-            return { statusCode: response.status, body: "Failed fetching data from Givebutter" };
-        }
-
-        const data = await response.json();
-        const raised = data.data.raised || 0;
-        const goal = data.data.goal || 0;
-
+    if (!API_KEY) {
         return {
-            statusCode: 200,
+            statusCode: 500,
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ raised, goal })
+            body: JSON.stringify({ error: "Missing GIVEBUTTER_API_KEY in Netlify settings." })
+        };
+    }
+
+    const cleanKey = API_KEY.trim();
+    const formattedKey = cleanKey.startsWith("Bearer ") ? cleanKey : `Bearer ${cleanKey}`;
+
+    return new Promise((resolve) => {
+        const options = {
+            hostname: 'api.givebutter.com',
+            path: `/v1/campaigns/${CAMPAIGN_ID.trim()}`,
+            method: 'GET',
+            headers: {
+                'Authorization': formattedKey,
+                'Accept': 'application/json',
+                'User-Agent': 'NetlifyFunction'
+            }
         };
 
-    } catch (error) {
-        return { statusCode: 500, body: error.toString() };
-    }
+        const req = https.request(options, (res) => {
+            let data = '';
+
+            res.on('data', (chunk) => { data += chunk; });
+
+            res.on('end', () => {
+                try {
+                    if (res.statusCode !== 200) {
+                        return resolve({
+                            statusCode: res.statusCode,
+                            headers: { "Content-Type": "application/json" },
+                            body: JSON.stringify({ error: `Givebutter API returned status ${res.statusCode}` })
+                        });
+                    }
+
+                    const parsedData = JSON.parse(data);
+                    const campaign = parsedData.data || parsedData;
+                    const raised = campaign.raised || 0;
+                    const goal = campaign.goal || 0;
+
+                    resolve({
+                        statusCode: 200,
+                        headers: {
+                            "Content-Type": "application/json",
+                            "Access-Control-Allow-Origin": "*"
+                        },
+                        body: JSON.stringify({ raised, goal })
+                    });
+
+                } catch (err) {
+                    resolve({
+                        statusCode: 500,
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify({ error: "Failed to parse Givebutter response JSON." })
+                    });
+                }
+            });
+        });
+
+        req.on('error', (err) => {
+            resolve({
+                statusCode: 500,
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ error: err.message })
+            });
+        });
+
+        req.end();
+    });
 };
