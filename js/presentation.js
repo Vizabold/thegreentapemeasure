@@ -15,6 +15,21 @@ function setupSlides(dialog) {
   let isKeyboardOrButtonClick = false;
   let debounceTimeout = null;
 
+  slides.forEach((slide, i) => {
+    slide.setAttribute('role', 'group');
+    slide.setAttribute('aria-roledescription', 'slide');
+    slide.setAttribute('aria-label', `Slide ${i + 1} of ${slides.length}`);
+    if (slide.classList.contains('slide-current')) { slide.classList.remove('slide-current'); }
+  });
+
+  slides[current].classList.add('slide-current');
+  slides[current].setAttribute('aria-current', 'true');
+  slides[current].scrollIntoView({
+    behavior: 'smooth',
+    block: 'nearest',
+    inline: 'center'
+  });
+
   function updateUI(index) {
     if (index === current) return;
 
@@ -63,20 +78,7 @@ function setupSlides(dialog) {
     }, 350);
   }
 
-  slides.forEach((slide, i) => {
-    slide.setAttribute('role', 'group');
-    slide.setAttribute('aria-roledescription', 'slide');
-    slide.setAttribute('aria-label', `Slide ${i + 1} of ${slides.length}`);
-    if (slide.classList.contains('slide-current')) slide.classList.remove('slide-current');
-  });
 
-  slides[current].classList.add('slide-current');
-  slides[current].setAttribute('aria-current', 'true');
-  slides[current].scrollIntoView({
-    behavior: 'smooth',
-    block: 'nearest',
-    inline: 'center'
-  });
 
   slideContainer.addEventListener('scroll', () => {
     if (isKeyboardOrButtonClick) return;
