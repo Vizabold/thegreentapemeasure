@@ -3,7 +3,7 @@ export const handler = async (event) => {
     const API_KEY = process.env.GIVEBUTTER_API_KEY;
 
     try {
-        const response = await fetch(`https://givebutter.com{CAMPAIGN_ID}`, {
+        const response = await fetch(`https://givebutter.com{CAMPAIGN_ID.trim()}`, {
             method: "GET",
             headers: {
                 "Authorization": API_KEY.startsWith("Bearer ") ? API_KEY : `Bearer ${API_KEY}`,
