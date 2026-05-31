@@ -15,7 +15,14 @@ function setupSlides(dialog) {
   let isKeyboardOrButtonClick = false;
   let debounceTimeout = null;
 
+  if (slideContainer) {
+    slideContainer.scrollTo({ left: 0, behavior: 'auto' });
+  }
+
+
   slides.forEach((slide, i) => {
+    slide.classList.remove('slide-current');
+    slide.removeAttribute('aria-current');
     slide.setAttribute('role', 'group');
     slide.setAttribute('aria-roledescription', 'slide');
     slide.setAttribute('aria-label', `Slide ${i + 1} of ${slides.length}`);
@@ -23,7 +30,6 @@ function setupSlides(dialog) {
 
   slides[current].classList.add('slide-current');
   slides[current].setAttribute('aria-current', 'true');
-  slideContainer.scrollTo({ left: 0, behavior: 'auto' });
 
   function updateUI(index) {
     if (index === current) return;
@@ -120,7 +126,6 @@ function setupSlides(dialog) {
 
   dialog.addEventListener('close', () => {
     clearTimeout(debounceTimeout);
-    slides[current].classList.remove('slide-current');
     dialogController.abort();
   }, { once: true });
 }
