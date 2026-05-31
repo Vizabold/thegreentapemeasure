@@ -149,9 +149,9 @@
   <div id="footer-scroll-sentinel" class="h-px w-full"></div>
 
   <footer
-    class="flex flex-col p-15 gap-10 items-center justify-between bg-neutral-two transition-opacity duration-500 ease-in-out js:opacity-0 js:pointer-events-none md:flex-row md:gap-0 md:justify-between">
-    <div class="flex flex-col gap-8">
-      <div class="flex items-end gap-3 border-b border-primary-one p-2">
+    class="flex flex-col p-4 gap-10 justify-between bg-neutral-two transition-opacity duration-500 ease-in-out js:opacity-0 js:pointer-events-none lg:flex-row lg:p-15 lg:gap-0 lg:justify-between">
+    <div class="flex flex-col gap-8 w-75">
+      <div class="flex items-end gap-3 border-b border-primary-one pb-2">
         <picture>
           <source srcset="assets/images/logo-dk.webp" type="image/webp" media="all" data-theme="dark">
           <source srcset="assets/images/logo-lt.webp" type="image/webp" media="all" data-theme="light">
@@ -181,10 +181,34 @@
         a
         North Carolina nonprofit corporation.</p>
     </div>
-    <div class="flex gap-10 pl-2.5">
+    <div class="flex flex-col gap-10 lg:flex-row">
+      <div class="flex gap-10">
+        <div class="flex flex-col gap-4">
+          <p class="paragraph-md text-neutral-nine">Site Map</p>
+          <ul class="list-none flex flex-col gap-2">
+            <li><a href="#" class="link link--inline no-underline">Top</a></li>
+            <li><a href="#about" class="link link--inline no-underline">About</a></li>
+            <li><a href="#quiz" class="link link--inline no-underline">Quiz</a></li>
+            <li><a href="#timeline" class="link link--inline no-underline">Timeline</a></li>
+            <li><a href="#research" class="link link--inline no-underline">Research</a></li>
+            <li><a href="#advocacy" class="link link--inline no-underline">Advocacy</a></li>
+            <li><a href="#takeaction" class="link link--inline no-underline">Take Action</a></li>
+          </ul>
+        </div>
+        <div class="flex flex-col gap-4">
+          <p class="paragraph-md text-neutral-nine">Legal</p>
+          <ul class="list-none flex flex-col gap-2">
+            <button type="button" popovertarget="disclaimer" aria-haspopup="dialog" aria-controls="disclaimer"
+              aria-expanded="false"
+              class="link link--inline text-sm no-underline font-base text-left">Disclaimer</button>
+            <button popovertarget="privacy" aria-haspopup="dialog" aria-controls="privacy" aria-expanded="false"
+              class="link link--inline text-sm no-underline font-base text-left">Privacy Policy</button>
+          </ul>
+        </div>
+      </div>
       <div class="flex flex-col gap-4">
         <p class="paragraph-md text-neutral-nine">Contact</p>
-        <address class="font-normal">
+        <address class="not-italic">
           The Green Tape Measure<br>
           2920 Forestville Road<br>
           Ste 100 PMB 1294<br>
@@ -192,27 +216,6 @@
           <a href="mailto:info@thegreentapemeasure.org" class="link link--inline">info@thegreentapemeasure.org</a><br>
           <a href="tel:+19192299864" class="link link--inline">(919) 229-9864</a>
         </address>
-      </div>
-      <div class="flex flex-col gap-4">
-        <p class="paragraph-md text-neutral-nine">Site Map</p>
-        <ul class="list-none flex flex-col gap-2">
-          <li><a href="#" class="link link--inline no-underline">Top</a></li>
-          <li><a href="#about" class="link link--inline no-underline">About</a></li>
-          <li><a href="#quiz" class="link link--inline no-underline">Quiz</a></li>
-          <li><a href="#timeline" class="link link--inline no-underline">Timeline</a></li>
-          <li><a href="#research" class="link link--inline no-underline">Research</a></li>
-          <li><a href="#advocacy" class="link link--inline no-underline">Advocacy</a></li>
-          <li><a href="#takeaction" class="link link--inline no-underline">Take Action</a></li>
-        </ul>
-      </div>
-      <div class="flex flex-col gap-4">
-        <p class="paragraph-md text-neutral-nine">Legal</p>
-        <ul class="list-none flex flex-col gap-2">
-          <button type="button" popovertarget="disclaimer" aria-haspopup="dialog" aria-controls="disclaimer"
-            aria-expanded="false" class="link link--inline text-sm no-underline font-base text-left">Disclaimer</button>
-          <button popovertarget="privacy" aria-haspopup="dialog" aria-controls="privacy" aria-expanded="false"
-            class="link link--inline text-sm no-underline font-base text-left">Privacy Policy</button>
-        </ul>
       </div>
     </div>
   </footer>
