@@ -301,10 +301,20 @@ async function loadProgress() {
   try {
     const response = await fetch('/.netlify/functions/get-progress');
     const data = await response.json();
-    const percentage = data.goal > 0 ? (data.raised / data.goal) * 100 : 0;
+
+    if (data.error) {
+      console.error("Server error:", data.error);
+      return;
+    }
+
+    const raisedValue = data.raised || 0;
+    const goalValue = data.goal || 0;
+    const percentage = data.goal > 0 ? (raisedValue / goalValue) * 100 : 0;
+
     document.getElementById('progress-bar').style.width = percentage + '%';
-    document.getElementById('raised-text').innerText = '$' + data.raised.toLocaleString();
-    document.getElementById('goal-text').innerText = '$' + data.goal.toLocaleString();
+    document.getElementById('raised-text').innerText = '$' + raisedValue.toLocaleString();
+    document.getElementById('goal-text').innerText = '$' + goalValue.toLocaleString();
+
   } catch (err) {
     console.error("Could not load dynamic progress bar", err);
   }
