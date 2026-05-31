@@ -25,16 +25,19 @@ function setupSlides(dialog) {
     slideContainer.setAttribute('tabindex', '0');
   }
 
-  function updateSlideState(newIndex) {
+  function updateSlideState(newIndex, isSwiping = false) {
     slides[current].classList.remove('slide-current');
     slides[current].removeAttribute('tabindex');
     slides[current].removeAttribute('aria-current');
 
     current = newIndex;
 
-    slides[current].classList.add('slide-current');
     slides[current].setAttribute('aria-current', 'true');
     slides[current].setAttribute('tabindex', '-1');
+
+    if (isSwiping) {
+      slides[current].classList.add('slide-current');
+    }
 
     if (liveRegion) {
       liveRegion.textContent = `Item ${current + 1} of ${slides.length}`;
@@ -59,7 +62,7 @@ function setupSlides(dialog) {
     prevBtn.disabled = true;
     nextBtn.disabled = true;
 
-    updateSlideState(index);
+    updateSlideState(index, false);
 
     slides[index].scrollIntoView({
       behavior: 'auto',
@@ -68,6 +71,7 @@ function setupSlides(dialog) {
     })
 
     setTimeout(() => {
+      slides[index].classList.add('slide-current');
       slides[index].focus();
       prevBtn.disabled = false;
       nextBtn.disabled = false;
@@ -85,7 +89,7 @@ function setupSlides(dialog) {
       });
 
       if (activeIndex !== -1 && activeIndex !== current) {
-        updateSlideState(activeIndex);
+        updateSlideState(activeIndex, true);
       }
     }, 50);
   }, { signal: dialogController.signal });
