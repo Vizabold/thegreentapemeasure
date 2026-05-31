@@ -1,7 +1,7 @@
 const https = require('https');
 
 exports.handler = async (event) => {
-    const CAMPAIGN_ID = "help-launch-gtm";
+    const CAMPAIGN_ID = "663716";
     const API_KEY = process.env.GIVEBUTTER_API_KEY;
 
     if (!API_KEY) {
