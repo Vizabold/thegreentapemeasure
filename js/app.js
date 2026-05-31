@@ -299,7 +299,7 @@ comment.oninput = () => {
 
 async function loadProgress() {
   try {
-    const response = await fetch('../.netlify/functions/get-progress');
+    const response = await fetch('/.netlify/functions/get-progress');
     const data = await response.json();
     const percentage = data.goal > 0 ? (data.raised / data.goal) * 100 : 0;
     document.getElementById('progress-bar').style.width = percentage + '%';
