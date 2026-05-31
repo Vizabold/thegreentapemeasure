@@ -19,20 +19,25 @@ function setupSlides(dialog) {
     isKeyboardOrButtonClick = true;
 
     if (slideContainer) {
+      const originalSnap = slideContainer.style.scrollSnapType || getComputedStyle(slideContainer).scrollSnapType;
+      slideContainer.style.scrollSnapType = 'none';
+      slideContainer.scrollLeft = 0;
       slideContainer.scrollTo({ left: 0, behavior: 'auto' });
+      void slideContainer.offsetWidth;
+      slideContainer.style.scrollSnapType = originalSnap;
     }
 
-    slides.forEach((slide, i) => {
+    slides.forEach((slide) => {
       slide.classList.remove('slide-current');
       slide.removeAttribute('aria-current');
-      slide.setAttribute('role', 'group');
-      slide.setAttribute('aria-roledescription', 'slide');
-      slide.setAttribute('aria-label', `Slide ${i + 1} of ${slides.length}`);
+      slide.removeAttribute('tabindex');
     });
 
     current = 0;
-    slides[current].classList.add('slide-current');
-    slides[current].setAttribute('aria-current', 'true');
+    if (slides[current]) {
+      slides[current].classList.add('slide-current');
+      slides[current].setAttribute('aria-current', 'true');
+    }
 
     dots.forEach((dot, i) => {
       if (i === 0) {
@@ -48,23 +53,26 @@ function setupSlides(dialog) {
       skipBtn.classList.remove('invisible');
     }
 
+    if (liveRegion && slides.length > 0) {
+      liveRegion.textContent = `Item 1 of ${slides.length}`;
+    }
+
     setTimeout(() => {
       isKeyboardOrButtonClick = false;
-    }, 100);
+    }, 150);
   }
+
+  slides.forEach((slide, i) => {
+    slide.setAttribute('role', 'group');
+    slide.setAttribute('aria-roledescription', 'slide');
+    slide.setAttribute('aria-label', `Slide ${i + 1} of ${slides.length}`);
+  });
 
   dialog.addEventListener('toggle', (e) => {
     if (e.newState === 'open') {
       resetToFirstSlide();
     }
   }, { signal });
-
-  dialog.addEventListener('close', () => {
-    clearTimeout(debounceTimeout);
-    dialogController.abort();
-  }, { once: true });
-
-  resetToFirstSlide();
 
   function updateUI(index) {
     if (index === current) return;
@@ -158,11 +166,19 @@ function setupSlides(dialog) {
   if (skipBtn) {
     skipBtn.addEventListener('click', () => goToSlide(slides.length - 1), { signal });
   }
+
+  dialog.addEventListener('close', () => {
+    clearTimeout(debounceTimeout);
+    dialogController.abort();
+  }, { once: true });
+
+  resetToFirstSlide();
 }
 
 analysisBtns.forEach(btn => {
   const dialogId = btn.getAttribute('popovertarget');
   const dialog = document.getElementById(dialogId);
+
   if (dialog && !dialog.dataset.sliderInitialized) {
     setupSlides(dialog);
     dialog.dataset.sliderInitialized = 'true';
