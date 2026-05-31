@@ -55,7 +55,7 @@ document.querySelectorAll('button[popovertarget]').forEach(button => {
     });
 
     if (closeBtn) {
-      closeBtn.addEventListener('click', () => dialog.closest());
+      closeBtn.addEventListener('click', () => dialog.close());
     }
   };
 });
