@@ -13,7 +13,6 @@ function setupSlides(dialog) {
   const dots = Array.from(dialog.querySelectorAll('.slide-dot'));
 
   let current = 0;
-  let isProgrammaticScroll = false;
 
   function updateUI(index) {
     if (index === current) return;
@@ -54,10 +53,8 @@ function setupSlides(dialog) {
   function goToSlide(index) {
     if (index < 0 || index >= slides.length || index === current) return;
 
-    isProgrammaticScroll = true;
-
     slides[index].scrollIntoView({
-      behavior: 'smooth', // Native smooth scrolling honors your ~300ms transition
+      behavior: 'smooth',
       block: 'nearest',
       inline: 'center'
     });
@@ -71,10 +68,7 @@ function setupSlides(dialog) {
 
   slides[current].classList.add('slide-current');
   slides[current].setAttribute('aria-current', 'true');
-
-  if (!slideContainer.hasAttribute('tabindex')) {
-    slideContainer.setAttribute('tabindex', '0');
-  }
+  slideContainer.setAttribute('tabindex', '-1');
 
   slideContainer.addEventListener('scrollend', () => {
     const containerLeft = slideContainer.getBoundingClientRect().left;
@@ -89,10 +83,9 @@ function setupSlides(dialog) {
       updateUI(activeIndex);
     }
 
-    isProgrammaticScroll = false;
   }, { signal });
 
-  slideContainer.addEventListener('keydown', (e) => {
+  dialog.addEventListener('keydown', (e) => {
     if (e.key === 'ArrowLeft') {
       e.preventDefault();
       let prev = current === 0 ? slides.length - 1 : current - 1;
