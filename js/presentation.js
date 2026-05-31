@@ -1,22 +1,21 @@
 const liveRegion = document.getElementById('live-region');
-const dialogs = document.querySelectorAll('.analysis-dialog');
 const analysisBtns = document.querySelectorAll('.open-analysis-btn');
-const dialogController = new AbortController();
 
 function setupSlides(dialog) {
+  const dialogController = new AbortController();
   const prevBtn = dialog.querySelector('.analysis-prev-btn');
   const nextBtn = dialog.querySelector('.analysis-next-btn');
   const slideContainer = dialog.querySelector('.presentation-slider');
   const slides = Array.from(slideContainer.querySelectorAll('.presentation-slide'));
   const skipBtn = dialog.querySelector('.skip-to-sources-btn');
   const dots = Array.from(dialog.querySelectorAll('.slide-dot'));
-  const slider = dialog.querySelector('.presentation-slider');
   let current = 0;
+  let scrollTimeout;
 
   slides.forEach((slide, i) => {
     slide.setAttribute('role', 'group');
     slide.setAttribute('aria-roledescription', 'slide');
-    slide.setAttribute('aria-label', `Slide ${i + 1} of ${slide.length}`);
+    slide.setAttribute('aria-label', `Slide ${i + 1} of ${slides.length}`);
   });
 
   slides[current].classList.add('slide-current');
@@ -26,49 +25,71 @@ function setupSlides(dialog) {
     slideContainer.setAttribute('tabindex', '0');
   }
 
+  function updateSlideState(newIndex) {
+    slides[current].classList.remove('slide-current');
+    slides[current].removeAttribute('tabindex');
+    slides[current].removeAttribute('aria-current');
+
+    current = newIndex;
+
+    slides[current].classList.add('slide-current');
+    slides[current].setAttribute('aria-current', 'true');
+    slides[current].setAttribute('tabindex', '-1');
+
+    if (liveRegion) {
+      liveRegion.textContent = `Item ${current + 1} of ${slides.length}`;
+    }
+
+    dots.forEach((dot, i) => {
+      if (i === current) {
+        dot.classList.replace('w-3', 'w-6');
+        dot.classList.replace('bg-primary-three', 'bg-primary-one');
+      } else {
+        dot.classList.replace('w-6', 'w-3');
+        dot.classList.replace('bg-primary-one', 'bg-primary-three');
+      }
+    });
+
+    if (skipBtn) skipBtn.classList.toggle('invisible', current === slides.length - 1);
+  }
+
   function goToSlide(index) {
     if (index === current) return;
 
     prevBtn.disabled = true;
     nextBtn.disabled = true;
 
-    slides[current].classList.remove('slide-current');
-    slides[current].removeAttribute('tabindex');
-    slides[current].removeAttribute('aria-current');
+    updateSlideState(index);
+
+    slides[index].scrollIntoView({
+      behavior: 'auto',
+      block: 'nearest',
+      inline: 'center'
+    })
 
     setTimeout(() => {
-      slides[index].scrollIntoView({
-        behavior: 'smooth',
-        block: 'nearest',
-        inline: 'center'
-      })
-      slides[index].classList.add('slide-current');
-
-      slides[index].setAttribute('aria-current', 'true');
-      slides[index].setAttribute('tabindex', '-1');
       slides[index].focus();
-
-      if (liveRegion) {
-        liveRegion.textContent = `Item ${index + 1} of ${slides.length}`;
-      }
-
-      dots.forEach((dot, i) => {
-        if (i === current) {
-          dot.classList.replace('w-3', 'w-6');
-          dot.classList.replace('bg-primary-three', 'bg-primary-one');
-        } else {
-          dot.classList.replace('w-6', 'w-3');
-          dot.classList.replace('bg-primary-one', 'bg-primary-three');
-        }
-      })
-
-      if (skipBtn) skipBtn.classList.toggle('invisible', current === slides.length - 1);
-
-      current = index;
       prevBtn.disabled = false;
       nextBtn.disabled = false;
     }, 301)
   }
+
+  slideContainer.addEventListener('scroll', () => {
+    clearTimeout(scrollTimeout);
+    scrollTimeout = setTimeout(() => {
+      const containerLeft = slideContainer.getBoundingClientRect().left;
+      const containerCenter = containerLeft + (slideContainer.offsetWidth / 2);
+      const activeIndex = slides.findIndex(slide => {
+        const rect = slide.getBoundingClientRect();
+        return rect.left <= containerCenter && rect.right >= containerCenter;
+      });
+
+      if (activeIndex !== -1 && activeIndex !== current) {
+        updateSlideState(activeIndex);
+      }
+    }, 50);
+  }, { signal: dialogController.signal });
+
 
   slideContainer.addEventListener('keydown', (e) => {
     if (e.key === 'ArrowLeft') {
@@ -85,11 +106,10 @@ function setupSlides(dialog) {
   slideContainer.addEventListener('click', (e) => {
     const targetEl = e.target.closest('button, a');
     if (!targetEl) return;
-
-    const slide = targetEl.closest('.slide');
+    const slide = targetEl.closest('.presentation-slide');
     if (!slide) return;
-
     const slideIndex = slides.indexOf(slide);
+
     if (slideIndex !== -1) {
       goToSlide(slideIndex);
     }
@@ -107,6 +127,10 @@ function setupSlides(dialog) {
 
   if (skipBtn) skipBtn.addEventListener('click', () => goToSlide(slides.length - 1), { signal: dialogController.signal });
 
+  dialog.addEventListener('close', () => {
+    dialogController.abort();
+  }, { once: true });
+
 }
 
 analysisBtns.forEach(btn => {
@@ -115,10 +139,6 @@ analysisBtns.forEach(btn => {
 
   btn.addEventListener('click', () => {
     setupSlides(dialog);
-  })
-
-  dialog.addEventListener('close', () => {
-    dialogController.abort();
   })
 
 })

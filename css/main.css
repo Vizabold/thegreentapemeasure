@@ -298,7 +298,7 @@
   }
 
   .presentation-slider {
-    @apply flex grow items-center overflow-x-auto snap-x snap-mandatory scroll-smooth gap-15;
+    @apply flex grow items-center overflow-x-auto snap-x snap-mandatory snap-center scroll-smooth gap-15;
   }
 
   .presentation-slide {
