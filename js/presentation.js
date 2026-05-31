@@ -15,36 +15,56 @@ function setupSlides(dialog) {
   let isKeyboardOrButtonClick = false;
   let debounceTimeout = null;
 
-  requestAnimationFrame(() => {
+  function resetToFirstSlide() {
+    isKeyboardOrButtonClick = true;
+
     if (slideContainer) {
       slideContainer.scrollTo({ left: 0, behavior: 'auto' });
     }
-  });
 
-  slides.forEach((slide, i) => {
-    slide.classList.remove('slide-current');
-    slide.removeAttribute('aria-current');
-    slide.setAttribute('role', 'group');
-    slide.setAttribute('aria-roledescription', 'slide');
-    slide.setAttribute('aria-label', `Slide ${i + 1} of ${slides.length}`);
-  });
+    slides.forEach((slide, i) => {
+      slide.classList.remove('slide-current');
+      slide.removeAttribute('aria-current');
+      slide.setAttribute('role', 'group');
+      slide.setAttribute('aria-roledescription', 'slide');
+      slide.setAttribute('aria-label', `Slide ${i + 1} of ${slides.length}`);
+    });
 
-  slides[current].classList.add('slide-current');
-  slides[current].setAttribute('aria-current', 'true');
+    current = 0;
+    slides[current].classList.add('slide-current');
+    slides[current].setAttribute('aria-current', 'true');
 
-  dots.forEach((dot, i) => {
-    if (i === 0) {
-      dot.classList.replace('w-3', 'w-6');
-      dot.classList.replace('bg-primary-three', 'bg-primary-one');
-    } else {
-      dot.classList.replace('w-6', 'w-3');
-      dot.classList.replace('bg-primary-one', 'bg-primary-three');
+    dots.forEach((dot, i) => {
+      if (i === 0) {
+        dot.classList.replace('w-3', 'w-6');
+        dot.classList.replace('bg-primary-three', 'bg-primary-one');
+      } else {
+        dot.classList.replace('w-6', 'w-3');
+        dot.classList.replace('bg-primary-one', 'bg-primary-three');
+      }
+    });
+
+    if (skipBtn) {
+      skipBtn.classList.remove('invisible');
     }
-  });
 
-  if (skipBtn) {
-    skipBtn.classList.remove('invisible');
+    setTimeout(() => {
+      isKeyboardOrButtonClick = false;
+    }, 100);
   }
+
+  dialog.addEventListener('toggle', (e) => {
+    if (e.newState === 'open') {
+      resetToFirstSlide();
+    }
+  }, { signal });
+
+  dialog.addEventListener('close', () => {
+    clearTimeout(debounceTimeout);
+    dialogController.abort();
+  }, { once: true });
+
+  resetToFirstSlide();
 
   function updateUI(index) {
     if (index === current) return;
@@ -138,19 +158,15 @@ function setupSlides(dialog) {
   if (skipBtn) {
     skipBtn.addEventListener('click', () => goToSlide(slides.length - 1), { signal });
   }
-
-  dialog.addEventListener('close', () => {
-    clearTimeout(debounceTimeout);
-    dialogController.abort();
-  }, { once: true });
 }
 
 analysisBtns.forEach(btn => {
   const dialogId = btn.getAttribute('popovertarget');
   const dialog = document.getElementById(dialogId);
-  btn.addEventListener('click', () => {
+  if (dialog && !dialog.dataset.sliderInitialized) {
     setupSlides(dialog);
-  });
+    dialog.dataset.sliderInitialized = 'true';
+  }
 });
 
 /*--------------- BILL DETAILS CONTAINER --------------------- */
