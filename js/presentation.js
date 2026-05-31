@@ -19,16 +19,11 @@ function setupSlides(dialog) {
     slide.setAttribute('role', 'group');
     slide.setAttribute('aria-roledescription', 'slide');
     slide.setAttribute('aria-label', `Slide ${i + 1} of ${slides.length}`);
-    if (slide.classList.contains('slide-current')) { slide.classList.remove('slide-current'); }
   });
 
   slides[current].classList.add('slide-current');
   slides[current].setAttribute('aria-current', 'true');
-  slides[current].scrollIntoView({
-    behavior: 'smooth',
-    block: 'nearest',
-    inline: 'center'
-  });
+  slideContainer.scrollTo({ left: 0, behavior: 'auto' });
 
   function updateUI(index) {
     if (index === current) return;
@@ -78,8 +73,6 @@ function setupSlides(dialog) {
     }, 350);
   }
 
-
-
   slideContainer.addEventListener('scroll', () => {
     if (isKeyboardOrButtonClick) return;
 
@@ -127,6 +120,7 @@ function setupSlides(dialog) {
 
   dialog.addEventListener('close', () => {
     clearTimeout(debounceTimeout);
+    slides[current].classList.remove('slide-current');
     dialogController.abort();
   }, { once: true });
 }
