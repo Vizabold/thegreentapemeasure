@@ -3,58 +3,64 @@ const analysisBtns = document.querySelectorAll('.open-analysis-btn');
 
 function setupSlides(dialog) {
   const dialogController = new AbortController();
+  const signal = dialogController.signal;
+
   const prevBtn = dialog.querySelector('.analysis-prev-btn');
   const nextBtn = dialog.querySelector('.analysis-next-btn');
   const slideContainer = dialog.querySelector('.presentation-slider');
   const slides = Array.from(slideContainer.querySelectorAll('.presentation-slide'));
   const skipBtn = dialog.querySelector('.skip-to-sources-btn');
   const dots = Array.from(dialog.querySelectorAll('.slide-dot'));
+
   let current = 0;
-  let isAnimating = false;
+  let isProgrammaticScroll = false;
 
-  function goToSlide(index) {
+  function updateUI(index) {
     if (index === current) return;
-
-    isAnimating = true;
-    prevBtn.disabled = true;
-    nextBtn.disabled = true;
 
     slides[current].classList.remove('slide-current');
     slides[current].removeAttribute('tabindex');
     slides[current].removeAttribute('aria-current');
 
-    setTimeout(() => {
-      slides[index].scrollIntoView({
-        behavior: 'auto',
-        block: 'nearest',
-        inline: 'center'
-      })
-      slides[index].classList.add('slide-current');
-      slides[index].setAttribute('aria-current', 'true');
-      slides[index].setAttribute('tabindex', '-1');
-      slides[index].focus();
+    slides[index].classList.add('slide-current');
+    slides[index].setAttribute('aria-current', 'true');
+    slides[index].setAttribute('tabindex', '-1');
 
-      if (liveRegion) {
-        liveRegion.textContent = `Item ${current + 1} of ${slides.length}`;
+    if (document.activeElement && slideContainer.contains(document.activeElement)) {
+      slides[index].focus({ preventScroll: true });
+    }
+
+    if (liveRegion) {
+      liveRegion.textContent = `Item ${index + 1} of ${slides.length}`;
+    }
+
+    dots.forEach((dot, i) => {
+      if (i === index) {
+        dot.classList.replace('w-3', 'w-6');
+        dot.classList.replace('bg-primary-three', 'bg-primary-one');
+      } else {
+        dot.classList.replace('w-6', 'w-3');
+        dot.classList.replace('bg-primary-one', 'bg-primary-three');
       }
+    });
 
-      dots.forEach((dot, i) => {
-        if (i === index) {
-          dot.classList.replace('w-3', 'w-6');
-          dot.classList.replace('bg-primary-three', 'bg-primary-one');
-        } else {
-          dot.classList.replace('w-6', 'w-3');
-          dot.classList.replace('bg-primary-one', 'bg-primary-three');
-        }
-      });
+    if (skipBtn) {
+      skipBtn.classList.toggle('invisible', index === slides.length - 1);
+    }
 
-      if (skipBtn) skipBtn.classList.toggle('invisible', current === slides.length - 1);
+    current = index;
+  }
 
-      current = index;
-      prevBtn.disabled = false;
-      nextBtn.disabled = false;
-      isAnimating = false;
-    }, 301)
+  function goToSlide(index) {
+    if (index < 0 || index >= slides.length || index === current) return;
+
+    isProgrammaticScroll = true;
+
+    slides[index].scrollIntoView({
+      behavior: 'smooth', // Native smooth scrolling honors your ~300ms transition
+      block: 'nearest',
+      inline: 'center'
+    });
   }
 
   slides.forEach((slide, i) => {
@@ -71,76 +77,59 @@ function setupSlides(dialog) {
   }
 
   slideContainer.addEventListener('scrollend', () => {
-    slideContainer.classList.remove('overflow-x-auto');
     const containerLeft = slideContainer.getBoundingClientRect().left;
     const containerCenter = containerLeft + (slideContainer.offsetWidth / 2);
+
     const activeIndex = slides.findIndex(slide => {
       const rect = slide.getBoundingClientRect();
       return rect.left <= containerCenter && rect.right >= containerCenter;
     });
 
-    if (activeIndex !== -1 && activeIndex !== current) {
-      goToSlide(activeIndex, true);
+    if (activeIndex !== -1) {
+      updateUI(activeIndex);
     }
-    setTimeout(() => {
-      slideContainer.classList.add('overflow-ox-auto');
-    }, 301)
-  }, { signal: dialogController.signal });
 
+    isProgrammaticScroll = false;
+  }, { signal });
 
   slideContainer.addEventListener('keydown', (e) => {
     if (e.key === 'ArrowLeft') {
       e.preventDefault();
-      if (isAnimating) return;
       let prev = current === 0 ? slides.length - 1 : current - 1;
       goToSlide(prev);
     } else if (e.key === 'ArrowRight') {
       e.preventDefault();
-      if (isAnimating) return;
       let next = current === slides.length - 1 ? 0 : current + 1;
       goToSlide(next);
     }
-  }, { signal: dialogController.signal });
-
-  slideContainer.addEventListener('click', (e) => {
-    const targetEl = e.target.closest('button, a');
-    if (!targetEl) return;
-    const slide = targetEl.closest('.presentation-slide');
-    if (!slide) return;
-    const slideIndex = slides.indexOf(slide);
-
-    if (slideIndex !== -1) {
-      goToSlide(slideIndex);
-    }
-  }, { signal: dialogController.signal })
+  }, { signal });
 
   prevBtn.addEventListener('click', () => {
     let prev = current === 0 ? slides.length - 1 : current - 1;
     goToSlide(prev);
-  }, { signal: dialogController.signal })
+  }, { signal });
 
   nextBtn.addEventListener('click', () => {
     let next = current === slides.length - 1 ? 0 : current + 1;
     goToSlide(next);
-  }, { signal: dialogController.signal })
+  }, { signal });
 
-  if (skipBtn) skipBtn.addEventListener('click', () => goToSlide(slides.length - 1), { signal: dialogController.signal });
+  if (skipBtn) {
+    skipBtn.addEventListener('click', () => goToSlide(slides.length - 1), { signal });
+  }
 
   dialog.addEventListener('close', () => {
     dialogController.abort();
   }, { once: true });
-
 }
 
 analysisBtns.forEach(btn => {
   const dialogId = btn.getAttribute('popovertarget');
   const dialog = document.getElementById(dialogId);
-
   btn.addEventListener('click', () => {
     setupSlides(dialog);
-  })
-
-})
+  });
+});
 
 /*--------------- BILL DETAILS CONTAINER --------------------- */
 
