@@ -1,7 +1,7 @@
 <dialog class="overflow-y-hidden analysis-dialog" id="analysis-one"
     aria-label="Analysis of Deadly Building Fires in the U.S." aria-modal="true" popover>
     <div class="presentation-slider scrollbar" role="region" aria-roledescription="carousel"
-        aria-label="analysis slides">
+        aria-label="analysis slides" id="analysis-one-slider">
         <div class="card presentation-slide" id="slide-1a" role="group" aria-roledescription="slide"
             aria-current="true">
             <div class="flex justify-center items-center" id="pie-chart-1a-container">
@@ -2315,13 +2315,13 @@
         <p class="block js:hidden">Scroll or swipe across to see the slides.</p>
         <div class="flex gap-4 justify-center">
             <button type="button" class="btn btn-icon btn-icon-lg analysis-prev-btn hidden js:flex"
-                aria-label="previous slide">
+                aria-label="previous slide" aria-controls="analysis-one-slider">
                 <svg class="icon-xs" aria-hidden="true">
                     <use href="/assets/sprites/solid.svg#angle-left"></use>
                 </svg>
             </button>
             <button type="button" class="btn btn-icon btn-icon-lg analysis-next-btn hidden js:flex"
-                aria-label="next slide">
+                aria-label="next slide" aria-controls="analysis-one-slider">
                 <svg class="icon-xs" aria-hidden="true">
                     <use href="/assets/sprites/solid.svg#angle-right"></use>
                 </svg>

@@ -7,9 +7,9 @@ function setupSlides(dialog) {
   const prevBtn = dialog.querySelector('.analysis-prev-btn');
   const nextBtn = dialog.querySelector('.analysis-next-btn');
   const slideContainer = dialog.querySelector('.presentation-slider');
-  const slides = Array.from(slideContainer.querySelectorAll('.slide'));
+  const slides = slideContainer.querySelectorAll('.slide');
   const skipBtn = dialog.querySelector('.skip-to-sources-btn');
-  const dots = Array.from(dialog.querySelectorAll('.slide-dot'));
+  const dots = dialog.querySelectorAll('.slide-dot');
   const slider = dialog.querySelector('.presentation-slider');
   let current = 0;
 
