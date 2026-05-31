@@ -1,5 +1,5 @@
 export const handler = async (event) => {
-    const CAMPAIGN_ID = "/help-launch-gtm";
+    const CAMPAIGN_ID = "help-launch-gtm";
     const API_KEY = process.env.GIVEBUTTER_API_KEY;
 
     try {
