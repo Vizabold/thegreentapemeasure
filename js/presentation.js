@@ -10,7 +10,52 @@ function setupSlides(dialog) {
   const skipBtn = dialog.querySelector('.skip-to-sources-btn');
   const dots = Array.from(dialog.querySelectorAll('.slide-dot'));
   let current = 0;
-  let scrollTimeout;
+  let isAnimating = false;
+
+  function goToSlide(index) {
+    if (index === current) return;
+
+    isAnimating = true;
+    prevBtn.disabled = true;
+    nextBtn.disabled = true;
+
+    slides[current].classList.remove('slide-current');
+    slides[current].removeAttribute('tabindex');
+    slides[current].removeAttribute('aria-current');
+
+    setTimeout(() => {
+      slides[index].scrollIntoView({
+        behavior: 'auto',
+        block: 'nearest',
+        inline: 'center'
+      })
+      slides[index].classList.add('slide-current');
+      slides[index].setAttribute('aria-current', 'true');
+      slides[index].setAttribute('tabindex', '-1');
+      slides[index].focus();
+
+      if (liveRegion) {
+        liveRegion.textContent = `Item ${current + 1} of ${slides.length}`;
+      }
+
+      dots.forEach((dot, i) => {
+        if (i === index) {
+          dot.classList.replace('w-3', 'w-6');
+          dot.classList.replace('bg-primary-three', 'bg-primary-one');
+        } else {
+          dot.classList.replace('w-6', 'w-3');
+          dot.classList.replace('bg-primary-one', 'bg-primary-three');
+        }
+      });
+
+      if (skipBtn) skipBtn.classList.toggle('invisible', current === slides.length - 1);
+
+      current = index;
+      prevBtn.disabled = false;
+      nextBtn.disabled = false;
+      isAnimating = false;
+    }, 301)
+  }
 
   slides.forEach((slide, i) => {
     slide.setAttribute('role', 'group');
@@ -25,83 +70,33 @@ function setupSlides(dialog) {
     slideContainer.setAttribute('tabindex', '0');
   }
 
-  function updateSlideState(newIndex, isSwiping = false) {
-    slides[current].classList.remove('slide-current');
-    slides[current].removeAttribute('tabindex');
-    slides[current].removeAttribute('aria-current');
-
-    current = newIndex;
-
-    slides[current].setAttribute('aria-current', 'true');
-    slides[current].setAttribute('tabindex', '-1');
-
-    if (isSwiping) {
-      slides[current].classList.add('slide-current');
-    }
-
-    if (liveRegion) {
-      liveRegion.textContent = `Item ${current + 1} of ${slides.length}`;
-    }
-
-    dots.forEach((dot, i) => {
-      if (i === current) {
-        dot.classList.replace('w-3', 'w-6');
-        dot.classList.replace('bg-primary-three', 'bg-primary-one');
-      } else {
-        dot.classList.replace('w-6', 'w-3');
-        dot.classList.replace('bg-primary-one', 'bg-primary-three');
-      }
+  slideContainer.addEventListener('scrollend', () => {
+    slideContainer.classList.remove('overflow-x-auto');
+    const containerLeft = slideContainer.getBoundingClientRect().left;
+    const containerCenter = containerLeft + (slideContainer.offsetWidth / 2);
+    const activeIndex = slides.findIndex(slide => {
+      const rect = slide.getBoundingClientRect();
+      return rect.left <= containerCenter && rect.right >= containerCenter;
     });
 
-    if (skipBtn) skipBtn.classList.toggle('invisible', current === slides.length - 1);
-  }
-
-  function goToSlide(index) {
-    if (index === current) return;
-
-    prevBtn.disabled = true;
-    nextBtn.disabled = true;
-
-    updateSlideState(index, false);
-
-    slides[index].scrollIntoView({
-      behavior: 'auto',
-      block: 'nearest',
-      inline: 'center'
-    })
-
+    if (activeIndex !== -1 && activeIndex !== current) {
+      goToSlide(activeIndex, true);
+    }
     setTimeout(() => {
-      slides[index].classList.add('slide-current');
-      slides[index].focus();
-      prevBtn.disabled = false;
-      nextBtn.disabled = false;
+      slideContainer.classList.add('overflow-ox-auto');
     }, 301)
-  }
-
-  slideContainer.addEventListener('scroll', () => {
-    clearTimeout(scrollTimeout);
-    scrollTimeout = setTimeout(() => {
-      const containerLeft = slideContainer.getBoundingClientRect().left;
-      const containerCenter = containerLeft + (slideContainer.offsetWidth / 2);
-      const activeIndex = slides.findIndex(slide => {
-        const rect = slide.getBoundingClientRect();
-        return rect.left <= containerCenter && rect.right >= containerCenter;
-      });
-
-      if (activeIndex !== -1 && activeIndex !== current) {
-        updateSlideState(activeIndex, true);
-      }
-    }, 50);
   }, { signal: dialogController.signal });
 
 
   slideContainer.addEventListener('keydown', (e) => {
     if (e.key === 'ArrowLeft') {
       e.preventDefault();
+      if (isAnimating) return;
       let prev = current === 0 ? slides.length - 1 : current - 1;
       goToSlide(prev);
     } else if (e.key === 'ArrowRight') {
       e.preventDefault();
+      if (isAnimating) return;
       let next = current === slides.length - 1 ? 0 : current + 1;
       goToSlide(next);
     }
