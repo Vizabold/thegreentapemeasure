@@ -15,10 +15,11 @@ function setupSlides(dialog) {
   let isKeyboardOrButtonClick = false;
   let debounceTimeout = null;
 
-  if (slideContainer) {
-    slideContainer.scrollTo({ left: 0, behavior: 'auto' });
-  }
-
+  requestAnimationFrame(() => {
+    if (slideContainer) {
+      slideContainer.scrollTo({ left: 0, behavior: 'auto' });
+    }
+  });
 
   slides.forEach((slide, i) => {
     slide.classList.remove('slide-current');
@@ -30,6 +31,20 @@ function setupSlides(dialog) {
 
   slides[current].classList.add('slide-current');
   slides[current].setAttribute('aria-current', 'true');
+
+  dots.forEach((dot, i) => {
+    if (i === 0) {
+      dot.classList.replace('w-3', 'w-6');
+      dot.classList.replace('bg-primary-three', 'bg-primary-one');
+    } else {
+      dot.classList.replace('w-6', 'w-3');
+      dot.classList.replace('bg-primary-one', 'bg-primary-three');
+    }
+  });
+
+  if (skipBtn) {
+    skipBtn.classList.remove('invisible');
+  }
 
   function updateUI(index) {
     if (index === current) return;
