@@ -4,7 +4,6 @@ const analysisBtns = document.querySelectorAll('.open-analysis-btn');
 function setupSlides(dialog) {
   const dialogController = new AbortController();
   const signal = dialogController.signal;
-
   const prevBtn = dialog.querySelector('.analysis-prev-btn');
   const nextBtn = dialog.querySelector('.analysis-next-btn');
   const slideContainer = dialog.querySelector('.presentation-slider');
@@ -13,21 +12,17 @@ function setupSlides(dialog) {
   const dots = Array.from(dialog.querySelectorAll('.slide-dot'));
 
   let current = 0;
+  let isKeyboardOrButtonClick = false;
+  let debounceTimeout = null;
 
   function updateUI(index) {
     if (index === current) return;
 
     slides[current].classList.remove('slide-current');
-    slides[current].removeAttribute('tabindex');
     slides[current].removeAttribute('aria-current');
 
     slides[index].classList.add('slide-current');
     slides[index].setAttribute('aria-current', 'true');
-    slides[index].setAttribute('tabindex', '-1');
-
-    if (document.activeElement && slideContainer.contains(document.activeElement)) {
-      slides[index].focus({ preventScroll: true });
-    }
 
     if (liveRegion) {
       liveRegion.textContent = `Item ${index + 1} of ${slides.length}`;
@@ -53,11 +48,19 @@ function setupSlides(dialog) {
   function goToSlide(index) {
     if (index < 0 || index >= slides.length || index === current) return;
 
+    isKeyboardOrButtonClick = true;
+    updateUI(index);
+
     slides[index].scrollIntoView({
       behavior: 'smooth',
       block: 'nearest',
       inline: 'center'
     });
+
+    clearTimeout(debounceTimeout);
+    debounceTimeout = setTimeout(() => {
+      isKeyboardOrButtonClick = false;
+    }, 350);
   }
 
   slides.forEach((slide, i) => {
@@ -68,21 +71,24 @@ function setupSlides(dialog) {
 
   slides[current].classList.add('slide-current');
   slides[current].setAttribute('aria-current', 'true');
-  slideContainer.setAttribute('tabindex', '-1');
 
-  slideContainer.addEventListener('scrollend', () => {
-    const containerLeft = slideContainer.getBoundingClientRect().left;
-    const containerCenter = containerLeft + (slideContainer.offsetWidth / 2);
+  slideContainer.addEventListener('scroll', () => {
+    if (isKeyboardOrButtonClick) return;
 
-    const activeIndex = slides.findIndex(slide => {
-      const rect = slide.getBoundingClientRect();
-      return rect.left <= containerCenter && rect.right >= containerCenter;
-    });
+    clearTimeout(debounceTimeout);
+    debounceTimeout = setTimeout(() => {
+      const containerLeft = slideContainer.getBoundingClientRect().left;
+      const containerCenter = containerLeft + (slideContainer.offsetWidth / 2);
 
-    if (activeIndex !== -1) {
-      updateUI(activeIndex);
-    }
+      const activeIndex = slides.findIndex(slide => {
+        const rect = slide.getBoundingClientRect();
+        return rect.left <= containerCenter && rect.right >= containerCenter;
+      });
 
+      if (activeIndex !== -1) {
+        updateUI(activeIndex);
+      }
+    }, 50);
   }, { signal });
 
   dialog.addEventListener('keydown', (e) => {
@@ -112,6 +118,7 @@ function setupSlides(dialog) {
   }
 
   dialog.addEventListener('close', () => {
+    clearTimeout(debounceTimeout);
     dialogController.abort();
   }, { once: true });
 }
