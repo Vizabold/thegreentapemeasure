@@ -22,7 +22,7 @@
 
   <a href="#main-content" class="skip-link">Skip to main content</a>
 
-  <dialog class="[:not(:popover-open)]:hidden" id="mobile-nav-menu" popover>
+  <dialog id="mobile-nav-menu" aria-label="navigation menu and settings" aria-model="true" popover>
     <div class="flex px-4 pt-8 pb-2 justify-between items-end bg-neutral-one">
       <picture class="mb-1">
         <source srcset="assets/images/logo-dk.webp" type="image/webp" media="all" data-theme="dark">
@@ -57,7 +57,7 @@
     </nav>
   </dialog>
 
-  <dialog class="[:not(:popover-open)]:hidden" id="search-overlay" popover>
+  <dialog id="search-overlay" aria-label="Search" aria-model="true" popover>
     <form class="fixed flex flex-col inset-0 z-50 bg-neutral-one p-6 gap-4" id="mobile-search-form" action="/search"
       method="GET">
       <div class="flex gap-2 items-center">
@@ -134,7 +134,7 @@
       </button>
       <button type="button" popovertarget="mobile-nav-menu" aria-controls="mobile-nav-menu"
         class="btn btn-icon lg:hidden" id="mobile-nav-btn" aria-label="open menu">
-        <svg class="icon-lg" aria-hidden="true" class="fill-primary-one">
+        <svg class="icon-lg" aria-hidden="true">
           <use href="/assets/sprites/solid.svg#bars"></use>
         </svg>
       </button>
