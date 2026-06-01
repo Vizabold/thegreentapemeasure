@@ -78,14 +78,8 @@ const desktopList = document.getElementById('search-results');
 
 function closeDesktop() {
   desktopList.classList.add('hidden');
-  desktopList.classList.remove('flex');
   desktopInput.setAttribute('aria-expanded', 'false');
 }
-
-desktopForm.addEventListener('submit', e => {
-  e.preventDefault();
-  desktopList.querySelector('[role="option"]')?.click();
-});
 
 desktopInput.addEventListener('input', () => {
   const q = desktopInput.value;
@@ -95,7 +89,6 @@ desktopInput.addEventListener('input', () => {
     desktopInput.value = '';
     closeDesktop();
   });
-  desktopList.classList.remove('hidden');
   desktopList.classList.add('flex');
   desktopInput.setAttribute('aria-expanded', 'true');
 });

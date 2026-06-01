@@ -101,11 +101,14 @@
     </nav>
     <form class="relative items-center gap-2 xxs:hidden xl:flex" role="search">
       <label for="search" class="sr-only">Search</label>
-      <div class="flex">
-        <input type="search" name="search" class="w-37.5 xxl:w-50 rounded-r-none" id="search" placeholder="search..."
-          autocomplete="off" role="combobox" aria-expanded="false" aria-haspopup="listbox" aria-autocomplete="list"
-          aria-controls="search-results">
-        <button type="submit" class="btn bg-neutral-six rounded-r-lg h-10 w-10 self-center hover:bg-primary-five"
+      <div
+        class="flex items-stretch bg-neutral-eight border border-solid border-neutral-six rounded-lg overflow-hidden focus-within:ring-2 focus-within:ring-green-500">
+        <input type="search" name="search"
+          class="w-37.5 xxl:w-50 h-10 px-3 bg-transparent text-white placeholder-neutral-four outline-none focus:outline-none"
+          id="search" placeholder="search..." autocomplete="off" role="combobox" aria-expanded="false"
+          aria-haspopup="listbox" aria-autocomplete="list" aria-controls="search-results">
+        <button type="submit"
+          class="btn bg-neutral-six px-3 h-10 flex items-center justify-center hover:bg-primary-five transition-colors duration-150"
           aria-label="Search">
           <svg aria-hidden="true" class="w-6 h-6 text-neutral-seven">
             <use href="/assets/sprites/solid.svg#magnifying-glass"></use>
