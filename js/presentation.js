@@ -65,20 +65,36 @@ function setupSlides(dialog) {
   });
 
   prevBtn.addEventListener('click', () => {
+    if (isScrollSyncing) return;
     let prev = current === 0 ? slides.length - 1 : current - 1;
     goToSlide(prev);
   });
 
   nextBtn.addEventListener('click', () => {
+    if (isScrollSyncing) return;
     let next = current === slides.length - 1 ? 0 : current + 1;
     goToSlide(next);
   });
 
   if (skipBtn) {
     skipBtn.addEventListener('click', () => {
+      if (isScrollSyncing) return;
       goToSlide(slides.length - 1)
     });
   }
+
+  dialog.addEventListener('keydown', (e) => {
+    if (isScrollSyncing) return;
+    if (e.key === 'ArrowLeft') {
+      e.preventDefault();
+      let prev = current === 0 ? slides.length - 1 : current - 1;
+      goToSlide(prev);
+    } else if (e.key === 'ArrowRight') {
+      e.preventDefault();
+      let next = current === slides.length - 1 ? 0 : current + 1;
+      goToSlide(next);
+    }
+  })
 
   dialog.addEventListener('toggle', (event) => {
     if (event.newState === 'open') {
