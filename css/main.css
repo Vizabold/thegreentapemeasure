@@ -8,6 +8,12 @@
 @layer base, components, utilities;
 
 @layer base {
+
+  html:has(dialog:open),
+  html:has([popover]:popover-open) {
+    overflow: hidden;
+  }
+
   :focus-visible {
     @apply outline-offset-3 outline-primary-one outline-2;
   }
