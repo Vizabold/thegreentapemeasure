@@ -22,7 +22,7 @@
 
   <a href="#main-content" class="skip-link">Skip to main content</a>
 
-  <dialog class="p-0" id="mobile-nav-menu" aria-label="navigation menu and settings" aria-model="true" popover>
+  <dialog class="p-0" id="mobile-nav-menu" aria-label="navigation menu and settings" aria-modal="true" popover>
     <div class="flex px-4 pt-8 pb-2 justify-between items-end bg-neutral-one">
       <picture class="mb-1">
         <source srcset="assets/images/logo-dk.webp" type="image/webp" media="all" data-theme="dark">
@@ -57,7 +57,7 @@
     </nav>
   </dialog>
 
-  <dialog id="search-overlay" aria-label="Search" aria-model="true" popover>
+  <dialog id="search-overlay" aria-label="Search" aria-modal="true" popover>
     <form class="fixed flex flex-col inset-0 z-50 bg-neutral-one p-6 gap-4" id="mobile-search-form" action="/search"
       method="GET">
       <div class="flex gap-2 items-center">
@@ -199,10 +199,10 @@
         <div class="flex flex-col gap-4 min-w-28">
           <p class="paragraph-md text-neutral-nine">Legal</p>
           <ul class="list-none flex flex-col gap-2">
-            <button type="button" popovertarget="disclaimer" aria-haspopup="dialog" aria-controls="disclaimer"
-              class="link link--inline no-underline text-base text-left">Disclaimer</button>
-            <button popovertarget="privacy" aria-haspopup="dialog" aria-controls="privacy"
-              class="link link--inline no-underline text-base text-left">Privacy Policy</button>
+            <li><button type="button" popovertarget="disclaimer" aria-haspopup="dialog" aria-controls="disclaimer"
+                class="link link--inline no-underline text-base text-left">Disclaimer</button></li>
+            <li><button popovertarget="privacy" aria-haspopup="dialog" aria-controls="privacy"
+                class="link link--inline no-underline text-base text-left">Privacy Policy</button></li>
           </ul>
         </div>
       </div>
