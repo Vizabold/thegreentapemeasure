@@ -151,10 +151,10 @@ const mobileNavMenu = document.getElementById('mobile-nav-menu');
 
 mobileNavMenu.addEventListener('click', (event) => {
   if (event.target.tagName === 'A') {
-    if (typeof mobileNavMenu.hidePopover === 'function') {
-      mobileNavMenu.hidePopover();
-    } else if (typeof mobileNavMenu.close === 'function') {
+    if (mobileNavMenu.tagName === 'DIALOG' && mobileNavMenu.hasAttribute('open')) {
       mobileNavMenu.close();
+    } else if (typeof mobileNavMenu.hidePopover === 'function') {
+      mobileNavMenu.hidePopover();
     }
   }
 });
