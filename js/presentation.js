@@ -15,9 +15,12 @@ function setupSlides(dialog) {
 
   function updateUI(index) {
     slides[current].classList.remove('slide-current');
+    slides[current].removeAttribute('tabindex');
     slides[current].removeAttribute('aria-current');
     slides[index].classList.add('slide-current');
     slides[index].setAttribute('aria-current', 'true');
+    slides[index].setAttribute('tabindex', '-1');
+    slides[index].focus();
 
     if (liveRegion) {
       liveRegion.textContent = `Item ${index + 1} of ${slides.length}`;
@@ -64,11 +67,17 @@ function setupSlides(dialog) {
         slides.forEach((slide, i) => {
           if (slide.classList.contains('slide-current')) {
             slide.classList.remove('slide-current');
+            slide.removeAttribute('tabindex');
             slide.removeAttribute('aria-current');
           }
         });
+        if (!slideContainer.hasAttribute('tabindex')) {
+          slideContainer.setAttribute('tabindex', '0');
+        }
         slides[0].classList.add('slide-current');
         slides[0].setAttribute('aria-current', 'true');
+        slides[0].setAttribute('tabindex', '-1');
+        slides[0].focus();
 
         dots.forEach((dot, i) => {
           if (i === 0) {
