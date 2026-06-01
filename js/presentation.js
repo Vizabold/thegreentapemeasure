@@ -9,7 +9,7 @@ function setupSlides(dialog) {
   const skipBtn = dialog.querySelector('.skip-to-sources-btn');
   const dots = Array.from(dialog.querySelectorAll('.slide-dot'));
   let current = 0;
-  let isKeyboardOrButtonClick = false;
+  let isAnimating = false;
   let debounceTimeout = null;
   let dialogController = null;
 
@@ -41,7 +41,7 @@ function setupSlides(dialog) {
   }
 
   function goToSlide(index) {
-    isKeyboardOrButtonClick = true;
+    isAnimating = true;
     updateUI(index);
     slides[index].scrollIntoView({
       behavior: 'smooth',
@@ -50,12 +50,13 @@ function setupSlides(dialog) {
     });
     clearTimeout(debounceTimeout);
     debounceTimeout = setTimeout(() => {
-      isKeyboardOrButtonClick = false;
+      isAnimating = false;
     }, 350);
   }
 
   dialog.addEventListener('toggle', (event) => {
     if (event.newState === 'open') {
+      isAnimating = true;
       const dialogController = new AbortController();
       const signal = dialogController.signal;
 
@@ -85,12 +86,16 @@ function setupSlides(dialog) {
           inline: 'center'
         });
         current = 0;
-        dialog.removeEventListener('transitionend', handleTransitionEnd);
+
+        setTimeout(() => {
+          isAnimating = false;
+          dialog.removeEventListener('transitionend', handleTransitionEnd);
+        }, 301)
       };
       dialog.addEventListener('transitionend', handleTransitionEnd);
 
       slideContainer.addEventListener('scroll', () => {
-        if (isKeyboardOrButtonClick) return;
+        if (isAnimating) return;
         clearTimeout(debounceTimeout);
         debounceTimeout = setTimeout(() => {
           const containerLeft = slideContainer.getBoundingClientRect().left;
@@ -106,6 +111,7 @@ function setupSlides(dialog) {
       }, { signal });
 
       dialog.addEventListener('keydown', (e) => {
+        if (isAnimating) return;
         if (e.key === 'ArrowLeft') {
           e.preventDefault();
           let prev = current === 0 ? slides.length - 1 : current - 1;
@@ -118,17 +124,22 @@ function setupSlides(dialog) {
       }, { signal });
 
       prevBtn.addEventListener('click', () => {
+        if (isAnimating) return;
         let prev = current === 0 ? slides.length - 1 : current - 1;
         goToSlide(prev);
       }, { signal });
 
       nextBtn.addEventListener('click', () => {
+        if (isAnimating) return;
         let next = current === slides.length - 1 ? 0 : current + 1;
         goToSlide(next);
       }, { signal });
 
       if (skipBtn) {
-        skipBtn.addEventListener('click', () => goToSlide(slides.length - 1), { signal });
+        skipBtn.addEventListener('click', () => {
+          if (isAnimating) return;
+          goToSlide(slides.length - 1)
+        }, { signal });
       }
     } else {
       clearTimeout(debounceTimeout);
