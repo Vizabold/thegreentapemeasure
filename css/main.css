@@ -305,11 +305,11 @@
   }
 
   .presentation-slider {
-    @apply flex grow items-center overflow-x-auto snap-x snap-mandatory snap-center scroll-smooth gap-15;
+    @apply flex grow items-center overflow-x-auto snap-x snap-mandatory scroll-smooth gap-15 [-webkit-overflow-scrolling:touch];
   }
 
   .presentation-slide {
-    @apply min-w-full self-start gap-4 bg-neutral-four snap-center transition-all duration-300 ease-in-out lg:self-center lg:flex-row lg:min-w-175 lg:h-92 xl:gap-8 xl:min-w-234 xl:h-128.75 first-of-type:lg:ml-[calc((100vw-700px)/2)] first-of-type:xl:ml-[calc((100vw-936px)/2)] last-of-type:lg:mr-[calc((100vw-700px)/2)] last-of-type:xl:mr-[calc((100vw-936px)/2)];
+    @apply min-w-full self-start gap-4 bg-neutral-four snap-center snap-always transition-all duration-300 ease-in-out outline-none lg:self-center lg:flex-row lg:min-w-175 lg:h-92 xl:gap-8 xl:min-w-234 xl:h-128.75 first-of-type:lg:ml-[calc((100vw-700px)/2)] first-of-type:xl:ml-[calc((100vw-936px)/2)] last-of-type:lg:mr-[calc((100vw-700px)/2)] last-of-type:xl:mr-[calc((100vw-936px)/2)];
   }
 
   dialog:not(#analysis-four) .presentation-slider .presentation-slide:not(:last-child) div:first-of-type svg {
@@ -330,6 +330,10 @@
 
   svg g[data-active="true"] {
     @apply z-10;
+  }
+
+  .slide-dot {
+    @apply w-3 h-3 rounded-full bg-primary-three transition-all duration-300 aria-current:w-6 aria-current:bg-primary-one;
   }
 
   /* ─────────────────────────────────────────

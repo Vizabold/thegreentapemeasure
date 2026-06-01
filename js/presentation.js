@@ -1,5 +1,4 @@
 const liveRegion = document.getElementById('live-region');
-const analysisBtns = document.querySelectorAll('.open-analysis-btn');
 
 function setupSlides(dialog) {
   const prevBtn = dialog.querySelector('.analysis-prev-btn');
@@ -9,32 +8,20 @@ function setupSlides(dialog) {
   const skipBtn = dialog.querySelector('.skip-to-sources-btn');
   const dots = Array.from(dialog.querySelectorAll('.slide-dot'));
   let current = 0;
-  let isAnimating = false;
-  let debounceTimeout = null;
-  let dialogController = null;
+  let isScrollSyncing = false;
 
   function updateUI(index) {
-    slides[current].classList.remove('slide-current');
-    slides[current].removeAttribute('tabindex');
+    if (index < 0 || index >= slides.length) return;
+
     slides[current].removeAttribute('aria-current');
-    slides[index].classList.add('slide-current');
     slides[index].setAttribute('aria-current', 'true');
-    slides[index].setAttribute('tabindex', '-1');
-    slides[index].focus();
+
+    dots[current]?.removeAttribute('aria-current');
+    dots[index]?.setAttribute('aria-current', 'true');
 
     if (liveRegion) {
       liveRegion.textContent = `Item ${index + 1} of ${slides.length}`;
     }
-
-    dots.forEach((dot, i) => {
-      if (i === index) {
-        dot.classList.replace('w-3', 'w-6');
-        dot.classList.replace('bg-primary-three', 'bg-primary-one');
-      } else {
-        dot.classList.replace('w-6', 'w-3');
-        dot.classList.replace('bg-primary-one', 'bg-primary-three');
-      }
-    });
 
     if (skipBtn) {
       skipBtn.classList.toggle('invisible', index === slides.length - 1);
@@ -45,126 +32,77 @@ function setupSlides(dialog) {
 
   function goToSlide(index) {
     if (index === current) return;
-    isAnimating = true;
+    isScrollSyncing = true;
+
     updateUI(index);
+
     slides[index].scrollIntoView({
       behavior: 'smooth',
       block: 'nearest',
       inline: 'center'
     });
-    clearTimeout(debounceTimeout);
-    debounceTimeout = setTimeout(() => {
-      isAnimating = false;
+
+    setTimeout(() => {
+      slides[index].focus({ preventScroll: true });
+      isScrollSyncing = false;
     }, 350);
+  }
+
+  slideContainer.addEventListener('scroll', () => {
+    if (isScrollSyncing) return;
+
+    const containerRect = slideContainer.getBoundingClientRect();
+    const midPoint = containerRect.left + (containerRect.width / 2);
+
+    const activeIndex = slides.findIndex(slide => {
+      const rect = slide.getBoundingClientRect();
+      return rect.left <= midPoint && rect.right >= midPoint;
+    });
+
+    if (activeIndex !== -1 && activeIndex !== current) {
+      updateUI(activeIndex);
+    }
+  });
+
+  prevBtn.addEventListener('click', () => {
+    let prev = current === 0 ? slides.length - 1 : current - 1;
+    goToSlide(prev);
+  });
+
+  nextBtn.addEventListener('click', () => {
+    let next = current === slides.length - 1 ? 0 : current + 1;
+    goToSlide(next);
+  });
+
+  if (skipBtn) {
+    skipBtn.addEventListener('click', () => {
+      goToSlide(slides.length - 1)
+    });
   }
 
   dialog.addEventListener('toggle', (event) => {
     if (event.newState === 'open') {
-      isAnimating = true;
-      const dialogController = new AbortController();
-      const signal = dialogController.signal;
+      requestAnimationFrame(() => {
+        isScrollSyncing = true;
 
-      const handleTransitionEnd = () => {
-        slides.forEach((slide, i) => {
-          if (slide.classList.contains('slide-current')) {
-            slide.classList.remove('slide-current');
-            slide.removeAttribute('tabindex');
-            slide.removeAttribute('aria-current');
-          }
-        });
-        if (!slideContainer.hasAttribute('tabindex')) {
-          slideContainer.setAttribute('tabindex', '0');
-        }
-        slides[0].classList.add('slide-current');
-        slides[0].setAttribute('aria-current', 'true');
+        slides.forEach(s => s.removeAttribute('aria-current'));
+        dots.forEach(d => d.removeAttribute('aria-current'));
 
-        dots.forEach((dot, i) => {
-          if (i === 0) {
-            dot.classList.replace('w-3', 'w-6');
-            dot.classList.replace('bg-primary-three', 'bg-primary-one');
-          } else {
-            dot.classList.replace('w-6', 'w-3');
-            dot.classList.replace('bg-primary-one', 'bg-primary-three');
-          }
-        });
-
-        slides[0].scrollIntoView({
-          behavior: 'smooth',
-          block: 'nearest',
-          inline: 'center'
-        });
         current = 0;
+        updateUI(0);
+        slideContainer.scrollLeft = 0;
+        slides[0].focus({ preventScroll: true });
 
-        setTimeout(() => {
-          isAnimating = false;
-          dialog.removeEventListener('transitionend', handleTransitionEnd);
-        }, 301)
-      };
-      dialog.addEventListener('transitionend', handleTransitionEnd);
-
-      slideContainer.addEventListener('scroll', () => {
-        if (isAnimating) return;
-        clearTimeout(debounceTimeout);
-        debounceTimeout = setTimeout(() => {
-          const containerLeft = slideContainer.getBoundingClientRect().left;
-          const containerCenter = containerLeft + (slideContainer.offsetWidth / 2);
-          const activeIndex = slides.findIndex(slide => {
-            const rect = slide.getBoundingClientRect();
-            return rect.left <= containerCenter && rect.right >= containerCenter;
-          });
-          if (activeIndex !== -1) {
-            updateUI(activeIndex);
-          }
-        }, 50);
-      }, { signal });
-
-      dialog.addEventListener('keydown', (e) => {
-        if (isAnimating) return;
-        if (e.key === 'ArrowLeft') {
-          e.preventDefault();
-          let prev = current === 0 ? slides.length - 1 : current - 1;
-          goToSlide(prev);
-        } else if (e.key === 'ArrowRight') {
-          e.preventDefault();
-          let next = current === slides.length - 1 ? 0 : current + 1;
-          goToSlide(next);
-        }
-      }, { signal });
-
-      prevBtn.addEventListener('click', () => {
-        if (isAnimating) return;
-        let prev = current === 0 ? slides.length - 1 : current - 1;
-        goToSlide(prev);
-      }, { signal });
-
-      nextBtn.addEventListener('click', () => {
-        if (isAnimating) return;
-        let next = current === slides.length - 1 ? 0 : current + 1;
-        goToSlide(next);
-      }, { signal });
-
-      if (skipBtn) {
-        skipBtn.addEventListener('click', () => {
-          if (isAnimating) return;
-          goToSlide(slides.length - 1)
-        }, { signal });
-      }
-    } else {
-      clearTimeout(debounceTimeout);
-      if (dialogController) {
-        dialogController.abort();
-        dialogController = null;
-      }
+        isScrollSyncing = false;
+      });
     };
   });
 }
 
-analysisBtns.forEach(btn => {
+document.querySelectorAll('.open-analysis-btn').forEach(btn => {
   const dialogId = btn.getAttribute('popovertarget');
   const dialog = document.getElementById(dialogId);
-  if (dialog) {
-    setupSlides(dialog);
-  }
+  if (dialog) setupSlides(dialog);
 });
 
 /*--------------- BILL DETAILS CONTAINER --------------------- */
