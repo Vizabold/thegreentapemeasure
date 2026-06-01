@@ -1,10 +1,11 @@
+import('details-polyfill').catch(() => { });
+import('./popover.min.js.js').catch(() => { });
 import('./quiz.js').catch(() => { });
 import('./timeline.js').catch(() => { });
 import('./graphs.js').catch(() => { });
 import('./presentation.js').catch(() => { });
 import('./cards.js').catch(() => { });
 import('./search.js').catch(() => { });
-import('details-polyfill').catch(() => { });
 
 const liveRegion = document.getElementById('live-region');
 

@@ -72,7 +72,7 @@
     @apply bg-primary-five;
   }
 
-  input:active {
+  input:active:not(#search) {
     @apply border-primary-one;
   }
 
