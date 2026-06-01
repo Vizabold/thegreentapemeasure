@@ -61,7 +61,7 @@ function setupSlides(dialog) {
     if (event.newState === 'open') {
       const handleTransitionEnd = () => {
         slides.forEach(slide => {
-          if (slide.classList.includes('slide-current')) {
+          if (slide.classList.contains('slide-current')) {
             slide.classList.remove('slide-current');
             slide.removeAttribute('aria-current');
           }
