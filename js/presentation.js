@@ -2,8 +2,6 @@ const liveRegion = document.getElementById('live-region');
 const analysisBtns = document.querySelectorAll('.open-analysis-btn');
 
 function setupSlides(dialog) {
-  const dialogController = new AbortController();
-  const signal = dialogController.signal;
   const prevBtn = dialog.querySelector('.analysis-prev-btn');
   const nextBtn = dialog.querySelector('.analysis-next-btn');
   const slideContainer = dialog.querySelector('.presentation-slider');
@@ -13,6 +11,7 @@ function setupSlides(dialog) {
   let current = 0;
   let isKeyboardOrButtonClick = false;
   let debounceTimeout = null;
+  let dialogController = null;
 
   function updateUI(index) {
     slides[current].classList.remove('slide-current');
@@ -59,6 +58,9 @@ function setupSlides(dialog) {
 
   dialog.addEventListener('toggle', (event) => {
     if (event.newState === 'open') {
+      const dialogController = new AbortController();
+      const signal = dialogController.signal;
+
       const handleTransitionEnd = () => {
         slides.forEach(slide => {
           if (slide.classList.contains('slide-current')) {
@@ -87,59 +89,57 @@ function setupSlides(dialog) {
       };
 
       dialog.addEventListener('transitionend', handleTransitionEnd);
-    }
-  });
 
-  slideContainer.addEventListener('scroll', () => {
-    if (isKeyboardOrButtonClick) return;
+      slideContainer.addEventListener('scroll', () => {
+        if (isKeyboardOrButtonClick) return;
+        clearTimeout(debounceTimeout);
+        debounceTimeout = setTimeout(() => {
+          const containerLeft = slideContainer.getBoundingClientRect().left;
+          const containerCenter = containerLeft + (slideContainer.offsetWidth / 2);
 
-    clearTimeout(debounceTimeout);
-    debounceTimeout = setTimeout(() => {
-      const containerLeft = slideContainer.getBoundingClientRect().left;
-      const containerCenter = containerLeft + (slideContainer.offsetWidth / 2);
+          const activeIndex = slides.findIndex(slide => {
+            const rect = slide.getBoundingClientRect();
+            return rect.left <= containerCenter && rect.right >= containerCenter;
+          });
+          if (activeIndex !== -1) {
+            updateUI(activeIndex);
+          }
+        }, 50);
+      }, { signal });
 
-      const activeIndex = slides.findIndex(slide => {
-        const rect = slide.getBoundingClientRect();
-        return rect.left <= containerCenter && rect.right >= containerCenter;
-      });
+      dialog.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowLeft') {
+          e.preventDefault();
+          let prev = current === 0 ? slides.length - 1 : current - 1;
+          goToSlide(prev);
+        } else if (e.key === 'ArrowRight') {
+          e.preventDefault();
+          let next = current === slides.length - 1 ? 0 : current + 1;
+          goToSlide(next);
+        }
+      }, { signal });
 
-      if (activeIndex !== -1) {
-        updateUI(activeIndex);
+      prevBtn.addEventListener('click', () => {
+        let prev = current === 0 ? slides.length - 1 : current - 1;
+        goToSlide(prev);
+      }, { signal });
+
+      nextBtn.addEventListener('click', () => {
+        let next = current === slides.length - 1 ? 0 : current + 1;
+        goToSlide(next);
+      }, { signal });
+
+      if (skipBtn) {
+        skipBtn.addEventListener('click', () => goToSlide(slides.length - 1), { signal });
       }
-    }, 50);
-  }, { signal });
-
-  dialog.addEventListener('keydown', (e) => {
-    if (e.key === 'ArrowLeft') {
-      e.preventDefault();
-      let prev = current === 0 ? slides.length - 1 : current - 1;
-      goToSlide(prev);
-    } else if (e.key === 'ArrowRight') {
-      e.preventDefault();
-      let next = current === slides.length - 1 ? 0 : current + 1;
-      goToSlide(next);
-    }
-  }, { signal });
-
-  prevBtn.addEventListener('click', () => {
-    let prev = current === 0 ? slides.length - 1 : current - 1;
-    goToSlide(prev);
-  }, { signal });
-
-  nextBtn.addEventListener('click', () => {
-    let next = current === slides.length - 1 ? 0 : current + 1;
-    goToSlide(next);
-  }, { signal });
-
-  if (skipBtn) {
-    skipBtn.addEventListener('click', () => goToSlide(slides.length - 1), { signal });
-  }
-
-  dialog.addEventListener('close', () => {
-    clearTimeout(debounceTimeout);
-    dialogController.abort();
-  }, { once: true });
-
+    } else {
+      clearTimeout(debounceTimeout);
+      if (dialogController) {
+        dialogController.abort();
+        dialogController = null;
+      }
+    };
+  });
 }
 
 analysisBtns.forEach(btn => {
