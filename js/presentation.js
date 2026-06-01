@@ -10,76 +10,13 @@ function setupSlides(dialog) {
   const slides = Array.from(slideContainer.querySelectorAll('.presentation-slide'));
   const skipBtn = dialog.querySelector('.skip-to-sources-btn');
   const dots = Array.from(dialog.querySelectorAll('.slide-dot'));
-
   let current = 0;
   let isKeyboardOrButtonClick = false;
   let debounceTimeout = null;
 
-  function resetToFirstSlide() {
-    isKeyboardOrButtonClick = true;
-
-    if (slideContainer) {
-      const originalSnap = slideContainer.style.scrollSnapType || getComputedStyle(slideContainer).scrollSnapType;
-      slideContainer.style.scrollSnapType = 'none';
-      slideContainer.scrollLeft = 0;
-      slideContainer.scrollTo({ left: 0, behavior: 'auto' });
-      void slideContainer.offsetWidth;
-      slideContainer.style.scrollSnapType = originalSnap;
-    }
-
-    slides.forEach((slide) => {
-      slide.classList.remove('slide-current');
-      slide.removeAttribute('aria-current');
-      slide.removeAttribute('tabindex');
-    });
-
-    current = 0;
-    if (slides[current]) {
-      slides[current].classList.add('slide-current');
-      slides[current].setAttribute('aria-current', 'true');
-    }
-
-    dots.forEach((dot, i) => {
-      if (i === 0) {
-        dot.classList.replace('w-3', 'w-6');
-        dot.classList.replace('bg-primary-three', 'bg-primary-one');
-      } else {
-        dot.classList.replace('w-6', 'w-3');
-        dot.classList.replace('bg-primary-one', 'bg-primary-three');
-      }
-    });
-
-    if (skipBtn) {
-      skipBtn.classList.remove('invisible');
-    }
-
-    if (liveRegion && slides.length > 0) {
-      liveRegion.textContent = `Item 1 of ${slides.length}`;
-    }
-
-    setTimeout(() => {
-      isKeyboardOrButtonClick = false;
-    }, 150);
-  }
-
-  slides.forEach((slide, i) => {
-    slide.setAttribute('role', 'group');
-    slide.setAttribute('aria-roledescription', 'slide');
-    slide.setAttribute('aria-label', `Slide ${i + 1} of ${slides.length}`);
-  });
-
-  dialog.addEventListener('toggle', (e) => {
-    if (e.newState === 'open') {
-      resetToFirstSlide();
-    }
-  }, { signal });
-
   function updateUI(index) {
-    if (index === current) return;
-
     slides[current].classList.remove('slide-current');
     slides[current].removeAttribute('aria-current');
-
     slides[index].classList.add('slide-current');
     slides[index].setAttribute('aria-current', 'true');
 
@@ -105,8 +42,6 @@ function setupSlides(dialog) {
   }
 
   function goToSlide(index) {
-    if (index < 0 || index >= slides.length || index === current) return;
-
     isKeyboardOrButtonClick = true;
     updateUI(index);
 
@@ -121,6 +56,39 @@ function setupSlides(dialog) {
       isKeyboardOrButtonClick = false;
     }, 350);
   }
+
+  dialog.addEventListener('toggle', (event) => {
+    if (event.newState === 'open') {
+      const handleTransitionEnd = () => {
+        slides.forEach(slide => {
+          if (slide.classList.includes('slide-current')) {
+            slide.classList.remove('slide-current');
+            slide.removeAttribute('aria-current');
+          }
+        })
+        slides[0].classList.add('slide-current');
+        slides[0].setAttribute('aria-current', 'true');
+        dots.forEach((dot, i) => {
+          if (i === 0) {
+            dot.classList.replace('w-3', 'w-6');
+            dot.classList.replace('bg-primary-three', 'bg-primary-one');
+          } else {
+            dot.classList.replace('w-6', 'w-3');
+            dot.classList.replace('bg-primary-one', 'bg-primary-three');
+          }
+        });
+        slides[0].scrollIntoView({
+          behavior: 'smooth',
+          block: 'nearest',
+          inline: 'center'
+        });
+        current = 0;
+        dialog.removeEventListener('transitionend', handleTransitionEnd);
+      };
+
+      dialog.addEventListener('transitionend', handleTransitionEnd);
+    }
+  });
 
   slideContainer.addEventListener('scroll', () => {
     if (isKeyboardOrButtonClick) return;
@@ -172,16 +140,13 @@ function setupSlides(dialog) {
     dialogController.abort();
   }, { once: true });
 
-  resetToFirstSlide();
 }
 
 analysisBtns.forEach(btn => {
   const dialogId = btn.getAttribute('popovertarget');
   const dialog = document.getElementById(dialogId);
-
-  if (dialog && !dialog.dataset.sliderInitialized) {
+  if (dialog) {
     setupSlides(dialog);
-    dialog.dataset.sliderInitialized = 'true';
   }
 });
 

@@ -3,7 +3,7 @@
     <div class="presentation-slider scrollbar" role="region" aria-roledescription="carousel"
         aria-label="analysis slides" id="analysis-three-slider">
         <div class="card presentation-slide" id="slide-3a" role="group" aria-roledescription="slide"
-            aria-current="true">
+            aria-label="slide 1 of 2">
             <div class="flex justify-center items-center" id="line-chart-3a-container">
                 <picture id="line-chart-3a-placeholder">
                     <source srcset="assets/images/graph_3a-dk-lg.webp" type="image/webp" media="(min-width: 1000px)"
@@ -102,7 +102,8 @@
                 </div>
             </div>
         </div>
-        <div class="card presentation-slide group/states" id="slide-3b" role="group" aria-roledescription="slide">
+        <div class="card presentation-slide group/states" id="slide-3b" role="group" aria-roledescription="slide"
+            aria-label="slide 2 of 2">
             <div
                 class="flex flex-col gap-8 pr-4 border-b border-solid border-neutral-six lg:border-r lg:border-b-0 lg:w-[55%]">
                 <div class="flex flex-col gap-1">
@@ -1168,7 +1169,8 @@
     </div>
     <div class="flex flex-col items-center justify-between p-4 gap-4 sm:flex-row">
         <p class="paragraph-md text-primary-one block js:hidden">See the last slide for State Lookup.</p>
-        <button type="button" class="link link--inline skip-to-sources-btn text-left hidden js:flex">Skip to State
+        <button type="button" class="link link--inline skip-to-sources-btn text-left hidden js:flex"
+            aria-controls="slide-3b">Skip to State
             Lookup</button>
         <div class="gap-2 hidden js:flex">
             <div class="w-6 h-3 rounded-full bg-primary-one slide-dot"></div>
