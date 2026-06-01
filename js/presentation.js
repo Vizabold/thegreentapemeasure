@@ -10,6 +10,18 @@ function setupSlides(dialog) {
   let current = 0;
   let isScrollSyncing = false;
 
+  function focusActiveSlideElement(activeSlide) {
+    const firstFocusable = activeSlide.querySelector(
+      'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+    );
+
+    if (firstFocusable) {
+      firstFocusable.focus();
+    } else {
+      activeSlide.focus();
+    }
+  }
+
   function updateUI(index) {
     if (index < 0 || index >= slides.length) return;
 
@@ -26,6 +38,8 @@ function setupSlides(dialog) {
     if (skipBtn) {
       skipBtn.classList.toggle('invisible', index === slides.length - 1);
     }
+
+    focusActiveSlideElement(slides[index]);
 
     current = index;
   }
@@ -107,7 +121,7 @@ function setupSlides(dialog) {
         current = 0;
         updateUI(0);
         slideContainer.scrollLeft = 0;
-        slides[0].focus({ preventScroll: true });
+        focusActiveSlideElement(slides[0]);
 
         isScrollSyncing = false;
       });
