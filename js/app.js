@@ -61,49 +61,29 @@ function applyFocusTrap(e, container) {
   }
 }
 
-document.addEventListener('DOMContentLoaded', () => {
-  const hasNativePopover = HTMLElement.prototype.hasOwnProperty('popover');
+document.querySelectorAll('button[popovertarget]').forEach(button => {
+  const dialogId = button.getAttribute('popovertarget');
+  const dialog = document.getElementById(dialogId);
+  if (!dialog || dialog.tagName !== 'DIALOG') return;
 
-  document.querySelectorAll('button[popovertarget]').forEach(button => {
-    const dialogId = button.getAttribute('popovertarget');
-    const dialog = document.getElementById(dialogId);
-    if (!dialog || dialog.tagName !== 'DIALOG') return;
+  dialog.removeAttribute('popover');
+  button.removeAttribute('popovertarget');
 
-    if (!hasNativePopover) {
-      const closeBtn = dialog.querySelector('.btn-close-dialog');
+  button.addEventListener('click', (e) => {
+    e.preventDefault();
+    dialog.showModal();
+  });
 
-      button.addEventListener('click', (e) => {
-        e.preventDefault();
-        dialog.showModal();
-        dialog.dispatchEvent(new ToggleEvent('toggle', { newState: 'open' }));
-      });
-
-      if (closeBtn) {
-        closeBtn.addEventListener('click', () => {
-          dialog.close();
-          dialog.dispatchEvent(new ToggleEvent('toggle', { newState: 'closed' }));
-        });
-      }
-    } else {
-      dialog.addEventListener('toggle', (e) => {
-        if (e.newState === 'open') {
-          const firstFocusable = dialog.querySelector('button, [href], input, select, textarea, [tabindex="0"]');
-          if (firstFocusable) {
-            firstFocusable.focus();
-          } else {
-            dialog.setAttribute('tabindex', '-1');
-            dialog.focus();
-          }
-        }
-      });
-    }
-
-    window.addEventListener('keydown', (e) => {
-      const isOpen = dialog.hasAttribute('open') || (hasNativePopover && dialog.matches(':popover-open'));
-      if (isOpen) {
-        applyFocusTrap(e, dialog);
-      }
+  const closeBtn = dialog.querySelector('.btn-close-dialog');
+  if (closeBtn) {
+    closeBtn.addEventListener('click', () => {
+      dialog.close();
+      button.focus();
     });
+  }
+
+  dialog.addEventListener('close', () => {
+    button.focus();
   });
 });
 
