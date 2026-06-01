@@ -39,7 +39,7 @@ function setupSlides(dialog) {
       skipBtn.classList.toggle('invisible', index === slides.length - 1);
     }
 
-    focusActiveSlideElement(slides[index]);
+    focusActiveSlideElement[slides[index]];
 
     current = index;
   }
@@ -57,7 +57,7 @@ function setupSlides(dialog) {
     });
 
     setTimeout(() => {
-      slides[index].focus({ preventScroll: true });
+      slides[index].focus();
       isScrollSyncing = false;
     }, 350);
   }
@@ -121,6 +121,7 @@ function setupSlides(dialog) {
         current = 0;
         updateUI(0);
         slideContainer.scrollLeft = 0;
+        slides[0].focus();
         focusActiveSlideElement(slides[0]);
 
         isScrollSyncing = false;
