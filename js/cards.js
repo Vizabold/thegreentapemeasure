@@ -15,10 +15,6 @@ function setupSlider(container) {
     cards[current].classList.add('card-current');
     cards[current].setAttribute('aria-current', 'true');
 
-    if (!cardContainer.hasAttribute('tabindex')) {
-        cardContainer.setAttribute('tabindex', '0');
-    }
-
     function goToCard(index) {
         isAnimating = true;
         cards[current].classList.remove('card-current');
