@@ -35,33 +35,64 @@ const footerObserver = new IntersectionObserver((entries) => {
 
 footerObserver.observe(footerSentinel);
 
+/*--------------- POPOVER FOCUS TRAP & LEGACY SUPPORT --------------------- */
+function applyFocusTrap(e, container) {
+  if (e.key !== 'Tab') return;
 
-/*--------------- POPOVER LEGACY SUPPORT --------------------- */
-/*
-if (!HTMLElement.prototype.hasOwnProperty('popover')) {
-  document.querySelectorAll('[popovertarget]').forEach(btn => {
-    btn.onclick = () => document.getElementById(btn.getAttribute('popovertarget')).toggleAttribute('open');
-  });
+  const focusableElements = Array.from(
+    container.querySelectorAll('button, [href], input, select, textarea, [tabindex="0"]')
+  ).filter(el => !el.hasAttribute('disabled') && el.getAttribute('tabindex') !== '-1');
+
+  if (focusableElements.length === 0) return;
+
+  const firstElement = focusableElements[0];
+  const lastElement = focusableElements[focusableElements.length - 1];
+
+  if (e.shiftKey) {
+    if (document.activeElement === firstElement) {
+      e.preventDefault();
+      lastElement.focus();
+    }
+  }
+  else {
+    if (document.activeElement === lastElement) {
+      e.preventDefault();
+      firstElement.focus();
+    }
+  }
 }
-*/
-if (!HTMLElement.prototype.hasOwnProperty('popover')) {
+
+document.addEventListener('DOMContentLoaded', () => {
+  const hasNativePopover = HTMLElement.prototype.hasOwnProperty('popover');
+
   document.querySelectorAll('button[popovertarget]').forEach(button => {
     const dialogId = button.getAttribute('popovertarget');
     const dialog = document.getElementById(dialogId);
-    const closeBtn = dialog.querySelector('.btn-close-dialog');
+    if (!dialog || dialog.tagName !== 'DIALOG') return;
 
-    if (dialog && dialog.tagName === 'DIALOG') {
+    if (!hasNativePopover) {
+      const closeBtn = dialog.querySelector('.btn-close-dialog');
+
       button.addEventListener('click', (e) => {
         e.preventDefault();
         dialog.showModal();
+
+        dialog.dispatchEvent(new ToggleEvent('toggle', { newState: 'open' }));
       });
 
       if (closeBtn) {
-        closeBtn.addEventListener('click', () => dialog.close());
+        closeBtn.addEventListener('click', () => {
+          dialog.close();
+          dialog.dispatchEvent(new ToggleEvent('toggle', { newState: 'closed' }));
+        });
       }
     }
+
+    dialog.addEventListener('keydown', (e) => {
+      applyFocusTrap(e, dialog);
+    });
   });
-}
+});
 
 /*--------------- SCROLLING & NAV FUNCTIONS --------------------- */
 
