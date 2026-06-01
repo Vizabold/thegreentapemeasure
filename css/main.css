@@ -272,16 +272,12 @@
   /* ─────────────────────────────────────────
      Search
   ───────────────────────────────────────── */
-  .search-dropdown.is-open {
+  #search-results.is-open {
     @apply flex;
   }
 
   .search-no-results {
     @apply px-4 py-3 italic text-neutral-seven;
-  }
-
-  #search-overlay.is-open {
-    @apply flex;
   }
 
   .search-result {
