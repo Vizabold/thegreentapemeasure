@@ -44,6 +44,7 @@ function setupSlides(dialog) {
   }
 
   function goToSlide(index) {
+    if (index === current) return;
     isAnimating = true;
     updateUI(index);
     slides[index].scrollIntoView({
@@ -76,8 +77,6 @@ function setupSlides(dialog) {
         }
         slides[0].classList.add('slide-current');
         slides[0].setAttribute('aria-current', 'true');
-        slides[0].setAttribute('tabindex', '-1');
-        slides[0].focus();
 
         dots.forEach((dot, i) => {
           if (i === 0) {
