@@ -107,7 +107,7 @@
   }
 
   section {
-    @apply flex flex-col gap-8 px-4 py-12 js:opacity-0 lg:px-8;
+    @apply flex flex-col gap-8 px-4 py-12 js:opacity-[0.01] lg:px-8;
   }
 
   select {
