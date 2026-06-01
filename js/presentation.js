@@ -60,6 +60,7 @@ function setupSlides(dialog) {
     if (event.newState === 'open') {
       const dialogController = new AbortController();
       const signal = dialogController.signal;
+      isKeyboardOrButtonClick = true;
 
       const handleTransitionEnd = () => {
         slides.forEach(slide => {
@@ -85,6 +86,10 @@ function setupSlides(dialog) {
           inline: 'center'
         });
         current = 0;
+        clearTimeout(debounceTimeout);
+        debounceTimeout = setTimeout(() => {
+          isKeyboardOrButtonClick = false;
+        }, 350);
         dialog.removeEventListener('transitionend', handleTransitionEnd);
       };
 
