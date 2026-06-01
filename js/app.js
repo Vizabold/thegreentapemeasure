@@ -84,9 +84,25 @@ document.addEventListener('DOMContentLoaded', () => {
           dialog.dispatchEvent(new ToggleEvent('toggle', { newState: 'closed' }));
         });
       }
+    } else {
+      dialog.addEventListener('toggle', (e) => {
+        if (e.newState === 'open') {
+          const firstFocusable = dialog.querySelector('button, [href], input, select, textarea, [tabindex="0"]');
+          if (firstFocusable) {
+            firstFocusable.focus();
+          } else {
+            dialog.setAttribute('tabindex', '-1');
+            dialog.focus();
+          }
+        }
+      });
     }
-    dialog.addEventListener('keydown', (e) => {
-      applyFocusTrap(e, dialog);
+
+    window.addEventListener('keydown', (e) => {
+      const isOpen = dialog.hasAttribute('open') || (hasNativePopover && dialog.matches(':popover-open'));
+      if (isOpen) {
+        applyFocusTrap(e, dialog);
+      }
     });
   });
 });
