@@ -7,8 +7,9 @@ function setupSlides(dialog) {
   const slides = Array.from(slideContainer.querySelectorAll('.presentation-slide'));
   const skipBtn = dialog.querySelector('.skip-to-sources-btn');
   const dots = Array.from(dialog.querySelectorAll('.slide-dot'));
+
   let current = 0;
-  let isMoving = false;
+  let isScrollSyncing = false;
 
   function updateUI(index) {
     if (index < 0 || index >= slides.length) return;
@@ -31,56 +32,21 @@ function setupSlides(dialog) {
   }
 
   function goToSlide(index) {
-    if (index === current || isMoving) return;
-    isMoving = true;
+    if (index === current) return;
+    isScrollSyncing = true;
 
     updateUI(index);
 
     slides[index].scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
 
-    const handleScrollEnd = () => {
-      focusActiveSlideElement(slides[index]);
-      isMoving = false;
-      slideContainer.removeEventListener('scrollend', handleScrollEnd);
-    };
-
-    slideContainer.addEventListener('scrollend', handleScrollEnd);
+    setTimeout(() => {
+      slides[index].focus({ preventScroll: true });
+      isScrollSyncing = false;
+    }, 350);
   }
-
-  function focusActiveSlideElement(activeSlide) {
-    const firstFocusable = activeSlide.querySelector(
-      'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
-    );
-
-    if (firstFocusable) {
-      firstFocusable.focus({ preventScroll: true });
-    } else {
-      activeSlide.focus({ preventScroll: true });
-    }
-  }
-
-  /*
-    function goToSlide(index) {
-      if (index === current) return;
-      isScrollSyncing = true;
-  
-      updateUI(index);
-  
-      slides[index].scrollIntoView({
-        behavior: 'smooth',
-        block: 'nearest',
-        inline: 'center'
-      });
-  
-      setTimeout(() => {
-        slides[index].focus({ preventScroll: true });
-        isScrollSyncing = false;
-      }, 350);
-    }
-      */
 
   slideContainer.addEventListener('scroll', () => {
-    if (isMoving) return;
+    if (isScrollSyncing) return;
 
     const containerRect = slideContainer.getBoundingClientRect();
     const midPoint = containerRect.left + (containerRect.width / 2);
@@ -109,32 +75,22 @@ function setupSlides(dialog) {
     skipBtn.addEventListener('click', () => goToSlide(slides.length - 1));
   }
 
-  dialog.addEventListener('keydown', (e) => {
-    if (isMoving) return;
-
-    if (e.key === 'ArrowLeft') {
-      e.preventDefault();
-      let prev = current === 0 ? slides.length - 1 : current - 1;
-      goToSlide(prev);
-    } else if (e.key === 'ArrowRight') {
-      e.preventDefault();
-      let next = current === slides.length - 1 ? 0 : current + 1;
-      goToSlide(next);
-    }
-  });
-
   dialog.addEventListener('toggle', (event) => {
     if (event.newState === 'open') {
       requestAnimationFrame(() => {
+        isScrollSyncing = true;
+
         slides.forEach(s => s.removeAttribute('aria-current'));
         dots.forEach(d => d.removeAttribute('aria-current'));
 
         current = 0;
         updateUI(0);
         slideContainer.scrollLeft = 0;
-        focusActiveSlideElement(slides[0]);
+        slides[0].focus({ preventScroll: true });
+
+        isScrollSyncing = false;
       });
-    };
+    }
   });
 }
 
