@@ -74,7 +74,7 @@ function handleKeys(e, container, input, onClose) {
 /*--------------- DESKTOP --------------------- */
 const desktopForm = document.getElementById('search').closest('form');
 const desktopInput = document.getElementById('search');
-const desktopList = document.getElementById('search-results');
+const desktopList = document.querySelector('search-dropdown');
 
 function closeDesktop() {
   desktopList.classList.remove('is-open');
