@@ -53,8 +53,7 @@ function applyFocusTrap(e, container) {
       e.preventDefault();
       lastElement.focus();
     }
-  }
-  else {
+  } else {
     if (document.activeElement === lastElement) {
       e.preventDefault();
       firstElement.focus();
@@ -76,7 +75,6 @@ document.addEventListener('DOMContentLoaded', () => {
       button.addEventListener('click', (e) => {
         e.preventDefault();
         dialog.showModal();
-
         dialog.dispatchEvent(new ToggleEvent('toggle', { newState: 'open' }));
       });
 
@@ -87,7 +85,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
       }
     }
-
     dialog.addEventListener('keydown', (e) => {
       applyFocusTrap(e, dialog);
     });
