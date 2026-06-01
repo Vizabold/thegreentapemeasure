@@ -78,6 +78,7 @@ const desktopList = document.getElementById('search-results');
 
 function closeDesktop() {
   desktopList.classList.add('hidden');
+  desktopList.classList.remove('flex');
   desktopInput.setAttribute('aria-expanded', 'false');
 }
 
@@ -95,6 +96,7 @@ desktopInput.addEventListener('input', () => {
     closeDesktop();
   });
   desktopList.classList.remove('hidden');
+  desktopList.classList.add('flex');
   desktopInput.setAttribute('aria-expanded', 'true');
 });
 
