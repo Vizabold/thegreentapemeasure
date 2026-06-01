@@ -226,9 +226,9 @@ if (modeToggle) {
 const takeAction = document.getElementById('takeaction');
 const comment = takeAction.querySelector('textarea');
 const count = takeAction.querySelector('.textarea-count');
-comment.oninput = () => {
-  count.textContent = this.value.length;
-}
+comment.addEventListener('input', (e) => {
+  count.textContent = e.target.value.length;
+});
 
 /*------------------------------ CAMPAIGN --------------------------------- */
 
