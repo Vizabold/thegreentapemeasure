@@ -223,9 +223,8 @@ if (modeToggle) {
 
 /*------------------------------ FORMS --------------------------------- */
 
-const takeAction = document.getElementById('takeaction');
-const comment = takeAction.querySelector('textarea');
-const count = takeAction.querySelector('.textarea-count');
+const comment = document.getElementById('comment');
+const count = document.querySelector('.textarea-count');
 comment.addEventListener('input', (e) => {
   count.textContent = e.target.value.length;
 });

@@ -2,6 +2,7 @@
 @import "./tokens.css";
 @source "../_includes/**/*.html";
 @source "../index.html";
+@source "../thank-you.html";
 @source not "../_site/**/*";
 @variant js (&:where(.js *));
 
