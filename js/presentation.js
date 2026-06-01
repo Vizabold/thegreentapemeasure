@@ -7,7 +7,6 @@ function setupSlides(dialog) {
   const slides = Array.from(slideContainer.querySelectorAll('.presentation-slide'));
   const skipBtn = dialog.querySelector('.skip-to-sources-btn');
   const dots = Array.from(dialog.querySelectorAll('.slide-dot'));
-
   let current = 0;
   let isScrollSyncing = false;
 
@@ -37,7 +36,11 @@ function setupSlides(dialog) {
 
     updateUI(index);
 
-    slides[index].scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+    slides[index].scrollIntoView({
+      behavior: 'smooth',
+      block: 'nearest',
+      inline: 'center'
+    });
 
     setTimeout(() => {
       slides[index].focus({ preventScroll: true });
@@ -72,7 +75,9 @@ function setupSlides(dialog) {
   });
 
   if (skipBtn) {
-    skipBtn.addEventListener('click', () => goToSlide(slides.length - 1));
+    skipBtn.addEventListener('click', () => {
+      goToSlide(slides.length - 1)
+    });
   }
 
   dialog.addEventListener('toggle', (event) => {
@@ -90,7 +95,7 @@ function setupSlides(dialog) {
 
         isScrollSyncing = false;
       });
-    }
+    };
   });
 }
 
