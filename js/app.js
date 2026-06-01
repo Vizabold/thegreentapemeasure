@@ -35,33 +35,33 @@ const footerObserver = new IntersectionObserver((entries) => {
 
 footerObserver.observe(footerSentinel);
 
-/*--------------- POPOVER LEGACY SUPPORT --------------------- */
 
+/*--------------- POPOVER LEGACY SUPPORT --------------------- */
+/*
 if (!HTMLElement.prototype.hasOwnProperty('popover')) {
   document.querySelectorAll('[popovertarget]').forEach(btn => {
     btn.onclick = () => document.getElementById(btn.getAttribute('popovertarget')).toggleAttribute('open');
   });
 }
+*/
+if (!HTMLElement.prototype.hasOwnProperty('popover')) {
+  document.querySelectorAll('button[popovertarget]').forEach(button => {
+    const dialogId = button.getAttribute('popovertarget');
+    const dialog = document.getElementById(dialogId);
+    const closeBtn = dialog.querySelector('.btn-close-dialog');
 
-/*--------------- DIALOG FOCUS TRAP & SCROLL LOCK --------------------- */
+    if (dialog && dialog.tagName === 'DIALOG') {
+      button.addEventListener('click', (e) => {
+        e.preventDefault();
+        dialog.showModal();
+      });
 
-document.querySelectorAll('button[popovertarget]').forEach(button => {
-  const dialogId = button.getAttribute('popovertarget');
-  const dialog = document.getElementById(dialogId);
-  const closeBtn = dialog.querySelector('.btn-close-dialog');
-
-  if (dialog && dialog.tagName === 'DIALOG') {
-    button.addEventListener('click', (e) => {
-      e.preventDefault();
-      dialog.showModal();
-    });
-
-    if (closeBtn) {
-      closeBtn.addEventListener('click', () => dialog.close());
+      if (closeBtn) {
+        closeBtn.addEventListener('click', () => dialog.close());
+      }
     }
-  };
-});
-
+  });
+}
 
 /*--------------- SCROLLING & NAV FUNCTIONS --------------------- */
 
@@ -127,7 +127,11 @@ const mobileNavMenu = document.getElementById('mobile-nav-menu');
 
 mobileNavMenu.addEventListener('click', (event) => {
   if (event.target.tagName === 'A') {
-    mobileNavMenu.hidePopover();
+    if (typeof mobileNavMenu.hidePopover === 'function') {
+      mobileNavMenu.hidePopover();
+    } else if (typeof mobileNavMenu.close === 'function') {
+      mobileNavMenu.close();
+    }
   }
 });
 

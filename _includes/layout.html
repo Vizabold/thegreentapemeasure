@@ -22,7 +22,7 @@
 
   <a href="#main-content" class="skip-link">Skip to main content</a>
 
-  <dialog id="mobile-nav-menu" aria-label="navigation menu and settings" aria-model="true" popover>
+  <dialog class="p-0" id="mobile-nav-menu" aria-label="navigation menu and settings" aria-model="true" popover>
     <div class="flex px-4 pt-8 pb-2 justify-between items-end bg-neutral-one">
       <picture class="mb-1">
         <source srcset="assets/images/logo-dk.webp" type="image/webp" media="all" data-theme="dark">
@@ -31,14 +31,14 @@
       </picture>
       <div class="flex gap-6 items-center">
         <label role="button" for="mode-toggle" class="toggle" tabindex="0" aria-label="dark mode on"><span
-            class="slider"><svg aria-hidden="true" class="toggle-moon fill-neutral-two-light w-4 h-4">
+            class="slider"><svg aria-hidden="true" class="toggle-moon text-neutral-two-light w-4 h-4">
               <use href="/assets/sprites/solid.svg#moon"></use>
-            </svg><svg aria-hidden="true" class="toggle-sun fill-neutral-two-light w-4 h-4">
+            </svg><svg aria-hidden="true" class="toggle-sun text-neutral-two-light w-4 h-4">
               <use href="/assets/sprites/solid.svg#sun"></use>
             </svg></span>
         </label>
-        <button type="button" class="btn btn-icon btn-icon-lg" aria-label="close menu" popovertarget="mobile-nav-menu"
-          popovertargetaction="hide">
+        <button type="button" class="btn btn-icon btn-icon-lg btn-close-dialog" aria-label="close menu"
+          popovertarget="mobile-nav-menu" popovertargetaction="hide">
           <svg class="icon-xs" aria-hidden="true">
             <use href="/assets/sprites/solid.svg#x"></use>
           </svg>
@@ -64,8 +64,8 @@
         <label for="search-mobile" class="sr-only">Search</label>
         <input type="search" id="search-mobile" name="q" class="flex-1" placeholder="Search the site..."
           autocomplete="off">
-        <button type="button" class="btn btn-icon btn-icon-lg" aria-label="close search" popovertarget="search-overlay"
-          popovertargetaction="hide">
+        <button type="button" class="btn btn-icon btn-icon-lg btn-close-dialog" aria-label="close search"
+          popovertarget="search-overlay" popovertargetaction="hide">
           <svg class="icon-xs" aria-hidden="true">
             <use href="/assets/sprites/solid.svg#x"></use>
           </svg>
