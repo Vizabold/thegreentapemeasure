@@ -178,6 +178,15 @@ if (modeToggle) {
     modeToggle.checked = e.matches;
     syncAriaLabel();
   });
+
+  toggleLabels.forEach(label => {
+    label.addEventListener('keydown', (e) => {
+      if (e.key === ' ' || e.key === 'Enter') {
+        e.preventDefault();
+        label.click();
+      }
+    });
+  });
 }
 
 /*------------------------------ FORMS --------------------------------- */
