@@ -88,18 +88,18 @@
         </picture>
       </a>
       <p
-        class="font-name text-primary-one text-xl tracking-wide -mb-1.25 uppercase xxs:hidden lg:block xl:hidden xxl:block">
+        class="font-name text-primary-one text-xl tracking-wide -mb-1.25 uppercase hidden lg:block xl:hidden xxl:block">
         The
         Green Tape Measure</p>
     </div>
-    <nav class="gap-8 items-end xxs:hidden xl:flex" id="desktop-nav">
+    <nav class="gap-8 items-end hidden xl:flex" id="desktop-nav">
       <a class="link link--nav" href="#about">About</a>
       <a class="link link--nav" href="#quiz">Quiz</a>
       <a class="link link--nav" href="#timeline">Timeline</a>
       <a class="link link--nav" href="#research">Research</a>
       <a class="link link--nav" href="#advocacy">Advocacy</a>
     </nav>
-    <form class="relative items-center gap-2 xxs:hidden xl:flex" role="search">
+    <form class="relative items-center gap-2 hidden xl:flex" role="search">
       <label for="search" class="sr-only">Search</label>
       <div
         class="flex items-stretch bg-neutral-eight border border-solid border-neutral-six rounded-lg overflow-hidden focus-within:ring-2 focus-within:ring-primary-one">
@@ -119,7 +119,7 @@
       </ul>
     </form>
     <div class="flex gap-6 pb-1 items-center xl:items-end">
-      <a class="btn btn-md btn-cta xxs:hidden xl:block" href="#takeaction">Take Action</a>
+      <a class="btn btn-md btn-cta hidden xl:block" href="#takeaction">Take Action</a>
       <label role="button" for="mode-toggle" class="toggle" tabindex="0" aria-label="dark mode on"><span
           class="slider"><svg aria-hidden="true" class="toggle-moon text-neutral-two-light w-4 h-4">
             <use href="/assets/sprites/solid.svg#moon"></use>
@@ -127,14 +127,14 @@
             <use href="/assets/sprites/solid.svg#sun"></use>
           </svg></span>
       </label>
-      <button type="button" popovertarget="search-overlay" class="btn btn-icon xxs:block xl:hidden" id="search-open"
-        aria-label="Open search">
+      <button type="button" popovertarget="search-overlay" aria-controls="search-overlay" class="btn btn-icon xl:hidden"
+        id="search-open" aria-label="Open search">
         <svg class="icon-sm" aria-hidden="true">
           <use href="/assets/sprites/solid.svg#magnifying-glass"></use>
         </svg>
       </button>
-      <button type="button" popovertarget="mobile-nav-menu" class="btn btn-icon xxs:block xl:hidden" id="mobile-nav-btn"
-        aria-label="open menu">
+      <button type="button" popovertarget="mobile-nav-menu" aria-controls="mobile-nav-menu"
+        class="btn btn-icon xl:hidden" id="mobile-nav-btn" aria-label="open menu">
         <svg class="icon-lg" aria-hidden="true" class="fill-primary-one">
           <use href="/assets/sprites/solid.svg#bars"></use>
         </svg>
@@ -200,8 +200,8 @@
           <p class="paragraph-md text-neutral-nine">Legal</p>
           <ul class="list-none flex flex-col gap-2">
             <button type="button" popovertarget="disclaimer" aria-haspopup="dialog" aria-controls="disclaimer"
-              aria-expanded="false" class="link link--inline no-underline text-base text-left">Disclaimer</button>
-            <button popovertarget="privacy" aria-haspopup="dialog" aria-controls="privacy" aria-expanded="false"
+              class="link link--inline no-underline text-base text-left">Disclaimer</button>
+            <button popovertarget="privacy" aria-haspopup="dialog" aria-controls="privacy"
               class="link link--inline no-underline text-base text-left">Privacy Policy</button>
           </ul>
         </div>
