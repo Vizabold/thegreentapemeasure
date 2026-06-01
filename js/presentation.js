@@ -13,25 +13,11 @@ function setupSlides(dialog) {
   let debounceTimeout = null;
   let dialogController = null;
 
-  function manageSlideFocus(slide, isActive) {
-    slide.setAttribute('aria-hidden', isActive ? 'false' : 'true');
-    const focusableElements = slide.querySelectorAll('button, [href], input, select, textarea, [tabindex="0"]');
-    focusableElements.forEach(el => {
-      if (isActive) {
-        el.removeAttribute('tabindex');
-      } else {
-        el.setAttribute('tabindex', '-1');
-      }
-    });
-  }
-
   function updateUI(index) {
     slides[current].classList.remove('slide-current');
     slides[current].removeAttribute('aria-current');
-    manageSlideFocus(slides[current], false);
     slides[index].classList.add('slide-current');
     slides[index].setAttribute('aria-current', 'true');
-    manageSlideFocus(slides[index], true);
 
     if (liveRegion) {
       liveRegion.textContent = `Item ${index + 1} of ${slides.length}`;
@@ -62,23 +48,10 @@ function setupSlides(dialog) {
       block: 'nearest',
       inline: 'center'
     });
-
     clearTimeout(debounceTimeout);
     debounceTimeout = setTimeout(() => {
       isKeyboardOrButtonClick = false;
     }, 350);
-  }
-
-  function syncIndexFromScroll() {
-    const containerLeft = slideContainer.getBoundingClientRect().left;
-    const containerCenter = containerLeft + (slideContainer.offsetWidth / 2);
-    const activeIndex = slides.findIndex(slide => {
-      const rect = slide.getBoundingClientRect();
-      return rect.left <= containerCenter && rect.right >= containerCenter;
-    });
-    if (activeIndex !== -1 && activeIndex !== current) {
-      updateUI(activeIndex);
-    }
   }
 
   dialog.addEventListener('toggle', (event) => {
@@ -86,40 +59,50 @@ function setupSlides(dialog) {
       const dialogController = new AbortController();
       const signal = dialogController.signal;
 
-      slides.forEach((slide, i) => {
-        if (i === 0) {
-          slide.classList.add('slide-current');
-          slide.setAttribute('aria-current', 'true');
-          manageSlideFocus(slide, true);
-        } else {
-          slide.classList.remove('slide-current');
-          slide.removeAttribute('aria-current');
-          manageSlideFocus(slide, false);
-        }
-      });
+      const handleTransitionEnd = () => {
+        slides.forEach((slide, i) => {
+          if (slide.classList.contains('slide-current')) {
+            slide.classList.remove('slide-current');
+            slide.removeAttribute('aria-current');
+          }
+        });
+        slides[0].classList.add('slide-current');
+        slides[0].setAttribute('aria-current', 'true');
 
-      dots.forEach((dot, i) => {
-        if (i === 0) {
-          dot.classList.replace('w-3', 'w-6');
-          dot.classList.replace('bg-primary-three', 'bg-primary-one');
-        } else {
-          dot.classList.replace('w-6', 'w-3');
-          dot.classList.replace('bg-primary-one', 'bg-primary-three');
-        }
-      });
+        dots.forEach((dot, i) => {
+          if (i === 0) {
+            dot.classList.replace('w-3', 'w-6');
+            dot.classList.replace('bg-primary-three', 'bg-primary-one');
+          } else {
+            dot.classList.replace('w-6', 'w-3');
+            dot.classList.replace('bg-primary-one', 'bg-primary-three');
+          }
+        });
 
-      slides[0].scrollIntoView({
-        behavior: 'smooth',
-        block: 'nearest',
-        inline: 'center'
-      });
-
-      current = 0;
+        slides[0].scrollIntoView({
+          behavior: 'smooth',
+          block: 'nearest',
+          inline: 'center'
+        });
+        current = 0;
+        dialog.removeEventListener('transitionend', handleTransitionEnd);
+      };
+      dialog.addEventListener('transitionend', handleTransitionEnd);
 
       slideContainer.addEventListener('scroll', () => {
         if (isKeyboardOrButtonClick) return;
         clearTimeout(debounceTimeout);
-        debounceTimeout = setTimeout(syncIndexFromScroll, 50);
+        debounceTimeout = setTimeout(() => {
+          const containerLeft = slideContainer.getBoundingClientRect().left;
+          const containerCenter = containerLeft + (slideContainer.offsetWidth / 2);
+          const activeIndex = slides.findIndex(slide => {
+            const rect = slide.getBoundingClientRect();
+            return rect.left <= containerCenter && rect.right >= containerCenter;
+          });
+          if (activeIndex !== -1) {
+            updateUI(activeIndex);
+          }
+        }, 50);
       }, { signal });
 
       dialog.addEventListener('keydown', (e) => {
