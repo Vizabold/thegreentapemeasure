@@ -1,3 +1,4 @@
+const liveRegion = document.getElementById('live-region');
 const advocacyCards = document.getElementById('advocacy-cards');
 const researchCards = document.getElementById('research-cards');
 const advocacyBtns = advocacyCards.previousElementSibling;
@@ -7,7 +8,7 @@ function setupSlider(container) {
     const prevBtn = container.firstElementChild;
     const nextBtn = container.lastElementChild;
     const cardContainer = container.nextElementSibling;
-    const cards = cardContainer.querySelectorAll('.card');
+    const cards = Array.from(cardContainer.querySelectorAll('.card'));
     let current = 0;
     let isAnimating = false;
 
