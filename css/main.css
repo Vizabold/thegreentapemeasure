@@ -272,16 +272,16 @@
   /* ─────────────────────────────────────────
      Search
   ───────────────────────────────────────── */
-  #search-results.is-open {
+  .search-dropdown {
+    @apply hidden absolute top-full left-0 w-72 mt-1 bg-neutral-two border border-solid border-neutral-three rounded-lg z-20 flex-col max-h-96 overflow-y-auto;
+  }
+
+  .search-dropdown.is-open {
     @apply flex;
   }
 
-  .search-no-results {
-    @apply px-4 py-3 italic text-neutral-seven;
-  }
-
   .search-result {
-    @apply px-4 py-3 cursor-pointer flex flex-col gap-1 hover:focus:bg-primary-five hover:focus:outline-none;
+    @apply px-4 py-3 cursor-pointer flex flex-col gap-1 hover:bg-primary-five focus:bg-primary-five hover:outline-none focus:outline-none;
   }
 
   .search-result-title {
@@ -291,6 +291,11 @@
   .search-result-snippet {
     @apply text-sm text-neutral-seven;
   }
+
+  .search-no-results {
+    @apply px-4 py-3 italic text-neutral-seven;
+  }
+
 
   /* ─────────────────────────────────────────
      Slides

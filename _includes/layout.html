@@ -64,7 +64,7 @@
         <label for="search-mobile" class="sr-only">Search</label>
         <input type="search" id="search-mobile" name="q" class="flex-1" placeholder="Search the site..."
           autocomplete="off">
-        <button type="button" class="btn btn-icon btn-icon-lg" aria-label="close menu" popovertarget="search-overlay"
+        <button type="button" class="btn btn-icon btn-icon-lg" aria-label="close search" popovertarget="search-overlay"
           popovertargetaction="hide">
           <svg class="icon-xs" aria-hidden="true">
             <use href="/assets/sprites/solid.svg#x"></use>
@@ -115,8 +115,7 @@
           </svg>
         </button>
       </div>
-      <ul id="search-results" role="listbox" aria-label="Search results"
-        class="hidden absolute top-full left-0 w-72 mt-1 bg-neutral-two border border-solid border-neutral-three rounded-lg z-20 flex-col max-h-96 overflow-y-auto">
+      <ul id="search-results" role="listbox" aria-label="Search results" class="search-dropdown">
       </ul>
     </form>
     <div class="flex gap-6 pb-1 items-center xl:items-end">
