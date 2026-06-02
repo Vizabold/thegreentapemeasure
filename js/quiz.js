@@ -2,9 +2,9 @@ const TIMER_SECONDS = 30;
 const STORAGE_KEY = 'gtm-quiz-daily';
 
 const draggablesEl = document.getElementById('draggables');
-const dropzonesEl  = document.getElementById('dropzones');
-const readyBtn     = document.getElementById('ready-btn');
-const resetBtn     = document.getElementById('reset-quiz-btn');
+const dropzonesEl = document.getElementById('dropzones');
+const readyBtn = document.getElementById('ready-btn');
+const resetBtn = document.getElementById('reset-quiz-btn');
 
 if (draggablesEl && dropzonesEl && readyBtn) {
 
@@ -14,12 +14,12 @@ if (draggablesEl && dropzonesEl && readyBtn) {
     try {
       const stored = JSON.parse(localStorage.getItem(STORAGE_KEY) || 'null');
       if (stored && stored.date === new Date().toDateString()) return stored;
-    } catch (_) {}
+    } catch (_) { }
     return { date: new Date().toDateString(), incorrect: 0, correct: 0 };
   }
 
   function saveDailyState(state) {
-    try { localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); } catch (_) {}
+    try { localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); } catch (_) { }
   }
 
   /* ── live-region for screen readers ── */
@@ -56,16 +56,16 @@ if (draggablesEl && dropzonesEl && readyBtn) {
   /* ── state ── */
 
   let activeDraggable = null;
-  let draggingBtn     = null;
-  let timerInterval   = null;
-  let timeLeft        = TIMER_SECONDS;
-  let quizRunning     = false;
-  let panelsShown     = false;
+  let draggingBtn = null;
+  let timerInterval = null;
+  let timeLeft = TIMER_SECONDS;
+  let quizRunning = false;
+  let panelsShown = false;
 
   /* ── init ── */
 
   draggablesEl.hidden = true;
-  dropzonesEl.hidden  = true;
+  dropzonesEl.hidden = true;
 
   getDraggables().forEach(btn => {
     btn.setAttribute('draggable', 'true');
@@ -105,13 +105,13 @@ if (draggablesEl && dropzonesEl && readyBtn) {
     if (!panelsShown) {
       panelsShown = true;
       draggablesEl.hidden = false;
-      dropzonesEl.hidden  = false;
+      dropzonesEl.hidden = false;
 
       const parent = draggablesEl.parentElement;
       parent.style.overflow = 'hidden';
 
       draggablesEl.style.animation = 'slideInLeft 0.5s ease-out';
-      dropzonesEl.style.animation  = 'slideInRight 0.5s ease-out';
+      dropzonesEl.style.animation = 'slideInRight 0.5s ease-out';
 
       let done = 0;
       const clearAnim = (el) => {
@@ -119,12 +119,12 @@ if (draggablesEl && dropzonesEl && readyBtn) {
         if (++done === 2) parent.style.overflow = '';
       };
       draggablesEl.addEventListener('animationend', () => clearAnim(draggablesEl), { once: true });
-      dropzonesEl.addEventListener('animationend',  () => clearAnim(dropzonesEl),  { once: true });
+      dropzonesEl.addEventListener('animationend', () => clearAnim(dropzonesEl), { once: true });
     }
 
     quizRunning = true;
     timeLeft = TIMER_SECONDS;
-    readyBtn.disabled  = true;
+    readyBtn.disabled = true;
     readyBtn.className = 'btn btn-md btn-secondary';
     startTimer();
     announce('Quiz started. 30 seconds on the clock. Tab to a job title and press Enter or Space to pick it up, then Tab to a definition box and press Enter or Space to place it. Press Escape to put a title back down.');
@@ -164,7 +164,7 @@ if (draggablesEl && dropzonesEl && readyBtn) {
       return;
     }
     readyBtn.textContent = 'Try again?';
-    readyBtn.className   = 'btn btn-md btn-cta';
+    readyBtn.className = 'btn btn-md btn-cta';
     readyBtn.removeAttribute('aria-label');
     readyBtn.addEventListener('click', handleReset, { once: true });
   }
@@ -180,18 +180,18 @@ if (draggablesEl && dropzonesEl && readyBtn) {
   }
 
   function showShare() {
-    readyBtn.disabled    = false;
+    readyBtn.disabled = false;
     readyBtn.textContent = 'Share!';
-    readyBtn.className   = 'btn btn-md btn-primary';
+    readyBtn.className = 'btn btn-md btn-primary';
     readyBtn.removeAttribute('aria-label');
-    readyBtn.addEventListener('click', shareResult, { once: true });
+    readyBtn.addEventListener('click', shareResult);
     readyBtn.focus();
   }
 
   function shareResult() {
     const text = 'I just aced the Design Roles IQ quiz at The Green Tape Measure! #InteriorDesign #GTM';
     if (navigator.share) {
-      navigator.share({ title: 'The Green Tape Measure', text, url: window.location.href }).catch(() => {});
+      navigator.share({ title: 'The Green Tape Measure', text, url: window.location.href }).catch(() => { });
     } else {
       window.open(
         `https://twitter.com/intent/tweet?text=${encodeURIComponent(text + ' ' + window.location.href)}`,
@@ -202,8 +202,8 @@ if (draggablesEl && dropzonesEl && readyBtn) {
 
   function showExhausted() {
     readyBtn.textContent = 'Come back tomorrow!';
-    readyBtn.disabled    = true;
-    readyBtn.className   = 'btn btn-md btn-secondary opacity-50 cursor-not-allowed';
+    readyBtn.disabled = true;
+    readyBtn.className = 'btn btn-md btn-secondary opacity-50 cursor-not-allowed';
     readyBtn.removeAttribute('aria-label');
   }
 
@@ -246,10 +246,10 @@ if (draggablesEl && dropzonesEl && readyBtn) {
       if (draggable) draggable.classList.remove('invisible');
     }
 
-    dropzoneBtn.className          = 'btn btn-lg btn-dropzone';
-    dropzoneBtn.textContent        = 'place job title here';
+    dropzoneBtn.className = 'btn btn-lg btn-dropzone';
+    dropzoneBtn.textContent = 'place job title here';
     dropzoneBtn.dataset.placedValue = '';
-    dropzoneBtn.disabled           = false;
+    dropzoneBtn.disabled = false;
     dropzoneBtn.removeAttribute('draggable');
 
     const def = getDefinitionText(card);
@@ -274,9 +274,9 @@ if (draggablesEl && dropzonesEl && readyBtn) {
   }
 
   function shuffleChildren(container, selector) {
-    const rows  = Array.from(container.querySelectorAll(':scope > div'));
+    const rows = Array.from(container.querySelectorAll(':scope > div'));
     const items = fisherYates(rows.flatMap(r => Array.from(r.querySelectorAll(selector))));
-    const per   = Math.ceil(items.length / rows.length);
+    const per = Math.ceil(items.length / rows.length);
     rows.forEach((row, ri) => {
       for (let ci = 0; ci < per; ci++) {
         const item = items[ri * per + ci];
@@ -286,10 +286,10 @@ if (draggablesEl && dropzonesEl && readyBtn) {
   }
 
   function shuffleDropzones() {
-    const cards    = getDropzoneCards();
+    const cards = getDropzoneCards();
     const cardRows = [...new Set(cards.map(c => c.parentElement))];
     const shuffled = fisherYates([...cards]);
-    const per      = Math.ceil(shuffled.length / cardRows.length);
+    const per = Math.ceil(shuffled.length / cardRows.length);
     cardRows.forEach((row, ri) => {
       for (let ci = 0; ci < per; ci++) {
         const card = shuffled[ri * per + ci];
@@ -365,7 +365,7 @@ if (draggablesEl && dropzonesEl && readyBtn) {
   function setupDropzones() {
     dropzonesEl.addEventListener('click', (e) => {
       if (!quizRunning) return;
-      const btn  = e.target.closest('.btn-dropzone');
+      const btn = e.target.closest('.btn-dropzone');
       if (!btn || btn.disabled) return;
       const card = btn.closest('[data-answer]');
       if (!card || card.dataset.correct === 'true') return;
@@ -461,11 +461,11 @@ if (draggablesEl && dropzonesEl && readyBtn) {
   /* ── placement ── */
 
   function placeDraggable(draggableBtn, dropzoneCard) {
-    const value       = getDraggableValue(draggableBtn);
-    const answer      = dropzoneCard.dataset.answer;
-    const isCorrect   = value === answer;
+    const value = getDraggableValue(draggableBtn);
+    const answer = dropzoneCard.dataset.answer;
+    const isCorrect = value === answer;
     const dropzoneBtn = dropzoneCard.querySelector('.btn-dropzone');
-    const def         = getDefinitionText(dropzoneCard);
+    const def = getDefinitionText(dropzoneCard);
 
     // Render the draggable's appearance inside the dropzone button
     const colorClass = isCorrect ? 'bg-primary-two' : 'bg-secondary-five';
