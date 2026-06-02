@@ -1,6 +1,5 @@
 export default function (eleventyConfig) {
     eleventyConfig.addPassthroughCopy("js");
-    eleventyConfig.addPassthroughCopy("css");
     eleventyConfig.addPassthroughCopy("assets");
     eleventyConfig.addPassthroughCopy("site.webmanifest");
     eleventyConfig.addPassthroughCopy("_headers");
@@ -25,3 +24,4 @@ export default function (eleventyConfig) {
         }
     };
 };
+
