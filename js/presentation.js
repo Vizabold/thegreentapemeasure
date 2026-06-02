@@ -125,11 +125,13 @@ function setupSlides(dialog) {
 }
 
 document.querySelectorAll('.open-analysis-btn').forEach(btn => {
-  const dialogId = btn.getAttribute('popovertarget');
-  const dialog = document.getElementById(dialogId);
-  if (dialog) {
-    setupSlides(dialog)
-  } else { console.log('dialog not found') };
+  btn.addEventListener('click', () => {
+    const dialogId = btn.getAttribute('popovertarget');
+    const dialog = document.getElementById(dialogId);
+    if (dialog) {
+      setupSlides(dialog)
+    } else { console.log('dialog not found') };
+  })
 });
 
 /*--------------- BILL DETAILS CONTAINER --------------------- */
