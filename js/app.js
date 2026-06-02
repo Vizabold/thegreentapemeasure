@@ -190,26 +190,55 @@ if (modeToggle) {
     modeToggle.checked = true;
   }
 
-  const themeSources = document.querySelectorAll('source[data-theme]');
-  themeSources.forEach(source => {
-    source.dataset.originalMedia = source.getAttribute('media') ?? 'all';
-  });
-
   const toggleLabels = document.querySelectorAll('label[for="mode-toggle"]');
+
   const syncAriaLabel = () => {
     const isLight = modeToggle.checked;
     const theme = isLight ? 'light' : 'dark';
     toggleLabels.forEach(l => l.setAttribute('aria-label', isLight ? 'light mode on' : 'dark mode on'));
     document.documentElement.setAttribute('data-theme', theme);
+
+    /*
     themeSources.forEach(source => {
       const themes = source.dataset.theme.split(',').map(t => t.trim());
       source.media = themes.includes(theme) || themes.includes('all')
         ? source.dataset.originalMedia
         : 'not all';
     });
-  };
-  syncAriaLabel();
+    */
 
+    const pictureElements = document.querySelectorAll('picture');
+    pictureElements.forEach(picture => {
+      const sources = picture.querySelectorAll('source[data-theme]');
+      sources.forEach(source => {
+        const themes = source.dataset.theme.split(',').map(t => t.trim());
+
+        if (themes.includes(theme) || themes.includes('all')) {
+          if (source.dataset.srcsetBackup) {
+            source.srcset = source.dataset.srcsetBackup;
+          }
+        } else {
+          if (!source.dataset.srcsetBackup) {
+            source.dataset.srcsetBackup = source.srcset;
+          }
+          source.srcset = '';
+        }
+      });
+
+      const img = picture.querySelector('img');
+      if (img) img.src = img.src;
+    });
+  };
+
+  /*
+  const themeSources = document.querySelectorAll('source[data-theme]');
+  themeSources.forEach(source => {
+    source.dataset.originalMedia = source.getAttribute('media') ?? 'all';
+  });
+  */
+
+
+  syncAriaLabel();
   modeToggle.addEventListener('change', syncAriaLabel);
 
   osPref.addEventListener('change', (e) => {
