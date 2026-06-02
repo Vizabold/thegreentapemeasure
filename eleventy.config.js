@@ -1,3 +1,5 @@
+import EleventyAssetHash from "@vrugtehagel/eleventy-asset-hash";
+
 export default function (eleventyConfig) {
     eleventyConfig.addPassthroughCopy("js");
     eleventyConfig.addPassthroughCopy("assets");
