@@ -11,14 +11,10 @@ function setupSlides(dialog) {
   let isMoving = false;
   let touchStartX = 0;
   let touchStartY = 0;
-  let isIntentDeclared = false;
-  let lockAxis = null;
 
   function handleTouchStart(e) {
     touchStartX = e.touches[0].clientX;
     touchStartY = e.touches[0].clientY;
-    isIntentDeclared = false;
-    lockAxis = null;
   }
 
   function handleTouchMove(e) {
@@ -28,36 +24,38 @@ function setupSlides(dialog) {
     const currentX = e.touches[0].clientX;
     const currentY = e.touches[0].clientY;
 
-    const deltaX = currentX - touchStartX;
-    const deltaY = currentY - touchStartY;
+    const deltaX = Math.abs(currentX - touchStartX);
+    const deltaY = Math.abs(currentY - touchStartY);
 
-    if (!isIntentDeclared && (Math.abs(deltaX) > 5 || Math.abs(deltaY) > 5)) {
-      isIntentDeclared = true;
+    if (deltaX < 4 && deltaY < 4) return;
 
-      if (Math.abs(deltaY) > Math.abs(deltaX)) {
-        lockAxis = 'y';
+    if (deltaY > deltaX) {
+      if (slideContainer.classList.contains('snap-x')) {
         slideContainer.classList.remove('snap-x', 'snap-mandatory');
         slideContainer.classList.add('snap-none');
-      } else {
-        lockAxis = 'x';
-      }
-    }
 
-    if (lockAxis === 'y') {
+        currentSlide.style.touchAction = 'pan-y';
+      }
+
       e.stopPropagation();
-      if (currentSlide.scrollTop === 0 && deltaY < 0) {
-        currentSlide.scrollTop = Math.abs(deltaY);
+    } else {
+      if (!slideContainer.classList.contains('snap-x')) {
+        currentSlide.style.touchAction = 'pan-x';
       }
     }
   }
 
-  function handleTouchEnd() {
+  function handleTouchEnd(e) {
+    const currentSlide = slides[current];
+
     if (slideContainer) {
       slideContainer.classList.remove('snap-none');
       slideContainer.classList.add('snap-x', 'snap-mandatory');
     }
-    isIntentDeclared = false;
-    lockAxis = null;
+
+    if (currentSlide) {
+      currentSlide.style.touchAction = 'auto';
+    }
   }
 
   function updateUI(index) {
@@ -87,7 +85,7 @@ function setupSlides(dialog) {
     current = index;
 
     slides[current].addEventListener('touchstart', handleTouchStart, { passive: true });
-    slides[current].addEventListener('touchmove', handleTouchMove, { passive: false });
+    slides[current].addEventListener('touchmove', handleTouchMove, { passive: true });
     slides[current].addEventListener('touchend', handleTouchEnd, { passive: true });
   }
 
