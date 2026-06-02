@@ -110,6 +110,15 @@ const mobileForm = document.getElementById('search-mobile').closest('form');
 const mobileInput = document.getElementById('search-mobile');
 const mobileList = document.getElementById('search-results-mobile');
 const searchOverlay = document.getElementById('search-overlay');
+let searchAbortController = null;
+
+function removeSearchListeners() {
+  if (searchAbortController) {
+    searchAbortController.abort();
+    searchAbortController = null;
+    console.log('search event listeners removed');
+  }
+}
 
 function closeMobile() {
   mobileList.classList.remove('is-open');
@@ -122,34 +131,45 @@ function closeOverlay() {
   mobileList.innerHTML = '';
 }
 
-mobileForm.addEventListener('submit', e => {
-  e.preventDefault();
-  mobileList.querySelector('[role="option"]')?.click();
-});
+function addSearchListeners() {
+  removeSearchListeners();
 
-mobileInput.addEventListener('input', () => {
-  const q = mobileInput.value;
-  if (!q.trim()) { mobileList.innerHTML = ''; return; }
-  renderItems(buildResults(q), q, mobileList, result => {
-    mobileInput.value = '';
-    closeMobile();
-    closeOverlay();
-    setTimeout(() => result.element.scrollIntoView({ behavior: 'smooth', block: 'start' }), 50);
-  });
-  mobileList.classList.add('is-open');
-  mobileInput.setAttribute('aria-expanded', 'true');
-});
+  searchAbortController = new AbortController();
 
-mobileInput.addEventListener('keydown', e => handleKeys(e, mobileList, mobileInput, closeMobile));
-mobileList.addEventListener('keydown', e => handleKeys(e, mobileList, mobileInput, closeMobile));
+  const { signal } = searchAbortController;
+  mobileForm.addEventListener('submit', e => {
+    e.preventDefault();
+    mobileList.querySelector('[role="option"]')?.click();
+  }, { signal });
 
-document.addEventListener('click', e => {
-  if (!mobileForm.contains(e.target)) closeMobile();
-});
+  mobileInput.addEventListener('input', () => {
+    const q = mobileInput.value;
+    if (!q.trim()) { mobileList.innerHTML = ''; return; }
+    renderItems(buildResults(q), q, mobileList, result => {
+      mobileInput.value = '';
+      closeMobile();
+      closeOverlay();
+      setTimeout(() => result.element.scrollIntoView({ behavior: 'smooth', block: 'start' }), 50);
+    });
+    mobileList.classList.add('is-open');
+    mobileInput.setAttribute('aria-expanded', 'true');
+  }, { signal });
+
+  mobileInput.addEventListener('keydown', e => handleKeys(e, mobileList, mobileInput, closeMobile), { signal });
+  mobileList.addEventListener('keydown', e => handleKeys(e, mobileList, mobileInput, closeMobile), { signal });
+
+  document.addEventListener('click', e => {
+    if (!mobileForm.contains(e.target)) closeMobile();
+  }, { signal });
+
+}
 
 searchOverlay.addEventListener('toggle', (event) => {
-  if (event.newState === 'closed') {
+  if (event.newState === 'open') {
+    addSearchListeners();
+  } else if (event.newState === 'closed') {
+    removeSearchListeners();
     mobileInput.value = '';
     mobileList.innerHTML = '';
   }
-})
+});
