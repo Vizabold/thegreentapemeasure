@@ -20,7 +20,9 @@ const footer = document.querySelector('footer');
 
 const footerObserver = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
-    if (entry.isIntersecting) {
+    const isAtBottom = (window.innerHeight + window.scrollY) >= document.documentElement.scrollHeight - 50;
+
+    if (entry.isIntersecting || isAtBottom) {
       footer.classList.remove('js:opacity-0', 'js:pointer-events-none');
       footer.classList.add('js:opacity-100');
     } else {
@@ -30,7 +32,8 @@ const footerObserver = new IntersectionObserver((entries) => {
   });
 }, {
   root: null,
-  threshold: 0.1
+  threshold: 0,
+  rootMargin: '0px 0px 100px 0px'
 });
 
 footerObserver.observe(footerSentinel);
