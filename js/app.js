@@ -195,17 +195,12 @@ if (modeToggle) {
   const syncAriaLabel = () => {
     const isLight = modeToggle.checked;
     const theme = isLight ? 'light' : 'dark';
-    toggleLabels.forEach(l => l.setAttribute('aria-label', isLight ? 'light mode on' : 'dark mode on'));
-    document.documentElement.setAttribute('data-theme', theme);
 
-    /*
-    themeSources.forEach(source => {
-      const themes = source.dataset.theme.split(',').map(t => t.trim());
-      source.media = themes.includes(theme) || themes.includes('all')
-        ? source.dataset.originalMedia
-        : 'not all';
+    toggleLabels.forEach(label => {
+      label.setAttribute('aria-label', isLight ? 'light mode on' : 'dark mode on');
     });
-    */
+
+    document.documentElement.setAttribute('data-theme', theme);
 
     const pictureElements = document.querySelectorAll('picture');
     pictureElements.forEach(picture => {
@@ -230,15 +225,8 @@ if (modeToggle) {
     });
   };
 
-  /*
-  const themeSources = document.querySelectorAll('source[data-theme]');
-  themeSources.forEach(source => {
-    source.dataset.originalMedia = source.getAttribute('media') ?? 'all';
-  });
-  */
-
-
   syncAriaLabel();
+
   modeToggle.addEventListener('change', syncAriaLabel);
 
   osPref.addEventListener('change', (e) => {
@@ -247,10 +235,18 @@ if (modeToggle) {
   });
 
   toggleLabels.forEach(label => {
+    label.addEventListener('click', (e) => {
+      e.preventDefault();
+      modeToggle.checked = !modeToggle.checked;
+      modeToggle.dispatchEvent(new Event('change'));
+    });
+
+
     label.addEventListener('keydown', (e) => {
       if (e.key === ' ' || e.key === 'Enter') {
         e.preventDefault();
-        label.click();
+        modeToggle.checked = !modeToggle.checked;
+        modeToggle.dispatchEvent(new Event('change'));
       }
     });
   });
