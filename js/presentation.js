@@ -151,5 +151,5 @@ analysis3Input.forEach(input => {
     });
     liveRegion.innerText = 'bill details updated';
     billDetailsContainer.focus();
-  }, { signal: dialogController.signal })
+  })
 })

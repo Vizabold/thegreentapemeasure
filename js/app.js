@@ -72,19 +72,20 @@ document.querySelectorAll('button[popovertarget]').forEach(button => {
   button.addEventListener('click', (e) => {
     e.preventDefault();
     dialog.showModal();
-  });
 
-  const closeBtn = dialog.querySelector('.btn-close-dialog');
-  if (closeBtn) {
-    closeBtn.addEventListener('click', () => {
-      dialog.close();
+    const closeBtn = dialog.querySelector('.btn-close-dialog');
+    if (closeBtn) {
+      closeBtn.addEventListener('click', () => {
+        dialog.close();
+        button.focus();
+      }, { once: true });
+    }
+    dialog.addEventListener('close', () => {
       button.focus();
-    });
-  }
+    }, { once: true });
+  })
 
-  dialog.addEventListener('close', () => {
-    button.focus();
-  });
+
 });
 
 /*--------------- SCROLLING & NAV FUNCTIONS --------------------- */

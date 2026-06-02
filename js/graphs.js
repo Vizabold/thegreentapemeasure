@@ -1,4 +1,4 @@
-const analysisOneController = new AbortController();
+let graphController;
 
 /* Graph-1a Variables */
 const type1a = 'pie';
@@ -157,6 +157,9 @@ function renderChart(type, series, labels, chartEl, placeholder, colors, selecte
         console.log('chart did not render');
         return;
     }
+
+    graphController = new AbortController();
+    const { signal } = graphController;
 
     const svgNS = 'http://www.w3.org/2000/svg';
     const VW = 500, VH = 500;
@@ -574,17 +577,17 @@ function renderChart(type, series, labels, chartEl, placeholder, colors, selecte
     }
 
     function addlisteners(el, i) {
-        el.addEventListener('mouseenter', function () { if (lockedIndex === -1) highlight(i); }, { signal: analysisOneController.signal });
-        el.addEventListener('mouseleave', function () { if (lockedIndex === -1) highlight(-1); }, { signal: analysisOneController.signal });
+        el.addEventListener('mouseenter', function () { if (lockedIndex === -1) highlight(i); }, { signal });
+        el.addEventListener('mouseleave', function () { if (lockedIndex === -1) highlight(-1); }, { signal });
         el.addEventListener('click', function () {
             handleClick(i);
-        }, { signal: analysisOneController.signal });
+        }, { signal });
         el.addEventListener('keydown', function (e) {
             if (e.key === 'Enter' || e.key === ' ') {
                 e.preventDefault();
                 handleClick(i);
             }
-        }, { signal: analysisOneController.signal });
+        }, { signal });
     }
 
     /*------------------------- Attributes ----------------------------*/
@@ -845,7 +848,7 @@ function renderChart(type, series, labels, chartEl, placeholder, colors, selecte
                     highlight(-1);
                 }
             }
-        }, { signal: analysisOneController.signal });
+        }, { signal });
     });
 }
 
