@@ -139,6 +139,7 @@ let lastScrollY = window.scrollY;
 const header = document.getElementById('header');
 
 window.addEventListener('scroll', () => {
+  const currentScrollY = window.scrollY;
   if (currentScrollY <= 0) {
     header.classList.remove('-translate-y-full');
   }
