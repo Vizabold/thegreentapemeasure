@@ -854,7 +854,6 @@ function renderChart(type, series, labels, chartEl, placeholder, colors, selecte
         if (event.newState === 'closed') {
             if (graphController) {
                 graphController.abort();
-                console.log(`${type1a} graph event listeners removed`);
             }
         }
     })
