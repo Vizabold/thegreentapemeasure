@@ -74,7 +74,7 @@ function handleKeys(e, container, input, onClose) {
 /*--------------- DESKTOP --------------------- */
 const desktopForm = document.getElementById('search').closest('form');
 const desktopInput = document.getElementById('search');
-const desktopList = document.querySelector('search-dropdown');
+const desktopList = document.getElementById('search-results');
 
 function closeDesktop() {
   desktopList.classList.remove('is-open');
@@ -112,20 +112,16 @@ const mobileCloseBtn = document.getElementById('search-close');
 const mobileInput = document.getElementById('search-mobile');
 const mobileList = document.getElementById('search-results-mobile');
 
-/*
 function openOverlay() {
   searchOverlay.classList.add('is-open');
   searchOverlay.setAttribute('aria-hidden', 'false');
   mobileInput.focus();
 }
-  */
 
 function closeOverlay() {
-  /*
   searchOverlay.classList.remove('is-open');
   searchOverlay.setAttribute('aria-hidden', 'true');
   mobileOpenBtn.focus();
-  */
   mobileInput.value = '';
   mobileList.innerHTML = '';
 }
@@ -144,20 +140,3 @@ mobileInput.addEventListener('input', () => {
 
 mobileInput.addEventListener('keydown', e => handleKeys(e, mobileList, mobileInput, closeOverlay));
 mobileList.addEventListener('keydown', e => handleKeys(e, mobileList, mobileInput, closeOverlay));
-
-/*
-searchOverlay.addEventListener('keydown', e => {
-  if (e.key === 'Escape') { closeOverlay(); return; }
-  if (e.key !== 'Tab') return;
-  const focusable = [...searchOverlay.querySelectorAll('input, button')];
-  const first = focusable[0];
-  const last = focusable[focusable.length - 1];
-  if (e.shiftKey && document.activeElement === first) {
-    e.preventDefault();
-    last.focus();
-  } else if (!e.shiftKey && document.activeElement === last) {
-    e.preventDefault();
-    first.focus();
-  }
-});
-*/

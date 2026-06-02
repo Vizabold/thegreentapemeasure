@@ -59,8 +59,7 @@
   </dialog>
 
   <dialog id="search-overlay" aria-label="Search" aria-modal="true" popover>
-    <form class="fixed flex flex-col inset-0 z-50 bg-neutral-one p-6 gap-4" id="mobile-search-form" action="/search"
-      method="GET">
+    <div class="fixed flex flex-col inset-0 z-50 bg-neutral-one p-6 gap-4" id="mobile-search-form">
       <div class="flex gap-2 items-center">
         <label for="search-mobile" class="sr-only">Search</label>
         <input type="search" id="search-mobile" name="q" class="flex-1" placeholder="Search the site..."
@@ -74,8 +73,7 @@
       </div>
       <ul id="search-results-mobile" role="listbox" aria-label="Search results"
         class="flex flex-col overflow-y-auto mt-2"></ul>
-      </div>
-    </form>
+    </div>
   </dialog>
 
   <header
@@ -100,7 +98,7 @@
       <a class="link link--nav" href="#research">Research</a>
       <a class="link link--nav" href="#advocacy">Advocacy</a>
     </nav>
-    <form class="relative items-center gap-2 xxs:hidden xl:flex" role="search">
+    <form class="relative items-center gap-2 xxs:hidden js:xl:flex" role="search">
       <label for="search" class="sr-only">Search</label>
       <div
         class="flex items-stretch bg-neutral-eight border border-solid border-neutral-six rounded-lg overflow-hidden focus-within:ring-2 focus-within:ring-primary-one">
@@ -130,7 +128,7 @@
           </svg></span>
       </label>
       <button type="button" popovertarget="search-overlay" aria-controls="search-overlay"
-        class="btn btn-icon xxl:hidden" id="search-open" aria-label="Open search">
+        class="btn btn-icon hidden js:flex xxl:hidden" id="search-open" aria-label="Open search">
         <svg class="icon-sm" aria-hidden="true">
           <use href="/assets/sprites/solid.svg#magnifying-glass"></use>
         </svg>
