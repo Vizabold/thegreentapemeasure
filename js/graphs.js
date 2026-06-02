@@ -892,20 +892,10 @@ function renderChart(type, series, labels, chartEl, placeholder, colors, selecte
 const dialogs = document.querySelectorAll('.analysis-dialog');
 
 dialogs.forEach(dialog => {
-    const observer = new MutationObserver((mutations) => {
-        mutations.forEach((mutation) => {
-            if (mutation.attributeName === 'class') {
-                const hasOpenClass = dialog.classList.contains('open');
-                if (hasOpenClass) {
-                    initializeAndRenderGraphs(dialog);
-                }
-            }
-        });
-    });
-
-    observer.observe(dialog, {
-        attributes: true,
-        attributeFilter: ['class']
-    });
+    dialog.addEventListener('toggle', (event) => {
+        if (event.newState === 'open') {
+            initializeAndRenderGraphs(dialog);
+        }
+    })
 })
 
