@@ -106,12 +106,46 @@ document.addEventListener('click', e => {
 });
 
 /*--------------- MOBILE --------------------- */
-const searchOverlay = document.getElementById('search-overlay');
-const mobileOpenBtn = document.getElementById('search-open');
-const mobileCloseBtn = document.getElementById('search-close');
+const mobileForm = document.getElementById('search-mobile').closest('form');
 const mobileInput = document.getElementById('search-mobile');
 const mobileList = document.getElementById('search-results-mobile');
 
+const searchOverlay = document.getElementById('search-overlay');
+const mobileOpenBtn = document.getElementById('search-open');
+const mobileCloseBtn = document.getElementById('search-close');
+
+function closeMobile() {
+  mobileList.classList.remove('is-open');
+  mobileInput.setAttribute('aria-expanded', 'false');
+}
+
+mobileForm.addEventListener('submit', e => {
+  e.preventDefault();
+  mobileList.querySelector('[role="option"]')?.click();
+});
+
+mobileInput.addEventListener('input', () => {
+  const q = mobileInput.value;
+  if (!q.trim()) { closeMobile(); return; }
+  renderItems(buildResults(q), q, mobileList, result => {
+    result.element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    mobileInput.value = '';
+    closeMobile();
+  });
+  mobileList.classList.add('is-open');
+  mobileInput.setAttribute('aria-expanded', 'true');
+});
+
+mobileInput.addEventListener('keydown', e => handleKeys(e, mobileList, mobileInput, closeMobile));
+mobileList.addEventListener('keydown', e => handleKeys(e, mobileList, mobileInput, closeMobile));
+
+document.addEventListener('click', e => {
+  if (!mobileForm.contains(e.target)) closeMobile();
+});
+
+
+
+/*
 function openOverlay() {
   searchOverlay.classList.add('is-open');
   searchOverlay.setAttribute('aria-hidden', 'false');
@@ -140,3 +174,4 @@ mobileInput.addEventListener('input', () => {
 
 mobileInput.addEventListener('keydown', e => handleKeys(e, mobileList, mobileInput, closeOverlay));
 mobileList.addEventListener('keydown', e => handleKeys(e, mobileList, mobileInput, closeOverlay));
+*/
