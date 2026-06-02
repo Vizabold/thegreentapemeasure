@@ -33,6 +33,7 @@ The Green Tape Measure exists to:
 | **Quiz** | Interactive quiz engaging visitors with design advocacy topics |
 | **Timeline** | Historical view of design deregulation and its consequences |
 | **Research** | Data-driven findings and investigations |
+| **Advocacy** | Our official positions on regulation based on our findings |
 | **Take Action** | Calls-to-action for supporters |
 
 ---
@@ -46,9 +47,9 @@ The site uses a **light/dark theme system** that respects the user's OS-level pr
 | Token | Light Mode | Dark Mode |
 |-------|-----------|-----------|
 | `--background-body` | `#E8E3E3` | `#131313` |
-| `--text` | `#BECAB9` | `#3F4A3C` |
-| `--primary-one` | `#5BBE5D` | `#006E1C` |
-| `--secondary-one` | `#EB8825` | `#8B5000` |
+| `--text` | `#3F4A3C` | `#BECAB9` |
+| `--primary-one` | `#006E1C` | `#5BBE5D` |
+| `--secondary-one` | `#BD6D00` | `#EB8825` |
 
 ### Tone
 Bold, investigative, and editorial — serious mission, approachable character.
@@ -58,27 +59,9 @@ Bold, investigative, and editorial — serious mission, approachable character.
 ## 🛠️ Tech Stack
 
 ```
-Frontend:     HTML5, JavaScript (ES6+)
-Styling:      CSS3
+Frontend:     HTML5 with Eleventy compiler, JavaScript (ES6+)
+Styling:      Tailwind CSS V4
 Hosting:      Netlify
-```
-
----
-
-## 🚀 Getting Started
-
-```bash
-# Clone the repo
-git clone https://github.com/Vizabold/thegreentapemeasure.git
-
-# Navigate into the project
-cd thegreentapemeasure
-
-# Install dependencies
-npm install
-
-# Start the dev server
-npm run dev
 ```
 
 ---
@@ -86,18 +69,24 @@ npm run dev
 ## 📁 Project Structure
 
 ```
-/
-├── index.html          # Main entry point (Root)
-├── css/                # Stylesheets
-│   └── main.css        # Core application styles
-├── js/                 # JavaScript files
-│   ├── app.js          # Entry JS (Logic for routing)
-│   └── components/     # Reusable UI logic   
+_site/
 ├── assets/             # Media and static resources
-│   ├── images/         # Icons, logos, and photos
-│   └── fonts/          # Custom web fonts          
-├── .gitignore          # Files excluded from Git
-└── README.md
+│   ├── docs/           # PDFs
+│   ├── fonts/          # fontawesome and Google fonts
+│   ├── images/         # PNGs, webps, favicons
+│   └── sprites/        # fontawesome SVGs
+├── css/                # Stylesheets
+│   └── output.css      # Compiled, minified Tailwind CSS
+├── js/                 # JavaScript files
+│   ├── app.js          # Main js file with global variables and imports
+│   ├── cards.js        # Research and advocacy sections cards
+│   ├── graphs.js       # Analysis slides graphs
+│   ├── presentation.js # Analysis slides
+│   ├── quiz.js         # Quiz section logic
+│   ├── search.js       # Desktop and mobile search
+│   └── timeline.js     # Timeline section logic
+├── index.html          # Main entry point (Root)
+└── thank-you.html      # Form submission confirmation page
 ```
 
 ---
