@@ -16,7 +16,7 @@ function setupSlides(dialog) {
     if (!isScrollingY && slides[current].scrollTop > 0) {
       isScrollingY = true;
       if (slideContainer) {
-        slideContainer.classList.remove('snap-x');
+        slideContainer.classList.remove('snap-x', 'overflow-x-auto');
         slideContainer.classList.add('overflow-x-hidden');
       }
     }
@@ -24,7 +24,7 @@ function setupSlides(dialog) {
     timeout = setTimeout(() => {
       if (slides[current].scrollTop === 0) {
         if (slideContainer) {
-          slideContainer.classList.add('snap-x');
+          slideContainer.classList.add('snap-x', 'overflow-x-auto');
           slideContainer.classList.remove('overflow-x-hidden');
         }
         isScrollingY = false;
@@ -35,7 +35,7 @@ function setupSlides(dialog) {
   function updateUI(index) {
     if (index < 0 || index >= slides.length) return;
 
-    slides[current].removeEventListener('scroll', () => stopXScroll);
+    slides[current].removeEventListener('scroll', stopXScroll);
 
     slides[current].removeAttribute('aria-current');
     slides[current].setAttribute('tabindex', '-1');
@@ -56,7 +56,7 @@ function setupSlides(dialog) {
 
     current = index;
 
-    slides[current].addEventListener('scroll', () => stopXScroll);
+    slides[current].addEventListener('scroll', stopXScroll);
   }
 
   function goToSlide(index) {
