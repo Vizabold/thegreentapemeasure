@@ -9,63 +9,34 @@ function setupSlides(dialog) {
   const dots = Array.from(dialog.querySelectorAll('.slide-dot'));
   let current = 0;
   let isMoving = false;
-  let touchStartX = 0;
-  let touchStartY = 0;
-  let startScrollTop = 0;
-  let lockAxis = null;
+  let timeout = null;
 
-  function handleTouchStart(e) {
-    const currentSlide = slides[current];
-    if (!currentSlide) return;
-
-    touchStartX = e.touches[0].clientX;
-    touchStartY = e.touches[0].clientY;
-    startScrollTop = currentSlide.scrollTop;
-    lockAxis = null;
-  }
-
-  function handleTouchMove(e) {
+  function stopXScroll() {
     const currentSlide = slides[current];
     if (!currentSlide || !slideContainer) return;
 
-    const currentX = e.touches[0].clientX;
-    const currentY = e.touches[0].clientY;
-
-    const deltaX = currentX - touchStartX;
-    const deltaY = currentY - touchStartY;
-
-    if (!lockAxis && (Math.abs(deltaX) > 4 || Math.abs(deltaY) > 4)) {
-      if (Math.abs(deltaY) > Math.abs(deltaX)) {
-        lockAxis = 'y';
+    if (currentSlide.scrollTop > 0) {
+      if (slideContainer.classList.contains('snap-x')) {
         slideContainer.classList.remove('snap-x', 'snap-mandatory');
         slideContainer.classList.add('snap-none');
-      } else {
-        lockAxis = 'x';
       }
     }
 
-    if (lockAxis === 'y') {
-      e.preventDefault();
-      e.stopPropagation();
-
-      currentSlide.scrollTop = startScrollTop - deltaY;
-    }
-  }
-
-  function handleTouchEnd() {
-    if (slideContainer) {
-      slideContainer.classList.remove('snap-none');
-      slideContainer.classList.add('snap-x', 'snap-mandatory');
-    }
-    lockAxis = null;
+    clearTimeout(timeout);
+    timeout = setTimeout(() => {
+      if (currentSlide.scrollTop === 0) {
+        if (!slideContainer.classList.contains('snap-x')) {
+          slideContainer.classList.remove('snap-none');
+          slideContainer.classList.add('snap-x', 'snap-mandatory');
+        }
+      }
+    }, 120);
   }
 
   function updateUI(index) {
     if (index < 0 || index >= slides.length) return;
 
-    slides[current].removeEventListener('touchstart', handleTouchStart);
-    slides[current].removeEventListener('touchmove', handleTouchMove);
-    slides[current].removeEventListener('touchend', handleTouchEnd);
+    slides[current].removeEventListener('scroll', stopXScroll);
 
     slides[current].removeAttribute('aria-current');
     slides[current].setAttribute('tabindex', '-1');
@@ -86,9 +57,7 @@ function setupSlides(dialog) {
 
     current = index;
 
-    slides[current].addEventListener('touchstart', handleTouchStart, { passive: true });
-    slides[current].addEventListener('touchmove', handleTouchMove, { passive: false });
-    slides[current].addEventListener('touchend', handleTouchEnd, { passive: true });
+    slides[current].addEventListener('scroll', stopXScroll);
   }
 
   function goToSlide(index) {
