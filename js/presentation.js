@@ -122,14 +122,14 @@ function setupSlides(dialog) {
       });
     };
   });
-
-  console.log('slides set up');
 }
 
 document.querySelectorAll('.open-analysis-btn').forEach(btn => {
   const dialogId = btn.getAttribute('popovertarget');
   const dialog = document.getElementById(dialogId);
-  if (dialog) setupSlides(dialog);
+  if (dialog) {
+    setupSlides(dialog)
+  } else { console.log('dialog not found') };
 });
 
 /*--------------- BILL DETAILS CONTAINER --------------------- */
