@@ -111,12 +111,15 @@ const mobileInput = document.getElementById('search-mobile');
 const mobileList = document.getElementById('search-results-mobile');
 const searchOverlay = document.getElementById('search-overlay');
 
-const mobileOpenBtn = document.getElementById('search-open');
-const mobileCloseBtn = document.getElementById('search-close');
-
 function closeMobile() {
   mobileList.classList.remove('is-open');
   mobileInput.setAttribute('aria-expanded', 'false');
+}
+
+function closeOverlay() {
+  searchOverlay.close();
+  mobileInput.value = '';
+  mobileList.innerHTML = '';
 }
 
 mobileForm.addEventListener('submit', e => {
@@ -126,11 +129,12 @@ mobileForm.addEventListener('submit', e => {
 
 mobileInput.addEventListener('input', () => {
   const q = mobileInput.value;
-  if (!q.trim()) { closeMobile(); return; }
+  if (!q.trim()) { mobileList.innerHTML = ''; return; }
   renderItems(buildResults(q), q, mobileList, result => {
-    result.element.scrollIntoView({ behavior: 'smooth', block: 'start' });
     mobileInput.value = '';
     closeMobile();
+    closeOverlay();
+    setTimeout(() => result.element.scrollIntoView({ behavior: 'smooth', block: 'start' }), 50);
   });
   mobileList.classList.add('is-open');
   mobileInput.setAttribute('aria-expanded', 'true');
@@ -149,34 +153,3 @@ searchOverlay.addEventListener('toggle', (event) => {
     mobileList.innerHTML = '';
   }
 })
-
-/*
-function openOverlay() {
-  searchOverlay.classList.add('is-open');
-  searchOverlay.setAttribute('aria-hidden', 'false');
-  mobileInput.focus();
-}
-
-function closeOverlay() {
-  searchOverlay.classList.remove('is-open');
-  searchOverlay.setAttribute('aria-hidden', 'true');
-  mobileOpenBtn.focus();
-  mobileInput.value = '';
-  mobileList.innerHTML = '';
-}
-
-mobileOpenBtn.addEventListener('click', openOverlay);
-mobileCloseBtn.addEventListener('click', closeOverlay);
-
-mobileInput.addEventListener('input', () => {
-  const q = mobileInput.value;
-  if (!q.trim()) { mobileList.innerHTML = ''; return; }
-  renderItems(buildResults(q), q, mobileList, result => {
-    closeOverlay();
-    setTimeout(() => result.element.scrollIntoView({ behavior: 'smooth', block: 'start' }), 50);
-  });
-});
-
-mobileInput.addEventListener('keydown', e => handleKeys(e, mobileList, mobileInput, closeOverlay));
-mobileList.addEventListener('keydown', e => handleKeys(e, mobileList, mobileInput, closeOverlay));
-*/
