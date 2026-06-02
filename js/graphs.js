@@ -1,184 +1,155 @@
 let graphController;
 
-function initializeAndRenderGraphs(dialog) {
-    /* Graph-1a Variables */
-    const type1a = 'pie';
-    const series1a = [38, 21, 17, 14, 10];
-    const labels1a = ['hotel', 'assembly', 'schools', 'hospital', 'factory'];
-    const chart1a = document.getElementById('pie-chart-1a');
-    const placeholder1a = document.getElementById('pie-chart-1a-placeholder');
-    const colors1a = ['var(--primary-one)', 'var(--primary-two)', 'var(--primary-three)', 'var(--primary-four)', 'var(--neutral-seven-light)'];
-    let selectedIndex1a = -1;
+/* Graph-1a Variables */
+const type1a = 'pie';
+const series1a = [38, 21, 17, 14, 10];
+const labels1a = ['hotel', 'assembly', 'schools', 'hospital', 'factory'];
+const chart1a = document.getElementById('pie-chart-1a');
+const placeholder1a = document.getElementById('pie-chart-1a-placeholder');
+const colors1a = ['var(--primary-one)', 'var(--primary-two)', 'var(--primary-three)', 'var(--primary-four)', 'var(--neutral-seven-light)'];
+let selectedIndex1a = -1;
 
-    /* Graph-1b Variables */
-    const type1b = 'pie';
-    const series1b = [52, 19, 12, 11, 6];
-    const labels1b = ['assembly', 'hotel', 'schools', 'hospital', 'factory'];
-    const chart1b = document.getElementById('pie-chart-1b');
-    const placeholder1b = document.getElementById('pie-chart-1b-placeholder');
-    const colors1b = ['var(--primary-one)', 'var(--primary-two)', 'var(--primary-three)', 'var(--primary-four)', 'var(--neutral-seven-light)'];
-    let selectedIndex1b = -1;
+/* Graph-1b Variables */
+const type1b = 'pie';
+const series1b = [52, 19, 12, 11, 6];
+const labels1b = ['assembly', 'hotel', 'schools', 'hospital', 'factory'];
+const chart1b = document.getElementById('pie-chart-1b');
+const placeholder1b = document.getElementById('pie-chart-1b-placeholder');
+const colors1b = ['var(--primary-one)', 'var(--primary-two)', 'var(--primary-three)', 'var(--primary-four)', 'var(--neutral-seven-light)'];
+let selectedIndex1b = -1;
 
-    /* Graph-1c Variables */
-    const type1c = 'bar';
-    const series1c = [946, 226, 282, 34, 1010, 247, 135, 214, 264, 112, 100, 49, 17];
-    const labels1c = ['1900s', '1910s', '1920s', '1930s', '1940s', '1950s', '1960s', '1970s', '1980s', '1990s', '2000s', '2010s', '2020s'];
-    const chart1c = document.getElementById('bar-chart-1c');
-    const placeholder1c = document.getElementById('bar-chart-1c-placeholder');
-    const colors1c = ['var(--primary-two)'];
-    let selectedIndex1c = -1;
+/* Graph-1c Variables */
+const type1c = 'bar';
+const series1c = [946, 226, 282, 34, 1010, 247, 135, 214, 264, 112, 100, 49, 17];
+const labels1c = ['1900s', '1910s', '1920s', '1930s', '1940s', '1950s', '1960s', '1970s', '1980s', '1990s', '2000s', '2010s', '2020s'];
+const chart1c = document.getElementById('bar-chart-1c');
+const placeholder1c = document.getElementById('bar-chart-1c-placeholder');
+const colors1c = ['var(--primary-two)'];
+let selectedIndex1c = -1;
 
-    /* Graph-1d Variables */
-    const type1d = 'venn';
-    const series1d = [[19, 7, 7], [26, 24, 12], [5]];
-    const labels1d = ['one reason', 'two reasons', 'all three'];
-    const chart1d = document.getElementById('venn-chart-1d');
-    const placeholder1d = document.getElementById('venn-chart-1d-placeholder');
-    const colors1d = [
-        ['var(--primary-two)', 'var(--primary-two)', 'var(--primary-two)'],
-        ['var(--primary-three)', 'var(--primary-three)', 'var(--primary-three)'],
-        ['var(--neutral-seven-light)']
-    ];
-    let selectedIndex1d = -1;
+/* Graph-1d Variables */
+const type1d = 'venn';
+const series1d = [[19, 7, 7], [26, 24, 12], [5]];
+const labels1d = ['one reason', 'two reasons', 'all three'];
+const chart1d = document.getElementById('venn-chart-1d');
+const placeholder1d = document.getElementById('venn-chart-1d-placeholder');
+const colors1d = [
+    ['var(--primary-two)', 'var(--primary-two)', 'var(--primary-two)'],
+    ['var(--primary-three)', 'var(--primary-three)', 'var(--primary-three)'],
+    ['var(--neutral-seven-light)']
+];
+let selectedIndex1d = -1;
 
-    /* Graph-1e Variables */
-    const type1e = 'venn';
-    const series1e = [[14, 5, 2], [47, 19, 6], [7]];
-    const labels1e = ['one reason', 'two reasons', 'all three'];
-    const chart1e = document.getElementById('venn-chart-1e');
-    const placeholder1e = document.getElementById('venn-chart-1e-placeholder');
-    const colors1e = [
-        ['var(--primary-two)', 'var(--primary-two)', 'var(--primary-two)'],
-        ['var(--primary-three)', 'var(--primary-three)', 'var(--primary-three)'],
-        ['var(--neutral-seven-light)']
-    ];
-    let selectedIndex1e = -1;
+/* Graph-1e Variables */
+const type1e = 'venn';
+const series1e = [[14, 5, 2], [47, 19, 6], [7]];
+const labels1e = ['one reason', 'two reasons', 'all three'];
+const chart1e = document.getElementById('venn-chart-1e');
+const placeholder1e = document.getElementById('venn-chart-1e-placeholder');
+const colors1e = [
+    ['var(--primary-two)', 'var(--primary-two)', 'var(--primary-two)'],
+    ['var(--primary-three)', 'var(--primary-three)', 'var(--primary-three)'],
+    ['var(--neutral-seven-light)']
+];
+let selectedIndex1e = -1;
 
-    /* Graph-1f Variables */
-    const type1f = 'pyramid';
-    const series1f = [2, 48, 50];
-    const labels1f = ['architect', 'codes', 'enforcement'];
-    const chart1f = document.getElementById('pyramid-chart-1f');
-    const placeholder1f = document.getElementById('pyramid-chart-1f-placeholder');
-    const colors1f = ['var(--primary-three)', 'var(--primary-two)', 'var(--primary-one)'];
-    let selectedIndex1f = -1;
+/* Graph-1f Variables */
+const type1f = 'pyramid';
+const series1f = [2, 48, 50];
+const labels1f = ['architect', 'codes', 'enforcement'];
+const chart1f = document.getElementById('pyramid-chart-1f');
+const placeholder1f = document.getElementById('pyramid-chart-1f-placeholder');
+const colors1f = ['var(--primary-three)', 'var(--primary-two)', 'var(--primary-one)'];
+let selectedIndex1f = -1;
 
-    /* Graph-1g Variables */
-    const type1g = 'pyramid';
-    const series1g = [1, 32, 67];
-    const labels1g = ['architect', 'codes', 'enforcement'];
-    const chart1g = document.getElementById('pyramid-chart-1g');
-    const placeholder1g = document.getElementById('pyramid-chart-1g-placeholder');
-    const colors1g = ['var(--primary-three)', 'var(--primary-two)', 'var(--primary-one)'];
-    let selectedIndex1g = -1;
+/* Graph-1g Variables */
+const type1g = 'pyramid';
+const series1g = [1, 32, 67];
+const labels1g = ['architect', 'codes', 'enforcement'];
+const chart1g = document.getElementById('pyramid-chart-1g');
+const placeholder1g = document.getElementById('pyramid-chart-1g-placeholder');
+const colors1g = ['var(--primary-three)', 'var(--primary-two)', 'var(--primary-one)'];
+let selectedIndex1g = -1;
 
-    /* Graph-2a Variables */
-    const type2a = 'pie';
-    const series2a = [25, 22, 19, 17, 9, 8];
-    const labels2a = ['fundamentals', 'systems', 'commercial', 'graphics', 'residential', 'practice'];
-    const chart2a = document.getElementById('pie-chart-2a');
-    const placeholder2a = document.getElementById('pie-chart-2a-placeholder');
-    const colors2a = ['var(--primary-one)', 'var(--primary-two)', 'var(--primary-three)', 'var(--primary-four)', 'var(--neutral-seven-light)', 'var(--neutral-eight-light)'];
-    let selectedIndex2a = -1;
+/* Graph-2a Variables */
+const type2a = 'pie';
+const series2a = [25, 22, 19, 17, 9, 8];
+const labels2a = ['fundamentals', 'systems', 'commercial', 'graphics', 'residential', 'practice'];
+const chart2a = document.getElementById('pie-chart-2a');
+const placeholder2a = document.getElementById('pie-chart-2a-placeholder');
+const colors2a = ['var(--primary-one)', 'var(--primary-two)', 'var(--primary-three)', 'var(--primary-four)', 'var(--neutral-seven-light)', 'var(--neutral-eight-light)'];
+let selectedIndex2a = -1;
 
-    /* Graph-2b Variables */
-    const type2b = 'pie';
-    const series2b = [37, 23, 16, 10, 8, 6];
-    const labels2b = ['projects', 'fundamentals', 'systems', 'practice', 'shared', 'graphics'];
-    const chart2b = document.getElementById('pie-chart-2b');
-    const placeholder2b = document.getElementById('pie-chart-2b-placeholder');
-    const colors2b = ['var(--primary-one)', 'var(--primary-two)', 'var(--primary-three)', 'var(--primary-four)', 'var(--neutral-seven-light)', 'var(--neutral-eight-light)'];
-    let selectedIndex2b = -1;
+/* Graph-2b Variables */
+const type2b = 'pie';
+const series2b = [37, 23, 16, 10, 8, 6];
+const labels2b = ['projects', 'fundamentals', 'systems', 'practice', 'shared', 'graphics'];
+const chart2b = document.getElementById('pie-chart-2b');
+const placeholder2b = document.getElementById('pie-chart-2b-placeholder');
+const colors2b = ['var(--primary-one)', 'var(--primary-two)', 'var(--primary-three)', 'var(--primary-four)', 'var(--neutral-seven-light)', 'var(--neutral-eight-light)'];
+let selectedIndex2b = -1;
 
-    /* Graph-2c Variables */
-    const type2c = 'pie';
-    const series2c = [78, 16, 6];
-    const labels2c = ['design', 'management', 'practice'];
-    const chart2c = document.getElementById('pie-chart-2c');
-    const placeholder2c = document.getElementById('pie-chart-2c-placeholder');
-    const colors2c = ['var(--primary-one)', 'var(--primary-two)', 'var(--primary-three)'];
-    let selectedIndex2c = -1;
+/* Graph-2c Variables */
+const type2c = 'pie';
+const series2c = [78, 16, 6];
+const labels2c = ['design', 'management', 'practice'];
+const chart2c = document.getElementById('pie-chart-2c');
+const placeholder2c = document.getElementById('pie-chart-2c-placeholder');
+const colors2c = ['var(--primary-one)', 'var(--primary-two)', 'var(--primary-three)'];
+let selectedIndex2c = -1;
 
-    /* Graph-2d Variables */
-    const type2d = 'pie';
-    const series2d = [33, 28, 27, 12];
-    const labels2d = ['management', 'design', 'shared', 'practice'];
-    const chart2d = document.getElementById('pie-chart-2d');
-    const placeholder2d = document.getElementById('pie-chart-2d-placeholder');
-    const colors2d = ['var(--primary-one)', 'var(--primary-two)', 'var(--primary-three)', 'var(--primary-four)'];
-    let selectedIndex2d = -1;
+/* Graph-2d Variables */
+const type2d = 'pie';
+const series2d = [33, 28, 27, 12];
+const labels2d = ['management', 'design', 'shared', 'practice'];
+const chart2d = document.getElementById('pie-chart-2d');
+const placeholder2d = document.getElementById('pie-chart-2d-placeholder');
+const colors2d = ['var(--primary-one)', 'var(--primary-two)', 'var(--primary-three)', 'var(--primary-four)'];
+let selectedIndex2d = -1;
 
-    /* Graph-3a Variables */
-    const type3a = 'line';
-    const series3a = [
-        {
-            name: 'voluntary',
-            data: [0, 8, 19, 25, 29]
-        },
-        {
-            name: 'permitting',
-            data: [3, 10, 12, 13, 19]
-        },
-        {
-            name: 'restrictions',
-            data: [2, 16, 25, 27, 31]
-        },
-        {
-            name: 'regulation',
-            data: [5, 8, 6, 2, 2]
-        }
-    ];
-    const labels3a = ['1980s', '1990s', '2000s', '2010s', '2020s'];
-    const chart3a = document.getElementById('line-chart-3a');
-    const placeholder3a = document.getElementById('line-chart-3a-placeholder');
-    const colors3a = ['var(--primary-one)', 'var(--primary-one)', 'var(--neutral-seven)', 'var(--neutral-seven)'];
-    let selectedIndex3a = -1;
-
-    /* Graph-4a Variables */
-    const type4a = 'pie';
-    const series4a = [60, 20, 20];
-    const labels4a = ['interiors', 'architecture', 'business'];
-    const chart4a = document.getElementById('pie-chart-4a');
-    const placeholder4a = document.getElementById('pie-chart-4a-placeholder');
-    const colors4a = ['var(--primary-one)', 'var(--primary-two)', 'var(--primary-three)'];
-    let selectedIndex4a = -1;
-
-    /* Graph-4b Variables */
-    const type4b = 'pie';
-    const series4b = [56, 44];
-    const labels4b = ['interiors', 'business'];
-    const chart4b = document.getElementById('pie-chart-4b');
-    const placeholder4b = document.getElementById('pie-chart-4b-placeholder');
-    const colors4b = ['var(--primary-one)', 'var(--primary-two)'];
-    let selectedIndex4b = -1;
-
-    if (dialog.id === 'analysis-one') {
-        renderChart(type1a, series1a, labels1a, chart1a, placeholder1a, colors1a, selectedIndex1a, dialog);
-        renderChart(type1b, series1b, labels1b, chart1b, placeholder1b, colors1b, selectedIndex1b, dialog);
-        renderChart(type1c, series1c, labels1c, chart1c, placeholder1c, colors1c, selectedIndex1c, dialog);
-        renderChart(type1d, series1d, labels1d, chart1d, placeholder1d, colors1d, selectedIndex1d, dialog);
-        renderChart(type1e, series1e, labels1e, chart1e, placeholder1e, colors1e, selectedIndex1e, dialog);
-        renderChart(type1f, series1f, labels1f, chart1f, placeholder1f, colors1f, selectedIndex1f, dialog);
-        renderChart(type1g, series1g, labels1g, chart1g, placeholder1g, colors1g, selectedIndex1g, dialog);
+/* Graph-3a Variables */
+const type3a = 'line';
+const series3a = [
+    {
+        name: 'voluntary',
+        data: [0, 8, 19, 25, 29]
+    },
+    {
+        name: 'permitting',
+        data: [3, 10, 12, 13, 19]
+    },
+    {
+        name: 'restrictions',
+        data: [2, 16, 25, 27, 31]
+    },
+    {
+        name: 'regulation',
+        data: [5, 8, 6, 2, 2]
     }
+];
+const labels3a = ['1980s', '1990s', '2000s', '2010s', '2020s'];
+const chart3a = document.getElementById('line-chart-3a');
+const placeholder3a = document.getElementById('line-chart-3a-placeholder');
+const colors3a = ['var(--primary-one)', 'var(--primary-one)', 'var(--neutral-seven)', 'var(--neutral-seven)'];
+let selectedIndex3a = -1;
 
-    if (dialog.id === 'analysis-two') {
-        renderChart(type2a, series2a, labels2a, chart2a, placeholder2a, colors2a, selectedIndex2a, dialog);
-        renderChart(type2a, series2b, labels2b, chart2b, placeholder2b, colors2b, selectedIndex2b, dialog);
-        renderChart(type2c, series2c, labels2c, chart2c, placeholder2c, colors2c, selectedIndex2c, dialog);
-        renderChart(type2d, series2d, labels2d, chart2d, placeholder2d, colors2d, selectedIndex2d, dialog);
-    }
+/* Graph-4a Variables */
+const type4a = 'pie';
+const series4a = [60, 20, 20];
+const labels4a = ['interiors', 'architecture', 'business'];
+const chart4a = document.getElementById('pie-chart-4a');
+const placeholder4a = document.getElementById('pie-chart-4a-placeholder');
+const colors4a = ['var(--primary-one)', 'var(--primary-two)', 'var(--primary-three)'];
+let selectedIndex4a = -1;
 
-    if (dialog.id === 'analysis-three') {
-        renderChart(type3a, series3a, labels3a, chart3a, placeholder3a, colors3a, selectedIndex3a, dialog);
-    }
-
-    if (dialog.id === 'analysis-four') {
-        renderChart(type4a, series4a, labels4a, chart4a, placeholder4a, colors4a, selectedIndex4a, dialog);
-        renderChart(type4b, series4b, labels4b, chart4b, placeholder4b, colors4b, selectedIndex4b, dialog);
-    }
-}
-
+/* Graph-4b Variables */
+const type4b = 'pie';
+const series4b = [56, 44];
+const labels4b = ['interiors', 'business'];
+const chart4b = document.getElementById('pie-chart-4b');
+const placeholder4b = document.getElementById('pie-chart-4b-placeholder');
+const colors4b = ['var(--primary-one)', 'var(--primary-two)'];
+let selectedIndex4b = -1;
 
 function renderChart(type, series, labels, chartEl, placeholder, colors, selectedIndex, dialog) {
     if (!chartEl) {
@@ -892,10 +863,30 @@ function renderChart(type, series, labels, chartEl, placeholder, colors, selecte
 const dialogs = document.querySelectorAll('.analysis-dialog');
 
 dialogs.forEach(dialog => {
-    dialog.addEventListener('toggle', (event) => {
-        if (event.newState === 'open') {
-            initializeAndRenderGraphs(dialog);
-        }
-    })
+    if (dialog.id === 'analysis-one') {
+        renderChart(type1a, series1a, labels1a, chart1a, placeholder1a, colors1a, selectedIndex1a, dialog);
+        renderChart(type1b, series1b, labels1b, chart1b, placeholder1b, colors1b, selectedIndex1b, dialog);
+        renderChart(type1c, series1c, labels1c, chart1c, placeholder1c, colors1c, selectedIndex1c, dialog);
+        renderChart(type1d, series1d, labels1d, chart1d, placeholder1d, colors1d, selectedIndex1d, dialog);
+        renderChart(type1e, series1e, labels1e, chart1e, placeholder1e, colors1e, selectedIndex1e, dialog);
+        renderChart(type1f, series1f, labels1f, chart1f, placeholder1f, colors1f, selectedIndex1f, dialog);
+        renderChart(type1g, series1g, labels1g, chart1g, placeholder1g, colors1g, selectedIndex1g, dialog);
+    }
+
+    if (dialog.id === 'analysis-two') {
+        renderChart(type2a, series2a, labels2a, chart2a, placeholder2a, colors2a, selectedIndex2a, dialog);
+        renderChart(type2a, series2b, labels2b, chart2b, placeholder2b, colors2b, selectedIndex2b, dialog);
+        renderChart(type2c, series2c, labels2c, chart2c, placeholder2c, colors2c, selectedIndex2c, dialog);
+        renderChart(type2d, series2d, labels2d, chart2d, placeholder2d, colors2d, selectedIndex2d, dialog);
+    }
+
+    if (dialog.id === 'analysis-three') {
+        renderChart(type3a, series3a, labels3a, chart3a, placeholder3a, colors3a, selectedIndex3a, dialog);
+    }
+
+    if (dialog.id === 'analysis-four') {
+        renderChart(type4a, series4a, labels4a, chart4a, placeholder4a, colors4a, selectedIndex4a, dialog);
+        renderChart(type4b, series4b, labels4b, chart4b, placeholder4b, colors4b, selectedIndex4b, dialog);
+    }
 })
 
