@@ -1,6 +1,6 @@
 let graphController;
 
-export function initializeAndRenderGraphs(dialog) {
+function initializeAndRenderGraphs(dialog) {
     /* Graph-1a Variables */
     const type1a = 'pie';
     const series1a = [38, 21, 17, 14, 10];

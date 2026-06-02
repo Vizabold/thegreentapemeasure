@@ -1,7 +1,3 @@
-console.log("PRESENTATION FILE BOOTED");
-
-import { initializeAndRenderGraphs } from './graphs.js';
-
 const liveRegion = document.getElementById('live-region');
 
 function setupSlides(dialog) {
@@ -134,7 +130,6 @@ document.querySelectorAll('.open-analysis-btn').forEach(btn => {
     const dialog = document.getElementById(dialogId);
     if (dialog) {
       setupSlides(dialog);
-      initializeAndRenderGraphs(dialog);
     } else { console.log('dialog not found') };
   })
 });
