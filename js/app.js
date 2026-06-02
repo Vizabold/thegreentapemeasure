@@ -14,6 +14,36 @@ const currentYear = new Date().getFullYear();
 year.innerHTML = `${currentYear}`;
 
 /*--------------- FOOTER FADE IN/OUT --------------------- */
+
+const footerSentinel = document.getElementById('footer-scroll-sentinel');
+const footer = document.querySelector('footer');
+
+const footerObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    const totalHeight = document.documentElement.scrollHeight;
+    const currentScroll = window.innerHeight + window.scrollY;
+
+    const isAtBottom = currentScroll >= (totalHeight - 100);
+
+    if (entry.isIntersecting || isAtBottom) {
+      footer.classList.remove('js:opacity-0', 'js:pointer-events-none');
+      footer.classList.add('js:opacity-100');
+    } else {
+      if (currentScroll < (totalHeight - 120)) {
+        footer.classList.remove('js:opacity-100');
+        footer.classList.add('js:opacity-0', 'js:pointer-events-none');
+      }
+    }
+  });
+}, {
+  root: null,
+  threshold: 0,
+  rootMargin: '0px 0px 200px 0px'
+});
+
+footerObserver.observe(footerSentinel);
+
+/*
 const footerSentinel = document.getElementById('footer-scroll-sentinel');
 const footer = document.querySelector('footer');
 
@@ -36,6 +66,7 @@ const footerObserver = new IntersectionObserver((entries) => {
 });
 
 footerObserver.observe(footerSentinel);
+*/
 
 /*--------------- POPOVER FOCUS TRAP & LEGACY SUPPORT --------------------- */
 function applyFocusTrap(e, container) {
