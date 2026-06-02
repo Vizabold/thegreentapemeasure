@@ -152,7 +152,7 @@
   }
 
   .btn-dropzone--placed svg {
-    @apply fill-neutral-two-dark;
+    @apply text-neutral-two-dark;
   }
 
   .btn-icon {

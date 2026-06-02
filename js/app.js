@@ -182,6 +182,75 @@ window.addEventListener('scroll', () => {
 /*--------------- LIGHT, DARK TOGGLE --------------------- */
 
 const modeToggle = document.getElementById('mode-toggle');
+
+if (modeToggle) {
+  const osPref = window.matchMedia('(prefers-color-scheme: light)');
+
+  if (!modeToggle.checked && osPref.matches) {
+    modeToggle.checked = true;
+  }
+
+  const toggleLabels = document.querySelectorAll('label[for="mode-toggle"]');
+
+  const syncAriaLabel = () => {
+    const isLight = modeToggle.checked;
+    const theme = isLight ? 'light' : 'dark';
+
+    toggleLabels.forEach(label => {
+      label.setAttribute('aria-label', isLight ? 'light mode on' : 'dark mode on');
+    });
+
+    document.documentElement.setAttribute('data-theme', theme);
+
+    const pictureElements = document.querySelectorAll('picture');
+    pictureElements.forEach(picture => {
+      const sources = picture.querySelectorAll('source[data-theme]');
+      sources.forEach(source => {
+        const themes = source.dataset.theme.split(',').map(t => t.trim());
+
+        if (themes.includes(theme) || themes.includes('all')) {
+          source.removeAttribute('media');
+        } else {
+          source.setAttribute('media', '(max-width: 0px)');
+        }
+      });
+    });
+  };
+
+  syncAriaLabel();
+  modeToggle.addEventListener('change', syncAriaLabel);
+
+  try {
+    osPref.addEventListener('change', (e) => {
+      modeToggle.checked = e.matches;
+      syncAriaLabel();
+    });
+  } catch (e) {
+    osPref.addListener((e) => {
+      modeToggle.checked = e.matches;
+      syncAriaLabel();
+    });
+  }
+
+  toggleLabels.forEach(label => {
+    label.addEventListener('click', (e) => {
+      e.preventDefault();
+      modeToggle.checked = !modeToggle.checked;
+      modeToggle.dispatchEvent(new Event('change'));
+    });
+
+    label.addEventListener('keydown', (e) => {
+      if (e.key === ' ' || e.key === 'Enter') {
+        e.preventDefault();
+        modeToggle.checked = !modeToggle.checked;
+        modeToggle.dispatchEvent(new Event('change'));
+      }
+    });
+  });
+}
+
+/*
+const modeToggle = document.getElementById('mode-toggle');
 if (modeToggle) {
   const osPref = window.matchMedia('(prefers-color-scheme: light)');
 
@@ -250,6 +319,7 @@ if (modeToggle) {
     });
   });
 }
+  */
 
 /*------------------------------ FORMS --------------------------------- */
 
