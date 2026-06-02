@@ -1,3 +1,5 @@
+import { initializeAndRenderGraphs } from './graphs.js';
+
 const liveRegion = document.getElementById('live-region');
 
 function setupSlides(dialog) {
@@ -129,7 +131,8 @@ document.querySelectorAll('.open-analysis-btn').forEach(btn => {
     const dialogId = btn.getAttribute('aria-controls');
     const dialog = document.getElementById(dialogId);
     if (dialog) {
-      setupSlides(dialog)
+      setupSlides(dialog);
+      initializeAndRenderGraphs(dialog);
     } else { console.log('dialog not found') };
   })
 });
