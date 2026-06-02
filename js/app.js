@@ -207,7 +207,6 @@ if (modeToggle) {
       const sources = picture.querySelectorAll('source[data-theme]');
       sources.forEach(source => {
         const themes = source.dataset.theme.split(',').map(t => t.trim());
-
         if (themes.includes(theme) || themes.includes('all')) {
           source.removeAttribute('media');
         } else {
@@ -233,17 +232,10 @@ if (modeToggle) {
   }
 
   toggleLabels.forEach(label => {
-    label.addEventListener('click', (e) => {
-      e.preventDefault();
-      modeToggle.checked = !modeToggle.checked;
-      modeToggle.dispatchEvent(new Event('change'));
-    });
-
     label.addEventListener('keydown', (e) => {
       if (e.key === ' ' || e.key === 'Enter') {
         e.preventDefault();
-        modeToggle.checked = !modeToggle.checked;
-        modeToggle.dispatchEvent(new Event('change'));
+        modeToggle.click();
       }
     });
   });
