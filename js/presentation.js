@@ -11,10 +11,17 @@ function setupSlides(dialog) {
   let isMoving = false;
   let touchStartX = 0;
   let touchStartY = 0;
+  let startScrollTop = 0;
+  let lockAxis = null;
 
   function handleTouchStart(e) {
+    const currentSlide = slides[current];
+    if (!currentSlide) return;
+
     touchStartX = e.touches[0].clientX;
     touchStartY = e.touches[0].clientY;
+    startScrollTop = currentSlide.scrollTop;
+    lockAxis = null;
   }
 
   function handleTouchMove(e) {
@@ -24,38 +31,33 @@ function setupSlides(dialog) {
     const currentX = e.touches[0].clientX;
     const currentY = e.touches[0].clientY;
 
-    const deltaX = Math.abs(currentX - touchStartX);
-    const deltaY = Math.abs(currentY - touchStartY);
+    const deltaX = currentX - touchStartX;
+    const deltaY = currentY - touchStartY;
 
-    if (deltaX < 4 && deltaY < 4) return;
-
-    if (deltaY > deltaX) {
-      if (slideContainer.classList.contains('snap-x')) {
+    if (!lockAxis && (Math.abs(deltaX) > 4 || Math.abs(deltaY) > 4)) {
+      if (Math.abs(deltaY) > Math.abs(deltaX)) {
+        lockAxis = 'y';
         slideContainer.classList.remove('snap-x', 'snap-mandatory');
         slideContainer.classList.add('snap-none');
-
-        currentSlide.style.touchAction = 'pan-y';
+      } else {
+        lockAxis = 'x';
       }
+    }
 
+    if (lockAxis === 'y') {
+      e.preventDefault();
       e.stopPropagation();
-    } else {
-      if (!slideContainer.classList.contains('snap-x')) {
-        currentSlide.style.touchAction = 'pan-x';
-      }
+
+      currentSlide.scrollTop = startScrollTop - deltaY;
     }
   }
 
-  function handleTouchEnd(e) {
-    const currentSlide = slides[current];
-
+  function handleTouchEnd() {
     if (slideContainer) {
       slideContainer.classList.remove('snap-none');
       slideContainer.classList.add('snap-x', 'snap-mandatory');
     }
-
-    if (currentSlide) {
-      currentSlide.style.touchAction = 'auto';
-    }
+    lockAxis = null;
   }
 
   function updateUI(index) {
@@ -85,7 +87,7 @@ function setupSlides(dialog) {
     current = index;
 
     slides[current].addEventListener('touchstart', handleTouchStart, { passive: true });
-    slides[current].addEventListener('touchmove', handleTouchMove, { passive: true });
+    slides[current].addEventListener('touchmove', handleTouchMove, { passive: false });
     slides[current].addEventListener('touchend', handleTouchEnd, { passive: true });
   }
 
