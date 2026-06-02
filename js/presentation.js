@@ -11,47 +11,33 @@ function setupSlides(dialog) {
   let isMoving = false;
   let isScrollingY = false;
   let timeout;
-  let touchStartX = 0;
-  let touchStartY = 0;
-
-  function handleTouchStart() {
-    touchStartX = e.touches[0].clientX;
-    touchStartY = e.touches[0].clientY;
-  }
-
-  function handleTouchMove() {
-    const deltaX = Math.abs(e.touches[0].clientX - touchStartX);
-    const deltaY = Math.abs(e.touches[0].clientY - touchStartY);
-
-    if (deltaY > deltaX && !isScrollingY) {
-      isScrollingY = true;
-      if (slideContainer) {
-        slideContainer.style.pointerEvents = 'none';
-        slideContainer.classList.remove('snap-x');
-        slideContainer.classList.add('overflow-x-hidden');
-      }
-    }
-  }
 
   function stopXScroll() {
+    const currentSlide = slides[current];
+
+    if (!isScrollingY && currentSlide.scrollTop > 0) {
+      isScrollingY = true;
+      if (slideContainer) {
+        slideContainer.classList.remove('snap-x', 'snap-mandatory');
+        slideContainer.classList.add('snap-none');
+      }
+    }
+
     clearTimeout(timeout);
     timeout = setTimeout(() => {
-      if (slides[current].scrollTop === 0) {
+      if (currentSlide.scrollTop === 0) {
         if (slideContainer) {
-          slideContainer.style.pointerEvents = 'auto';
-          slideContainer.classList.add('snap-x');
-          slideContainer.classList.remove('overflow-x-hidden');
+          slideContainer.classList.remove('snap-none');
+          slideContainer.classList.add('snap-x', 'snap-mandatory');
         }
         isScrollingY = false;
       }
-    }, 150);
+    }, 100);
   }
 
   function updateUI(index) {
     if (index < 0 || index >= slides.length) return;
 
-    slides[current].removeEventListener('touchstart', handleTouchStart);
-    slides[current].removeEventListener('touchmove', handleTouchMove);
     slides[current].removeEventListener('scroll', stopXScroll);
 
     slides[current].removeAttribute('aria-current');
@@ -73,8 +59,6 @@ function setupSlides(dialog) {
 
     current = index;
 
-    slides[current].addEventListener('touchstart', { handleTouchStart }, { passive: true });
-    slides[current].addEventListener('touchmove', { handleTouchMove }, { passive: true });
     slides[current].addEventListener('scroll', stopXScroll);
   }
 

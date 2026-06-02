@@ -302,11 +302,11 @@
      Slides
   ───────────────────────────────────────── */
   .legend {
-    @apply flex flex-col w-full gap-4 overflow-y-auto [touch-action:pan-y] lg:w-66 lg:max-h-full xl:w-89.25;
+    @apply flex flex-col w-full gap-4 overflow-y-auto touch-pan-y lg:w-66 lg:max-h-full xl:w-89.25;
   }
 
   .presentation-slider {
-    @apply flex grow items-center overflow-x-auto snap-x snap-mandatory scroll-smooth gap-15 [-webkit-overflow-scrolling:touch] [touch-action:pan-x];
+    @apply flex grow items-center overflow-x-auto snap-x snap-mandatory scroll-smooth gap-15 [-webkit-overflow-scrolling:touch] touch-pan-x;
   }
 
   .presentation-slide {
