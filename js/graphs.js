@@ -889,5 +889,23 @@ function renderChart(type, series, labels, chartEl, placeholder, colors, selecte
     })
 }
 
-initializeAndRenderGraphs();
+const dialogs = document.querySelectorAll('.analyis-dialog');
+
+dialogs.forEach(dialog => {
+    const observer = new MutationObserver((mutations) => {
+        mutations.forEach((mutation) => {
+            if (mutation.attributeName === 'class') {
+                const hasOpenClass = dialog.classList.contains('open');
+                if (hasOpenClass) {
+                    initializeAndRenderGraphs(dialog);
+                }
+            }
+        });
+    });
+
+    observer.observe(dialog, {
+        attributes: true,
+        attributeFilter: ['class']
+    });
+})
 
