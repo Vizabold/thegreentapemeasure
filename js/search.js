@@ -109,8 +109,8 @@ document.addEventListener('click', e => {
 const mobileForm = document.getElementById('search-mobile').closest('form');
 const mobileInput = document.getElementById('search-mobile');
 const mobileList = document.getElementById('search-results-mobile');
-
 const searchOverlay = document.getElementById('search-overlay');
+
 const mobileOpenBtn = document.getElementById('search-open');
 const mobileCloseBtn = document.getElementById('search-close');
 
@@ -143,7 +143,12 @@ document.addEventListener('click', e => {
   if (!mobileForm.contains(e.target)) closeMobile();
 });
 
-
+searchOverlay.addEventListener('toggle', (event) => {
+  if (event.newState === 'closed') {
+    mobileInput.value = '';
+    mobileList.innerHTML = '';
+  }
+})
 
 /*
 function openOverlay() {
