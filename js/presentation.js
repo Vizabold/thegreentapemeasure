@@ -126,7 +126,7 @@ function setupSlides(dialog) {
 
 document.querySelectorAll('.open-analysis-btn').forEach(btn => {
   btn.addEventListener('click', () => {
-    const dialogId = btn.getAttribute('popovertarget');
+    const dialogId = btn.getAttribute('aria-controls');
     const dialog = document.getElementById(dialogId);
     if (dialog) {
       setupSlides(dialog)
