@@ -1,3 +1,5 @@
+console.log('Buttons found:', document.querySelectorAll('.open-analysis-btn').length);
+
 import { initializeAndRenderGraphs } from './graphs.js';
 
 const liveRegion = document.getElementById('live-region');
