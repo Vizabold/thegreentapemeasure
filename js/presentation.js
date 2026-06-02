@@ -122,6 +122,8 @@ function setupSlides(dialog) {
       });
     };
   });
+
+  console.log('slides set up');
 }
 
 document.querySelectorAll('.open-analysis-btn').forEach(btn => {
