@@ -116,7 +116,6 @@ function removeSearchListeners() {
   if (searchAbortController) {
     searchAbortController.abort();
     searchAbortController = null;
-    console.log('search event listeners removed');
   }
 }
 
