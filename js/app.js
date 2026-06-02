@@ -1,5 +1,4 @@
 import('details-polyfill').catch(() => { });
-import('./popover.min.js').catch(() => { });
 import('./quiz.js').catch(() => { });
 import('./timeline.js').catch(() => { });
 import('./graphs.js').catch(() => { });
