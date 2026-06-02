@@ -9,36 +9,63 @@ function setupSlides(dialog) {
   const dots = Array.from(dialog.querySelectorAll('.slide-dot'));
   let current = 0;
   let isMoving = false;
-  let isScrollingY = false;
-  let timeout;
+  let touchStartX = 0;
+  let touchStartY = 0;
+  let isIntentDeclared = false;
+  let lockAxis = null;
 
-  function stopXScroll() {
+  function handleTouchStart(e) {
+    touchStartX = e.touches[0].clientX;
+    touchStartY = e.touches[0].clientY;
+    isIntentDeclared = false;
+    lockAxis = null;
+  }
+
+  function handleTouchMove(e) {
     const currentSlide = slides[current];
+    if (!currentSlide || !slideContainer) return;
 
-    if (!isScrollingY && currentSlide.scrollTop > 0) {
-      isScrollingY = true;
-      if (slideContainer) {
+    const currentX = e.touches[0].clientX;
+    const currentY = e.touches[0].clientY;
+
+    const deltaX = currentX - touchStartX;
+    const deltaY = currentY - touchStartY;
+
+    if (!isIntentDeclared && (Math.abs(deltaX) > 5 || Math.abs(deltaY) > 5)) {
+      isIntentDeclared = true;
+
+      if (Math.abs(deltaY) > Math.abs(deltaX)) {
+        lockAxis = 'y';
         slideContainer.classList.remove('snap-x', 'snap-mandatory');
         slideContainer.classList.add('snap-none');
+      } else {
+        lockAxis = 'x';
       }
     }
 
-    clearTimeout(timeout);
-    timeout = setTimeout(() => {
-      if (currentSlide.scrollTop === 0) {
-        if (slideContainer) {
-          slideContainer.classList.remove('snap-none');
-          slideContainer.classList.add('snap-x', 'snap-mandatory');
-        }
-        isScrollingY = false;
+    if (lockAxis === 'y') {
+      e.stopPropagation();
+      if (currentSlide.scrollTop === 0 && deltaY < 0) {
+        currentSlide.scrollTop = Math.abs(deltaY);
       }
-    }, 100);
+    }
+  }
+
+  function handleTouchEnd() {
+    if (slideContainer) {
+      slideContainer.classList.remove('snap-none');
+      slideContainer.classList.add('snap-x', 'snap-mandatory');
+    }
+    isIntentDeclared = false;
+    lockAxis = null;
   }
 
   function updateUI(index) {
     if (index < 0 || index >= slides.length) return;
 
-    slides[current].removeEventListener('scroll', stopXScroll);
+    slides[current].removeEventListener('touchstart', handleTouchStart);
+    slides[current].removeEventListener('touchmove', handleTouchMove);
+    slides[current].removeEventListener('touchend', handleTouchEnd);
 
     slides[current].removeAttribute('aria-current');
     slides[current].setAttribute('tabindex', '-1');
@@ -59,7 +86,9 @@ function setupSlides(dialog) {
 
     current = index;
 
-    slides[current].addEventListener('scroll', stopXScroll);
+    slides[current].addEventListener('touchstart', handleTouchStart, { passive: true });
+    slides[current].addEventListener('touchmove', handleTouchMove, { passive: false });
+    slides[current].addEventListener('touchend', handleTouchEnd, { passive: true });
   }
 
   function goToSlide(index) {
