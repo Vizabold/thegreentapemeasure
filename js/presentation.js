@@ -9,9 +9,33 @@ function setupSlides(dialog) {
   const dots = Array.from(dialog.querySelectorAll('.slide-dot'));
   let current = 0;
   let isMoving = false;
+  let isScrollingY = false;
+  let timeout;
+
+  function stopXScroll() {
+    if (!isScrollingY && slides[current].scrollTop > 0) {
+      isScrollingY = true;
+      if (slideContainer) {
+        slideContainer.classList.remove('snap-x');
+        slideContainer.classList.add('overflow-x-hidden');
+      }
+    }
+    clearTimeout(timeout);
+    timeout = setTimeout(() => {
+      if (slides[current].scrollTop === 0) {
+        if (slideContainer) {
+          slideContainer.classList.add('snap-x');
+          slideContainer.classList.remove('overflow-x-hidden');
+        }
+        isScrollingY = false;
+      }
+    }, 150)
+  }
 
   function updateUI(index) {
     if (index < 0 || index >= slides.length) return;
+
+    slides[current].removeEventListener('scroll', () => stopXScroll);
 
     slides[current].removeAttribute('aria-current');
     slides[current].setAttribute('tabindex', '-1');
@@ -31,6 +55,8 @@ function setupSlides(dialog) {
     }
 
     current = index;
+
+    slides[current].addEventListener('scroll', () => stopXScroll);
   }
 
   function goToSlide(index) {
