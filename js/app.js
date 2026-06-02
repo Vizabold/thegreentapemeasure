@@ -139,12 +139,17 @@ let lastScrollY = window.scrollY;
 const header = document.getElementById('header');
 
 window.addEventListener('scroll', () => {
-  if (window.scrollY > lastScrollY) {
-    header.classList.add('-translate-y-full');
-  } else {
+  if (currentScrollY <= 0) {
     header.classList.remove('-translate-y-full');
   }
-  lastScrollY = window.scrollY;
+  else if (currentScrollY > lastScrollY) {
+    header.classList.add('-translate-y-full');
+  }
+  else {
+    header.classList.remove('-translate-y-full');
+  }
+
+  lastScrollY = currentScrollY;
 });
 
 /* Close Mobile Nav When Nav Btn Tapped */
