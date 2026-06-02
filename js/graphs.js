@@ -889,7 +889,7 @@ function renderChart(type, series, labels, chartEl, placeholder, colors, selecte
     })
 }
 
-const dialogs = document.querySelectorAll('.analyis-dialog');
+const dialogs = document.querySelectorAll('.analysis-dialog');
 
 dialogs.forEach(dialog => {
     const observer = new MutationObserver((mutations) => {
