@@ -1,4 +1,4 @@
-console.log('Buttons found:', document.querySelectorAll('.open-analysis-btn').length);
+console.log("PRESENTATION FILE BOOTED");
 
 import { initializeAndRenderGraphs } from './graphs.js';
 
