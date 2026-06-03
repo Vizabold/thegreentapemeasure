@@ -10,7 +10,7 @@ function setupCards(container) {
     const cardContainer = container.nextElementSibling;
     const cards = Array.from(cardContainer.querySelectorAll('.card'));
     let current = 0;
-    let isMoving = false;
+    let isAnimating = false;
 
     function updateCard(index) {
         if (index < 0 || index >= cards.length) return;
@@ -21,8 +21,8 @@ function setupCards(container) {
 
         cards[index].setAttribute('aria-current', 'true');
         cards[index].setAttribute('tabindex', '0');
-        cards[index].focus();
         cards[index].classList.add('card-current');
+        cards[index].focus({ preventScroll: true });
 
         if (liveRegion) {
             liveRegion.textContent = `Item ${index + 1} of ${cards.length}`;
@@ -32,41 +32,45 @@ function setupCards(container) {
     }
 
     function goToCard(index) {
+        isAnimating = true;
+
         if (index === current) return;
-        isMoving = true;
 
         updateCard(index);
 
-        cards[index].scrollIntoView({
-            behavior: 'smooth',
-            block: 'nearest',
-            inline: 'center'
-        });
+        const containerRect = cardContainer.getBoundingClientRect();
+        const cardRect = cards[index].getBoundingClientRect();
 
-        const handleScrollEnd = () => {
-            cards[index].focus({ preventScroll: true, focusVisible: true });
-            isMoving = false;
-            cardContainer.removeEventListener('scrollend', handleScrollEnd);
-        };
+        const isFullyVisible = (
+            cardRect.left >= containerRect.left &&
+            cardRect.right <= containerRect.right
+        );
 
-        cardContainer.addEventListener('scrollend', handleScrollEnd);
+        if (!isFullyVisible) {
+            cards[index].scrollIntoView({
+                behavior: 'smooth',
+                block: 'nearest',
+                inline: 'center'
+            });
+        }
+
+        setTimeout(() => { isAnimating = false; }, 501)
     }
 
     prevBtn.addEventListener('click', () => {
-        if (isMoving) return;
+        if (isAnimating = true) return;
         let prev = current === 0 ? cards.length - 1 : current - 1;
         goToCard(prev);
     })
 
     nextBtn.addEventListener('click', () => {
-        if (isMoving) return;
+        if (isAnimating = true) return;
         let next = current === cards.length - 1 ? 0 : current + 1;
         goToCard(next);
     })
 
     cardContainer.addEventListener('keydown', (e) => {
-        if (isMoving) return;
-
+        if (isAnimating = true) return;
         if (e.key === 'ArrowLeft') {
             e.preventDefault();
             let prev = current === 0 ? cards.length - 1 : current - 1;
@@ -79,7 +83,7 @@ function setupCards(container) {
     });
 
     cardContainer.addEventListener('click', (e) => {
-        if (isMoving) return;
+        if (isAnimating = true) return;
         const targetEl = e.target.closest('button, a');
         if (!targetEl) return;
 
@@ -95,7 +99,6 @@ function setupCards(container) {
     cards[current].setAttribute('aria-current', 'true');
     cards[current].setAttribute('tabindex', '0');
     cards[current].classList.add('card-current');
-
 }
 
 setupCards(advocacyBtns);
