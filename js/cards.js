@@ -16,10 +16,12 @@ function setupCards(section) {
     if (!container) return;
 
     const cards = Array.from(container.querySelectorAll('.card'));
+    if (cards.length === 0) return;
+
     let current = 0;
     let isAnimating = false;
 
-    function updateCard(index) {
+    function updateCard(index, shouldFocus = true) {
         if (index < 0 || index >= cards.length) return;
 
         cards[current].removeAttribute('aria-current');
@@ -29,7 +31,10 @@ function setupCards(section) {
         cards[index].setAttribute('aria-current', 'true');
         cards[index].setAttribute('tabindex', '0');
         cards[index].classList.add('card-current');
-        cards[index].focus({ preventScroll: true });
+
+        if (shouldFocus) {
+            cards[index].focus({ preventScroll: true });
+        }
 
         if (liveRegion) {
             liveRegion.textContent = `Item ${index + 1} of ${cards.length}`;
@@ -38,45 +43,44 @@ function setupCards(section) {
         current = index;
     }
 
-    function goToCard(index) {
+    function goToCard(index, shouldFocus = true) {
+        if (index === current) return;
         isAnimating = true;
 
-        if (index === current) return;
+        updateCard(index, shouldFocus);
 
-        updateCard(index);
+        const card = cards[index];
+        const containerLeft = container.scrollLeft;
+        const containerWidth = container.clientWidth;
+        const cardLeft = card.offsetLeft;
+        const cardWidth = card.clientWidth;
 
-        const containerRect = container.getBoundingClientRect();
-        const cardRect = cards[index].getBoundingClientRect();
+        const targetScrollLeft = cardLeft - (containerWidth / 2) + (cardWidth / 2);
 
-        const isFullyVisible = (
-            cardRect.left >= containerRect.left &&
-            cardRect.right <= containerRect.right
-        );
-
-        if (!isFullyVisible) {
-            cards[index].scrollIntoView({
-                behavior: 'smooth',
-                block: 'nearest',
-                inline: 'center'
-            });
-        }
+        container.scrollTo({
+            left: targetScrollLeft,
+            behavior: 'smooth'
+        });
 
         setTimeout(() => { isAnimating = false; }, 501)
     }
 
     if (prevBtn) {
-        prevBtn.addEventListener('click', () => {
-            if (isAnimating === true) return;
+        prevBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            if (isAnimating) return;
             let prev = current === 0 ? cards.length - 1 : current - 1;
-            goToCard(prev);
+            goToCard(prev, false);
         })
     }
 
     if (nextBtn) {
-        nextBtn.addEventListener('click', () => {
+        nextBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            if (isAnimating) return;
             if (isAnimating === true) return;
             let next = current === cards.length - 1 ? 0 : current + 1;
-            goToCard(next);
+            goToCard(next, false);
         })
     }
 
@@ -85,16 +89,17 @@ function setupCards(section) {
         if (e.key === 'ArrowLeft') {
             e.preventDefault();
             let prev = current === 0 ? cards.length - 1 : current - 1;
-            goToCard(prev);
+            goToCard(prev, true);
         } else if (e.key === 'ArrowRight') {
             e.preventDefault();
             let next = current === cards.length - 1 ? 0 : current + 1;
-            goToCard(next);
+            goToCard(next, true);
         }
     });
 
     container.addEventListener('click', (e) => {
-        if (isAnimating === true) return;
+        if (isAnimating) return;
+
         const targetEl = e.target.closest('button, a');
         if (!targetEl) return;
 
@@ -103,7 +108,9 @@ function setupCards(section) {
 
         const cardIndex = cards.indexOf(card);
         if (cardIndex !== -1) {
-            goToCard(cardIndex);
+            if (cardIndex === current) return;
+            e.preventDefault();
+            goToCard(cardIndex, true);
         }
     })
 
