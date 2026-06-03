@@ -150,15 +150,12 @@ analysis3Inputs.forEach(input => {
     input.setAttribute('aria-expanded', 'true');
     currentlyChecked = input;
 
-    const targetTop = billDetailsContainer.offsetTop;
-
-    slide3b.scrollTo({
-      top: targetTop,
-      behavior: 'smooth'
+    billDetailsContainer.scrollIntoView({
+      behavior: 'smooth',
+      block: 'start'
     });
 
     liveRegion.innerText = 'bill details updated';
-
     billDetailsContainer.focus();
   })
 })
