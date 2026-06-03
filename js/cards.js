@@ -1,12 +1,15 @@
 const liveRegion = document.getElementById('live-region');
+const advocacySection = document.getElementById('advocacy');
+const researchSection = document.getElementById('research');
 const advocacyCardsContainer = document.getElementById('advocacy-cards');
 const researchCardsContainer = document.getElementById('research-cards');
 const advocacyBtns = document.getElementById('advocacy-btns');
 const researchBtns = document.getElementById('research-btns');
 
-function setupCards(container) {
-    const prevBtn = container.previousElementSibling.querySelector('.cards-prev-btn');
-    const nextBtn = container.previousElementSibling.querySelector('.cards-next-btn');
+function setupCards(section) {
+    const prevBtn = section.querySelector('.cards-prev-btn');
+    const nextBtn = section.querySelector('.cards-next-btn');
+    const container = section.querySelector('.cards-container');
     const cards = Array.from(container.querySelectorAll('.card'));
     let current = 0;
     let isAnimating = false;
@@ -100,8 +103,8 @@ function setupCards(container) {
     cards[current].classList.add('card-current');
 }
 
-setupCards(advocacyCardsContainer);
-setupCards(researchCardsContainer);
+setupCards(advocacySection);
+setupCards(researchSection);
 
 function checkScroll() {
     const advocacyScroll = advocacyCardsContainer.scrollWidth > advocacyCardsContainer.clientWidth;
