@@ -4,43 +4,68 @@ const researchCards = document.getElementById('research-cards');
 const advocacyBtns = advocacyCards.previousElementSibling;
 const researchBtns = researchCards.previousElementSibling;
 
-function setupSlider(container) {
+function setupCards(container) {
     const prevBtn = container.firstElementChild;
     const nextBtn = container.lastElementChild;
     const cardContainer = container.nextElementSibling;
     const cards = Array.from(cardContainer.querySelectorAll('.card'));
     let current = 0;
-    let isAnimating = false;
+    let isMoving = false;
 
-    cards[current].classList.add('card-current');
-    cards[current].setAttribute('aria-current', 'true');
+    function updateCard(index) {
+        if (index < 0 || index >= cards.length) return;
 
-    function goToCard(index) {
-        isAnimating = true;
-        cards[current].classList.remove('card-current');
-        cards[current].removeAttribute('tabindex');
         cards[current].removeAttribute('aria-current');
+        cards[current].setAttribute('tabindex', '-1');
+        cards[current].focus({ focusVisible: false });
 
-        setTimeout(() => {
-            cards[index].scrollIntoView({
-                behavior: 'smooth',
-                block: 'nearest',
-                inline: 'start'
-            })
-            cards[index].classList.add('card-current');
-            cards[index].setAttribute('aria-current', 'true');
-            cards[index].setAttribute('tabindex', '-1');
-            cards[index].focus();
-            if (liveRegion) {
-                liveRegion.textContent = `Item ${index + 1} of ${cards.length}`;
-            }
-            current = index;
-            isAnimating = false;
-        }, 301)
+        cards[index].setAttribute('aria-current', 'true');
+        cards[index].setAttribute('tabindex', '0');
+        cards[index].focus({ focusVisible: true });
+
+        if (liveRegion) {
+            liveRegion.textContent = `Item ${index + 1} of ${cards.length}`;
+        }
+
+        current = index;
     }
 
+    function goToCard(index) {
+        if (index === current) return;
+        isMoving = true;
+
+        updateCard(index);
+
+        cards[index].scrollIntoView({
+            behavior: 'smooth',
+            block: 'nearest',
+            inline: 'center'
+        });
+
+        const handleScrollEnd = () => {
+            cards[index].focus({ preventScroll: true });
+            isMoving = false;
+            container.removeEventListener('scrollend', handleScrollEnd);
+        };
+
+        container.addEventListener('scrollend', handleScrollEnd);
+    }
+
+    prevBtn.addEventListener('click', () => {
+        if (isMoving) return;
+        let prev = current === 0 ? cards.length - 1 : current - 1;
+        goToCard(prev);
+    })
+
+    nextBtn.addEventListener('click', () => {
+        if (isMoving) return;
+        let next = current === cards.length - 1 ? 0 : current + 1;
+        goToCard(next);
+    })
+
     cardContainer.addEventListener('keydown', (e) => {
-        if (isAnimating) return;
+        if (isMoving) return;
+
         if (e.key === 'ArrowLeft') {
             e.preventDefault();
             let prev = current === 0 ? cards.length - 1 : current - 1;
@@ -53,7 +78,7 @@ function setupSlider(container) {
     });
 
     cardContainer.addEventListener('click', (e) => {
-        if (isAnimating) return;
+        if (isMoving) return;
         const targetEl = e.target.closest('button, a');
         if (!targetEl) return;
 
@@ -66,21 +91,14 @@ function setupSlider(container) {
         }
     })
 
-    prevBtn.addEventListener('click', () => {
-        if (isAnimating) return;
-        let prev = current === 0 ? cards.length - 1 : current - 1;
-        goToCard(prev);
-    })
+    cards[current].setAttribute('aria-current', 'true');
+    cards[current].setAttribute('tabindex', '0');
+    cards[current].focus({ focusVisible: true });
 
-    nextBtn.addEventListener('click', () => {
-        if (isAnimating) return;
-        let next = current === cards.length - 1 ? 0 : current + 1;
-        goToCard(next);
-    })
 }
 
-setupSlider(advocacyBtns);
-setupSlider(researchBtns);
+setupCards(advocacyBtns);
+setupCards(researchBtns);
 
 function checkScroll() {
     const advocacyScroll = advocacyCards.scrollWidth > advocacyCards.clientWidth;
