@@ -161,6 +161,6 @@ analysis3Inputs.forEach(input => {
 
     setTimeout(() => {
       billDetailsContainer.focus();
-    }, 301);
+    }, 1001);
   })
 })
