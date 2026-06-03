@@ -17,11 +17,12 @@ function setupCards(container) {
 
         cards[current].removeAttribute('aria-current');
         cards[current].setAttribute('tabindex', '-1');
-        cards[current].focus({ focusVisible: false });
+        cards[current].classList.remove('card-current');
 
         cards[index].setAttribute('aria-current', 'true');
         cards[index].setAttribute('tabindex', '0');
-        cards[index].focus({ focusVisible: true });
+        cards[index].focus();
+        cards[index].classList.add('card-current');
 
         if (liveRegion) {
             liveRegion.textContent = `Item ${index + 1} of ${cards.length}`;
@@ -43,12 +44,12 @@ function setupCards(container) {
         });
 
         const handleScrollEnd = () => {
-            cards[index].focus({ preventScroll: true });
+            cards[index].focus({ preventScroll: true, focusVisible: true });
             isMoving = false;
-            container.removeEventListener('scrollend', handleScrollEnd);
+            cardContainer.removeEventListener('scrollend', handleScrollEnd);
         };
 
-        container.addEventListener('scrollend', handleScrollEnd);
+        cardContainer.addEventListener('scrollend', handleScrollEnd);
     }
 
     prevBtn.addEventListener('click', () => {
@@ -93,7 +94,7 @@ function setupCards(container) {
 
     cards[current].setAttribute('aria-current', 'true');
     cards[current].setAttribute('tabindex', '0');
-    cards[current].focus({ focusVisible: true });
+    cards[current].classList.add('card-current');
 
 }
 
