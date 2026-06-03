@@ -83,7 +83,8 @@ function setupSlides(dialog) {
     goToSlide(next);
   });
 
-  if (skipBtn) {
+  if (skipBtn && dialog.id !== 'analysis-four') {
+    console.log(`${dialog.id}`);
     skipBtn.addEventListener('click', () => {
       if (isMoving) return;
       goToSlide(slides.length - 1)
