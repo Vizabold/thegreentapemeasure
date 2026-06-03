@@ -1,14 +1,13 @@
 const liveRegion = document.getElementById('live-region');
-const advocacyCards = document.getElementById('advocacy-cards');
-const researchCards = document.getElementById('research-cards');
-const advocacyBtns = advocacyCards.previousElementSibling;
-const researchBtns = researchCards.previousElementSibling;
+const advocacyCardsContainer = document.getElementById('advocacy-cards');
+const researchCardsContainer = document.getElementById('research-cards');
+const advocacyBtns = document.getElementById('advocacy-btns');
+const researchBtns = document.getElementById('research-btns');
 
 function setupCards(container) {
-    const prevBtn = container.firstElementChild;
-    const nextBtn = container.lastElementChild;
-    const cardContainer = container.nextElementSibling;
-    const cards = Array.from(cardContainer.querySelectorAll('.card'));
+    const prevBtn = container.previousElementSibling.querySelector('.cards-prev-btn');
+    const nextBtn = container.previousElementSibling.querySelector('.cards-next-btn');
+    const cards = Array.from(container.querySelectorAll('.card'));
     let current = 0;
     let isAnimating = false;
 
@@ -38,7 +37,7 @@ function setupCards(container) {
 
         updateCard(index);
 
-        const containerRect = cardContainer.getBoundingClientRect();
+        const containerRect = container.getBoundingClientRect();
         const cardRect = cards[index].getBoundingClientRect();
 
         const isFullyVisible = (
@@ -69,7 +68,7 @@ function setupCards(container) {
         goToCard(next);
     })
 
-    cardContainer.addEventListener('keydown', (e) => {
+    container.addEventListener('keydown', (e) => {
         if (isAnimating = true) return;
         if (e.key === 'ArrowLeft') {
             e.preventDefault();
@@ -82,7 +81,7 @@ function setupCards(container) {
         }
     });
 
-    cardContainer.addEventListener('click', (e) => {
+    container.addEventListener('click', (e) => {
         if (isAnimating = true) return;
         const targetEl = e.target.closest('button, a');
         if (!targetEl) return;
@@ -101,12 +100,12 @@ function setupCards(container) {
     cards[current].classList.add('card-current');
 }
 
-setupCards(advocacyBtns);
-setupCards(researchBtns);
+setupCards(advocacyCardsContainer);
+setupCards(researchCardsContainer);
 
 function checkScroll() {
-    const advocacyScroll = advocacyCards.scrollWidth > advocacyCards.clientWidth;
-    const researchScroll = researchCards.scrollWidth > researchCards.clientWidth;
+    const advocacyScroll = advocacyCardsContainer.scrollWidth > advocacyCardsContainer.clientWidth;
+    const researchScroll = researchCardsContainer.scrollWidth > researchCardsContainer.clientWidth;
     advocacyBtns.classList.toggle('hidden', !advocacyScroll);
     researchBtns.classList.toggle('hidden', !researchScroll);
 }
