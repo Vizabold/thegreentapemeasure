@@ -7,9 +7,14 @@ const advocacyBtns = document.getElementById('advocacy-btns');
 const researchBtns = document.getElementById('research-btns');
 
 function setupCards(section) {
+    if (!section) return;
+
     const prevBtn = section.querySelector('.cards-prev-btn');
     const nextBtn = section.querySelector('.cards-next-btn');
     const container = section.querySelector('.cards-container');
+
+    if (!container) return;
+
     const cards = Array.from(container.querySelectorAll('.card'));
     let current = 0;
     let isAnimating = false;
@@ -61,7 +66,7 @@ function setupCards(section) {
 
     if (prevBtn) {
         prevBtn.addEventListener('click', () => {
-            if (isAnimating = true) return;
+            if (isAnimating === true) return;
             let prev = current === 0 ? cards.length - 1 : current - 1;
             goToCard(prev);
         })
@@ -69,14 +74,14 @@ function setupCards(section) {
 
     if (nextBtn) {
         nextBtn.addEventListener('click', () => {
-            if (isAnimating = true) return;
+            if (isAnimating === true) return;
             let next = current === cards.length - 1 ? 0 : current + 1;
             goToCard(next);
         })
     }
 
     container.addEventListener('keydown', (e) => {
-        if (isAnimating = true) return;
+        if (isAnimating === true) return;
         if (e.key === 'ArrowLeft') {
             e.preventDefault();
             let prev = current === 0 ? cards.length - 1 : current - 1;
@@ -89,7 +94,7 @@ function setupCards(section) {
     });
 
     container.addEventListener('click', (e) => {
-        if (isAnimating = true) return;
+        if (isAnimating === true) return;
         const targetEl = e.target.closest('button, a');
         if (!targetEl) return;
 
@@ -108,6 +113,8 @@ function setupCards(section) {
 }
 
 function checkScroll() {
+    if (!advocacyCardsContainer || !researchCardsContainer || !advocacyBtns || !researchBtns) return;
+
     const advocacyScroll = advocacyCardsContainer.scrollWidth > advocacyCardsContainer.clientWidth;
     const researchScroll = researchCardsContainer.scrollWidth > researchCardsContainer.clientWidth;
     advocacyBtns.classList.toggle('hidden', !advocacyScroll);
