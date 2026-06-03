@@ -26,7 +26,7 @@ function setupSlides(dialog) {
       liveRegion.textContent = `Item ${index + 1} of ${slides.length}`;
     }
 
-    if (skipBtn) {
+    if (skipBtn && dialog.id !== 'analysis-four') {
       skipBtn.classList.toggle('invisible', index === slides.length - 1);
     }
 
