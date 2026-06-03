@@ -153,14 +153,12 @@ analysis3Inputs.forEach(input => {
     const targetTop = billDetailsContainer.offsetTop;
 
     slide3b.scrollTo({
-      top: 0,
+      top: targetTop,
       behavior: 'smooth'
     });
 
     liveRegion.innerText = 'bill details updated';
 
-    setTimeout(() => {
-      billDetailsContainer.focus();
-    }, 1001);
+    billDetailsContainer.focus();
   })
 })
