@@ -18,20 +18,27 @@ year.innerHTML = `${currentYear}`;
 const footerSentinel = document.getElementById('footer-scroll-sentinel');
 const footer = document.querySelector('footer');
 
+let isFooterActive = false;
+
 const footerObserver = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
     const totalHeight = document.documentElement.scrollHeight;
     const currentScroll = window.innerHeight + window.scrollY;
 
-    const isAtBottom = currentScroll >= (totalHeight - 100);
+    const isAtBottom = currentScroll >= (totalHeight - 150);
+    const shouldShow = entry.isIntersecting || isAtBottom;
 
-    if (entry.isIntersecting || isAtBottom) {
-      footer.classList.remove('js:opacity-0', 'js:pointer-events-none');
-      footer.classList.add('js:opacity-100');
+    if (shouldShow) {
+      if (!isFooterActive) {
+        footer.classList.remove('js:opacity-0', 'js:pointer-events-none');
+        footer.classList.add('js:opacity-100');
+        isFooterActive = true;
+      }
     } else {
-      if (currentScroll < (totalHeight - 120)) {
+      if (currentScroll < (totalHeight - 250)) {
         footer.classList.remove('js:opacity-100');
         footer.classList.add('js:opacity-0', 'js:pointer-events-none');
+        isFooterActive = false;
       }
     }
   });
@@ -42,31 +49,6 @@ const footerObserver = new IntersectionObserver((entries) => {
 });
 
 footerObserver.observe(footerSentinel);
-
-/*
-const footerSentinel = document.getElementById('footer-scroll-sentinel');
-const footer = document.querySelector('footer');
-
-const footerObserver = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    const isAtBottom = (window.innerHeight + window.scrollY) >= document.documentElement.scrollHeight - 50;
-
-    if (entry.isIntersecting || isAtBottom) {
-      footer.classList.remove('js:opacity-0', 'js:pointer-events-none');
-      footer.classList.add('js:opacity-100');
-    } else {
-      footer.classList.remove('js:opacity-100');
-      footer.classList.add('js:opacity-0', 'js:pointer-events-none');
-    }
-  });
-}, {
-  root: null,
-  threshold: 0,
-  rootMargin: '0px 0px 100px 0px'
-});
-
-footerObserver.observe(footerSentinel);
-*/
 
 /*--------------- POPOVER FOCUS TRAP & LEGACY SUPPORT --------------------- */
 function applyFocusTrap(e, container) {
