@@ -59,17 +59,21 @@ function setupCards(section) {
         setTimeout(() => { isAnimating = false; }, 501)
     }
 
-    prevBtn.addEventListener('click', () => {
-        if (isAnimating = true) return;
-        let prev = current === 0 ? cards.length - 1 : current - 1;
-        goToCard(prev);
-    })
+    if (prevBtn) {
+        prevBtn.addEventListener('click', () => {
+            if (isAnimating = true) return;
+            let prev = current === 0 ? cards.length - 1 : current - 1;
+            goToCard(prev);
+        })
+    }
 
-    nextBtn.addEventListener('click', () => {
-        if (isAnimating = true) return;
-        let next = current === cards.length - 1 ? 0 : current + 1;
-        goToCard(next);
-    })
+    if (nextBtn) {
+        nextBtn.addEventListener('click', () => {
+            if (isAnimating = true) return;
+            let next = current === cards.length - 1 ? 0 : current + 1;
+            goToCard(next);
+        })
+    }
 
     container.addEventListener('keydown', (e) => {
         if (isAnimating = true) return;
@@ -103,9 +107,6 @@ function setupCards(section) {
     cards[current].classList.add('card-current');
 }
 
-setupCards(advocacySection);
-setupCards(researchSection);
-
 function checkScroll() {
     const advocacyScroll = advocacyCardsContainer.scrollWidth > advocacyCardsContainer.clientWidth;
     const researchScroll = researchCardsContainer.scrollWidth > researchCardsContainer.clientWidth;
@@ -115,3 +116,5 @@ function checkScroll() {
 
 window.addEventListener('resize', checkScroll);
 checkScroll();
+setupCards(advocacySection);
+setupCards(researchSection);
