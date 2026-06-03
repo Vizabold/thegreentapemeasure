@@ -18,27 +18,15 @@ year.innerHTML = `${currentYear}`;
 const footerSentinel = document.getElementById('footer-scroll-sentinel');
 const footer = document.querySelector('footer');
 
-let isFooterActive = false;
-
 const footerObserver = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
-    const totalHeight = document.documentElement.scrollHeight;
-    const currentScroll = window.innerHeight + window.scrollY;
-
-    const isAtBottom = currentScroll >= (totalHeight - 150);
-    const shouldShow = entry.isIntersecting || isAtBottom;
-
-    if (shouldShow) {
-      if (!isFooterActive) {
-        footer.classList.remove('js:opacity-0', 'js:pointer-events-none');
-        footer.classList.add('js:opacity-100');
-        isFooterActive = true;
-      }
+    if (entry.isIntersecting) {
+      footer.classList.remove('js:opacity-0', 'js:pointer-events-none');
+      footer.classList.add('js:opacity-100');
     } else {
-      if (currentScroll < (totalHeight - 250)) {
+      if (entry.boundingClientRect.top > 0) {
         footer.classList.remove('js:opacity-100');
         footer.classList.add('js:opacity-0', 'js:pointer-events-none');
-        isFooterActive = false;
       }
     }
   });
