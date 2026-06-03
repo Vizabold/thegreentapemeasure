@@ -158,6 +158,9 @@ analysis3Inputs.forEach(input => {
     });
 
     liveRegion.innerText = 'bill details updated';
-    billDetailsContainer.focus({ preventScroll: true });
+
+    setTimeout(() => {
+      billDetailsContainer.focus();
+    }, 301);
   })
 })
