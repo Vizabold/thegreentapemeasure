@@ -138,22 +138,25 @@ document.querySelectorAll('.open-analysis-btn').forEach(btn => {
 /*--------------- BILL DETAILS CONTAINER --------------------- */
 
 const slide3b = document.getElementById('slide-3b');
-const accordions = slide3b.querySelectorAll('.accordion-content-wrapper');
-const analysis3Input = slide3b.querySelectorAll('input');
+const analysis3Inputs = slide3b.querySelectorAll('input');
 const billDetailsContainer = document.getElementById('state-bill-details');
 let currentlyChecked;
 
-analysis3Input.forEach(input => {
+analysis3Inputs.forEach(input => {
   input.addEventListener('click', () => {
     if (currentlyChecked) {
       currentlyChecked.setAttribute('aria-expanded', 'false');
     }
     input.setAttribute('aria-expanded', 'true');
     currentlyChecked = input;
-    billDetailsContainer.scrollTo({
+
+    const targetTop = billDetailsContainer.offsetTop;
+
+    slide3b.scrollTo({
       top: 0,
       behavior: 'smooth'
     });
+
     liveRegion.innerText = 'bill details updated';
     billDetailsContainer.focus();
   })
