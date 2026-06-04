@@ -76,15 +76,15 @@ if (prevBtn && nextBtn && timelineSection) {
   prevBtn.addEventListener('click', () => navigate(-1));
   nextBtn.addEventListener('click', () => navigate(1));
 
-  let touchStartY = 0;
+  let touchStartX = 0;
   timelineSection.addEventListener('touchstart', (e) => {
-    touchStartY = e.touches[0].clientY;
+    touchStartX = e.touches[0].clientX;
   }, { passive: true });
 
   timelineSection.addEventListener('touchend', (e) => {
-    const dy = e.changedTouches[0].clientY - touchStartY;
-    if (Math.abs(dy) < 50) return;
-    navigate(dy < 0 ? 1 : -1);
+    const dx = e.changedTouches[0].clientX - touchStartX;
+    if (Math.abs(dx) < 50) return;
+    navigate(dx < 0 ? 1 : -1);
   }, { passive: true });
 
   showCurrentEvents(false);
