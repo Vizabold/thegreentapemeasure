@@ -1,6 +1,6 @@
+const timeline = document.getElementById('timeline');
 const prevBtn = document.getElementById('timeline-prev-btn');
 const nextBtn = document.getElementById('timeline-next-btn');
-const timeline = document.getElementById('timeline');
 const liveRegion = document.getElementById('live-region');
 
 if (prevBtn && nextBtn && liveRegion) {
@@ -33,12 +33,10 @@ if (prevBtn && nextBtn && liveRegion) {
   prevBtn.addEventListener('click', () => navigate(-1));
   nextBtn.addEventListener('click', () => navigate(1));
 
-  window.addEventListener('keydown', (e) => {
+  timeline.addEventListener('keydown', (e) => {
     if (['INPUT', 'TEXTAREA'].includes(document.activeElement.tagName)) return;
 
-    if (document.activeElement.closest('details')) {
-      if (e.key === 'ArrowLeft' || e.key === 'ArrowRight') return;
-    }
+    if (e.target.closest('details') && e.target.tagName !== 'SUMMARY') return;
 
     if (e.key === 'ArrowLeft') {
       e.preventDefault();
