@@ -7,25 +7,24 @@
             industry politics and territorial disputes.</p>
         <p class="js:hidden">Scroll or swipe to see the next or previous event.</p>
     </div>
-    <div class="relative w-full max-h-350 js:max-w-none" id="timeline-container">
-        <div class="flex items-center absolute top-11 sm:top-15 lg:top-23">
-            <button type="button" class="btn btn-icon btn-icon-lg relative z-1 hidden js:flex" id="timeline-prev-btn"
+    <div class="relative w-full max-w-350 js:max-w-none" id="timeline-container">
+        <div class="flex items-center absolute top-17">
+            <button type="button" class="btn btn-icon btn-icon-lg z-1 hidden js:flex" id="timeline-prev-btn"
                 aria-label="see previous event">
                 <svg class="icon-xs" aria-hidden="true">
                     <use href="/assets/sprites/solid.svg#angle-left"></use>
                 </svg>
             </button>
-            <div
-                class="flex flex-col w-full items-center absolute translate-[-50%] left-[50%] top-[50%] z-0 h-px bg-primary-one">
+            <div class="flex flex-col w-full items-center z-0 h-px bg-primary-one">
             </div>
-            <button type="button" class="btn btn-icon btn-icon-lg relative z-1 hidden js:flex" id="timeline-next-btn"
+            <button type="button" class="btn btn-icon btn-icon-lg z-1 hidden js:flex" id="timeline-next-btn"
                 aria-label="see next event">
                 <svg class="icon-xs" aria-hidden="true">
                     <use href="/assets/sprites/solid.svg#angle-right"></use>
                 </svg>
             </button>
         </div>
-        <div class="flex gap-35 max-w-137.5 overflow-x-auto scroll-smooth js:overflow-x-hidden">
+        <div class="flex gap-35 overflow-x-auto scroll-smooth js:overflow-x-hidden">
             <div class="timeline-event">
                 <div class="timeline-event-descript">
                     <div class="icon-container">

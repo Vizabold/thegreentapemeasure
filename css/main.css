@@ -345,11 +345,11 @@
      Timeline
   ───────────────────────────────────────── */
   .timeline-event {
-    @apply flex flex-col-reverse justify-center items-center relative z-1 w-full sm:gap-4 lg:gap-8;
+    @apply flex flex-col-reverse justify-center items-center relative z-1 w-full gap-4;
   }
 
   .timeline-event-descript {
-    @apply flex flex-col flex-1 gap-1 items-center w-[46%] lg:gap-4;
+    @apply flex flex-col gap-2 items-center;
   }
 
   .timeline-marker {
@@ -357,7 +357,7 @@
   }
 
   .timeline-date {
-    @apply flex-1 font-graph text-center text-2xl font-bold text-neutral-seven opacity-50 w-[46%] lg:text-5xl;
+    @apply w-full font-graph text-center text-5xl font-bold text-neutral-seven opacity-50;
   }
 
   /* ─────────────────────────────────────────
