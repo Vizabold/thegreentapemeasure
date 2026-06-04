@@ -360,6 +360,10 @@
     @apply w-full font-graph text-center text-5xl font-bold text-neutral-seven opacity-50;
   }
 
+  .event-current {
+    @apply bg-neutral-four;
+  }
+
   /* ─────────────────────────────────────────
      Toggles
   ───────────────────────────────────────── */

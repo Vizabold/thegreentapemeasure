@@ -10,7 +10,7 @@
     <div class="relative w-full min-h-137.5 max-w-350 js:max-w-none" id="timeline-container">
         <div class="flex w-full items-center absolute top-13 z-2">
             <button type="button" class="btn btn-icon btn-icon-lg z-1 hidden js:flex" id="timeline-prev-btn"
-                aria-label="see previous event">
+                aria-label="see previous event" aria-controls="events-container">
                 <svg class="icon-xs" aria-hidden="true">
                     <use href="/assets/sprites/solid.svg#angle-left"></use>
                 </svg>
@@ -18,15 +18,16 @@
             <div class="flex flex-col w-full items-center z-0 h-px bg-primary-one">
             </div>
             <button type="button" class="btn btn-icon btn-icon-lg z-1 hidden js:flex" id="timeline-next-btn"
-                aria-label="see next event">
+                aria-label="see next event" aria-controls="events-container">
                 <svg class="icon-xs" aria-hidden="true">
                     <use href="/assets/sprites/solid.svg#angle-right"></use>
                 </svg>
             </button>
         </div>
-        <div
-            class="flex gap-12.5 pl-12 pr-12 overflow-x-auto scroll-smooth snap-x snap-mandatory scrollbar-none relative z-1">
-            <div class="timeline-event" tabindex="0">
+        <div class="flex gap-12.5 pl-12 pr-12 overflow-x-auto scroll-smooth snap-x snap-mandatory scrollbar-none relative z-1"
+            id="events-container" role="region" aria-roledescription="carousel" aria-label="Events">
+            <div class="timeline-event" tabindex="-1" role="group" aria-roledescription="slide"
+                aria-label="event 1 of 24">
                 <div class="timeline-event-descript">
                     <div class="icon-container">
                         <svg aria-hidden="true">
@@ -59,7 +60,8 @@
                 <div class="timeline-marker"></div>
                 <p class="timeline-date">1857</p>
             </div>
-            <div class="timeline-event" tabindex="0">
+            <div class="timeline-event" tabindex="-1" role="group" aria-roledescription="slide"
+                aria-label="event 2 of 24">
                 <div class="timeline-event-descript">
                     <div class="icon-container">
                         <svg aria-hidden="true">
@@ -92,7 +94,8 @@
                 <div class="timeline-marker"></div>
                 <p class="timeline-date">1897</p>
             </div>
-            <div class="timeline-event" tabindex="0">
+            <div class="timeline-event" tabindex="-1" role="group" aria-roledescription="slide"
+                aria-label="event 3 of 24">
                 <div class="timeline-event-descript">
                     <div class="icon-container">
                         <svg class="text-secondary-one" aria-hidden="true">
@@ -136,7 +139,8 @@
                 <div class="timeline-marker"></div>
                 <p class="timeline-date">1903</p>
             </div>
-            <div class="timeline-event" tabindex="0">
+            <div class="timeline-event" tabindex="-1" role="group" aria-roledescription="slide"
+                aria-label="event 4 of 24">
                 <div class="timeline-event-descript">
                     <div class="icon-container">
                         <svg class="text-secondary-one" aria-hidden="true">
@@ -175,7 +179,8 @@
                 <div class="timeline-marker"></div>
                 <p class="timeline-date">1911</p>
             </div>
-            <div class="timeline-event" tabindex="0">
+            <div class="timeline-event" tabindex="-1" role="group" aria-roledescription="slide"
+                aria-label="event 5 of 24">
                 <div class="timeline-event-descript">
                     <div class="icon-container">
                         <svg aria-hidden="true">
@@ -205,7 +210,8 @@
                 <div class="timeline-marker"></div>
                 <p class="timeline-date">1919</p>
             </div>
-            <div class="timeline-event" tabindex="0">
+            <div class="timeline-event" tabindex="-1" role="group" aria-roledescription="slide"
+                aria-label="event 6 of 24">
                 <div class="timeline-event-descript">
                     <div class="icon-container">
                         <svg aria-hidden="true">
@@ -236,7 +242,8 @@
                 <div class="timeline-marker"></div>
                 <p class="timeline-date">1931</p>
             </div>
-            <div class="timeline-event" tabindex="0">
+            <div class="timeline-event" tabindex="-1" role="group" aria-roledescription="slide"
+                aria-label="event 7 of 24">
                 <div class="timeline-event-descript">
                     <div class="icon-container">
                         <svg aria-hidden="true">
@@ -267,7 +274,8 @@
                 <div class="timeline-marker"></div>
                 <p class="timeline-date">1940</p>
             </div>
-            <div class="timeline-event" tabindex="0">
+            <div class="timeline-event" tabindex="-1" role="group" aria-roledescription="slide"
+                aria-label="event 8 of 24">
                 <div class="timeline-event-descript">
                     <div class="icon-container">
                         <svg aria-hidden="true">
@@ -298,7 +306,8 @@
                 <div class="timeline-marker"></div>
                 <p class="timeline-date">1957</p>
             </div>
-            <div class="timeline-event" tabindex="0">
+            <div class="timeline-event" tabindex="-1" role="group" aria-roledescription="slide"
+                aria-label="event 9 of 24">
                 <div class="timeline-event-descript">
                     <div class="icon-container">
                         <svg aria-hidden="true">
@@ -328,7 +337,8 @@
                 <div class="timeline-marker"></div>
                 <p class="timeline-date">1970</p>
             </div>
-            <div class="timeline-event" tabindex="0">
+            <div class="timeline-event" tabindex="-1" role="group" aria-roledescription="slide"
+                aria-label="event 10 of 24">
                 <div class="timeline-event-descript">
                     <div class="icon-container">
                         <svg aria-hidden="true">
@@ -358,7 +368,8 @@
                 <div class="timeline-marker"></div>
                 <p class="timeline-date">1974</p>
             </div>
-            <div class="timeline-event" tabindex="0">
+            <div class="timeline-event" tabindex="-1" role="group" aria-roledescription="slide"
+                aria-label="event 11 of 24">
                 <div class="timeline-event-descript">
                     <div class="icon-container">
                         <svg aria-hidden="true">
@@ -389,7 +400,8 @@
                 <div class="timeline-marker"></div>
                 <p class="timeline-date">1975</p>
             </div>
-            <div class="timeline-event" tabindex="0">
+            <div class="timeline-event" tabindex="-1" role="group" aria-roledescription="slide"
+                aria-label="event 12 of 24">
                 <div class="timeline-event-descript">
                     <div class="icon-container">
                         <svg class="text-secondary-one" aria-hidden="true">
@@ -434,7 +446,8 @@
                 <div class="timeline-marker"></div>
                 <p class="timeline-date">1980</p>
             </div>
-            <div class="timeline-event" tabindex="0">
+            <div class="timeline-event" tabindex="-1" role="group" aria-roledescription="slide"
+                aria-label="event 13 of 24">
                 <div class="timeline-event-descript">
                     <div class="icon-container">
                         <svg aria-hidden="true">
@@ -466,7 +479,8 @@
                 <div class="timeline-marker"></div>
                 <p class="timeline-date">1982</p>
             </div>
-            <div class="timeline-event" tabindex="0">
+            <div class="timeline-event" tabindex="-1" role="group" aria-roledescription="slide"
+                aria-label="event 14 of 24">
                 <div class="timeline-event-descript">
                     <div class="icon-container">
                         <svg aria-hidden="true">
@@ -500,7 +514,8 @@
                 <div class="timeline-marker"></div>
                 <p class="timeline-date">1987</p>
             </div>
-            <div class="timeline-event" tabindex="0">
+            <div class="timeline-event" tabindex="-1" role="group" aria-roledescription="slide"
+                aria-label="event 15 of 24">
                 <div class="timeline-event-descript">
                     <div class="icon-container">
                         <svg aria-hidden="true">
@@ -533,7 +548,8 @@
                 <div class="timeline-marker"></div>
                 <p class="timeline-date">1989</p>
             </div>
-            <div class="timeline-event" tabindex="0">
+            <div class="timeline-event" tabindex="-1" role="group" aria-roledescription="slide"
+                aria-label="event 16 of 24">
                 <div class="timeline-event-descript">
                     <div class="icon-container">
                         <svg aria-hidden="true">
@@ -563,7 +579,8 @@
                 <div class="timeline-marker"></div>
                 <p class="timeline-date">1994</p>
             </div>
-            <div class="timeline-event" tabindex="0">
+            <div class="timeline-event" tabindex="-1" role="group" aria-roledescription="slide"
+                aria-label="event 17 of 24">
                 <div class="timeline-event-descript">
                     <div class="icon-container">
                         <svg aria-hidden="true">
@@ -595,7 +612,8 @@
                 <div class="timeline-marker"></div>
                 <p class="timeline-date">1999</p>
             </div>
-            <div class="timeline-event" tabindex="0">
+            <div class="timeline-event" tabindex="-1" role="group" aria-roledescription="slide"
+                aria-label="event 18 of 24">
                 <div class="timeline-event-descript">
                     <div class="icon-container">
                         <svg class="text-secondary-one" aria-hidden="true">
@@ -638,7 +656,8 @@
                 <div class="timeline-marker"></div>
                 <p class="timeline-date">2003</p>
             </div>
-            <div class="timeline-event" tabindex="0">
+            <div class="timeline-event" tabindex="-1" role="group" aria-roledescription="slide"
+                aria-label="event 19 of 24">
                 <div class="timeline-event-descript">
                     <div class="icon-container">
                         <svg aria-hidden="true">
@@ -703,7 +722,8 @@
                 <div class="timeline-marker"></div>
                 <p class="timeline-date">2009</p>
             </div>
-            <div class="timeline-event" tabindex="0">
+            <div class="timeline-event" tabindex="-1" role="group" aria-roledescription="slide"
+                aria-label="event 20 of 24">
                 <div class="timeline-event-descript">
                     <div class="icon-container">
                         <svg aria-hidden="true">
@@ -739,7 +759,8 @@
                 <div class="timeline-marker"></div>
                 <p class="timeline-date">2013</p>
             </div>
-            <div class="timeline-event" tabindex="0">
+            <div class="timeline-event" tabindex="-1" role="group" aria-roledescription="slide"
+                aria-label="event 21 of 24">
                 <div class="timeline-event-descript">
                     <div class="icon-container">
                         <svg aria-hidden="true">
@@ -778,7 +799,8 @@
                 <div class="timeline-marker"></div>
                 <p class="timeline-date">2017</p>
             </div>
-            <div class="timeline-event" tabindex="0">
+            <div class="timeline-event" tabindex="-1" role="group" aria-roledescription="slide"
+                aria-label="event 22 of 24">
                 <div class="timeline-event-descript">
                     <div class="icon-container">
                         <svg aria-hidden="true">
@@ -814,7 +836,8 @@
                 <div class="timeline-marker"></div>
                 <p class="timeline-date">2021</p>
             </div>
-            <div class="timeline-event" tabindex="0">
+            <div class="timeline-event" tabindex="-1" role="group" aria-roledescription="slide"
+                aria-label="event 23 of 24">
                 <div class="timeline-event-descript">
                     <div class="icon-container">
                         <svg aria-hidden="true">
@@ -848,7 +871,8 @@
                 <div class="timeline-marker"></div>
                 <p class="timeline-date">2023</p>
             </div>
-            <div class="timeline-event" tabindex="0">
+            <div class="timeline-event" tabindex="-1" role="group" aria-roledescription="slide"
+                aria-label="event 24 of 24">
                 <div class="timeline-event-descript">
                     <div class="icon-container">
                         <svg aria-hidden="true">
