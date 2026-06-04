@@ -1,91 +1,32 @@
 const prevBtn = document.getElementById('timeline-prev-btn');
 const nextBtn = document.getElementById('timeline-next-btn');
-const timelineSection = document.getElementById('timeline');
+const timeline = document.getElementById('timeline');
 const liveRegion = document.getElementById('live-region');
 
-if (prevBtn && nextBtn && timelineSection) {
-  const events = Array.from(timelineSection.querySelectorAll('.timeline-event'));
-  const lgQuery = window.matchMedia('(min-width: 1000px)');
-  let currentIndex = 0;
-  let isAnimating = false;
+if (prevBtn && nextBtn && liveRegion) {
+  const events = timeline.querySelectorAll('.timeline-event');
 
-  const getVisibleCount = () => lgQuery.matches ? 3 : 1;
-  const getMaxIndex = () => Math.max(0, events.length - getVisibleCount());
+  const announceCurrentEvent = () => {
+    if (!liveRegion || !events[0]) return;
+    const index = Math.round(timeline.scrollLeft / events[0].offsetWidth);
+    const title = events[index]?.querySelector('h3')?.textContent || `Event ${index + 1}`;
 
-  function setButtonsDisabled(disabledState) {
-    isAnimating = disabledState;
-    [prevBtn, nextBtn].forEach(btn => {
-      btn.disabled = disabledState;
-      btn.setAttribute('aria-disabled', disabledState.toString());
-      btn.classList.toggle('opacity-50', disabledState);
-      btn.classList.toggle('cursor-not-allowed', disabledState);
-    })
-  }
+    liveRegion.textContent = `Showing timeline item ${index + 1} of ${events.length}: ${title}`;
+  };
 
-  function showCurrentEvents(announce = false) {
-    const count = getVisibleCount();
+  const navigate = (direction) => {
+    const itemWidth = events[0]?.offsetWidth || 0;
 
-    events.forEach((ev, i) => {
-      const show = i >= currentIndex && i < currentIndex + count;
-      ev.classList.toggle('hidden', !show);
-      ev.classList.toggle('flex', show);
-      if (show) ev.classList.add('animate-fadeIn');
-    });
-
-    if (announce && liveRegion) {
-      const currentEventTitle = events[currentIndex]?.querySelector('h3')?.textContent || `Event ${currentIndex + 1}`;
-      liveRegion.textContent = `Showing timeline item ${currentIndex + 1} of ${events.length}: ${currentEventTitle}`;
-    }
-  }
-
-  function navigate(delta) {
-    if (isAnimating) return;
-
-    const max = getMaxIndex();
-    let next = currentIndex + delta;
-
-    if (next < 0) {
-      next = max;
-    } else if (next > max) {
-      next = 0;
-    }
-
-    if (next === currentIndex) return;
-
-    setButtonsDisabled(true);
-    currentIndex = next;
-    showCurrentEvents(true);
-
-    setTimeout(() => {
-      setButtonsDisabled(false);
-      if (delta === 1) {
-        nextBtn.scrollIntoView({
-          behavior: 'smooth',
-          block: 'nearest',
-          inline: 'nearest'
-        });
-      }
-    }, 300);
-  }
-
-  lgQuery.addEventListener('change', () => {
-    currentIndex = Math.min(currentIndex, getMaxIndex());
-    showCurrentEvents(false);
-  });
+    timeline.scrollBy({ left: direction * itemWidth, behavior: 'smooth' });
+    setTimeout(announceCurrentEvent, 400);
+  };
 
   prevBtn.addEventListener('click', () => navigate(-1));
   nextBtn.addEventListener('click', () => navigate(1));
 
-  let touchStartX = 0;
-  timelineSection.addEventListener('touchstart', (e) => {
-    touchStartX = e.touches[0].clientX;
-  }, { passive: true });
-
-  timelineSection.addEventListener('touchend', (e) => {
-    const dx = e.changedTouches[0].clientX - touchStartX;
-    if (Math.abs(dx) < 50) return;
-    navigate(dx < 0 ? 1 : -1);
-  }, { passive: true });
-
-  showCurrentEvents(false);
+  window.addEventListener('keydown', (e) => {
+    if (['INPUT', 'TEXTAREA'].includes(document.activeElement.tagName)) return;
+    if (e.key === 'ArrowLeft') navigate(-1);
+    if (e.key === 'ArrowRight') navigate(1);
+  });
 }
