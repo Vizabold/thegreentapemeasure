@@ -287,7 +287,7 @@ if (videoWrapper) {
     const iframe = document.createElement('iframe');
 
     iframe.className = 'flex aspect-video w-full';
-    iframe.src = `https://youtube-nocookie.com${videoId}?autoplay=1&si=Vjs94y2cQ06KzTCa`;
+    iframe.src = `https://youtube-nocookie.com/${videoId}?autoplay=1&si=Vjs94y2cQ06KzTCa`;
     iframe.title = 'GTM Intro Video';
     iframe.setAttribute('frameborder', '0');
     iframe.setAttribute('allow', 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share');
