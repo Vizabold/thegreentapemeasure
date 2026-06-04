@@ -76,12 +76,28 @@
                 <button type="button" id="video-wrapper"
                     class="relative flex aspect-video w-full cursor-pointer bg-neutral-two-dark group"
                     data-video="WMxEx4Reqpk" aria-label="Play GTM Intro Video">
-                    <img class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity"
-                        src="/assets/images/Thumbnail-video1.png" alt="GTM Intro Video Thumbnail" aria-hidden="true">
+                    <picture>
+                        <source srcset="assets/images/thumbnail-xxl.webp" type="image/webp" media="(min-width:1280px)"
+                            data-theme="dark, light">
+                        <source srcset="assets/images/thumbnail-xl.webp" type="image/webp" media="(min-width:1000px)"
+                            data-theme="dark, light">
+                        <source srcset="assets/images/thumbnail-lg.webp" type="image/webp" media="(min-width:850px)"
+                            data-theme="dark, light">
+                        <source srcset="assets/images/thumbnail-md.webp" type="image/webp" media="(min-width:700px)"
+                            data-theme="dark, light">
+                        <source srcset="assets/images/thumbnail-sm.webp" type="image/webp" media="(min-width:600px)"
+                            data-theme="dark, light">
+                        <source srcset="assets/images/thumbnail-xs.webp" type="image/webp" media="(min-width:400px)"
+                            data-theme="dark, light">
+                        <source srcset="assets/images/thumbnail-xxs.webp" type="image/webp" media="(min-width:300px)"
+                            data-theme="dark, light">
+                        <img class="opacity-10" src="assets/images/thumbnail-md.png"
+                            alt="GTM Intro Video Thumbnail, text I tried to get an Architecture Degree 3 times with picture of founder Amy Wright">
+                    </picture>
                     <div class="absolute inset-0 flex items-center justify-center" aria-hidden="true">
                         <div
                             class="w-16 h-11 bg-primary-one rounded-xl flex items-center justify-center text-neutral-two-light transition-transform duration-200 group-hover:scale-110">
-                            <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24">
+                            <svg class="w-5 h-5 text-neutral-nine" viewBox="0 0 24 24">
                                 <path d="M8 5v14l11-7z" />
                             </svg>
                         </div>
