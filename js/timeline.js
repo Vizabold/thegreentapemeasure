@@ -5,7 +5,7 @@ const liveRegion = document.getElementById('live-region');
 
 if (prevBtn && nextBtn && timelineSection) {
   const events = Array.from(timelineSection.querySelectorAll('.timeline-event'));
-  const lgQuery = window.matchMedia('(min-width: 850px)');
+  const lgQuery = window.matchMedia('(min-width: 1000px)');
   let currentIndex = 0;
   let isAnimating = false;
 
