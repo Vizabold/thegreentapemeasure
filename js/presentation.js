@@ -9,6 +9,8 @@ function setupSlides(dialog) {
   const dots = Array.from(dialog.querySelectorAll('.slide-dot'));
   let current = 0;
   let isMoving = false;
+  slideController = new AbortController();
+  const { signal } = slideController;
 
   function updateUI(index) {
     if (index < 0 || index >= slides.length) return;
@@ -55,6 +57,36 @@ function setupSlides(dialog) {
     slideContainer.addEventListener('scrollend', handleScrollEnd);
   }
 
+  if (dialog.id === 'analysis-three') {
+    const slide3b = document.getElementById('slide-3b');
+    const analysis3Inputs = slide3b.querySelectorAll('input');
+    const billDetailsContainer = document.getElementById('state-bill-details');
+    let currentlyChecked;
+
+    analysis3Inputs.forEach(input => {
+      input.addEventListener('click', () => {
+        if (currentlyChecked) {
+          currentlyChecked.setAttribute('aria-expanded', 'false');
+        }
+        input.setAttribute('aria-expanded', 'true');
+        currentlyChecked = input;
+
+        billDetailsContainer.scrollIntoView({
+          behavior: 'smooth',
+          block: 'start'
+        });
+
+        liveRegion.innerText = 'bill details updated';
+
+        setTimeout(() => {
+          billDetailsContainer.focus({
+            preventScroll: true
+          });
+        }, 500)
+      }, { signal })
+    })
+  }
+
   slideContainer.addEventListener('scroll', () => {
     if (isMoving) return;
 
@@ -69,25 +101,25 @@ function setupSlides(dialog) {
     if (activeIndex !== -1 && activeIndex !== current) {
       updateUI(activeIndex);
     }
-  });
+  }, { signal });
 
   prevBtn.addEventListener('click', () => {
     if (isMoving) return;
     let prev = current === 0 ? slides.length - 1 : current - 1;
     goToSlide(prev);
-  });
+  }, { signal });
 
   nextBtn.addEventListener('click', () => {
     if (isMoving) return;
     let next = current === slides.length - 1 ? 0 : current + 1;
     goToSlide(next);
-  });
+  }, { signal });
 
   if (skipBtn && dialog.id !== 'analysis-four') {
     skipBtn.addEventListener('click', () => {
       if (isMoving) return;
       goToSlide(slides.length - 1)
-    });
+    }, { signal });
   }
 
   dialog.addEventListener('keydown', (e) => {
@@ -102,7 +134,7 @@ function setupSlides(dialog) {
       let next = current === slides.length - 1 ? 0 : current + 1;
       goToSlide(next);
     }
-  })
+  }, { signal })
 
   dialog.addEventListener('toggle', (event) => {
     if (event.newState === 'open') {
@@ -121,8 +153,13 @@ function setupSlides(dialog) {
         slides[0].focus({ preventScroll: true });
         isMoving = false;
       });
-    };
-  });
+    } else if (event.newState === 'closed') {
+      if (slideController) {
+        slideController.abort();
+        console.log('listeners removed')
+      }
+    }
+  }, { signal });
 }
 
 document.querySelectorAll('.open-analysis-btn').forEach(btn => {
@@ -134,33 +171,3 @@ document.querySelectorAll('.open-analysis-btn').forEach(btn => {
     } else { console.log('dialog not found') };
   })
 });
-
-/*--------------- BILL DETAILS CONTAINER --------------------- */
-
-const slide3b = document.getElementById('slide-3b');
-const analysis3Inputs = slide3b.querySelectorAll('input');
-const billDetailsContainer = document.getElementById('state-bill-details');
-let currentlyChecked;
-
-analysis3Inputs.forEach(input => {
-  input.addEventListener('click', () => {
-    if (currentlyChecked) {
-      currentlyChecked.setAttribute('aria-expanded', 'false');
-    }
-    input.setAttribute('aria-expanded', 'true');
-    currentlyChecked = input;
-
-    billDetailsContainer.scrollIntoView({
-      behavior: 'smooth',
-      block: 'start'
-    });
-
-    liveRegion.innerText = 'bill details updated';
-
-    setTimeout(() => {
-      billDetailsContainer.focus({
-        preventScroll: true
-      });
-    }, 500)
-  })
-})
