@@ -12,7 +12,6 @@ function setupCards(section) {
     const prevBtn = section.querySelector('.cards-prev-btn');
     const nextBtn = section.querySelector('.cards-next-btn');
     const container = section.querySelector('.cards-container');
-
     if (!container) return;
 
     const cards = Array.from(container.querySelectorAll('.card'));
@@ -20,6 +19,8 @@ function setupCards(section) {
 
     let current = 0;
     let isAnimating = false;
+    let touchStartX = 0;
+    let touchEndX = 0;
 
     function updateCard(index, shouldFocus = true) {
         if (index < 0 || index >= cards.length) return;
@@ -50,12 +51,14 @@ function setupCards(section) {
         updateCard(index, shouldFocus);
 
         const card = cards[index];
-        const containerLeft = container.scrollLeft;
+
+        /*
         const containerWidth = container.clientWidth;
         const cardLeft = card.offsetLeft;
         const cardWidth = card.clientWidth;
-
         const targetScrollLeft = cardLeft - (containerWidth / 2) + (cardWidth / 2);
+        */
+        const targetScrollLeft = card.offsetLeft;
 
         container.scrollTo({
             left: targetScrollLeft,
@@ -64,6 +67,37 @@ function setupCards(section) {
 
         setTimeout(() => { isAnimating = false; }, 501)
     }
+
+    container.addEventListener('focusin', (e) => {
+        const card = e.target.closest('.card');
+        if (!card) return;
+        const cardIndex = cards.indexOf(card);
+        if (cardIndex !== -1 && cardIndex !== current) {
+            updateCard(cardIndex, false);
+        }
+    });
+
+    container.addEventListener('touchstart', (e) => {
+        touchStartX = e.changedTouches[0].screenX;
+    }, { passive: true });
+
+    container.addEventListener('touchend', (e) => {
+        if (isAnimating) return;
+
+        touchEndX = e.changedTouches[0].screenX;
+        const swipeDistance = touchStartX - touchEndX;
+        const swipeThreshold = 50;
+
+        if (Math.abs(swipeDistance) > swipeThreshold) {
+            if (swipeDistance > 0) {
+                let next = current === cards.length - 1 ? current : current + 1;
+                goToCard(next, false);
+            } else {
+                let prev = current === 0 ? current : current - 1;
+                goToCard(prev, false);
+            }
+        }
+    }, { passive: true });
 
     if (prevBtn) {
         prevBtn.addEventListener('click', (e) => {
@@ -99,13 +133,10 @@ function setupCards(section) {
 
     container.addEventListener('click', (e) => {
         if (isAnimating) return;
-
         const targetEl = e.target.closest('button, a');
         if (!targetEl) return;
-
         const card = targetEl.closest('.card');
         if (!card) return;
-
         const cardIndex = cards.indexOf(card);
         if (cardIndex !== -1) {
             if (cardIndex === current) return;
