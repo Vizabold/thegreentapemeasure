@@ -6,19 +6,28 @@ const liveRegion = document.getElementById('live-region');
 if (prevBtn && nextBtn && liveRegion) {
   const events = timeline.querySelectorAll('.timeline-event');
 
-  const announceCurrentEvent = () => {
-    if (!liveRegion || !events[0]) return;
-    const index = Math.round(timeline.scrollLeft / events[0].offsetWidth);
-    const title = events[index]?.querySelector('h3')?.textContent || `Event ${index + 1}`;
-
-    liveRegion.textContent = `Showing timeline item ${index + 1} of ${events.length}: ${title}`;
-  };
-
   const navigate = (direction) => {
-    const itemWidth = events[0]?.offsetWidth || 0;
+    const firstEvent = timeline.querySelector('.timeline-event');
+    if (!firstEvent || !events.length) return;
 
-    timeline.scrollBy({ left: direction * itemWidth, behavior: 'smooth' });
-    setTimeout(announceCurrentEvent, 400);
+    const itemWidth = firstEvent.offsetWidth;
+    const currentIndex = Math.round(timeline.scrollLeft / itemWidth);
+    let targetIndex = currentIndex + direction;
+
+    if (targetIndex < 0) targetIndex = 0;
+    if (targetIndex >= events.length) targetIndex = events.length - 1;
+
+    timeline.scrollTo({
+      left: targetIndex * itemWidth,
+      behavior: 'smooth'
+    });
+
+    events[targetIndex].focus({ preventScroll: true });
+
+    if (liveRegion) {
+      const title = events[targetIndex].querySelector('h3')?.textContent || `Event ${targetIndex + 1}`;
+      liveRegion.textContent = `Showing timeline item ${targetIndex + 1} of ${events.length}: ${title}`;
+    }
   };
 
   prevBtn.addEventListener('click', () => navigate(-1));
@@ -26,7 +35,18 @@ if (prevBtn && nextBtn && liveRegion) {
 
   window.addEventListener('keydown', (e) => {
     if (['INPUT', 'TEXTAREA'].includes(document.activeElement.tagName)) return;
-    if (e.key === 'ArrowLeft') navigate(-1);
-    if (e.key === 'ArrowRight') navigate(1);
+
+    if (document.activeElement.closest('details')) {
+      if (e.key === 'ArrowLeft' || e.key === 'ArrowRight') return;
+    }
+
+    if (e.key === 'ArrowLeft') {
+      e.preventDefault();
+      navigate(-1);
+    }
+    if (e.key === 'ArrowRight') {
+      e.preventDefault();
+      navigate(1);
+    }
   });
 }
