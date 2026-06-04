@@ -345,7 +345,7 @@
      Timeline
   ───────────────────────────────────────── */
   .timeline-event {
-    @apply flex flex-col-reverse justify-center items-center relative z-1 w-full gap-4;
+    @apply flex flex-col-reverse justify-center items-center self-start relative z-1 w-full gap-4;
   }
 
   .timeline-event-descript {
