@@ -349,7 +349,7 @@
   }
 
   .timeline-event-descript {
-    @apply flex flex-col flex-1 gap-1 items-end w-[46%] lg:gap-4;
+    @apply flex flex-col flex-1 gap-1 items-center w-[46%] lg:gap-4;
   }
 
   .timeline-marker {
@@ -357,7 +357,7 @@
   }
 
   .timeline-date {
-    @apply flex-1 font-graph text-2xl font-bold text-neutral-seven opacity-50 w-[46%] lg:text-5xl;
+    @apply flex-1 font-graph text-center text-2xl font-bold text-neutral-seven opacity-50 w-[46%] lg:text-5xl;
   }
 
   /* ─────────────────────────────────────────
