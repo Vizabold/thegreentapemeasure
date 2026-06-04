@@ -1,4 +1,4 @@
-const timeline = document.getElementById('timeline-container');
+const timeline = document.getElementById('events-container');
 const prevEventBtn = document.getElementById('timeline-prev-btn');
 const nextEventBtn = document.getElementById('timeline-next-btn');
 const events = Array.from(timeline.querySelectorAll('.timeline-event'));
@@ -11,13 +11,13 @@ let touchEndEvX = 0;
 function updateEvent(index, shouldFocus = true) {
   if (index < 0 || index >= events.length) return;
 
-  events[currentEvent].removeAttribute('aria-currentEvent');
+  events[currentEvent].removeAttribute('aria-current');
   events[currentEvent].setAttribute('tabindex', '-1');
-  events[currentEvent].classList.remove('event-currentEvent');
+  events[currentEvent].classList.remove('event-current');
 
-  events[index].setAttribute('aria-currentEvent', 'true');
+  events[index].setAttribute('aria-current', 'true');
   events[index].setAttribute('tabindex', '0');
-  events[index].classList.add('event-currentEvent');
+  events[index].classList.add('event-current');
 
   if (shouldFocus) {
     events[index].focus({ preventScroll: true });
@@ -58,12 +58,11 @@ timeline.addEventListener('focusin', (e) => {
 });
 
 timeline.addEventListener('touchstart', (e) => {
+  if (isTransitioning) return;
   touchStartEvX = e.changedTouches[0].screenX;
 }, { passive: true });
 
 timeline.addEventListener('touchend', (e) => {
-  if (isTransitioning) return;
-
   touchEndEvX = e.changedTouches[0].screenX;
   const swipeDistance = touchStartEvX - touchEndEvX;
   const swipeThreshold = 50;
@@ -125,6 +124,6 @@ timeline.addEventListener('click', (e) => {
   }
 })
 
-events[currentEvent].setAttribute('aria-currentEvent', 'true');
+events[currentEvent].setAttribute('aria-current', 'true');
 events[currentEvent].setAttribute('tabindex', '0');
-events[currentEvent].classList.add('event-currentEvent');
+events[currentEvent].classList.add('event-current');
