@@ -277,3 +277,28 @@ async function loadProgress() {
 
 loadProgress();
 
+/*------------------------------ VIDEO --------------------------------- */
+
+const videoWrapper = document.getElementById('video-wrapper');
+
+if (videoWrapper) {
+  videoWrapper.addEventListener('click', function () {
+    const videoId = this.getAttribute('data-video');
+    const iframe = document.createElement('iframe');
+
+    iframe.className = 'flex aspect-video w-full';
+    iframe.src = `https://youtube-nocookie.com{videoId}?autoplay=1&si=Vjs94y2cQ06KzTCa`;
+    iframe.title = 'GTM Intro Video';
+    iframe.setAttribute('frameborder', '0');
+    iframe.setAttribute('allow', 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share');
+    iframe.setAttribute('referrerpolicy', 'strict-origin-when-cross-origin');
+    iframe.setAttribute('allowfullscreen', '');
+
+    const parent = this.parentElement;
+
+    parent.innerHTML = '';
+    parent.appendChild(iframe);
+
+    iframe.focus();
+  });
+}

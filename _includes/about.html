@@ -73,91 +73,101 @@
                     founder's experiences.</p>
             </div>
             <div class="flex flex-col gap-8 w-full xl:w-[50%]">
-                <iframe class="flex aspect-video w-full"
-                    src="https://www.youtube-nocookie.com/embed/WMxEx4Reqpk?si=Vjs94y2cQ06KzTCa" title="GTM Intro Video"
-                    frameborder="0"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                    referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                <button type="button" id="video-wrapper"
+                    class="relative flex aspect-video w-full cursor-pointer bg-neutral-two-dark group"
+                    data-video="WMxEx4Reqpk" aria-label="Play GTM Intro Video">
+                    <img class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity"
+                        src="/assets/images/Thumbnail-video1.png" alt="GTM Intro Video Thumbnail" aria-hidden="true">
+                    <div class="absolute inset-0 flex items-center justify-center" aria-hidden="true">
+                        <div
+                            class="w-16 h-11 bg-primary-one rounded-xl flex items-center justify-center text-neutral-two-light transition-transform duration-200 group-hover:scale-110">
+                            <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24">
+                                <path d="M8 5v14l11-7z" />
+                            </svg>
+                        </div>
+                    </div>
+                </button>
             </div>
         </div>
-        <div class="flex flex-col gap-4">
-            <div class="flex flex-col">
-                <p class="paragraph-accent">Funding</p>
-                <h2><span class="text-primary-one">Transparent</span> Operations.</h2>
-            </div>
-            <div class="flex flex-col gap-8 xl:flex-row xl:items-center">
-                <div class="flex flex-col gap-8 w-full xl:w-[50%]">
-                    <div class="flex flex-col gap-4">
-                        <h3>Future Funding Structure</h3>
-                        <div class="flex gap-2 items-center">
-                            <div class="icon-container">
-                                <svg aria-hidden="true">
-                                    <use href="assets/sprites/solid.svg#circle-user"></use>
-                                </svg>
-                            </div>
-                            <div class="flex flex-col">
-                                <p class="paragraph-md">50% Membership Tiers</p>
-                                <p>Optional perks and exclusive content.</p>
-                            </div>
+    </div>
+    <div class="flex flex-col gap-4">
+        <div class="flex flex-col">
+            <p class="paragraph-accent">Funding</p>
+            <h2><span class="text-primary-one">Transparent</span> Operations.</h2>
+        </div>
+        <div class="flex flex-col gap-8 xl:flex-row xl:items-center">
+            <div class="flex flex-col gap-8 w-full xl:w-[50%]">
+                <div class="flex flex-col gap-4">
+                    <h3>Future Funding Structure</h3>
+                    <div class="flex gap-2 items-center">
+                        <div class="icon-container">
+                            <svg aria-hidden="true">
+                                <use href="assets/sprites/solid.svg#circle-user"></use>
+                            </svg>
                         </div>
-                        <div class="flex gap-2 items-center">
-                            <div class="icon-container">
-                                <svg aria-hidden="true">
-                                    <use href="assets/sprites/solid.svg#hand-holding-heart"></use>
-                                </svg>
-                            </div>
-                            <div class="flex flex-col">
-                                <p class="paragraph-md">30% Donations</p>
-                                <p>One-time and reoccurring contributions.</p>
-                            </div>
+                        <div class="flex flex-col">
+                            <p class="paragraph-md">50% Membership Tiers</p>
+                            <p>Optional perks and exclusive content.</p>
                         </div>
-                        <div class="flex gap-2 items-center">
-                            <div class="icon-container">
-                                <svg aria-hidden="true">
-                                    <use href="assets/sprites/solid.svg#magnifying-glass-chart"></use>
-                                </svg>
-                            </div>
-                            <div class="flex flex-col">
-                                <p class="paragraph-md">10% Research Grants</p>
-                                <p>Long-term industry studies to guide the profession and legislation.</p>
-                            </div>
+                    </div>
+                    <div class="flex gap-2 items-center">
+                        <div class="icon-container">
+                            <svg aria-hidden="true">
+                                <use href="assets/sprites/solid.svg#hand-holding-heart"></use>
+                            </svg>
                         </div>
-                        <div class="flex gap-2 items-center">
-                            <div class="icon-container">
-                                <svg aria-hidden="true">
-                                    <use href="assets/sprites/solid.svg#bag-shopping"></use>
-                                </svg>
-                            </div>
-                            <div class="flex flex-col">
-                                <p class="paragraph-md">10% Merchandise</p>
-                                <p>Clothing, pens, keychains, pins, and Scrib plushies.</p>
-                            </div>
+                        <div class="flex flex-col">
+                            <p class="paragraph-md">30% Donations</p>
+                            <p>One-time and reoccurring contributions.</p>
+                        </div>
+                    </div>
+                    <div class="flex gap-2 items-center">
+                        <div class="icon-container">
+                            <svg aria-hidden="true">
+                                <use href="assets/sprites/solid.svg#magnifying-glass-chart"></use>
+                            </svg>
+                        </div>
+                        <div class="flex flex-col">
+                            <p class="paragraph-md">10% Research Grants</p>
+                            <p>Long-term industry studies to guide the profession and legislation.</p>
+                        </div>
+                    </div>
+                    <div class="flex gap-2 items-center">
+                        <div class="icon-container">
+                            <svg aria-hidden="true">
+                                <use href="assets/sprites/solid.svg#bag-shopping"></use>
+                            </svg>
+                        </div>
+                        <div class="flex flex-col">
+                            <p class="paragraph-md">10% Merchandise</p>
+                            <p>Clothing, pens, keychains, pins, and Scrib plushies.</p>
                         </div>
                     </div>
                 </div>
-                <div class="flex flex-col gap-8 w-full justify-between xl:w-[50%]">
-                    <div class="flex flex-col gap-4">
-                        <div class="flex flex-col gap-1">
-                            <h3>Current Campaign</h3>
-                            <h4>Help Launch The Green Tape Measure</h4>
-                        </div>
-                        <p class="paragraph-md">As we are currently only funded by donations, we need YOUR help. Support
-                            GTM's 501(c)(3) non-profit conversion with a donation today.</p>
-                        <a href="#takeaction" class="link link--inline-green">Donor Benefits</a>
+            </div>
+            <div class="flex flex-col gap-8 w-full justify-between xl:w-[50%]">
+                <div class="flex flex-col gap-4">
+                    <div class="flex flex-col gap-1">
+                        <h3>Current Campaign</h3>
+                        <h4>Help Launch The Green Tape Measure</h4>
                     </div>
-                    <div class="flex flex-col">
-                        <a class="btn btn-lg btn-cta max-w-150" href="https://givebutter.com/help-launch-gtm?c=WEB"
-                            target="_blank">Donate Now* <svg aria-hidden="true" class="icon-xs text-neutral-two-dark">
-                                <use href="/assets/sprites/solid.svg#arrow-up-right-from-square"></use>
-                            </svg></a>
-                        <p>*<strong>Contributions are not currently tax-deductible</strong> while we finalize our
-                            501(c)(3) transition.
-                            Interested in sponsoring us now? <a href="mailto:info@thegreentapemeasure.org"
-                                class="link link--inline-green">Reach out</a> to see how you can get involved. Thank you
-                            for championing our mission!</p>
-                    </div>
+                    <p class="paragraph-md">As we are currently only funded by donations, we need YOUR help. Support
+                        GTM's 501(c)(3) non-profit conversion with a donation today.</p>
+                    <a href="#takeaction" class="link link--inline-green">Donor Benefits</a>
+                </div>
+                <div class="flex flex-col">
+                    <a class="btn btn-lg btn-cta max-w-150" href="https://givebutter.com/help-launch-gtm?c=WEB"
+                        target="_blank">Donate Now* <svg aria-hidden="true" class="icon-xs text-neutral-two-dark">
+                            <use href="/assets/sprites/solid.svg#arrow-up-right-from-square"></use>
+                        </svg></a>
+                    <p>*<strong>Contributions are not currently tax-deductible</strong> while we finalize our
+                        501(c)(3) transition.
+                        Interested in sponsoring us now? <a href="mailto:info@thegreentapemeasure.org"
+                            class="link link--inline-green">Reach out</a> to see how you can get involved. Thank you
+                        for championing our mission!</p>
                 </div>
             </div>
         </div>
+    </div>
     </div>
 </section>
