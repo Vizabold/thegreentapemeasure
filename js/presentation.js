@@ -157,7 +157,6 @@ function setupSlides(dialog) {
     } else if (event.newState === 'closed') {
       if (slideController) {
         slideController.abort();
-        console.log('listeners removed')
       }
     }
   }, { signal });
