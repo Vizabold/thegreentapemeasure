@@ -51,14 +51,8 @@ function setupCards(section) {
         updateCard(index, shouldFocus);
 
         const card = cards[index];
-
-        /*
-        const containerWidth = container.clientWidth;
-        const cardLeft = card.offsetLeft;
-        const cardWidth = card.clientWidth;
-        const targetScrollLeft = cardLeft - (containerWidth / 2) + (cardWidth / 2);
-        */
-        const targetScrollLeft = card.offsetLeft;
+        const containerPaddingLeft = parseInt(window.getComputedStyle(container).paddingLeft, 10) || 0;
+        const targetScrollLeft = card.offsetLeft - containerPaddingLeft;
 
         container.scrollTo({
             left: targetScrollLeft,
