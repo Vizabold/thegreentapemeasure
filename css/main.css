@@ -251,7 +251,7 @@
   }
 
   .link--nav-active {
-    @apply text-primary-two border-primary-one;
+    @apply text-primary-one border-primary-one;
   }
 
   .link--nav-mobile {
@@ -259,7 +259,7 @@
   }
 
   .link--nav-mobile-active {
-    @apply bg-primary-one text-neutral-two-dark;
+    @apply bg-primary-two text-neutral-two-dark;
   }
 
   .link--nav-mobile-active-alt {
