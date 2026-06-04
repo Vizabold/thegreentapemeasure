@@ -1,4 +1,5 @@
 const liveRegion = document.getElementById('live-region');
+let slideController;
 
 function setupSlides(dialog) {
   const prevBtn = dialog.querySelector('.analysis-prev-btn');
