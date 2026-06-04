@@ -361,7 +361,7 @@
   }
 
   .event-current {
-    @apply bg-transparent lg:bg-neutral-four;
+    @apply bg-transparent xl:bg-neutral-four;
   }
 
   /* ─────────────────────────────────────────
