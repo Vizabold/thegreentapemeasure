@@ -135,7 +135,7 @@ function setupSlides(dialog) {
               input.nextElementSibling.focus();
             }
           })
-        }
+        } else return
       })
     }, { signal })
   }
