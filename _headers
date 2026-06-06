@@ -1,6 +1,7 @@
 /*
   Cross-Origin-Opener-Policy: same-origin
-  Content-Security-Policy: default-src 'self'; frame-ancestors 'none'; object-src 'none'; base-uri 'self'; img-src 'self' data: https://ytimg.com; font-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'self' https://gtm-analytics.netlify.app; connect-src 'self' https://gtm-analytics.netlify.app; media-src 'self'; frame-src 'self' https://www.youtube.com https://www.youtube-nocookie.com/; worker-src 'self' blob:; upgrade-insecure-requests; report-to /.netlify/functions/csp-report
+  Reporting-Endpoints: netlify-csp="/.netlify/functions/csp-report"
+  Content-Security-Policy: default-src 'self'; frame-ancestors 'none'; object-src 'none'; base-uri 'self'; img-src 'self' data: https://ytimg.com; font-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'self' https://gtm-analytics.netlify.app; connect-src 'self' https://gtm-analytics.netlify.app; media-src 'self'; frame-src 'self' https://www.youtube.com https://www.youtube-nocookie.com/; worker-src 'self' blob:; upgrade-insecure-requests; report-to netlify-csp
 
 /*.html
   Cache-Control: public, max-age=0, must-revalidate
