@@ -128,7 +128,7 @@ function setupSlides(dialog) {
     })
 
     statesNavBtn.addEventListener('click', () => {
-      currentState.nextElementSibling.focus();
+      if (currentState) currentState.nextElementSibling.focus();
     }, { signal })
   }
 
