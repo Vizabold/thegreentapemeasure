@@ -2,13 +2,13 @@
 <html class="scroll-smooth overflow-x-hidden transition-colors duration-300 ease-in-out" lang="en" data-theme="dark">
 
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description"
     content="Protecting public safety and elevating interior design. The Green Tape Measure advocates for recognized, standard-driven, and respected design careers. Learn more.">
   <title>The Green Tape Measure</title>
   <link rel="stylesheet" href="/assets/fonts/fontawesome/css/all.css">
-  <link rel="stylesheet" href="css/output.css" />
+  <link rel="stylesheet" href="css/output.css">
   <link rel="icon" type="image/svg+xml" href="/assets/images/favicon.svg">
   <link rel="alternate icon" type="image/png" sizes="32x32" href="/assets/images/favicon-32x32.png">
   <link rel="apple-touch-icon" href="/assets/images/apple-touch-icon.png">
@@ -25,13 +25,13 @@
   <dialog class="p-0" id="mobile-nav-menu" aria-label="navigation menu and settings" aria-modal="true" popover>
     <div class="flex px-4 pt-8 pb-2 justify-between items-end bg-neutral-one">
       <picture class="mb-1">
-        <source srcset="assets/images/logo-dk.webp" type="image/webp" media="all" data-theme="dark">
-        <source srcset="assets/images/logo-lt.webp" type="image/webp" media="all" data-theme="light">
+        <source srcset="assets/images/logo-dk.webp" type="image/webp" media="(min-width: 0px)" data-theme="dark">
+        <source srcset="assets/images/logo-lt.webp" type="image/webp" media="(min-width: 0px)" data-theme="light">
         <img src="assets/images/logo-lt.png" alt="GTM logo that resembles a green tape measure">
       </picture>
       <div class="flex gap-6 items-center">
-        <label role="button" for="mode-toggle" class="toggle cursor-pointer select-none" tabindex="0"
-          aria-label="dark mode on"><span class="slider"><svg aria-hidden="true"
+        <label for="mode-toggle" class="toggle cursor-pointer select-none" tabindex="0"><span class="sr-only">Toggle
+            dark mode</span><span class="slider"><svg aria-hidden="true"
               class="toggle-moon text-neutral-two-light w-4 h-4 pointer-events-none">
               <use href="/assets/sprites/solid.svg#moon"></use>
             </svg><svg aria-hidden="true" class="toggle-sun text-neutral-two-light w-4 h-4 pointer-events-none">
@@ -59,21 +59,35 @@
   </dialog>
 
   <dialog id="search-overlay" aria-label="Search" aria-modal="true" popover>
-    <form class="fixed flex flex-col inset-0 z-50 bg-neutral-one p-6 gap-4" id="mobile-search-form" role="search">
-      <div class="flex gap-2 items-center">
+    <search class="fixed inset-0 z-50 bg-neutral-one">
+      <form class="flex flex-col p-6 gap-4" id="mobile-search-form" action="/search-endpoint" method="get">
         <label for="search-mobile" class="sr-only">Search</label>
-        <input type="search" id="search-mobile" name="q" class="flex-1" placeholder="Search the site..."
-          autocomplete="off">
-        <button type="button" class="btn btn-icon btn-icon-lg btn-close-dialog" aria-label="close search"
-          popovertarget="search-overlay" popovertargetaction="hide">
-          <svg class="icon-xs" aria-hidden="true">
-            <use href="/assets/sprites/solid.svg#x"></use>
-          </svg>
-        </button>
-      </div>
-      <ul id="search-results-mobile" role="listbox" aria-label="Search results"
-        class="flex flex-col overflow-y-auto mt-2"></ul>
-    </form>
+        <div class="flex gap-10">
+          <div
+            class="flex items-stretch bg-neutral-eight border border-solid border-neutral-six rounded-lg overflow-hidden focus-within:ring-2 focus-within:ring-primary-one"
+            role="combobox" aria-expanded="false" aria-haspopup="listbox" aria-controls="search-results-mobile">
+            <input type="search" id="search-mobile" name="search"
+              class="flex-1 bg-transparent text-neutral-nine placeholder-neutral-seven outline-none focus:outline-none"
+              placeholder="Search the site..." autocomplete="off" aria-autocomplete="list">
+            <button type="submit"
+              class="btn bg-neutral-six px-3 h-11.25 flex items-center justify-center hover:bg-primary-five transition-colors duration-150"
+              aria-label="Search">
+              <svg aria-hidden="true" class="w-6 h-6 text-neutral-seven">
+                <use href="/assets/sprites/solid.svg#magnifying-glass"></use>
+              </svg>
+            </button>
+          </div>
+          <button type="button" class="btn btn-icon btn-icon-lg btn-close-dialog" aria-label="close search"
+            popovertarget="search-overlay" popovertargetaction="hide">
+            <svg class="icon-xs" aria-hidden="true">
+              <use href="/assets/sprites/solid.svg#x"></use>
+            </svg>
+          </button>
+        </div>
+        <ul id="search-results-mobile" role="listbox" aria-label="Search results"
+          class="flex flex-col overflow-y-auto mt-2"></ul>
+      </form>
+    </search>
   </dialog>
 
   <header
@@ -82,8 +96,8 @@
     <div class="flex gap-4 items-end">
       <a href="#">
         <picture class="mb-1">
-          <source srcset="assets/images/logo-dk.webp" type="image/webp" media="all" data-theme="dark">
-          <source srcset="assets/images/logo-lt.webp" type="image/webp" media="all" data-theme="light">
+          <source srcset="assets/images/logo-dk.webp" type="image/webp" media="(min-width: 0px)" data-theme="dark">
+          <source srcset="assets/images/logo-lt.webp" type="image/webp" media="(min-width: 0px)" data-theme="light">
           <img src="assets/images/logo-lt.png" alt="GTM logo that resembles a green tape measure">
         </picture>
       </a>
@@ -98,29 +112,31 @@
       <a class="link link--nav" href="#research">Research</a>
       <a class="link link--nav" href="#advocacy">Advocacy</a>
     </nav>
-    <form class="relative items-center gap-2 hidden js:xxl:flex" role="search">
-      <label for="search" class="sr-only">Search</label>
-      <div
-        class="flex items-stretch bg-neutral-eight border border-solid border-neutral-six rounded-lg overflow-hidden focus-within:ring-2 focus-within:ring-primary-one">
-        <input type="search" name="search"
-          class="w-37.5 xxl:w-50 h-10 px-3 bg-transparent text-white placeholder-neutral-seven outline-none focus:outline-none"
-          id="search" placeholder="search..." autocomplete="off" role="combobox" aria-expanded="false"
-          aria-haspopup="listbox" aria-autocomplete="list" aria-controls="search-results">
-        <button type="submit"
-          class="btn bg-neutral-six px-3 h-11.25 flex items-center justify-center hover:bg-primary-five transition-colors duration-150"
-          aria-label="Search">
-          <svg aria-hidden="true" class="w-6 h-6 text-neutral-seven">
-            <use href="/assets/sprites/solid.svg#magnifying-glass"></use>
-          </svg>
-        </button>
-      </div>
-      <ul id="search-results" role="listbox" aria-label="Search results" class="search-dropdown">
-      </ul>
-    </form>
+    <search class="relative hidden js:xxl:flex">
+      <form class="flex items-center gap-2" action="/search-endpoint" method="get">
+        <label for="search" class="sr-only">Search</label>
+        <div
+          class="flex items-stretch bg-neutral-eight border border-solid border-neutral-six rounded-lg overflow-hidden focus-within:ring-2 focus-within:ring-primary-one"
+          role="combobox" aria-expanded="false" aria-haspopup="listbox" aria-controls="search-results">
+          <input type="search" name="search"
+            class="w-37.5 xxl:w-50 h-10 px-3 bg-transparent text-neutral-nine placeholder-neutral-seven outline-none focus:outline-none"
+            id="search" placeholder="search..." autocomplete="off" aria-autocomplete="list">
+          <button type="submit"
+            class="btn bg-neutral-six px-3 h-11.25 flex items-center justify-center hover:bg-primary-five transition-colors duration-150"
+            aria-label="Search">
+            <svg aria-hidden="true" class="w-6 h-6 text-neutral-seven">
+              <use href="/assets/sprites/solid.svg#magnifying-glass"></use>
+            </svg>
+          </button>
+        </div>
+        <ul id="search-results" role="listbox" aria-label="Search results" class="search-dropdown">
+        </ul>
+      </form>
+    </search>
     <div class="flex gap-6 pb-1 items-center xl:items-end">
       <a class="btn btn-md btn-cta hidden lg:block" href="#takeaction">Take Action</a>
-      <label role="button" for="mode-toggle" class="toggle hidden cursor-pointer select-none lg:block" tabindex="0"
-        aria-label="dark mode on"><span class="slider pointer-events-none"><svg aria-hidden="true"
+      <label for="mode-toggle" class="toggle hidden cursor-pointer select-none lg:block" tabindex="0"><span
+          class="sr-only">Toggle dark mode</span><span class="slider pointer-events-none"><svg aria-hidden="true"
             class="toggle-moon text-neutral-two-light w-4 h-4">
             <use href="/assets/sprites/solid.svg#moon"></use>
           </svg><svg aria-hidden="true" class="toggle-sun text-neutral-two-light w-4 h-4">
@@ -154,8 +170,8 @@
     <div class="flex flex-col gap-8 xl:max-w-150">
       <div class="flex items-end gap-3 border-b border-primary-one pb-2">
         <picture>
-          <source srcset="assets/images/logo-dk.webp" type="image/webp" media="all" data-theme="dark">
-          <source srcset="assets/images/logo-lt.webp" type="image/webp" media="all" data-theme="light">
+          <source srcset="assets/images/logo-dk.webp" type="image/webp" media="(min-width: 0px)" data-theme="dark">
+          <source srcset="assets/images/logo-lt.webp" type="image/webp" media="(min-width: 0px)" data-theme="light">
           <img src="assets/images/logo-lt.png" alt="GTM logo that resembles a green tape measure">
         </picture>
         <p class="paragraph-md text-neutral-nine -mb-1.5">Research. Educate. Advance.</p>

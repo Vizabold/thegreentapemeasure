@@ -8,7 +8,7 @@
                 volunteer as we transition into a full-scale non-profit powerhouse.</p>
         </div>
         <picture>
-            <source srcset="assets/images/takeaction-scrib.webp" media="all" data-theme="dark, light">
+            <source srcset="assets/images/takeaction-scrib.webp" media="(min-width: 0px)" data-theme="dark, light">
             <img class="w-62.5 min-w-62.5 hidden md:block" src="/assets/images/takeaction-scrib.png"
                 alt="Scrib, the GTM mascot, a cross between a monkey and an otter, facing forward with a magnifying glass to its right eye">
         </picture>
@@ -225,7 +225,7 @@
             <form class="card gap-10 bg-neutral-four xl:w-[65%] xl:justify-between" id="volunteer-interest"
                 data-netlify="true" name="volunteer-interest" method="POST" netlify-honeypot="bot-field"
                 action="/thank-you.html">
-                <input name="bot-field" hidden />
+                <input name="bot-field" hidden>
                 <h3 class="text-center">Join Scrib's Team of Investigators!</h3>
                 <fieldset>
                     <legend class="text-xl text-neutral-nine">Basic Information</legend>
@@ -236,12 +236,12 @@
                                     <label for="name">Full Name</label>
                                     <p class="text-secondary-five">required</p>
                                 </div>
-                                <input id="name" type="name" name="name" autocomplete="name" required />
+                                <input id="name" type="text" name="name" required>
                             </div>
                             <div class="flex flex-col gap-1">
                                 <label for="phone">Phone Number</label>
                                 <div class="flex gap-2">
-                                    <select id="phone-country" name="phone-country" autocomplete="tel-country-code"
+                                    <select id="phone-country" name="phone-country" autocomplete="tel"
                                         aria-label="Country code" class="w-20 min-w-20">
                                         <option value="+1">+1</option>
                                         <option value="+7">+7</option>
@@ -261,7 +261,7 @@
                                         <option value="+91">+91</option>
                                     </select>
                                     <input id="phone" type="tel" name="phone" autocomplete="tel-national"
-                                        class="flex-1 min-w-0" />
+                                        class="flex-1 min-w-0">
                                 </div>
                             </div>
                         </div>
@@ -271,14 +271,14 @@
                                     <label for="email">Email</label>
                                     <p class="text-secondary-five">required</p>
                                 </div>
-                                <input id="email" type="email" name="email" autocomplete="email" required />
+                                <input id="email" type="email" name="email" autocomplete="email" required>
                             </div>
                             <fieldset class="flex flex-col gap-1">
                                 <legend class="text-base neutral-seven mb-1">Local to Raleigh?</legend>
                                 <div class="flex w-35 justify-between lg:gap-4">
                                     <div class="relative flex gap-1 items-center">
                                         <label for="local-yes">Yes</label>
-                                        <input class="peer" id="local-yes" type="radio" name="local" value="yes" />
+                                        <input class="peer" id="local-yes" type="radio" name="local" value="yes">
                                         <svg class="absolute right-2 top-1.75 icon-xs fill-current text-primary-one hidden peer-checked:block pointer-events-none"
                                             aria-hidden="true">
                                             <use href="/assets/sprites/solid.svg#check"></use>
@@ -286,7 +286,7 @@
                                     </div>
                                     <div class="relative flex gap-1 items-center">
                                         <label for="local-no">No</label>
-                                        <input class="peer" id="local-no" type="radio" name="local" value="no" />
+                                        <input class="peer" id="local-no" type="radio" name="local" value="no">
                                         <svg class="absolute right-2 top-1.75 icon-xs fill-current text-primary-one hidden peer-checked:block pointer-events-none"
                                             aria-hidden="true">
                                             <use href="/assets/sprites/solid.svg#check"></use>
@@ -306,7 +306,7 @@
                             <div class="flex flex-col gap-8 xs:flex-row xs:gap-12 sm:flex-col sm:gap-6">
                                 <div class="relative flex gap-1 w-35 justify-end">
                                     <label class="text-right self-center" for="weekends">Weekends</label>
-                                    <input class="peer" id="weekends" type="checkbox" name="weekends" />
+                                    <input class="peer" id="weekends" type="checkbox" name="weekends">
                                     <svg class="absolute right-2 top-1.75 icon-xs fill-current text-primary-one hidden peer-checked:block pointer-events-none"
                                         aria-hidden="true">
                                         <use href="/assets/sprites/solid.svg#check"></use>
@@ -314,7 +314,7 @@
                                 </div>
                                 <div class="relative flex gap-1 w-35 justify-end">
                                     <label class="text-right self-center" for="weekdays">Weekdays</label>
-                                    <input class="peer" id="weekdays" type="checkbox" name="weekdays" />
+                                    <input class="peer" id="weekdays" type="checkbox" name="weekdays">
                                     <svg class="absolute right-2 top-1.75 icon-xs fill-current text-primary-one hidden peer-checked:block pointer-events-none"
                                         aria-hidden="true">
                                         <use href="/assets/sprites/solid.svg#check"></use>
@@ -327,7 +327,7 @@
                             <div class="flex gap-6 w-35 justify-end">
                                 <div class="relative flex gap-1">
                                     <label class="text-right self-center" for="morning">AM</label>
-                                    <input class="peer" id="morning" type="checkbox" name="morning" />
+                                    <input class="peer" id="morning" type="checkbox" name="morning">
                                     <svg class="absolute right-2 top-1.75 icon-xs fill-current text-primary-one hidden peer-checked:block pointer-events-none"
                                         aria-hidden="true">
                                         <use href="/assets/sprites/solid.svg#check"></use>
@@ -335,7 +335,7 @@
                                 </div>
                                 <div class="relative flex gap-1">
                                     <label class="text-right self-center" for="afternoon">PM</label>
-                                    <input class="peer" id="afternoon" type="checkbox" name="afternoon" />
+                                    <input class="peer" id="afternoon" type="checkbox" name="afternoon">
                                     <svg class="absolute right-2 top-1.75 icon-xs fill-current text-primary-one hidden peer-checked:block pointer-events-none"
                                         aria-hidden="true">
                                         <use href="/assets/sprites/solid.svg#check"></use>
@@ -351,7 +351,7 @@
                         <div class="flex flex-col gap-8 justify-end xs:flex-row xs:gap-12 sm:flex-col lg:gap-6">
                             <div class="relative flex justify-end gap-1 w-35">
                                 <label class="text-right self-center" for="events">Events</label>
-                                <input class="peer" id="events" type="checkbox" name="events" />
+                                <input class="peer" id="events" type="checkbox" name="events">
                                 <svg class="absolute right-2 top-1.75 icon-xs fill-current text-primary-one hidden peer-checked:block pointer-events-none"
                                     aria-hidden="true">
                                     <use href="/assets/sprites/solid.svg#check"></use>
@@ -359,7 +359,7 @@
                             </div>
                             <div class="relative flex justify-end gap-1 w-35">
                                 <label class="text-right self-center" for="research-int">Research</label>
-                                <input class="peer" id="research-int" type="checkbox" name="research-int" />
+                                <input class="peer" id="research-int" type="checkbox" name="research-int">
                                 <svg class="absolute right-2 top-1.75 icon-xs fill-current text-primary-one hidden peer-checked:block pointer-events-none"
                                     aria-hidden="true">
                                     <use href="/assets/sprites/solid.svg#check"></use>
@@ -369,7 +369,7 @@
                         <div class="flex flex-col gap-8 justify-end xs:flex-row xs:gap-12 sm:flex-col lg:gap-6">
                             <div class="relative flex justify-end gap-1 w-35">
                                 <label class="text-right self-center" for="fundraising">Fundraising</label>
-                                <input class="peer" id="fundraising" type="checkbox" name="fundraising" />
+                                <input class="peer" id="fundraising" type="checkbox" name="fundraising">
                                 <svg class="absolute right-2 top-1.75 icon-xs fill-current text-primary-one hidden peer-checked:block pointer-events-none"
                                     aria-hidden="true">
                                     <use href="/assets/sprites/solid.svg#check"></use>
@@ -377,7 +377,7 @@
                             </div>
                             <div class="relative flex justify-end gap-1 w-35">
                                 <label class="text-right self-center" for="social-media">Social Media</label>
-                                <input class="peer" id="social-media" type="checkbox" name="social-media" />
+                                <input class="peer" id="social-media" type="checkbox" name="social-media">
                                 <svg class="absolute right-2 top-1.75 icon-xs fill-current text-primary-one hidden peer-checked:block pointer-events-none"
                                     aria-hidden="true">
                                     <use href="/assets/sprites/solid.svg#check"></use>
@@ -387,7 +387,7 @@
                         <div class="flex flex-col gap-8 justify-end xs:flex-row xs:gap-12 sm:flex-col lg:gap-6">
                             <div class="relative flex justify-end gap-1 w-35">
                                 <label class="text-right self-center" for="legislation">Legislation</label>
-                                <input class="peer" id="legislation" type="checkbox" name="legislation" />
+                                <input class="peer" id="legislation" type="checkbox" name="legislation">
                                 <svg class="absolute right-2 top-1.75 icon-xs fill-current text-primary-one hidden peer-checked:block pointer-events-none"
                                     aria-hidden="true">
                                     <use href="/assets/sprites/solid.svg#check"></use>
@@ -395,7 +395,7 @@
                             </div>
                             <div class="relative flex justify-end gap-1 w-35">
                                 <label class="text-right self-center" for="web-design">Web Design</label>
-                                <input class="peer" id="web-design" type="checkbox" name="web-design" />
+                                <input class="peer" id="web-design" type="checkbox" name="web-design">
                                 <svg class="absolute right-2 top-1.75 icon-xs fill-current text-primary-one hidden peer-checked:block pointer-events-none"
                                     aria-hidden="true">
                                     <use href="/assets/sprites/solid.svg#check"></use>
@@ -412,8 +412,7 @@
                                 institution?</label>
                             <p class="text-secondary-five">required</p>
                         </div>
-                        <input id="occupation" type="text" name="occupation" autocomplete="organization-title"
-                            required />
+                        <input id="occupation" type="text" name="occupation" autocomplete="organization-title" required>
                     </div>
                     <div class="flex flex-col gap-1">
                         <div class="flex justify-between">
@@ -421,7 +420,7 @@
                             <p class="text-secondary-five">required</p>
                         </div>
                         <input id="linkedin" type="url" name="linkedin" placeholder="https://www.linkedin.com/in/..."
-                            required />
+                            required>
                     </div>
                     <div class="flex flex-col gap-1">
                         <label for="comment">Share more about yourself</label>
@@ -432,7 +431,7 @@
                 </fieldset>
                 <div class="flex gap-2 lg:items-center">
                     <div class="relative flex">
-                        <input class="peer" id="certify" type="checkbox" name="certify" required />
+                        <input class="peer" id="certify" type="checkbox" name="certify" required>
                         <svg class="absolute right-2 top-1.75 icon-xs fill-current text-primary-one hidden peer-checked:block pointer-events-none"
                             aria-hidden="true">
                             <use href="/assets/sprites/solid.svg#check"></use>
@@ -446,18 +445,20 @@
                 </div>
                 <div class="flex gap-2 lg:items-center">
                     <div class="relative flex">
-                        <input class="peer" id="agree" type="checkbox" name="agree" required />
+                        <input class="peer" id="agree" type="checkbox" name="agree" required>
                         <svg class="absolute right-2 top-1.75 icon-xs fill-current text-primary-one hidden peer-checked:block pointer-events-none"
                             aria-hidden="true">
                             <use href="/assets/sprites/solid.svg#check"></use>
                         </svg>
                     </div>
-                    <label for="agree">By submitting, you agree to and understand our <button type="button"
-                            popovertarget="privacy" aria-haspopup="dialog" aria-controls="privacy" aria-expanded="false"
+                    <div>
+                        <label for="agree">By submitting, you agree to and understand our </label><button type="button"
+                            popovertarget="privacy" aria-haspopup="dialog" aria-controls="privacy"
                             class="link link--inline">Privacy Policy</button>
-                        and
+                        <span> and </span>
                         <button type="button" popovertarget="disclaimer" aria-haspopup="dialog" aria-controls="privacy"
-                            aria-expanded="false" class="link link--inline">Disclaimer</button>.</label>
+                            class="link link--inline">Disclaimer</button><span>.</span>
+                    </div>
                 </div>
                 <button type="submit" class="btn btn-lg btn-cta">Get Involved</button>
             </form>

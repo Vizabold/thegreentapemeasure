@@ -78,7 +78,7 @@ const desktopList = document.getElementById('search-results');
 
 function closeDesktop() {
   desktopList.classList.remove('is-open');
-  desktopInput.setAttribute('aria-expanded', 'false');
+  desktopInput.parentElement.setAttribute('aria-expanded', 'false');
 }
 
 desktopForm.addEventListener('submit', e => {
@@ -95,7 +95,7 @@ desktopInput.addEventListener('input', () => {
     closeDesktop();
   });
   desktopList.classList.add('is-open');
-  desktopInput.setAttribute('aria-expanded', 'true');
+  desktopInput.parentElement.setAttribute('aria-expanded', 'true');
 });
 
 desktopInput.addEventListener('keydown', e => handleKeys(e, desktopList, desktopInput, closeDesktop));
@@ -121,7 +121,7 @@ function removeSearchListeners() {
 
 function closeMobile() {
   mobileList.classList.remove('is-open');
-  mobileInput.setAttribute('aria-expanded', 'false');
+  mobileInput.parentElement.setAttribute('aria-expanded', 'false');
 }
 
 function closeOverlay() {
@@ -151,7 +151,7 @@ function addSearchListeners() {
       setTimeout(() => result.element.scrollIntoView({ behavior: 'smooth', block: 'start' }), 50);
     });
     mobileList.classList.add('is-open');
-    mobileInput.setAttribute('aria-expanded', 'true');
+    mobileInput.parentElement.setAttribute('aria-expanded', 'true');
   }, { signal });
 
   mobileInput.addEventListener('keydown', e => handleKeys(e, mobileList, mobileInput, closeMobile), { signal });
