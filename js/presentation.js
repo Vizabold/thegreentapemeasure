@@ -82,13 +82,39 @@ function setupSlides(dialog) {
     })
 
     slide3bWrappers.forEach(wrapper => {
-      wrapper.addEventListener('keydown', (e) => {
-        if (e.key === ' ' || e.key === 'Enter') {
-          e.stopPropagation();
+      const radios = Array.from(wrapper.querySelectorAll('input[type="radio"]'));
+
+      wrapper.addEventListener('keydown', (event) => {
+        const currentInput = document.activeElement;
+        if (!radios.includes(currentInput)) return;
+
+        const currentRadio = radios.indexOf(currentInput);
+        let nextRadio = null;
+
+        if (event.key === 'ArrowDown' || event.key === 'ArrowRight') {
+          event.preventDefault();
+          nextRadio = (currentRadio + 1) % radios.length;
+        } else if (event.key === 'ArrowUp' || event.key === 'ArrowLeft') {
+          event.preventDefault();
+          nextRadio = (currentRadio - 1 + radios.length) % radios.length;
+        }
+
+        if (nextRadio !== null) {
+          radios[nextRadio].focus();
+          return;
+        }
+
+        if (event.key === ' ' || event.key === 'Enter') {
+          event.stopPropagation();
+
+          if (event.key === ' ') {
+            event.preventDefault();
+            currentInput.checked = true;
+            currentInput.dispatchEvent(new Event('change', { bubbles: true }));
+          }
         }
       }, { signal });
     })
-
   }
 
   slideContainer.addEventListener('scroll', () => {
