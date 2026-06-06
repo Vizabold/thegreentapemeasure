@@ -111,6 +111,12 @@ function setupSlides(dialog) {
             event.preventDefault();
             currentInput.checked = true;
             currentInput.dispatchEvent(new Event('change', { bubbles: true }));
+            liveRegion.innerText = 'bill details updated';
+            setTimeout(() => {
+              billDetailsContainer.focus({
+                preventScroll: true
+              });
+            }, 500)
           }
         }
       }, { signal });
