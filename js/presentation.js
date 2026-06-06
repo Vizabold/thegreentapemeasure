@@ -63,6 +63,9 @@ function setupSlides(dialog) {
     const slide3bWrappers = slide3b.querySelectorAll('.accordion-content-wrapper');
     const analysis3Inputs = slide3b.querySelectorAll('input');
     const billDetailsContainer = document.getElementById('state-bill-details');
+    const statesNavBtn = document.getElementById('states-nav-btn');
+    const statesList = document.getElementById('states-list');
+    const allStates = statesList.querySelectorAll('p');
 
     analysis3Inputs.forEach(input => {
       input.addEventListener('click', () => {
@@ -121,6 +124,20 @@ function setupSlides(dialog) {
         }
       }, { signal });
     })
+
+    statesNavBtn.addEventListener('click', () => {
+      allStates.forEach(state => {
+        const currentDisplay = window.getComputedStyle(state);
+        if (currentDisplay !== 'none') {
+          const abbrev = state.className.match(/\/([a-z]{2})/);
+          analysis3Inputs.forEach(input => {
+            if (input.id === abbrev) {
+              input.nextElementSibling.focus();
+            }
+          })
+        }
+      })
+    }, { signal })
   }
 
   slideContainer.addEventListener('scroll', () => {

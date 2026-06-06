@@ -127,7 +127,8 @@
                                 <input type="radio" name="state" id="de" class="peer/de sr-only"
                                     aria-controls="state-bill-details">
                                 <label for="de"
-                                    class="link link--inline cursor-pointer peer-focus/de:outline peer-focus/de:outline-primary-one peer-focus/de:outline-offset-2 max-w-fit">Delaware</label>
+                                    class="link link--inline cursor-pointer peer-focus/de:outline peer-focus/de:outline-primary-one peer-focus/de:outline-offset-2 max-w-fit"
+                                    id="delaware">Delaware</label>
                                 <input type="radio" name="state" id="dc" class="peer/dc sr-only"
                                     aria-controls="state-bill-details">
                                 <label for="dc"
@@ -401,7 +402,7 @@
             </div>
             <div class="legend scrollbar" tabindex="-1" id="state-bill-details">
                 <h3>Bill Details</h3>
-                <div class="flex gap-1">
+                <div class="flex gap-1" id="states-list">
                     <p class="paragraph-accent text-neutral-nine capitalize">State:</p>
                     <p class="hidden group-has-[:checked.peer\/de]/states:inline">Delaware</p>
                     <p class="hidden group-has-[:checked.peer\/dc]/states:inline">District of Columbia</p>
@@ -1227,6 +1228,8 @@
                     <p class="hidden group-has-[:checked.peer\/hi]/states:inline">N/A - no regulation</p>
                     </p>
                 </div>
+                <button type="button" class="link link--inline-green hidden js:block" id="states-nav-btn">Return to
+                    states</button>
             </div>
         </div>
     </div>
