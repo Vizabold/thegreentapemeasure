@@ -196,7 +196,7 @@ if (modeToggle) {
     const theme = isLight ? 'light' : 'dark';
 
     toggleLabels.forEach(label => {
-      label.firstElementChild.textContent(isLight ? 'light mode on' : 'dark mode on');
+      label.firstElementChild.textContent = isLight ? 'light mode on' : 'dark mode on';
     });
 
     document.documentElement.setAttribute('data-theme', theme);
