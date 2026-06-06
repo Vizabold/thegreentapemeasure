@@ -130,6 +130,8 @@ function setupSlides(dialog) {
         const currentDisplay = window.getComputedStyle(state);
         if (currentDisplay !== 'none') {
           const abbrev = state.className.match(/\/([a-z]{2})/);
+          console.log(state);
+          console.log(abbrev);
           analysis3Inputs.forEach(input => {
             if (input.id === abbrev) {
               input.nextElementSibling.focus();
