@@ -64,8 +64,7 @@ function setupSlides(dialog) {
     const analysis3Inputs = slide3b.querySelectorAll('input');
     const billDetailsContainer = document.getElementById('state-bill-details');
     const statesNavBtn = document.getElementById('states-nav-btn');
-    const statesList = document.getElementById('states-list');
-    const allStates = statesList.querySelectorAll('p');
+    let currentState;
 
     analysis3Inputs.forEach(input => {
       input.addEventListener('click', () => {
@@ -81,6 +80,8 @@ function setupSlides(dialog) {
             preventScroll: true
           });
         }, 500)
+
+        currentState = input;
       }, { signal })
     })
 
@@ -120,25 +121,14 @@ function setupSlides(dialog) {
                 preventScroll: true
               });
             }, 500)
+            currentState = currentInput;
           }
         }
       }, { signal });
     })
 
     statesNavBtn.addEventListener('click', () => {
-      allStates.forEach(state => {
-        const currentDisplay = window.getComputedStyle(state);
-        if (currentDisplay !== 'none') {
-          const abbrev = state.className.match(/\/([a-z]{2})/);
-          console.log(state);
-          console.log(abbrev);
-          analysis3Inputs.forEach(input => {
-            if (input.id === abbrev) {
-              input.nextElementSibling.focus();
-            }
-          })
-        } else return
-      })
+      currentState.nextElementSibling.focus();
     }, { signal })
   }
 
