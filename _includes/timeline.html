@@ -8,7 +8,7 @@
         <p class="js:hidden">Scroll or swipe to see the next or previous event.</p>
     </div>
     <div class="relative w-full min-h-137.5 max-w-350 js:max-w-none" id="timeline-container">
-        <div class="flex w-full items-center absolute top-13 z-2">
+        <div class="flex w-full items-center absolute top-18.75 z-2 js:top-13 ">
             <button type="button" class="btn btn-icon btn-icon-lg z-1 hidden js:flex" id="timeline-prev-btn"
                 aria-label="see previous event" aria-controls="events-container">
                 <svg class="icon-xs" aria-hidden="true">
@@ -24,7 +24,7 @@
                 </svg>
             </button>
         </div>
-        <div class="flex gap-12.5 ml-12 mr-12 overflow-x-auto scroll-smooth snap-x snap-mandatory scrollbar-none relative z-1"
+        <div class="flex gap-12.5 ml-12 mr-12 overflow-x-auto scroll-smooth snap-x snap-mandatory scrollbar js:scrollbar-none relative z-1"
             id="events-container" role="region" aria-roledescription="carousel" aria-label="Events">
             <div class="timeline-event" tabindex="-1" role="group" aria-roledescription="slide"
                 aria-label="event 1 of 24">
