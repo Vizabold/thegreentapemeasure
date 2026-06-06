@@ -1,4 +1,5 @@
-const TIMER_SECONDS = 30;
+const STANDARD_TIMER_SECONDS = 30;
+const EXTENDED_TIMER_SECONDS = 300;
 const STORAGE_KEY = 'gtm-quiz-daily';
 
 const draggablesEl = document.getElementById('draggables');
@@ -58,7 +59,7 @@ if (draggablesEl && dropzonesEl && readyBtn) {
   let activeDraggable = null;
   let draggingBtn = null;
   let timerInterval = null;
-  let timeLeft = TIMER_SECONDS;
+  let timeLeft = STANDARD_TIMER_SECONDS;
   let quizRunning = false;
   let panelsShown = false;
 
@@ -122,12 +123,21 @@ if (draggablesEl && dropzonesEl && readyBtn) {
       dropzonesEl.addEventListener('animationend', () => clearAnim(dropzonesEl), { once: true });
     }
 
+    const accessibilityCheckbox = document.getElementById('sr-timer-toggle');
+    const isExtended = accessibilityCheckbox && accessibilityCheckbox.checked;
     quizRunning = true;
-    timeLeft = TIMER_SECONDS;
+    timeLeft = isExtended ? EXTENDED_TIMER_SECONDS : STANDARD_TIMER_SECONDS;
     readyBtn.disabled = true;
     readyBtn.className = 'btn btn-md btn-secondary';
+
+    if (accessibilityCheckbox) {
+      accessibilityCheckbox.parentElement.style.display = 'none';
+    }
+
     startTimer();
-    announce('Quiz started. 30 seconds on the clock. Tab to a job title and press Enter or Space to pick it up, then Tab to a definition box and press Enter or Space to place it. Press Escape to put a title back down.');
+
+    const timeMessage = isExtended ? '5 minutes' : '30 seconds';
+    announce(`Quiz started. ${timeMessage} on the clock. Tab to a job title and press Enter or Space to pick it up, then Tab to a definition box and press Enter or Space to place it. Press Escape to put a title back down.`);
   }
 
   function startTimer() {
@@ -135,6 +145,11 @@ if (draggablesEl && dropzonesEl && readyBtn) {
     timerInterval = setInterval(() => {
       timeLeft--;
       updateTimerDisplay();
+
+      if (timeLeft > 0 && timeLeft % 30 === 0) {
+        announce(`${timeLeft} seconds remaining.`);
+      }
+
       if (timeLeft <= 0) {
         clearInterval(timerInterval);
         timerExpired();
@@ -167,6 +182,12 @@ if (draggablesEl && dropzonesEl && readyBtn) {
     readyBtn.className = 'btn btn-md btn-cta';
     readyBtn.removeAttribute('aria-label');
     readyBtn.addEventListener('click', handleReset, { once: true });
+    const accessibilityCheckbox = document.getElementById('sr-timer-toggle');
+    if (accessibilityCheckbox) {
+      accessibilityCheckbox.parentElement.style.display = '';
+    }
+    announce('Time has run out! Would you like to try again?');
+    readyBtn.focus();
   }
 
   function quizWon() {
