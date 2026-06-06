@@ -60,18 +60,12 @@ function setupSlides(dialog) {
 
   if (dialog.id === 'analysis-three') {
     const slide3b = document.getElementById('slide-3b');
+    const slide3bWrappers = slide3b.querySelectorAll('.accordion-content-wrapper');
     const analysis3Inputs = slide3b.querySelectorAll('input');
     const billDetailsContainer = document.getElementById('state-bill-details');
-    let currentlyChecked;
 
     analysis3Inputs.forEach(input => {
       input.addEventListener('click', () => {
-        if (currentlyChecked) {
-          currentlyChecked.setAttribute('aria-expanded', 'false');
-        }
-        input.setAttribute('aria-expanded', 'true');
-        currentlyChecked = input;
-
         billDetailsContainer.scrollIntoView({
           behavior: 'smooth',
           block: 'start'
@@ -86,6 +80,15 @@ function setupSlides(dialog) {
         }, 500)
       }, { signal })
     })
+
+    slide3bWrappers.forEach(wrapper => {
+      wrapper.addEventListener('keydown', (e) => {
+        if (e.key === ' ' || e.key === 'Enter') {
+          e.stopPropagation();
+        }
+      }, { signal });
+    })
+
   }
 
   slideContainer.addEventListener('scroll', () => {
