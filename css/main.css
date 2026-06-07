@@ -47,11 +47,6 @@
 
   dialog {
     @apply fixed hidden flex-col top-0 left-0 m-0 w-full h-full min-w-screen min-h-dvh text-inherit bg-neutral-three p-8 gap-12 opacity-0 -translate-x-full backdrop:bg-neutral-one backdrop:opacity-70 backdrop:backdrop-blur-sm transition-all duration-1000 ease-in-out transition-discrete [&:popover-open]:flex open:flex [&:popover-open]:translate-x-0 open:translate-x-0 [&:popover-open]:opacity-100 open:opacity-100 open:starting:opacity-0 open:starting:-translate-x-full [&:popover-open]:starting:opacity-0 [&:popover-open]:starting:-translate-x-full;
-
-    transition-property: transform, opacity, display, overlay;
-    transition-duration: 1000ms;
-    transition-behavior: allow-discrete;
-    transition-timing-function: ease-in-out;
   }
 
   h2,
