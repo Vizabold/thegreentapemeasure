@@ -38,6 +38,40 @@ const footerObserver = new IntersectionObserver((entries) => {
 
 footerObserver.observe(footerSentinel);
 
+/*------------------------------ DETAILS TRANSITION FALLBACK --------------------------------- */
+const dialogAccordionCleanups = new WeakMap();
+
+document.querySelectorAll('details').forEach((details) => {
+  const summary = details.querySelector('summary');
+  let content = details.querySelector('.accordion-content-wrapper');
+
+  const handleAccordionToggle = (e) => {
+    e.preventDefault();
+    if (!details.hasAttribute('open')) {
+      details.setAttribute('open', '');
+      requestAnimationFrame(() => details.classList.add('is-open'));
+    } else {
+      details.classList.remove('is-open');
+      setTimeout(() => details.removeAttribute('open'), 500);
+    }
+  };
+
+  summary.addEventListener('click', handleAccordionToggle);
+
+  const parentDialog = details.closest('dialog');
+  if (parentDialog) {
+    if (!dialogAccordionCleanups.has(parentDialog)) {
+      dialogAccordionCleanups.set(parentDialog, []);
+    }
+
+    dialogAccordionCleanups.get(parentDialog).push(() => {
+      summary.removeEventListener('click', handleAccordionToggle);
+      details.classList.remove('is-open');
+      details.removeAttribute('open');
+    });
+  }
+});
+
 /*--------------- POPOVER FOCUS TRAP & LEGACY SUPPORT --------------------- */
 function applyFocusTrap(e, container) {
   if (e.key !== 'Tab') return;
@@ -72,6 +106,15 @@ document.querySelectorAll('button[popovertarget]').forEach(button => {
   dialog.removeAttribute('popover');
   button.removeAttribute('popovertarget');
 
+  const cleanupDialogAccordions = () => {
+    const cleanups = dialogAccordionCleanups.get(dialog);
+    if (cleanups) {
+      cleanups.forEach(removeListener => removeListener());
+      dialogAccordionCleanups.delete(dialog);
+      console.log('accordion listeners removed');
+    }
+  };
+
   button.addEventListener('click', (e) => {
     e.preventDefault();
     dialog.showModal();
@@ -79,11 +122,13 @@ document.querySelectorAll('button[popovertarget]').forEach(button => {
     const closeBtn = dialog.querySelector('.btn-close-dialog');
     if (closeBtn) {
       closeBtn.addEventListener('click', () => {
+        cleanupDialogAccordions();
         dialog.close();
         button.focus();
       }, { once: true });
     }
     dialog.addEventListener('close', () => {
+      cleanupDialogAccordions();
       button.focus();
     }, { once: true });
   })
@@ -301,25 +346,3 @@ if (videoWrapper) {
   });
 }
 
-/*------------------------------ DETAILS TRANSITION FALLBACK --------------------------------- */
-document.querySelectorAll('details').forEach((details) => {
-  const summary = details.querySelector('summary');
-  let content = details.querySelector('.accordion-content-wrapper');
-
-  summary.addEventListener('click', (e) => {
-    e.preventDefault();
-
-    if (!details.hasAttribute('open')) {
-      details.setAttribute('open', '');
-      requestAnimationFrame(() => {
-        details.classList.add('is-open');
-      });
-    } else {
-      details.classList.remove('is-open');
-
-      setTimeout(() => {
-        details.removeAttribute('open');
-      }, 500);
-    }
-  });
-});
