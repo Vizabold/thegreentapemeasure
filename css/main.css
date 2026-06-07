@@ -19,6 +19,10 @@
     interpolate-size: allow-keywords;
   }
 
+  body {
+    will-change: background-color, color;
+  }
+
   :focus-visible {
     @apply outline-offset-3 outline-primary-one outline-2;
   }
@@ -382,6 +386,8 @@
 
   .slider {
     @apply absolute w-6.25 h-6.25 flex justify-center items-center rounded-full p-1 bg-primary-three translate-y-[-50%] top-[50%] left-1.25 transition-transform duration-750 ease-out;
+
+    will-change: transform;
   }
 
   .toggle-sun {
