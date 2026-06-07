@@ -33,11 +33,12 @@
   }
 
   details::details-content {
-    @apply block-0 opacity-0 overflow-hidden transition-[block-size_opacity_content-visibility] duration-500 ease-in-out allow-discrete;
+    @apply block-0 opacity-0 overflow-hidden duration-500 ease-in-out;
+    transition: block-size 500ms ease-in-out, opacity 500ms ease-in-out, transform 500ms ease-in-out, content-visibility 500ms ease-in-out allow-discrete;
   }
 
   details[open]::details-content {
-    @apply block-auto opacity-100 animate-slideInDown;
+    @apply block-auto opacity-100 transform-none;
   }
 
   dialog {
