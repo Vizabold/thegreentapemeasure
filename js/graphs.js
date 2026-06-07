@@ -155,6 +155,8 @@ function renderChart(type, series, labels, chartEl, placeholder, colors, selecte
         return;
     }
 
+    chartEl.innerHTML = '';
+
     const graphController = new AbortController();
     const { signal } = graphController;
 
@@ -852,6 +854,7 @@ function renderChart(type, series, labels, chartEl, placeholder, colors, selecte
         if (event.newState === 'closed') {
             if (graphController) {
                 graphController.abort();
+                console.log('listeners removed');
             }
         }
     })
@@ -860,30 +863,34 @@ function renderChart(type, series, labels, chartEl, placeholder, colors, selecte
 const dialogs = document.querySelectorAll('.analysis-dialog');
 
 dialogs.forEach(dialog => {
-    if (dialog.id === 'analysis-one') {
-        renderChart(type1a, series1a, labels1a, chart1a, placeholder1a, colors1a, selectedIndex1a, dialog);
-        renderChart(type1b, series1b, labels1b, chart1b, placeholder1b, colors1b, selectedIndex1b, dialog);
-        renderChart(type1c, series1c, labels1c, chart1c, placeholder1c, colors1c, selectedIndex1c, dialog);
-        renderChart(type1d, series1d, labels1d, chart1d, placeholder1d, colors1d, selectedIndex1d, dialog);
-        renderChart(type1e, series1e, labels1e, chart1e, placeholder1e, colors1e, selectedIndex1e, dialog);
-        renderChart(type1f, series1f, labels1f, chart1f, placeholder1f, colors1f, selectedIndex1f, dialog);
-        renderChart(type1g, series1g, labels1g, chart1g, placeholder1g, colors1g, selectedIndex1g, dialog);
-    }
+    dialog.addEventListener('toggle', (e) => {
+        if (e.newState === 'open') {
+            if (dialog.id === 'analysis-one') {
+                renderChart(type1a, series1a, labels1a, chart1a, placeholder1a, colors1a, selectedIndex1a, dialog);
+                renderChart(type1b, series1b, labels1b, chart1b, placeholder1b, colors1b, selectedIndex1b, dialog);
+                renderChart(type1c, series1c, labels1c, chart1c, placeholder1c, colors1c, selectedIndex1c, dialog);
+                renderChart(type1d, series1d, labels1d, chart1d, placeholder1d, colors1d, selectedIndex1d, dialog);
+                renderChart(type1e, series1e, labels1e, chart1e, placeholder1e, colors1e, selectedIndex1e, dialog);
+                renderChart(type1f, series1f, labels1f, chart1f, placeholder1f, colors1f, selectedIndex1f, dialog);
+                renderChart(type1g, series1g, labels1g, chart1g, placeholder1g, colors1g, selectedIndex1g, dialog);
+            }
 
-    if (dialog.id === 'analysis-two') {
-        renderChart(type2a, series2a, labels2a, chart2a, placeholder2a, colors2a, selectedIndex2a, dialog);
-        renderChart(type2a, series2b, labels2b, chart2b, placeholder2b, colors2b, selectedIndex2b, dialog);
-        renderChart(type2c, series2c, labels2c, chart2c, placeholder2c, colors2c, selectedIndex2c, dialog);
-        renderChart(type2d, series2d, labels2d, chart2d, placeholder2d, colors2d, selectedIndex2d, dialog);
-    }
+            if (dialog.id === 'analysis-two') {
+                renderChart(type2a, series2a, labels2a, chart2a, placeholder2a, colors2a, selectedIndex2a, dialog);
+                renderChart(type2a, series2b, labels2b, chart2b, placeholder2b, colors2b, selectedIndex2b, dialog);
+                renderChart(type2c, series2c, labels2c, chart2c, placeholder2c, colors2c, selectedIndex2c, dialog);
+                renderChart(type2d, series2d, labels2d, chart2d, placeholder2d, colors2d, selectedIndex2d, dialog);
+            }
 
-    if (dialog.id === 'analysis-three') {
-        renderChart(type3a, series3a, labels3a, chart3a, placeholder3a, colors3a, selectedIndex3a, dialog);
-    }
+            if (dialog.id === 'analysis-three') {
+                renderChart(type3a, series3a, labels3a, chart3a, placeholder3a, colors3a, selectedIndex3a, dialog);
+            }
 
-    if (dialog.id === 'analysis-four') {
-        renderChart(type4a, series4a, labels4a, chart4a, placeholder4a, colors4a, selectedIndex4a, dialog);
-        renderChart(type4b, series4b, labels4b, chart4b, placeholder4b, colors4b, selectedIndex4b, dialog);
-    }
+            if (dialog.id === 'analysis-four') {
+                renderChart(type4a, series4a, labels4a, chart4a, placeholder4a, colors4a, selectedIndex4a, dialog);
+                renderChart(type4b, series4b, labels4b, chart4b, placeholder4b, colors4b, selectedIndex4b, dialog);
+            }
+        }
+    })
 })
 
