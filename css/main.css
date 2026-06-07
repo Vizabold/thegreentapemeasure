@@ -51,8 +51,7 @@
     transition:
       transform 1000ms ease-in-out,
       opacity 1000ms ease-in-out,
-      display 1000ms ease-in-out allow-discrete,
-      overlay 1000ms ease-in-out allow-discrete;
+      display 1000ms ease-in-out allow-discrete;
 
     dialog::backdrop {
       transition:
