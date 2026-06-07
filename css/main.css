@@ -33,7 +33,7 @@
   }
 
   details::details-content {
-    @apply block-0 opacity-0 overflow-hidden transition-[block-size_opacity_content-visibility] duration-500 ease-in-out transition-discrete;
+    @apply block-0 opacity-0 overflow-hidden transition-[block-size_opacity_content-visibility] duration-500 ease-in-out allow-discrete;
   }
 
   details[open]::details-content {
