@@ -38,47 +38,6 @@ const footerObserver = new IntersectionObserver((entries) => {
 
 footerObserver.observe(footerSentinel);
 
-/*------------------------------ ACCORDIONS --------------------------------- */
-const dialogAccordionCleanups = new WeakMap();
-
-function initAccordions(container) {
-  const cleanups = [];
-
-  container.querySelectorAll('details').forEach((details) => {
-    const summary = details.querySelector('summary');
-    if (!summary) return;
-
-    let content = details.querySelector('.accordion-content-wrapper');
-
-    const handleAccordionToggle = (e) => {
-      e.preventDefault();
-      if (!details.hasAttribute('open')) {
-        details.setAttribute('open', '');
-        requestAnimationFrame(() => details.classList.add('is-open'));
-      } else {
-        details.classList.remove('is-open');
-        setTimeout(() => details.removeAttribute('open'), 500);
-      }
-    };
-
-    summary.addEventListener('click', handleAccordionToggle);
-
-    cleanups.push(() => {
-      summary.removeEventListener('click', handleAccordionToggle);
-      details.classList.remove('is-open');
-      details.removeAttribute('open');
-    });
-  });
-
-  return cleanups;
-}
-
-document.querySelectorAll('details').forEach(details => {
-  if (!details.closest('dialog')) {
-    initAccordions(details.parentElement || document.body);
-  }
-});
-
 /*--------------- POPOVER FOCUS TRAP & LEGACY SUPPORT --------------------- */
 function applyFocusTrap(e, container) {
   if (e.key !== 'Tab') return;
@@ -113,32 +72,18 @@ document.querySelectorAll('button[popovertarget]').forEach(button => {
   dialog.removeAttribute('popover');
   button.removeAttribute('popovertarget');
 
-  const cleanupDialogAccordions = () => {
-    const cleanups = dialogAccordionCleanups.get(dialog);
-    if (cleanups) {
-      cleanups.forEach(removeListener => removeListener());
-      dialogAccordionCleanups.delete(dialog);
-      console.log('accordion listeners removed');
-    }
-  };
-
   button.addEventListener('click', (e) => {
     e.preventDefault();
     dialog.showModal();
 
-    const freshCleanups = initAccordions(dialog);
-    dialogAccordionCleanups.set(dialog, freshCleanups);
-
     const closeBtn = dialog.querySelector('.btn-close-dialog');
     if (closeBtn) {
       closeBtn.addEventListener('click', () => {
-        cleanupDialogAccordions();
         dialog.close();
         button.focus();
       }, { once: true });
     }
     dialog.addEventListener('close', () => {
-      cleanupDialogAccordions();
       button.focus();
     }, { once: true });
   })
@@ -355,4 +300,3 @@ if (videoWrapper) {
     iframe.focus();
   });
 }
-

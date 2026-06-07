@@ -32,35 +32,13 @@
     cursor: pointer;
   }
 
-  html:not(.js) details::details-content {
+  details::details-content {
     @apply block-0 opacity-0 overflow-hidden duration-500 ease-in-out;
     transition: block-size 500ms ease-in-out, opacity 500ms ease-in-out, transform 500ms ease-in-out, content-visibility 500ms ease-in-out allow-discrete;
   }
 
-  html:not(.js) details[open]::details-content {
+  details[open]::details-content {
     @apply block-auto opacity-100 transform-none;
-  }
-
-  html.js .accordion-content-wrapper {
-    display: grid;
-    grid-template-rows: 0fr;
-    opacity: 0;
-    transition: grid-template-rows 500ms ease-in-out, opacity 500ms ease-in-out;
-  }
-
-  details .accordion-inner {
-    overflow: hidden;
-    transform: translateY(-16px);
-    transition: transform 500ms ease-in-out;
-  }
-
-  details.is-open .accordion-content-wrapper {
-    grid-template-rows: 1fr;
-    opacity: 1;
-  }
-
-  details.is-open .accordion-inner {
-    transform: translateY(0);
   }
 
   dialog {
