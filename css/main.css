@@ -29,7 +29,7 @@
   }
 
   details::details-content {
-    @apply grid grid-rows-[0fr] opacity-0 overflow-hidden transition-[grid-template-rows, opacity] duration-500 ease-in-out transition-discrete;
+    @apply grid grid-rows-[0fr] opacity-0 overflow-hidden transition-[grid-template-rows] transition-[opacity] duration-500 ease-in-out transition-discrete;
   }
 
   details[open]::details-content {
