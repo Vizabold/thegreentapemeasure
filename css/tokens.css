@@ -281,7 +281,7 @@
           opacity: 0;
       }
 
-      details[open]::details-content {
+      html:not(.js) details[open]::details-content {
           block-size: 0;
           opacity: 0;
           transform: translateY(-16px);

@@ -300,3 +300,26 @@ if (videoWrapper) {
     iframe.focus();
   });
 }
+
+/*------------------------------ DETAILS TRANSITION FALLBACK --------------------------------- */
+document.querySelectorAll('details').forEach((details) => {
+  const summary = details.querySelector('summary');
+  let content = details.querySelector('.accordion-content-wrapper');
+
+  summary.addEventListener('click', (e) => {
+    e.preventDefault();
+
+    if (!details.hasAttribute('open')) {
+      details.setAttribute('open', '');
+      requestAnimationFrame(() => {
+        details.classList.add('is-open');
+      });
+    } else {
+      details.classList.remove('is-open');
+
+      setTimeout(() => {
+        details.removeAttribute('open');
+      }, 500);
+    }
+  });
+});
