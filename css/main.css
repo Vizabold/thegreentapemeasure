@@ -151,7 +151,7 @@
     @apply p-4 border-0 text-neutral-two-dark justify-between shadow-xs enabled:cursor-grab enabled:active:cursor-grabbing;
   }
 
-  .btn-dropzone--placed svg {
+  .btn-dropzone--placed {
     @apply text-neutral-two-dark;
   }
 
