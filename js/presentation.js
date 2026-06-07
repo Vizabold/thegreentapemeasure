@@ -160,7 +160,7 @@ function setupSlides(dialog) {
     goToSlide(next);
   }, { signal });
 
-  if (skipBtn && dialog.id !== 'analysis-four') {
+  if (skipBtn) {
     skipBtn.addEventListener('click', () => {
       if (isMoving) return;
       goToSlide(slides.length - 1)
