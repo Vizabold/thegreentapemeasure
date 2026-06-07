@@ -123,7 +123,7 @@
           }
       }
 
-      @keyframes dialogOpen {
+      @keyframes dialogEnter {
           from {
               opacity: 0;
               transform: translateX(-100%);
@@ -135,7 +135,7 @@
           }
       }
 
-      @keyframes dialogClose {
+      @keyframes dialogExit {
           from {
               opacity: 1;
               transform: translateX(0);
@@ -147,7 +147,7 @@
           }
       }
 
-      @keyframes backdropOpen {
+      @keyframes backdropEnter {
           from {
               opacity: 0;
           }
@@ -157,7 +157,7 @@
           }
       }
 
-      @keyframes backdropClose {
+      @keyframes backdropExit {
           from {
               opacity: 0.7;
           }

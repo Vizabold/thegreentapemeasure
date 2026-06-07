@@ -48,22 +48,28 @@
   dialog {
     @apply fixed hidden flex-col top-0 left-0 m-0 w-full h-full min-w-screen min-h-dvh text-inherit bg-neutral-three p-8 gap-12 backdrop:bg-neutral-one backdrop:backdrop-blur-sm;
 
-    animation: dialogClose 1000ms ease-in-out forwards;
+    transition: display 1000ms allow-discrete, overlay 1000ms allow-discrete;
   }
 
   dialog[open],
   dialog:popover-open {
     display: flex;
-    animation: dialogOpen 1000ms ease-in-out forwards;
-  }
-
-  dialog::backdrop {
-    animation: backdropClose 1000ms ease-in-out forwards;
+    animation: dialogEnter 1000ms ease-in-out forwards;
   }
 
   dialog[open]::backdrop,
   dialog:popover-open::backdrop {
-    animation: backdropOpen 1000ms ease-in-out forwards;
+    animation: backdropEnter 1000ms ease-in-out forwards;
+  }
+
+  dialog:not([open]),
+  dialog:not(:popover-open) {
+    animation: dialogExit 1000ms ease-in-out forwards;
+  }
+
+  dialog:not([open])::backdrop,
+  dialog:not(:popover-open)::backdrop {
+    animation: backdropExit 1000ms ease-in-out forwards;
   }
 
   h2,
