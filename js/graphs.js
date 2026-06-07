@@ -1,5 +1,3 @@
-let graphController;
-
 /* Graph-1a Variables */
 const type1a = 'pie';
 const series1a = [38, 21, 17, 14, 10];
@@ -157,7 +155,7 @@ function renderChart(type, series, labels, chartEl, placeholder, colors, selecte
         return;
     }
 
-    graphController = new AbortController();
+    const graphController = new AbortController();
     const { signal } = graphController;
 
     const svgNS = 'http://www.w3.org/2000/svg';
