@@ -284,7 +284,7 @@ if (videoWrapper) {
     const videoId = this.getAttribute('data-video');
     const iframe = document.createElement('iframe');
 
-    iframe.className = 'flex aspect-video w-fit';
+    iframe.className = 'flex aspect-video w-full';
     iframe.src = `https://www.youtube-nocookie.com/embed/${videoId}?si=Vjs94y2cQ06KzTCa`;
     iframe.title = 'GTM Intro Video';
     iframe.setAttribute('frameborder', '0');
