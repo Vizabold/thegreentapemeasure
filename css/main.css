@@ -143,6 +143,10 @@
     @apply bg-primary-five justify-between text-neutral-nine rounded-xl p-4 shadow-xs hover:bg-primary-three hover:cursor-grab active:bg-primary-three active:cursor-grabbing;
   }
 
+  .btn-draggable svg {
+    @apply text-neutral-nine;
+  }
+
   .btn-dropzone {
     @apply text-neutral-seven rounded-xl p-8 border border-dashed border-neutral-seven hover:bg-neutral-six;
   }
@@ -151,7 +155,7 @@
     @apply p-4 border-0 text-neutral-two-dark justify-between shadow-xs enabled:cursor-grab enabled:active:cursor-grabbing;
   }
 
-  .btn-dropzone--placed {
+  .btn-dropzone--placed svg {
     @apply text-neutral-two-dark;
   }
 

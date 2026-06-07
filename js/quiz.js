@@ -249,7 +249,6 @@ if (draggablesEl && dropzonesEl && readyBtn) {
       delete btn.dataset.correct;
       delete btn.dataset.placedIn;
       btn.classList.remove('opacity-30', 'opacity-50', 'invisible');
-      btn.querySelector('svg').classList.replace('text-neutral-two-dark', 'text-neutral-nine');
       btn.setAttribute('draggable', 'true');
       btn.setAttribute('aria-pressed', 'false');
     });
@@ -492,7 +491,6 @@ if (draggablesEl && dropzonesEl && readyBtn) {
     // Render the draggable's appearance inside the dropzone button
     const colorClass = isCorrect ? 'bg-primary-two' : 'bg-secondary-five';
     dropzoneBtn.className = `btn btn-lg btn-dropzone btn-dropzone--placed ${colorClass}`;
-    dropzoneBtn.querySelector('svg').classList.replace('text-neutral-nine', 'text-neutral-two-dark');
     const tempDiv = document.createElement('div');
     tempDiv.innerHTML = draggableBtn.innerHTML;
     tempDiv.querySelector('[id]')?.removeAttribute('id');
