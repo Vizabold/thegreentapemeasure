@@ -124,7 +124,7 @@
       }
   }
 
-  :root {
+  :root[data-theme="dark"] {
       --primary-one: #5BBE5D;
       --primary-two: #7FCC81;
       --primary-three: #899484;
@@ -145,6 +145,26 @@
       --neutral-seven-light: #BECAB9;
       --neutral-eight-light: #DDE5D9;
       --neutral-nine: #D8D5D4;
+  }
+
+  :root[data-theme="light"] {
+      --primary-one: #006E1C;
+      --primary-two: #009927;
+      --primary-three: #6F7A6B;
+      --primary-five: #BECAB9;
+      --secondary-one: #8B5000;
+      --secondary-two: #BD6D00;
+      --secondary-three: #D47A00;
+      --secondary-four: #523D21;
+      --secondary-five: #D45800;
+      --neutral-one: #F1F1F1;
+      --neutral-two: #F0EDED;
+      --neutral-three: #E8E3E3;
+      --neutral-four: #DCD5D5;
+      --neutral-five: #D1C7C7;
+      --neutral-six: #C5B9B9;
+      --neutral-seven: #3F4A3C;
+      --neutral-nine: #1C1B1B;
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -237,6 +257,7 @@
      Light Mode settings
   ───────────────────────────────────────── */
 
+  /*
   @media (prefers-color-scheme: light) {
       :root {
           --primary-one: #006E1C;
@@ -270,6 +291,7 @@
           @apply translate-x-6.25;
       }
   }
+      */
 
   /* ─────────────────────────────────────────
      Starting States
