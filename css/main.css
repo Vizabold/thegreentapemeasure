@@ -48,28 +48,27 @@
   dialog {
     @apply fixed hidden flex-col top-0 left-0 m-0 w-full h-full min-w-screen min-h-dvh text-inherit bg-neutral-three p-8 gap-12 backdrop:bg-neutral-one backdrop:backdrop-blur-sm;
 
-    transition: display 1000ms allow-discrete, overlay 1000ms allow-discrete;
+    animation: dialogClose 1000ms ease-in-out forwards;
   }
 
   dialog[open],
   dialog:popover-open {
     display: flex;
-    animation: dialogEnter 1000ms ease-in-out forwards;
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  dialog::backdrop {
+    opacity: 0;
+    transition-property: opacity, display, overlay;
+    transition-duration: 1000ms;
+    transition-timing-function: ease-in-out;
+    transition-behavior: allow-discrete;
   }
 
   dialog[open]::backdrop,
   dialog:popover-open::backdrop {
-    animation: backdropEnter 1000ms ease-in-out forwards;
-  }
-
-  dialog:not([open]),
-  dialog:not(:popover-open) {
-    animation: dialogExit 1000ms ease-in-out forwards;
-  }
-
-  dialog:not([open])::backdrop,
-  dialog:not(:popover-open)::backdrop {
-    animation: backdropExit 1000ms ease-in-out forwards;
+    opacity: 0.7;
   }
 
   h2,
