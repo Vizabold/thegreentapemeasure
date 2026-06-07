@@ -195,6 +195,7 @@
       --primary-one: #006E1C;
       --primary-two: #009927;
       --primary-three: #6F7A6B;
+      --primary-four: #ACBAA5;
       --primary-five: #BECAB9;
       --secondary-one: #8B5000;
       --secondary-two: #BD6D00;
@@ -208,6 +209,8 @@
       --neutral-five: #D1C7C7;
       --neutral-six: #C5B9B9;
       --neutral-seven: #3F4A3C;
+      --neutral-seven-light: #BECAB9;
+      --neutral-eight-light: #DDE5D9;
       --neutral-nine: #1C1B1B;
   }
 
