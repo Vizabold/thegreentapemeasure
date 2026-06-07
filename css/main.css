@@ -59,13 +59,6 @@
 
     @apply [&:popover-open]:flex open:flex [&:popover-open]:translate-x-0 open:translate-x-0 [&:popover-open]:opacity-100 open:opacity-100;
     @apply open:starting:opacity-0 open:starting:-translate-x-full [&:popover-open]:starting:opacity-0 [&:popover-open]:starting:-translate-x-full;
-
-    dialog::backdrop {
-      transition:
-        opacity 1000ms ease-in-out,
-        display 1000ms ease-in-out allow-discrete,
-        overlay 1000ms ease-in-out allow-discrete;
-    }
   }
 
   h2,
