@@ -349,7 +349,7 @@
   }
 
   .timeline-event-descript {
-    @apply flex flex-col gap-2 items-center;
+    @apply flex flex-col gap-2 items-center p-4;
   }
 
   .timeline-marker {
