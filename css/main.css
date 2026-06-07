@@ -46,29 +46,7 @@
   }
 
   dialog {
-    @apply fixed hidden flex-col top-0 left-0 m-0 w-full h-full min-w-screen min-h-dvh text-inherit bg-neutral-three p-8 gap-12 backdrop:bg-neutral-one backdrop:backdrop-blur-sm;
-
-    animation: dialogClose 1000ms ease-in-out forwards;
-  }
-
-  dialog[open],
-  dialog:popover-open {
-    display: flex;
-    opacity: 1;
-    transform: translateX(0);
-  }
-
-  dialog::backdrop {
-    opacity: 0;
-    transition-property: opacity, display, overlay;
-    transition-duration: 1000ms;
-    transition-timing-function: ease-in-out;
-    transition-behavior: allow-discrete;
-  }
-
-  dialog[open]::backdrop,
-  dialog:popover-open::backdrop {
-    opacity: 0.7;
+    @apply fixed hidden flex-col top-0 left-0 m-0 w-full h-full min-w-screen min-h-dvh text-inherit bg-neutral-three p-8 gap-12 opacity-0 -translate-x-full backdrop:bg-neutral-one backdrop:opacity-70 backdrop:backdrop-blur-sm transition-all duration-1000 ease-in-out transition-discrete [&:popover-open]:flex open:flex [&:popover-open]:translate-x-0 open:translate-x-0 [&:popover-open]:opacity-100 open:opacity-100 open:starting:opacity-0 open:starting:-translate-x-full [&:popover-open]:starting:opacity-0 [&:popover-open]:starting:-translate-x-full;
   }
 
   h2,
