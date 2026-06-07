@@ -38,37 +38,44 @@ const footerObserver = new IntersectionObserver((entries) => {
 
 footerObserver.observe(footerSentinel);
 
-/*------------------------------ DETAILS TRANSITION FALLBACK --------------------------------- */
+/*------------------------------ ACCORDIONS --------------------------------- */
 const dialogAccordionCleanups = new WeakMap();
 
-document.querySelectorAll('details').forEach((details) => {
-  const summary = details.querySelector('summary');
-  let content = details.querySelector('.accordion-content-wrapper');
+function initAccordions(container) {
+  const cleanups = [];
 
-  const handleAccordionToggle = (e) => {
-    e.preventDefault();
-    if (!details.hasAttribute('open')) {
-      details.setAttribute('open', '');
-      requestAnimationFrame(() => details.classList.add('is-open'));
-    } else {
-      details.classList.remove('is-open');
-      setTimeout(() => details.removeAttribute('open'), 500);
-    }
-  };
+  container.querySelectorAll('details').forEach((details) => {
+    const summary = details.querySelector('summary');
+    if (!summary) return;
 
-  summary.addEventListener('click', handleAccordionToggle);
+    let content = details.querySelector('.accordion-content-wrapper');
 
-  const parentDialog = details.closest('dialog');
-  if (parentDialog) {
-    if (!dialogAccordionCleanups.has(parentDialog)) {
-      dialogAccordionCleanups.set(parentDialog, []);
-    }
+    const handleAccordionToggle = (e) => {
+      e.preventDefault();
+      if (!details.hasAttribute('open')) {
+        details.setAttribute('open', '');
+        requestAnimationFrame(() => details.classList.add('is-open'));
+      } else {
+        details.classList.remove('is-open');
+        setTimeout(() => details.removeAttribute('open'), 500);
+      }
+    };
 
-    dialogAccordionCleanups.get(parentDialog).push(() => {
+    summary.addEventListener('click', handleAccordionToggle);
+
+    cleanups.push(() => {
       summary.removeEventListener('click', handleAccordionToggle);
       details.classList.remove('is-open');
       details.removeAttribute('open');
     });
+  });
+
+  return cleanups;
+}
+
+document.querySelectorAll('details').forEach(details => {
+  if (!details.closest('dialog')) {
+    initAccordions(details.parentElement || document.body);
   }
 });
 
@@ -118,6 +125,9 @@ document.querySelectorAll('button[popovertarget]').forEach(button => {
   button.addEventListener('click', (e) => {
     e.preventDefault();
     dialog.showModal();
+
+    const freshCleanups = initAccordions(dialog);
+    dialogAccordionCleanups.set(dialog, freshCleanups);
 
     const closeBtn = dialog.querySelector('.btn-close-dialog');
     if (closeBtn) {
