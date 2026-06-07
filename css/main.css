@@ -29,11 +29,11 @@
   }
 
   details::details-content {
-    @apply block-0 opacity-0 overflow-hidden transition-[block-size_opacity_content-visibility] duration-500 ease-in-out transition-discrete;
+    @apply grid grid-rows-[0fr] opacity-0 overflow-hidden ttransition-[grid-template-rows, opacity] duration-500 ease-in-out transition-discrete;
   }
 
   details[open]::details-content {
-    @apply block-auto opacity-100 animate-slideInDown;
+    @apply grid-rows-[1fr] opacity-100 animate-slideInDown;
   }
 
   dialog {

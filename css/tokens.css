@@ -280,6 +280,10 @@
           transform: translateX(-100%);
           opacity: 0;
       }
+
+      &[open]::details-content {
+          @apply grid-rows-[0fr] opacity-0;
+      }
   }
 
 
