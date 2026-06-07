@@ -282,7 +282,8 @@
       }
 
       &[open]::details-content {
-          @apply grid-rows-[0fr] opacity-0;
+          grid-row: 0fr;
+          opacity: 0;
       }
   }
 

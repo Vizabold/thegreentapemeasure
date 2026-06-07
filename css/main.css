@@ -29,11 +29,11 @@
   }
 
   details::details-content {
-    @apply grid grid-rows-[0fr] opacity-0 overflow-hidden transition-[grid-template-rows] transition-[opacity] transition-[content-visibility] duration-500 ease-in-out transition-discrete;
+    @apply block-0 opacity-0 overflow-hidden transition-[block-size_opacity_content-visibility] duration-500 ease-in-out transition-discrete;
   }
 
   details[open]::details-content {
-    @apply grid-rows-[1fr] opacity-100 animate-slideInDown;
+    @apply block-auto opacity-100 animate-slideInDown;
   }
 
   dialog {
@@ -121,6 +121,13 @@
 }
 
 @layer components {
+
+  /* ─────────────────────────────────────────
+     Accordions
+  ───────────────────────────────────────── */
+  .accordion-content-wrapper {
+    @apply grid grid-rows-0fr opacity-0 transition-[grid-template-rows] transition-opacity duration-500 ease-in-out;
+  }
 
   /* ─────────────────────────────────────────
      Buttons
