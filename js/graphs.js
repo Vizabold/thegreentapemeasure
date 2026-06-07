@@ -854,7 +854,6 @@ function renderChart(type, series, labels, chartEl, placeholder, colors, selecte
         if (event.newState === 'closed') {
             if (graphController) {
                 graphController.abort();
-                console.log('listeners removed');
             }
         }
     })
@@ -865,7 +864,19 @@ const dialogs = document.querySelectorAll('.analysis-dialog');
 dialogs.forEach(dialog => {
     dialog.addEventListener('toggle', (e) => {
         if (e.newState === 'open') {
+            dialog.querySelectorAll('details').forEach(details => {
+                details.open = false;
+            });
+
             if (dialog.id === 'analysis-one') {
+                selectedIndex1a = -1;
+                selectedIndex1b = -1;
+                selectedIndex1c = -1;
+                selectedIndex1d = -1;
+                selectedIndex1e = -1;
+                selectedIndex1f = -1;
+                selectedIndex1g = -1;
+
                 renderChart(type1a, series1a, labels1a, chart1a, placeholder1a, colors1a, selectedIndex1a, dialog);
                 renderChart(type1b, series1b, labels1b, chart1b, placeholder1b, colors1b, selectedIndex1b, dialog);
                 renderChart(type1c, series1c, labels1c, chart1c, placeholder1c, colors1c, selectedIndex1c, dialog);
@@ -876,6 +887,11 @@ dialogs.forEach(dialog => {
             }
 
             if (dialog.id === 'analysis-two') {
+                selectedIndex2a = -1;
+                selectedIndex2b = -1;
+                selectedIndex2c = -1;
+                selectedIndex2d = -1;
+
                 renderChart(type2a, series2a, labels2a, chart2a, placeholder2a, colors2a, selectedIndex2a, dialog);
                 renderChart(type2a, series2b, labels2b, chart2b, placeholder2b, colors2b, selectedIndex2b, dialog);
                 renderChart(type2c, series2c, labels2c, chart2c, placeholder2c, colors2c, selectedIndex2c, dialog);
@@ -883,10 +899,14 @@ dialogs.forEach(dialog => {
             }
 
             if (dialog.id === 'analysis-three') {
+                selectedIndex3a = -1;
                 renderChart(type3a, series3a, labels3a, chart3a, placeholder3a, colors3a, selectedIndex3a, dialog);
             }
 
             if (dialog.id === 'analysis-four') {
+                selectedIndex4a = -1;
+                selectedIndex4b = -1;
+
                 renderChart(type4a, series4a, labels4a, chart4a, placeholder4a, colors4a, selectedIndex4a, dialog);
                 renderChart(type4b, series4b, labels4b, chart4b, placeholder4b, colors4b, selectedIndex4b, dialog);
             }
