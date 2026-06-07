@@ -300,24 +300,3 @@ if (videoWrapper) {
     iframe.focus();
   });
 }
-
-/*------------------------------ DETAILS TRANSITION FALLBACK --------------------------------- */
-document.querySelectorAll('details').forEach((details) => {
-  details.addEventListener('click', (event) => {
-    event.preventDefault();
-
-    const content = details.querySelector('.accordion-content-wrapper');
-
-    if (details.open) {
-      details.classList.remove('is-open');
-      setTimeout(() => {
-        details.removeAttribute('open');
-      }, 500);
-    } else {
-      details.setAttribute('open', 'true');
-      requestAnimationFrame(() => {
-        details.classList.add('is-open');
-      });
-    }
-  });
-});

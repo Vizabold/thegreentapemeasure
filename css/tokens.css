@@ -280,6 +280,11 @@
           transform: translateX(-100%);
           opacity: 0;
       }
+
+      &[open]::details-content {
+          block-size: 0;
+          opacity: 0;
+      }
   }
 
 
