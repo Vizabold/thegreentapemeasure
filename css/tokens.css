@@ -259,8 +259,15 @@
   ───────────────────────────────────────── */
 
   @starting-style {
-      [popover]:popover-open {
+
+      dialog[open],
+      dialog:popover-open {
+          opacity: 0;
           transform: translateX(-100%);
+      }
+
+      dialog[open]::backdrop,
+      dialog:popover-open::backdrop {
           opacity: 0;
       }
 
