@@ -388,15 +388,15 @@
     @apply hidden;
   }
 
-  body:has(#mode-toggle:checked) .slider {
+  :root[data-theme="light"] .slider {
     @apply translate-x-7;
   }
 
-  body:has(#mode-toggle:checked) .toggle-moon {
+  :root[data-theme="light"] .toggle-moon {
     @apply hidden;
   }
 
-  body:has(#mode-toggle:checked) .toggle-sun {
+  :root[data-theme="light"] .toggle-sun {
     @apply block;
   }
 }
