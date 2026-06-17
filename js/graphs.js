@@ -98,7 +98,7 @@ let selectedIndex2c = -1;
 
 /* Graph-2d Variables */
 const type2d = 'pie';
-const series2d = [33, 28, 27, 12];
+const series2d = [33, 29, 25, 13];
 const labels2d = ['management', 'design', 'shared', 'practice'];
 const chart2d = document.getElementById('pie-chart-2d');
 const placeholder2d = document.getElementById('pie-chart-2d-placeholder');
