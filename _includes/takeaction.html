@@ -239,166 +239,11 @@
                                 <input id="name" type="text" name="name" required>
                             </div>
                             <div class="flex flex-col gap-1">
-                                <label for="phone">Phone Number</label>
-                                <div class="flex gap-2">
-                                    <select id="phone-country" name="phone-country" aria-label="Country code"
-                                        class="w-20 min-w-20">
-                                        <option value="+1">+1</option>
-                                        <option value="+7">+7</option>
-                                        <option value="+27">+27</option>
-                                        <option value="+33">+33</option>
-                                        <option value="+34">+34</option>
-                                        <option value="+39">+39</option>
-                                        <option value="+44">+44</option>
-                                        <option value="+49">+49</option>
-                                        <option value="+52">+52</option>
-                                        <option value="+55">+55</option>
-                                        <option value="+61">+61</option>
-                                        <option value="+64">+64</option>
-                                        <option value="+81">+81</option>
-                                        <option value="+82">+82</option>
-                                        <option value="+86">+86</option>
-                                        <option value="+91">+91</option>
-                                    </select>
-                                    <input id="phone" type="tel" name="phone" autocomplete="tel" class="flex-1 min-w-0">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="flex flex-col gap-6 sm:w-[50%] xl:w-full xxl:w-[50%]">
-                            <div class="flex flex-col gap-1">
                                 <div class="flex justify-between">
                                     <label for="email">Email</label>
                                     <p class="text-secondary-five">required</p>
                                 </div>
                                 <input id="email" type="email" name="email" autocomplete="email" required>
-                            </div>
-                            <fieldset class="flex flex-col gap-1">
-                                <legend class="text-base neutral-seven mb-1">Local to Raleigh?</legend>
-                                <div class="flex w-35 justify-between lg:gap-4">
-                                    <div class="relative flex gap-1 items-center">
-                                        <label for="local-yes">Yes</label>
-                                        <input class="peer" id="local-yes" type="radio" name="local" value="yes">
-                                        <svg class="absolute right-2 top-1.75 icon-xs fill-current text-primary-one hidden peer-checked:block pointer-events-none"
-                                            aria-hidden="true">
-                                            <use href="/assets/sprites/solid.svg#check"></use>
-                                        </svg>
-                                    </div>
-                                    <div class="relative flex gap-1 items-center">
-                                        <label for="local-no">No</label>
-                                        <input class="peer" id="local-no" type="radio" name="local" value="no">
-                                        <svg class="absolute right-2 top-1.75 icon-xs fill-current text-primary-one hidden peer-checked:block pointer-events-none"
-                                            aria-hidden="true">
-                                            <use href="/assets/sprites/solid.svg#check"></use>
-                                        </svg>
-                                    </div>
-                                </div>
-                            </fieldset>
-                        </div>
-                    </div>
-                </fieldset>
-                <fieldset class="flex flex-col gap-1">
-                    <legend class="text-xl text-neutral-nine mb-2">Availability</legend>
-                    <div
-                        class="flex flex-col justify-between gap-8 sm:flex-row sm:gap-20 sm:justify-start lg:gap-32 xl:gap-12">
-                        <fieldset class="flex flex-col">
-                            <legend class="text-lg neutral-seven">Days</legend>
-                            <div class="flex flex-col gap-8 xs:flex-row xs:gap-12 sm:flex-col sm:gap-6">
-                                <div class="relative flex gap-1 w-35 justify-end">
-                                    <label class="text-right self-center" for="weekends">Weekends</label>
-                                    <input class="peer" id="weekends" type="checkbox" name="weekends">
-                                    <svg class="absolute right-2 top-1.75 icon-xs fill-current text-primary-one hidden peer-checked:block pointer-events-none"
-                                        aria-hidden="true">
-                                        <use href="/assets/sprites/solid.svg#check"></use>
-                                    </svg>
-                                </div>
-                                <div class="relative flex gap-1 w-35 justify-end">
-                                    <label class="text-right self-center" for="weekdays">Weekdays</label>
-                                    <input class="peer" id="weekdays" type="checkbox" name="weekdays">
-                                    <svg class="absolute right-2 top-1.75 icon-xs fill-current text-primary-one hidden peer-checked:block pointer-events-none"
-                                        aria-hidden="true">
-                                        <use href="/assets/sprites/solid.svg#check"></use>
-                                    </svg>
-                                </div>
-                            </div>
-                        </fieldset>
-                        <fieldset class="flex flex-col">
-                            <legend class="text-lg neutral-seven">Time of Day</legend>
-                            <div class="flex gap-6 w-35 justify-end">
-                                <div class="relative flex gap-1">
-                                    <label class="text-right self-center" for="morning">AM</label>
-                                    <input class="peer" id="morning" type="checkbox" name="morning">
-                                    <svg class="absolute right-2 top-1.75 icon-xs fill-current text-primary-one hidden peer-checked:block pointer-events-none"
-                                        aria-hidden="true">
-                                        <use href="/assets/sprites/solid.svg#check"></use>
-                                    </svg>
-                                </div>
-                                <div class="relative flex gap-1">
-                                    <label class="text-right self-center" for="afternoon">PM</label>
-                                    <input class="peer" id="afternoon" type="checkbox" name="afternoon">
-                                    <svg class="absolute right-2 top-1.75 icon-xs fill-current text-primary-one hidden peer-checked:block pointer-events-none"
-                                        aria-hidden="true">
-                                        <use href="/assets/sprites/solid.svg#check"></use>
-                                    </svg>
-                                </div>
-                            </div>
-                        </fieldset>
-                    </div>
-                </fieldset>
-                <fieldset class="flex flex-col">
-                    <legend class="text-xl text-neutral-nine mb-2">Interests</legend>
-                    <div class="flex flex-col items-start justify-between gap-8 sm:flex-row sm:justify-start lg:gap-12">
-                        <div class="flex flex-col gap-8 justify-end xs:flex-row xs:gap-12 sm:flex-col lg:gap-6">
-                            <div class="relative flex justify-end gap-1 w-35">
-                                <label class="text-right self-center" for="events">Events</label>
-                                <input class="peer" id="events" type="checkbox" name="events">
-                                <svg class="absolute right-2 top-1.75 icon-xs fill-current text-primary-one hidden peer-checked:block pointer-events-none"
-                                    aria-hidden="true">
-                                    <use href="/assets/sprites/solid.svg#check"></use>
-                                </svg>
-                            </div>
-                            <div class="relative flex justify-end gap-1 w-35">
-                                <label class="text-right self-center" for="research-int">Research</label>
-                                <input class="peer" id="research-int" type="checkbox" name="research-int">
-                                <svg class="absolute right-2 top-1.75 icon-xs fill-current text-primary-one hidden peer-checked:block pointer-events-none"
-                                    aria-hidden="true">
-                                    <use href="/assets/sprites/solid.svg#check"></use>
-                                </svg>
-                            </div>
-                        </div>
-                        <div class="flex flex-col gap-8 justify-end xs:flex-row xs:gap-12 sm:flex-col lg:gap-6">
-                            <div class="relative flex justify-end gap-1 w-35">
-                                <label class="text-right self-center" for="fundraising">Fundraising</label>
-                                <input class="peer" id="fundraising" type="checkbox" name="fundraising">
-                                <svg class="absolute right-2 top-1.75 icon-xs fill-current text-primary-one hidden peer-checked:block pointer-events-none"
-                                    aria-hidden="true">
-                                    <use href="/assets/sprites/solid.svg#check"></use>
-                                </svg>
-                            </div>
-                            <div class="relative flex justify-end gap-1 w-35">
-                                <label class="text-right self-center" for="social-media">Social Media</label>
-                                <input class="peer" id="social-media" type="checkbox" name="social-media">
-                                <svg class="absolute right-2 top-1.75 icon-xs fill-current text-primary-one hidden peer-checked:block pointer-events-none"
-                                    aria-hidden="true">
-                                    <use href="/assets/sprites/solid.svg#check"></use>
-                                </svg>
-                            </div>
-                        </div>
-                        <div class="flex flex-col gap-8 justify-end xs:flex-row xs:gap-12 sm:flex-col lg:gap-6">
-                            <div class="relative flex justify-end gap-1 w-35">
-                                <label class="text-right self-center" for="legislation">Legislation</label>
-                                <input class="peer" id="legislation" type="checkbox" name="legislation">
-                                <svg class="absolute right-2 top-1.75 icon-xs fill-current text-primary-one hidden peer-checked:block pointer-events-none"
-                                    aria-hidden="true">
-                                    <use href="/assets/sprites/solid.svg#check"></use>
-                                </svg>
-                            </div>
-                            <div class="relative flex justify-end gap-1 w-35">
-                                <label class="text-right self-center" for="web-design">Web Design</label>
-                                <input class="peer" id="web-design" type="checkbox" name="web-design">
-                                <svg class="absolute right-2 top-1.75 icon-xs fill-current text-primary-one hidden peer-checked:block pointer-events-none"
-                                    aria-hidden="true">
-                                    <use href="/assets/sprites/solid.svg#check"></use>
-                                </svg>
                             </div>
                         </div>
                     </div>
@@ -422,9 +267,9 @@
                             required>
                     </div>
                     <div class="flex flex-col gap-1">
-                        <label for="comment">Share more about yourself</label>
+                        <label for="comment">Questions? Comments?</label>
                         <textarea id="comment" name="comment" minlength="25" wrap="soft" maxlength="1000" rows="5"
-                            placeholder="skills, experience, questions..."></textarea>
+                            placeholder="skills, experience, interests, availability, questions..."></textarea>
                         <p class="text-right"><span class="textarea-count"></span>/1000</p>
                     </div>
                 </fieldset>
