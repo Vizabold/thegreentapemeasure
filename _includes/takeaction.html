@@ -230,21 +230,19 @@
                 <fieldset>
                     <legend class="text-xl text-neutral-nine">Basic Information</legend>
                     <div class="flex flex-col gap-6 sm:flex-row xl:flex-col xxl:flex-row">
-                        <div class="flex flex-col gap-6 sm:w-[50%] xl:w-full xxl:w-[50%]">
-                            <div class="flex flex-col gap-1">
-                                <div class="flex justify-between">
-                                    <label for="name">Full Name</label>
-                                    <p class="text-secondary-five">required</p>
-                                </div>
-                                <input id="name" type="text" name="name" required>
+                        <div class="flex flex-col gap-1">
+                            <div class="flex justify-between">
+                                <label for="name">Full Name</label>
+                                <p class="text-secondary-five">required</p>
                             </div>
-                            <div class="flex flex-col gap-1">
-                                <div class="flex justify-between">
-                                    <label for="email">Email</label>
-                                    <p class="text-secondary-five">required</p>
-                                </div>
-                                <input id="email" type="email" name="email" autocomplete="email" required>
+                            <input id="name" type="text" name="name" required>
+                        </div>
+                        <div class="flex flex-col gap-1">
+                            <div class="flex justify-between">
+                                <label for="email">Email</label>
+                                <p class="text-secondary-five">required</p>
                             </div>
+                            <input id="email" type="email" name="email" autocomplete="email" required>
                         </div>
                     </div>
                 </fieldset>
