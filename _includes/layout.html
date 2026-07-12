@@ -166,75 +166,78 @@
 
   <div id="footer-scroll-sentinel" class="h-px w-full"></div>
 
-  <footer
-    class="flex flex-col p-4 gap-10 justify-between bg-neutral-two transition-opacity duration-500 ease-in-out js:opacity-0 js:pointer-events-none lg:p-10 xl:flex-row xl:p-15 xl:gap-20 xl:justify-between xxl:p-19">
-    <div class="flex flex-col gap-8 xl:max-w-150">
-      <div class="flex items-end gap-3 border-b border-primary-one pb-2">
-        <picture>
-          <source srcset="assets/images/logo-dk.webp" type="image/webp" media="(min-width: 0px)" data-theme="dark">
-          <source srcset="assets/images/logo-lt.webp" type="image/webp" media="(min-width: 0px)" data-theme="light">
-          <img src="assets/images/logo-lt.png" alt="GTM logo that resembles a green tape measure">
-        </picture>
-        <p class="paragraph-md text-neutral-nine -mb-1.5">Research. Educate. Advance.</p>
-      </div>
-      <div class="flex gap-6">
-        <a class="btn btn-icon" href="https://www.linkedin.com/company/gtmeasure" aria-label="LinkedIn" target="_blank">
-          <svg class="icon-sm text-neutral-seven hover:text-primary-two" aria-hidden="true">
-            <use href="/assets/sprites/brands.svg#linkedin"></use>
-          </svg>
-        </a>
-        <a class="btn btn-icon" href="https://www.instagram.com/gtmeasure" aria-label="Instagram" target="_blank">
-          <svg class="icon-sm text-neutral-seven hover:text-primary-two" aria-hidden="true">
-            <use href="/assets/sprites/brands.svg#instagram"></use>
-          </svg>
-        </a>
-        <a class="btn btn-icon" href="https://www.youtube.com/@GTMeasure" aria-label="YouTube" target="_blank">
-          <svg class="icon-sm text-neutral-seven hover:text-primary-two" aria-hidden="true">
-            <use href="/assets/sprites/brands.svg#youtube"></use>
-          </svg>
-        </a>
-      </div>
-      <p class="text-sm">© <span class="text-sm text-neutral-seven" id="year">2026</span> The Green Tape
-        Measure Foundation. The Green Tape Measure is a registered assumed name of The Green Tape Measure Foundation,
-        a
-        North Carolina nonprofit corporation.</p>
-      <p class="text-sm">Website by <a class="link link--inline" href="https://vizabold.com"
-          target="_blank">Vizabold</a>.</p>
-    </div>
-    <div class="flex flex-col gap-15 sm:flex-row">
-      <div class="flex gap-10">
-        <div class="flex flex-col gap-4 min-w-22.5">
-          <p class="paragraph-md text-neutral-nine">Site Map</p>
-          <ul class="list-none flex flex-col gap-2">
-            <li><a href="#" class="link link--inline no-underline">Top</a></li>
-            <li><a href="#about" class="link link--inline no-underline">About</a></li>
-            <li><a href="#quiz" class="link link--inline no-underline">Quiz</a></li>
-            <li><a href="#timeline" class="link link--inline no-underline">Timeline</a></li>
-            <li><a href="#research" class="link link--inline no-underline">Research</a></li>
-            <li><a href="#advocacy" class="link link--inline no-underline">Advocacy</a></li>
-            <li><a href="#takeaction" class="link link--inline no-underline">Take Action</a></li>
-          </ul>
+  <footer class="bg-neutral-two transition-opacity duration-500 ease-in-out js:opacity-0 js:pointer-events-none">
+    <div
+      class="flex flex-col p-4 gap-10 justify-between w-full max-w-700 lg:p-10 xl:flex-row xl:p-15 xl:gap-20 xl:justify-between xxl:p-19">
+      <div class="flex flex-col gap-8 xl:max-w-150">
+        <div class="flex items-end gap-3 border-b border-primary-one pb-2">
+          <picture>
+            <source srcset="assets/images/logo-dk.webp" type="image/webp" media="(min-width: 0px)" data-theme="dark">
+            <source srcset="assets/images/logo-lt.webp" type="image/webp" media="(min-width: 0px)" data-theme="light">
+            <img src="assets/images/logo-lt.png" alt="GTM logo that resembles a green tape measure">
+          </picture>
+          <p class="paragraph-md text-neutral-nine -mb-1.5">Research. Educate. Advance.</p>
         </div>
-        <div class="flex flex-col gap-4 min-w-28">
-          <p class="paragraph-md text-neutral-nine">Legal</p>
-          <ul class="list-none flex flex-col gap-2">
-            <li><button type="button" popovertarget="disclaimer" aria-haspopup="dialog" aria-controls="disclaimer"
-                class="link link--inline no-underline text-base text-left">Disclaimer</button></li>
-            <li><button popovertarget="privacy" aria-haspopup="dialog" aria-controls="privacy"
-                class="link link--inline no-underline text-base text-left">Privacy Policy</button></li>
-          </ul>
+        <div class="flex gap-6">
+          <a class="btn btn-icon" href="https://www.linkedin.com/company/gtmeasure" aria-label="LinkedIn"
+            target="_blank">
+            <svg class="icon-sm text-neutral-seven hover:text-primary-two" aria-hidden="true">
+              <use href="/assets/sprites/brands.svg#linkedin"></use>
+            </svg>
+          </a>
+          <a class="btn btn-icon" href="https://www.instagram.com/gtmeasure" aria-label="Instagram" target="_blank">
+            <svg class="icon-sm text-neutral-seven hover:text-primary-two" aria-hidden="true">
+              <use href="/assets/sprites/brands.svg#instagram"></use>
+            </svg>
+          </a>
+          <a class="btn btn-icon" href="https://www.youtube.com/@GTMeasure" aria-label="YouTube" target="_blank">
+            <svg class="icon-sm text-neutral-seven hover:text-primary-two" aria-hidden="true">
+              <use href="/assets/sprites/brands.svg#youtube"></use>
+            </svg>
+          </a>
         </div>
+        <p class="text-sm">© <span class="text-sm text-neutral-seven" id="year">2026</span> The Green Tape
+          Measure Foundation. The Green Tape Measure is a registered assumed name of The Green Tape Measure Foundation,
+          a
+          North Carolina nonprofit corporation.</p>
+        <p class="text-sm">Website by <a class="link link--inline" href="https://vizabold.com"
+            target="_blank">Vizabold</a>.</p>
       </div>
-      <div class="flex flex-col gap-4 min-w-61">
-        <p class="paragraph-md text-neutral-nine">Contact</p>
-        <address class="not-italic">
-          The Green Tape Measure<br>
-          2920 Forestville Road<br>
-          Ste 100 PMB 1294<br>
-          Raleigh, NC 27616<br>
-          <a href="mailto:info@thegreentapemeasure.org" class="link link--inline">info@thegreentapemeasure.org</a><br>
-          <a href="tel:+19192299864" class="link link--inline">(919) 229-9864</a>
-        </address>
+      <div class="flex flex-col gap-15 sm:flex-row">
+        <div class="flex gap-10">
+          <div class="flex flex-col gap-4 min-w-22.5">
+            <p class="paragraph-md text-neutral-nine">Site Map</p>
+            <ul class="list-none flex flex-col gap-2">
+              <li><a href="#" class="link link--inline no-underline">Top</a></li>
+              <li><a href="#about" class="link link--inline no-underline">About</a></li>
+              <li><a href="#quiz" class="link link--inline no-underline">Quiz</a></li>
+              <li><a href="#timeline" class="link link--inline no-underline">Timeline</a></li>
+              <li><a href="#research" class="link link--inline no-underline">Research</a></li>
+              <li><a href="#advocacy" class="link link--inline no-underline">Advocacy</a></li>
+              <li><a href="#takeaction" class="link link--inline no-underline">Take Action</a></li>
+            </ul>
+          </div>
+          <div class="flex flex-col gap-4 min-w-28">
+            <p class="paragraph-md text-neutral-nine">Legal</p>
+            <ul class="list-none flex flex-col gap-2">
+              <li><button type="button" popovertarget="disclaimer" aria-haspopup="dialog" aria-controls="disclaimer"
+                  class="link link--inline no-underline text-base text-left">Disclaimer</button></li>
+              <li><button popovertarget="privacy" aria-haspopup="dialog" aria-controls="privacy"
+                  class="link link--inline no-underline text-base text-left">Privacy Policy</button></li>
+            </ul>
+          </div>
+        </div>
+        <div class="flex flex-col gap-4 min-w-61">
+          <p class="paragraph-md text-neutral-nine">Contact</p>
+          <address class="not-italic">
+            The Green Tape Measure<br>
+            2920 Forestville Road<br>
+            Ste 100 PMB 1294<br>
+            Raleigh, NC 27616<br>
+            <a href="mailto:info@thegreentapemeasure.org" class="link link--inline">info@thegreentapemeasure.org</a><br>
+            <a href="tel:+19192299864" class="link link--inline">(919) 229-9864</a>
+          </address>
+        </div>
       </div>
     </div>
   </footer>
