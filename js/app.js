@@ -140,18 +140,22 @@ let lastScrollY = window.scrollY;
 const header = document.getElementById('header');
 
 window.addEventListener('scroll', () => {
-  const currentScrollY = window.scrollY;
-  if (currentScrollY <= 0) {
-    header.classList.remove('-translate-y-full');
-  }
-  else if (currentScrollY > lastScrollY) {
-    header.classList.add('-translate-y-full');
-  }
-  else {
-    header.classList.remove('-translate-y-full');
-  }
+  if (window.innerWidth < 1280) {
+    const currentScrollY = window.scrollY;
+    if (currentScrollY <= 0) {
+      header.classList.remove('-translate-y-full');
+    }
+    else if (currentScrollY > lastScrollY) {
+      header.classList.add('-translate-y-full');
+    }
+    else {
+      header.classList.remove('-translate-y-full');
+    }
 
-  lastScrollY = currentScrollY;
+    lastScrollY = currentScrollY;
+  } else {
+    header.classList.remove('-translate-y-full');
+  }
 });
 
 /* Close Mobile Nav When Nav Btn Tapped */
