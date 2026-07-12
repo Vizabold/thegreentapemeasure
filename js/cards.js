@@ -151,6 +151,30 @@ function checkScroll() {
     const researchScroll = researchCardsContainer.scrollWidth > researchCardsContainer.clientWidth;
     advocacyBtns.classList.toggle('hidden', !advocacyScroll);
     researchBtns.classList.toggle('hidden', !researchScroll);
+
+    if (!advocacyScroll) {
+        advocacyCardsContainer.classList.add('justify-center');
+        advocacyCardsContainer.classList.remove('scroll-pl-4');
+    } else {
+        if (!advocacyCardsContainer.classList.contains('scroll-pl-4')) {
+            advocacyCardsContainer.classList.add('scroll-pl-4');
+        }
+        if (advocacyCardsContainer.classList.contains('justify-center')) {
+            advocacyCardsContainer.classList.remove('justify-center');
+        }
+    }
+
+    if (!researchScroll) {
+        researchCardsContainer.classList.add('justify-center');
+        researchCardsContainer.classList.remove('scroll-pl-4');
+    } else {
+        if (!researchCardsContainer.classList.contains('scroll-pl-4')) {
+            researchCardsContainer.classList.add('scroll-pl-4');
+        }
+        if (researchCardsContainer.classList.contains('justify-center')) {
+            researchCardsContainer.classList.remove('justify-center');
+        }
+    }
 }
 
 window.addEventListener('resize', checkScroll);
