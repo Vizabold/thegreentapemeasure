@@ -201,7 +201,7 @@
      Cards
   ───────────────────────────────────────── */
   .cards-container {
-    @apply flex gap-20 overflow-x-auto scroll-smooth relative scrollbar p-1 scroll-pl-4 justify-center;
+    @apply flex gap-20 overflow-x-auto scroll-smooth relative scrollbar p-1 scroll-pl-4;
   }
 
   .card {
