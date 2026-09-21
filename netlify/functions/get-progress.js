@@ -1,6 +1,6 @@
-const https = require('https');
+const https = import('https');
 
-exports.handler = async (event) => {
+export const handler = async (event) => {
     const CAMPAIGN_ID = "663716";
     const API_KEY = process.env.GIVEBUTTER_API_KEY;
 
