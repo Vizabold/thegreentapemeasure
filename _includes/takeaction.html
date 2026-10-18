@@ -304,6 +304,37 @@
                                 aria-controls="privacy" class="link link--inline">Disclaimer</button><span>.</span>
                         </div>
                     </div>
+                    <div class="flex gap-2 lg:items-center">
+                        <div class="relative flex">
+                            <input class="peer" id="anonymous" type="checkbox" name="anonymous">
+                            <svg class="absolute right-2 top-1.75 icon-xs fill-current text-primary-one hidden peer-checked:block pointer-events-none"
+                                aria-hidden="true">
+                                <use href="/assets/sprites/solid.svg#check"></use>
+                            </svg>
+                        </div>
+                        <div>
+                            <label for="anonymous">I am interested in volunteering anonymously (optional).<span
+                                    class="relative inline-inline-flex items-center inline-block align-middle group"><button
+                                        type="button" class="h-12 w-12 rounded-full btn btn-icon"
+                                        aria-label="more information about staying anonymous"><svg
+                                            class="w-4 fill-current text-primary-one hover:text-primary-two">
+                                            <use href="/assets/sprites/solid.svg#circle-info"></use>
+                                        </svg>
+                                    </button>
+                                    <div id="anonymous-tooltip" role="tooltip"
+                                        class="absolute bottom-full left-1/2 z-10 mb-2 hidden -translate-x-1/2 flex-col items-center group-hover:flex group-focus-within:flex">
+                                        <p
+                                            class="whitespace-nowrap rounded-md bg-neutral-five px-2 py-1 font-base shadow-md">
+                                            We will make every attempt to honor your request but absolute anonymity
+                                            cannot be guaranteed. Choosing this path means you will not be able to serve
+                                            on our Board. </p>
+                                        <!-- Tiny downward arrow -->
+                                        <div class="-mt-1 h-2 w-2 rotate-45 bg-neutral-nine" aria-hidden="true"></div>
+                                    </div>
+                                </span>
+                            </label>
+                        </div>
+                    </div>
                     <button type="submit" class="btn btn-lg btn-cta">Get Involved</button>
                 </form>
             </div>
