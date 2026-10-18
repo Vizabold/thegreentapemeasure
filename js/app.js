@@ -272,7 +272,7 @@ function hideTooltip(el) {
 }
 
 tooltipBtns.forEach(btn => {
-  const tooltip = btn.nextElementSibling;
+  const tooltip = btn.parentElement.nextElementSibling;
   btn.addEventListener('mouseenter', () => {
     showTooltip(tooltip);
   });
@@ -290,7 +290,7 @@ tooltipBtns.forEach(btn => {
 document.addEventListener('keydown', (e) => {
   if (e.key === 'Escape' && tooltipShown === true) {
     tooltipBtns.forEach(btn => {
-      const tooltip = btn.nextElementSibling;
+      const tooltip = btn.parentElement.nextElementSibling;
       if (!tooltip.classList.contains('hidden')) {
         hideTooltip(tooltip);
       }
