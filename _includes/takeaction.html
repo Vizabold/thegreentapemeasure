@@ -259,7 +259,21 @@
                         </div>
                         <div class="flex flex-col gap-1">
                             <div class="flex justify-between">
-                                <label for="linkedin">LinkedIn Profile Link</label>
+                                <label for="linkedin">LinkedIn Profile Link<button type="button"
+                                        aria-label="Why do we need your LinkedIn?"
+                                        class="tooltip-btn btn btn-icon hidden js:flex"><svg
+                                            class="w-4 fill-current text-primary-one hover:text-primary-two">
+                                            <use href="/assets/sprites/solid.svg#circle-info"></use>
+                                        </svg>
+                                    </button>
+                                    <div role="tooltip"
+                                        class="hidden absolute z-10 w-48 whitespace-normal rounded-md bg-neutral-five pl-3 pr-7 py-2 text-left shadow-md text-sm font-normal text-neutral-seven leading-relaxed">
+                                        We use LinkedIn to verify identity and professional backgrounds while keeping
+                                        our administrative costs low. Your data is never shared.</div>
+                                    <div
+                                        class="absolute -top-1 left-1/2 -translate-x-1/2 w-2 h-2 bg-neutral-nine rotate-45">
+                                    </div>
+                                </label>
                                 <p class="text-secondary-five">required</p>
                             </div>
                             <input id="linkedin" type="url" name="linkedin"
@@ -313,37 +327,21 @@
                             </svg>
                         </div>
                         <div>
-                            <label for="anonymous">I am interested in volunteering anonymously (optional).<span
-                                    class="relative inline-flex items-center align-middle group">
-                                    <input type="checkbox" id="anonymous-tooltip-toggle" class="peer sr-only" />
-                                    <label for="anonymous-tooltip-toggle"
-                                        class="flex h-12 w-12 rounded-full btn btn-icon cursor-pointer select-none"
-                                        aria-label="More information about staying anonymous" tabindex="0">
-                                        <svg class="w-4 fill-current text-primary-one hover:text-primary-two">
-                                            <use href="/assets/sprites/solid.svg#circle-info"></use>
-                                        </svg>
-                                        <div role="tooltip"
-                                            class="absolute bottom-full left-1/2 z-10 mb-2 hidden -translate-x-1/2 flex-col items-center peer-checked:flex group-hover:flex focus-within:flex">
-                                            <div
-                                                class="relative w-48 whitespace-normal rounded-md bg-neutral-five pl-3 pr-7 py-2 text-left shadow-md text-sm font-normal text-neutral-seven">
-                                                <p class="leading-relaxed">
-                                                    We will make every attempt to honor your request but absolute
-                                                    anonymity cannot be guaranteed. Choosing this path means you will
-                                                    not be able
-                                                    to serve on our Board. </p>
-                                                <label for="anonymous-tooltip-toggle"
-                                                    class="absolute top-1 right-1 flex h-5 w-5 cursor-pointer items-center justify-center rounded-full text-neutral-nine hover:text-neutral-eight"
-                                                    aria-label="Close tooltip">
-                                                    <svg xmlns="http://w3.org" fill="none" viewBox="0 0 24 24"
-                                                        stroke-width="2" stroke="currentColor" class="h-3 w-3">
-                                                        <path stroke-linecap="round" stroke-linejoin="round"
-                                                            d="M6 18 18 6M6 6l12 12" />
-                                                    </svg>
-                                                </label>
-                                            </div>
-                                        </div>
-                                    </label>
-                                </span>
+                            <label for="anonymous">I am interested in volunteering anonymously (optional).
+                                <button type="button" aria-label="More information about staying anonymous"
+                                    class="tooltip-btn btn btn-icon hidden js:flex"><svg
+                                        class="w-4 fill-current text-primary-one hover:text-primary-two">
+                                        <use href="/assets/sprites/solid.svg#circle-info"></use>
+                                    </svg>
+                                </button>
+                                <div role="tooltip"
+                                    class="hidden absolute z-10 w-48 whitespace-normal rounded-md bg-neutral-five pl-3 pr-7 py-2 text-left shadow-md text-sm font-normal text-neutral-seven leading-relaxed">
+                                    We will make every attempt to honor your request but absolute anonymity cannot be
+                                    guaranteed. Choosing this path means you will not be able to serve on our Board.
+                                </div>
+                                <div
+                                    class="absolute -top-1 left-1/2 -translate-x-1/2 w-2 h-2 bg-neutral-nine rotate-45">
+                                </div>
                             </label>
                         </div>
                     </div>

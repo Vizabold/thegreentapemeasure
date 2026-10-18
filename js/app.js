@@ -257,6 +257,46 @@ const count = document.querySelector('.textarea-count');
 comment.addEventListener('input', (e) => {
   count.textContent = e.target.value.length;
 });
+let tooltipShown = false;
+
+const tooltipBtns = document.querySelectorAll('.tooltip-btn');
+
+function showTooltip(el) {
+  el.classList.remove('hidden');
+  tooltipShown = true;
+}
+
+function hideTooltip(el) {
+  el.classList.add('hidden');
+  tooltipShown = false;
+}
+
+tooltipBtns.forEach(btn => {
+  const tooltip = btn.nextElementSibling;
+  btn.addEventListener('mouseenter', () => {
+    showTooltip(tooltip);
+  });
+  btn.addEventListener('mouseleave', () => {
+    hideTooltip(tooltip);
+  });
+  btn.addEventListener('focus', () => {
+    showTooltip(tooltip);
+  });
+  btn.addEventListener('blur', () => {
+    hideTooltip(tooltip);
+  });
+});
+
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape' && tooltipShown === true) {
+    tooltipBtns.forEach(btn => {
+      const tooltip = btn.nextElementSibling;
+      if (!tooltip.classList.contains('hidden')) {
+        hideTooltip(tooltip);
+      }
+    })
+  }
+})
 
 /*------------------------------ CAMPAIGN --------------------------------- */
 
