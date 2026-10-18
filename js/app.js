@@ -235,6 +235,12 @@ if (modeToggle) {
   }
 
   toggleLabels.forEach(label => {
+    label.addEventListener('click', (e) => {
+      e.preventDefault();
+      modeToggle.checked = !modeToggle.checked;
+      modeToggle.dispatchEvent(new Event('change'));
+    });
+
     label.addEventListener('keydown', (e) => {
       if (e.key === ' ' || e.key === 'Enter') {
         e.preventDefault();
