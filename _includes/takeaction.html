@@ -178,7 +178,7 @@
                                     </div>
                                     <div class="flex flex-col">
                                         <p class="paragraph-md">Community</p>
-                                        <p>Celebrate milestones at exclusive events.</p>
+                                        <p>Celebrate milestones at volunteer meetups.</p>
                                     </div>
                                 </div>
                             </div>
@@ -227,6 +227,9 @@
                     name="volunteer-interest" method="POST" netlify-honeypot="bot-field" action="/thank-you.html">
                     <input name="bot-field" hidden>
                     <h3 class="text-center">Join Scrib's Team of Investigators!</h3>
+                    <p class="paragraph-md">Not ready to volunteer yet? No problem! Join our <a
+                            class="link link--inline-green" href="https://discord.thegreentapemeasure.org">public
+                            discord</a> in the meantime!</p>
                     <fieldset>
                         <legend class="text-xl text-neutral-nine">Basic Information</legend>
                         <div class="flex flex-col gap-6 sm:flex-row xl:flex-col xxl:flex-row">
@@ -277,11 +280,21 @@
                             <input id="linkedin" type="url" name="linkedin"
                                 placeholder="https://www.linkedin.com/in/..." required>
                         </div>
+                    </fieldset>
+                    <fieldset class="flex flex-col gap-4">
+                        <legend class="text-xl text-neutral-nine"></legend>
                         <div class="flex flex-col gap-1">
                             <label for="comment">Questions? Comments?</label>
                             <textarea id="comment" name="comment" minlength="25" wrap="soft" maxlength="1000" rows="5"
                                 placeholder="skills, experience, interests, availability, questions..."></textarea>
                             <p class="text-right"><span class="textarea-count"></span>/1000</p>
+                        </div>
+                        <div class="flex flex-col gap-1">
+                            <div class="flex justify-between">
+                                <label for="referral">How did you hear about us?</label>
+                            </div>
+                            <input id="referral" type="text" name="referral"
+                                placeholder="career center, professor, employer, another  designer">
                         </div>
                     </fieldset>
                     <div class="flex gap-2 lg:items-center">
