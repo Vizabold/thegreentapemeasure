@@ -71,7 +71,7 @@ let selectedIndex1g = -1;
 
 /* Graph-2a Variables */
 const type2a = 'pie';
-const series2a = [25, 22, 19, 17, 9, 8];
+const series2a = [25, 22, 20, 17, 9, 7];
 const labels2a = ['fundamentals', 'systems', 'commercial', 'graphics', 'residential', 'practice'];
 const chart2a = document.getElementById('pie-chart-2a');
 const placeholder2a = document.getElementById('pie-chart-2a-placeholder');
@@ -98,7 +98,7 @@ let selectedIndex2c = -1;
 
 /* Graph-2d Variables */
 const type2d = 'pie';
-const series2d = [33, 29, 25, 13];
+const series2d = [34, 27, 26, 13];
 const labels2d = ['management', 'design', 'shared', 'practice'];
 const chart2d = document.getElementById('pie-chart-2d');
 const placeholder2d = document.getElementById('pie-chart-2d-placeholder');
