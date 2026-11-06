@@ -109,26 +109,42 @@ let selectedIndex2d = -1;
 const type3a = 'line';
 const series3a = [
     {
-        name: 'voluntary',
-        data: [0, 8, 19, 25, 29]
+        name: 'exemption',
+        data: [5, 16, 21, 22, 25]
     },
     {
-        name: 'permitting',
-        data: [3, 10, 12, 13, 19]
+        name: 'board parity',
+        data: [4, 6, 7, 7, 6]
     },
     {
-        name: 'restrictions',
-        data: [2, 16, 25, 27, 31]
+        name: 'failed bill',
+        data: [3, 4, 16, 16, 16]
     },
     {
-        name: 'regulation',
-        data: [5, 8, 6, 2, 2]
+        name: 'permitting privileges',
+        data: [3, 8, 8, 10, 19]
+    },
+    {
+        name: 'title regulation',
+        data: [5, 7, 9, 3, 2]
+    },
+    {
+        name: 'practice regulation',
+        data: [1, 5, 6, 4, 3]
+    },
+    {
+        name: 'scope restrictions',
+        data: [5, 20, 25, 29, 34]
+    },
+    {
+        name: 'voluntary title acts',
+        data: [1, 13, 19, 24, 30]
     }
 ];
 const labels3a = ['1980s', '1990s', '2000s', '2010s', '2020s'];
 const chart3a = document.getElementById('line-chart-3a');
 const placeholder3a = document.getElementById('line-chart-3a-placeholder');
-const colors3a = ['var(--primary-one)', 'var(--primary-one)', 'var(--neutral-seven)', 'var(--neutral-seven)'];
+const colors3a = ['var(--secondary-one)', 'var(--primary-one)', 'var(--secondary-five)', 'var(--primary-one)', 'var(--primary-three)', 'var(--primary-three)', 'var(--secondary-five)', 'var(--secondary-three)'];
 let selectedIndex3a = -1;
 
 /* Graph-4a Variables */
@@ -308,7 +324,7 @@ function renderChart(type, series, labels, chartEl, placeholder, colors, selecte
     /* Line Chart Variables */
     const yMin = 0, yMax = 35;
     const nCats = labels.length;
-    const dash = [0, 8, 0, 8];
+    const dash = [0, 8, 8, 0, 8, 0, 0, 8];
     const markerGroups = [];
     if (type === 'line') {
         range = [0, 5, 10, 15, 20, 25, 30, 35];
