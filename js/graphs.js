@@ -757,7 +757,7 @@ function renderChart(type, series, labels, chartEl, placeholder, colors, selecte
             path.setAttribute('d', d);
             path.style.fill = 'none';
             path.style.stroke = color;
-            path.style.strokeWidth = '4';
+            path.style.strokeWidth = '2';
             if (dashVal) path.style.strokeDasharray = dashVal + ' ' + dashVal;
             path.style.transition = 'opacity 0.3s ease';
             path.setAttribute('pointer-events', 'none');
