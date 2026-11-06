@@ -144,7 +144,7 @@ const series3a = [
 const labels3a = ['1980s', '1990s', '2000s', '2010s', '2020s'];
 const chart3a = document.getElementById('line-chart-3a');
 const placeholder3a = document.getElementById('line-chart-3a-placeholder');
-const colors3a = ['var(--secondary-one)', 'var(--primary-one)', 'var(--secondary-five)', 'var(--primary-one)', 'var(--primary-three)', 'var(--primary-three)', 'var(--secondary-five)', 'var(--secondary-three)'];
+const colors3a = ['var(--secondary-one)', 'var(--primary-one)', 'var(--secondary-five)', 'var(--primary-one)', 'var(--primary-three)', 'var(--primary-three)', 'var(--secondary-five)', 'var(--secondary-five)'];
 let selectedIndex3a = -1;
 
 /* Graph-4a Variables */
