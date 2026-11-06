@@ -743,7 +743,7 @@ function renderChart(type, series, labels, chartEl, placeholder, colors, selecte
         yTitle.setAttribute('y', yMid);
         yTitle.setAttribute('text-anchor', 'middle');
         yTitle.setAttribute('transform', 'rotate(-90 14 ' + yMid + ')');
-        yTitle.textContent = 'States';
+        yTitle.textContent = 'Number of Laws';
         setAxisLabels(yTitle);
         svg.appendChild(gridLine(cX, cY, cX, cY + cH));
         svg.appendChild(gridLine(cX, cY + cH, cX + cW, cY + cH));
