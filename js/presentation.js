@@ -132,7 +132,7 @@ function setupSlides(dialog) {
     }, { signal })
 
 
-    const overlayToggle = document.getElementById('leg-overlay-checkbox');
+    const overlayToggle = document.getElementById('show-overlay');
     const overlayLabel = overlayToggle.parentElement.nextElementSibling;
     const overlay = document.getElementById('event-overlay');
 
