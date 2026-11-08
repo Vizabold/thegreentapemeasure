@@ -130,6 +130,23 @@ function setupSlides(dialog) {
     statesNavBtn.addEventListener('click', () => {
       if (currentState) currentState.nextElementSibling.focus();
     }, { signal })
+
+
+    const overlayToggle = document.getElementById('leg-overlay-checkbox');
+    const overlayLabel = overlayToggle.parentElement.nextElementSibling;
+    const overlay = document.getElementById('event-overlay');
+
+    overlayToggle.addEventListener('change', (e) => {
+      if (e.target.checked) {
+        overlayLabel.textContent = 'Hide overlay';
+        overlay.style.opacity = '100%';
+        overlay.style.display = 'flex';
+      } else {
+        overlayLabel.textContent = 'Show overlay';
+        overlay.style.opacity = '0';
+        overlay.style.display = 'hide';
+      }
+    }, { signal });
   }
 
   slideContainer.addEventListener('scroll', () => {

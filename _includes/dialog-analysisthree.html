@@ -5,7 +5,24 @@
         <div class="card presentation-slide" tabindex="-1" id="slide-3a" role="group" aria-roledescription="slide"
             aria-label="slide 1 of 2">
             <a href="#analysis-three-nav" class="sr-only static -ml-8.75 -mt-8.75">Return to slide navigation</a>
-            <div class="flex justify-center items-center" id="line-chart-3a-container">
+            <div class="relative flex justify-center items-center" id="line-chart-3a-container">
+                <picture class="hidden absolute z-10 opacity-0 transition-opacity duration-75 ease-in-out"
+                    id="event-overlay">
+                    <source srcset="assets/images/graph_3a-overlay-dk-lg.webp" type="image/webp"
+                        media="(min-width: 1000px)" data-theme="dark">
+                    <source srcset="assets/images/graph_3a-overlay-dk-md.webp" type="image/webp"
+                        media="(min-width: 400px)" data-theme="dark">
+                    <source srcset="assets/images/graph_3a-overlay-dk-sm.webp" type="image/webp"
+                        media="(min-width: 300px)" data-theme="dark">
+                    <source srcset="assets/images/graph_3a-overlay-lt-lg.webp" type="image/webp"
+                        media="(min-width: 1000px)" data-theme="light">
+                    <source srcset="assets/images/graph_3a-overlay-lt-md.webp" type="image/webp"
+                        media="(min-width: 400px)" data-theme="light">
+                    <source srcset="assets/images/graph_3a-overlay-lt-sm.webp" type="image/webp"
+                        media="(min-width: 300px)" data-theme="light">
+                    <img src="assets/images/graph_3a-overlay-lt-md.png"
+                        alt="text describing relevant events for each decade">
+                </picture>
                 <picture id="line-chart-3a-placeholder">
                     <source srcset="assets/images/graph_3a-dk-v2-lg.webp" type="image/webp" media="(min-width: 1000px)"
                         data-theme="dark">
@@ -19,7 +36,8 @@
                         data-theme="light">
                     <source srcset="assets/images/graph_3a-lt-v2-sm.webp" type="image/webp" media="(min-width: 300px)"
                         data-theme="light">
-                    <img src="assets/images/graph_3a-lt-v2-md.png" alt="a monochrome green line graph showing 5 lines">
+                    <img src="assets/images/graph_3a-lt-v2-md.png"
+                        alt="a line graph showing eight plotted lines of data">
                 </picture>
                 <div id="line-chart-3a"></div>
             </div>
@@ -30,6 +48,16 @@
                     <p class="hidden js:block">Tap the graph or legend to see more details</p>
                 </div>
                 <div class="legend scrollbar">
+                    <div class="hidden gap-2 lg:items-center js:flex">
+                        <div class="relative flex">
+                            <input class="peer" id="leg-overlay-checkbox" type="checkbox" name="show-overlay">
+                            <svg class="absolute right-2 top-1.75 icon-xs fill-current text-primary-one hidden peer-checked:block pointer-events-none"
+                                aria-hidden="true">
+                                <use href="/assets/sprites/solid.svg#check"></use>
+                            </svg>
+                        </div>
+                        <label for="show-overlay">Show overlay</label>
+                    </div>
                     <details name="accordion" data-series-index="0">
                         <summary class="btn btn-accordion">
                             <svg aria-hidden="true" class="icon-xs text-neutral-seven">
