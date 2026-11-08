@@ -24,6 +24,30 @@
     <div class="cards-container xxl:w-375" id="research-cards" role="region" aria-roledescription="carousel"
         aria-label="Latest Research">
         <div class="card gap-0 justify-between w-75 min-w-75 h-129 bg-neutral-four" role="group"
+            aria-roledescription="slide" aria-label="card 2 of 3" tabindex="-1">
+            <div class="flex flex-col gap-1">
+                <p class="paragraph-accent">November 2026</p>
+                <h3>Interiors (De)regulated</h3>
+                <p>An analysis of interior design legislative history in the United States.</p>
+            </div>
+            <picture>
+                <source srcset="assets/images/Graph-two-dk.webp" type="image/webp" media="(min-width: 0px)"
+                    data-theme="dark">
+                <source srcset="assets/images/Graph-two-lt.webp" type="image/webp" media="(min-width: 0px)"
+                    data-theme="light">
+                <img src="assets/images/Graph-two-lt.png"
+                    alt="a monochrome green line graph with 4 lines, 3 increasing, 1 decreasing" class="h-50 w-full">
+            </picture>
+            <button type="button" popovertarget="analysis-three" aria-haspopup="dialog" aria-controls="analysis-three"
+                class="btn btn-icon justify-start open-analysis-btn">
+                <svg class="icon-sm">
+                    <use href="/assets/sprites/solid.svg#arrow-up-right-from-square"></use>
+                </svg>Open Analysis
+            </button>
+            <a class="link link--inline-green" href="/assets/docs/2026_GTM_US-ID-Reg-History.pdf" target="_blank">Read
+                the Full Report</a>
+        </div>
+        <div class="card gap-0 justify-between w-75 min-w-75 h-129 bg-neutral-four" role="group"
             aria-roledescription="slide" aria-label="card 1 of 3" tabindex="-1">
             <div class="flex flex-col gap-1">
                 <p class="paragraph-accent">July 2025</p>
@@ -44,30 +68,6 @@
                     <use href="/assets/sprites/solid.svg#arrow-up-right-from-square"></use>
                 </svg>Open Analysis
             </button>
-        </div>
-        <div class="card gap-0 justify-between w-75 min-w-75 h-129 bg-neutral-four" role="group"
-            aria-roledescription="slide" aria-label="card 2 of 3" tabindex="-1">
-            <div class="flex flex-col gap-1">
-                <p class="paragraph-accent">July 2025</p>
-                <h3>Interiors (De)regulated</h3>
-                <p>An overview of interior design legislation since the 1980s and current bills in each state.</p>
-            </div>
-            <picture>
-                <source srcset="assets/images/Graph-two-dk.webp" type="image/webp" media="(min-width: 0px)"
-                    data-theme="dark">
-                <source srcset="assets/images/Graph-two-lt.webp" type="image/webp" media="(min-width: 0px)"
-                    data-theme="light">
-                <img src="assets/images/Graph-two-lt.png"
-                    alt="a monochrome green line graph with 4 lines, 3 increasing, 1 decreasing" class="h-50 w-full">
-            </picture>
-            <button type="button" popovertarget="analysis-three" aria-haspopup="dialog" aria-controls="analysis-three"
-                class="btn btn-icon justify-start open-analysis-btn">
-                <svg class="icon-sm">
-                    <use href="/assets/sprites/solid.svg#arrow-up-right-from-square"></use>
-                </svg>Open Analysis
-            </button>
-            <a class="link link--inline-green" href="/assets/docs/2026_GTM_US-ID-Reg-History.pdf" target="_blank">Read
-                the Full Report</a>
         </div>
         <div class="card gap-0 justify-between w-75 min-w-75 h-129 bg-neutral-four" role="group"
             aria-roledescription="slide" aria-label="card 3 of 3" tabindex="-1">
