@@ -134,7 +134,7 @@ const series3a = [
     },
     {
         name: 'scope restrictions',
-        data: [5, 20, 25, 29, 34]
+        data: [6, 21, 26, 30, 35]
     },
     {
         name: 'voluntary title acts',
