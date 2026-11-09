@@ -122,7 +122,7 @@ const series3a = [
     },
     {
         name: 'permitting privileges',
-        data: [3, 8, 8, 10, 19]
+        data: [3, 8, 9, 11, 20]
     },
     {
         name: 'title regulation',
